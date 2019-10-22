@@ -1,11 +1,6 @@
 <template>
   <div>
-    <header class="theflex">
-      <div class="theflex_cell">Logo</div>
-      <div class="theflex_cell">
-        <input type="text" placeholder="seachbar" />
-      </div>
-    </header>
+    <headerComponent />
     <nuxt />
     <hr />
     <div>
@@ -13,7 +8,14 @@
     </div>
   </div>
 </template>
-
+<script>
+import headerComponent from "~/components/header";
+export default {
+  components: {
+    headerComponent
+  }
+};
+</script>
 <style>
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -65,20 +67,6 @@ html {
   background-color: #35495e;
 }
 
-.theflex {
-  display: flex;
-  height: 60px;
-  background: #2c2c2c;
-  align-items: center;
-  justify-content: space-between;
-}
-.theflex_cell {
-  /* justify-content: flex-start; */
-  /* margin-bottom: 10px; */
-  line-height: 60px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 footer {
   margin-top: 20px;
   text-align: center;
