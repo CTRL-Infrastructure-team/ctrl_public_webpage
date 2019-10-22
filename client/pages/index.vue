@@ -30,10 +30,8 @@ export default {
 </script>
 
 <style>
-.guide {
-  margin-top: 20px;
-}
 .main {
+  margin-top: 20px;
   height: 40vh;
   width: 40%;
   background: blue;
@@ -42,7 +40,5 @@ export default {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-
-  /* width: 100; */
 }
 </style>

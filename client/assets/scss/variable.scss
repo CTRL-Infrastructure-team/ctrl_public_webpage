@@ -9,3 +9,6 @@ $breakpoints: ('sm': 'screen and (min-width: 400px)',
     @content;
   }
 }
+
+$maincolorBlack : hsl(240, 1%, 25%);
+$mainchar: #f0f0f0;
