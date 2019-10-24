@@ -3,16 +3,16 @@
     <headerComponent />
     <nuxt />
     <hr />
-    <div>
-      <footer class="footer">footer</footer>
-    </div>
+    <footerComponent />
   </div>
 </template>
 <script>
 import headerComponent from "~/components/header";
+import footerComponent from "~/components/footer";
 export default {
   components: {
-    headerComponent
+    headerComponent,
+    footerComponent
   }
 };
 </script>

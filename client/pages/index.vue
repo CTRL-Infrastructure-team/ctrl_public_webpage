@@ -2,9 +2,15 @@
   <div>
     <mainmenu />
     <div class="flex">
-      <mainGuide name="1" class="main guide" color="darkblue" />
-      <mainGuide name="2" class="main guide" color="pink" />
-      <mainGuide name="3" class="main guide" color="gray" />
+      <!-- <img src="~/assets/img/img3.jpg" /> -->
+      <mainGuide
+        name="1"
+        class="main guide"
+        color="darkblue"
+        img="_nuxt/client/assets/img/img1.jpg"
+      />
+      <mainGuide name="2" class="main guide" color="pink" img="_nuxt/client/assets/img/img2.jpg" />
+      <mainGuide name="3" class="main guide" color="gray" img="_nuxt/client/assets/img/img3.jpg" />
       <mainGuide name="4" class="main guide" color="black" />
     </div>
     <div class="flex">
@@ -34,7 +40,7 @@ export default {
   margin-top: 20px;
   height: 40vh;
   width: 40%;
-  background: blue;
+  /* background: blue; */
 }
 .flex {
   display: flex;
