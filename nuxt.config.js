@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'universal',
   srcDir: "./client/",
-  serverMiddleware:["~~/api/"],
+  serverMiddleware: ["~~/api/"],
   /*
    ** Headers of the page
    */
@@ -35,7 +35,9 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/assets/scss/main.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    */

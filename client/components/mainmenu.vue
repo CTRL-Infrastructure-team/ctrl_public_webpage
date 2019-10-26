@@ -1,7 +1,9 @@
 <template>
   <div>
     <li>
-      <ul v-for="item in menu" :key="item">{{item}}</ul>
+      <ul v-for="item in menu" :key="item">
+        <nuxt-link :to="item.to">{{item.name}}</nuxt-link>
+      </ul>
     </li>
   </div>
 </template>
@@ -10,7 +12,12 @@ export default {
   name: "main_menu",
   data() {
     return {
-      menu: ["Top", "活動報告", "...etc"]
+      menu: [
+        { name: "Top", to: "/" },
+        { name: "活動報告", to: "/report" },
+        { name: "作品", to: "/progress" },
+        { name: "問い合わせ", to: "/inquiry" }
+      ]
     };
   }
 };
