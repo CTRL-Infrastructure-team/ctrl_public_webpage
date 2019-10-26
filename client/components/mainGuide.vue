@@ -1,10 +1,13 @@
 <template>
-  <div @mouseover="doBig" class="box" :style="{background:color}">
-    <img :src="img" class="img" :style="imgStyle" />
-    <span>{{name}}</span>
-  </div>
+  <transition>
+    <div @mouseover="doBig" @mouseout="doSmall" class="box" :style="{background:color}" v-if="show">
+      <img :src="img" class="img" :style="imgStyle" />
+      <span>{{name}}</span>
+    </div>
+  </transition>
 </template>
 <script>
+// import { TweenMax, Expo, Elasric } from "gsap";
 export default {
   name: "main_guide",
   props: {
@@ -17,35 +20,44 @@ export default {
       imgStyle: {
         width: 100 + "%",
         height: 100 + "%"
-      }
+      },
+      show: false
     };
   },
   methods: {
     doBig() {
       console.log("hover");
-      this.imgStyle.width = 120 + "%";
-    }
+    },
+    doSmall() {}
+  },
+  mounted() {
+    this.show = !this.show;
   }
 };
 </script>
 <style lang="scss" scoped>
-.main_img {
-  //   color: blue;
-  // box-sizing: border-box;
-
-  // height: 40vh;
-  //   background: red;
-}
 .img {
-  // z-index: 2;
   object-fit: cover;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    object-fit: cover;
+    overflow: hidden;
+  }
 }
 .box {
-  // width: 100%;
-  // height: 100%;
   margin-top: 20px;
-  height: 40vh;
-  width: 40%;
   overflow: hidden;
+
+  cursor: pointer;
+}
+.v-enter {
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
+.v-enter-active {
+  transition: all 1s;
 }
 </style>
