@@ -1,6 +1,5 @@
 <template>
   <div>
-    <mainmenu />
     <div class="flex">
       <!-- <img src="~/assets/img/img3.jpg" /> -->
       <mainGuide name="1" class="guide" color="darkblue" :img="mainimg[0]" />
@@ -17,7 +16,6 @@
 
 <script>
 //コンポーネントインポート
-import mainmenu from "~/components/mainmenu";
 import mainGuide from "~/components/mainGuide";
 import news from "~/components/news";
 import twitterbox from "~/components/twitter";
@@ -29,7 +27,6 @@ import img3 from "~/assets/img/img3.jpg";
 import img4 from "~/assets/img/img4.jpg";
 export default {
   components: {
-    mainmenu,
     mainGuide,
     news,
     twitterbox
@@ -38,6 +35,12 @@ export default {
     return {
       mainimg: [img1, img2, img3, img4]
     };
+  },
+  mounted() {
+    this.$store.commit("doFooter");
+  },
+  destroyed() {
+    this.$store.commit("doFooter");
   }
 };
 </script>

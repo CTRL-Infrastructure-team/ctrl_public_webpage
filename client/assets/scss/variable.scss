@@ -12,3 +12,5 @@ $breakpoints: ('sm': 'screen and (min-width: 400px)',
 
 $maincolorBlack : hsl(240, 1%, 25%);
 $mainchar: #f0f0f0;
+//headerの高さを指定します。広げたい場合はここを変更して下さい。
+$headerHeight:100px;

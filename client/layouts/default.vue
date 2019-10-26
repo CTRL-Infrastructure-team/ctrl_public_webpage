@@ -1,6 +1,9 @@
 <template>
   <div>
-    <headerComponent />
+    <header class="header">
+      <headerComponent />
+      <mainmenu></mainmenu>
+    </header>
     <nuxt />
     <hr />
     <footerComponent />
@@ -9,10 +12,13 @@
 <script>
 import headerComponent from "~/components/header";
 import footerComponent from "~/components/footer";
+import mainmenu from "~/components/mainmenu";
+
 export default {
   components: {
     headerComponent,
-    footerComponent
+    footerComponent,
+    mainmenu
   }
 };
 </script>
@@ -74,5 +80,9 @@ footer {
 }
 hr {
   margin-top: 10px;
+}
+.header {
+  height: 100px;
+  overflow: hidden;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <footer class="footer">
+    <footer class="footer" v-if="$store.state.created">
       footer
       <span class="copyright">&copy; 2019 CTRL web creater</span>
     </footer>
