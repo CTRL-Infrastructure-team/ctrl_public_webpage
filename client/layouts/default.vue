@@ -5,7 +5,6 @@
       <mainmenu></mainmenu>
     </header>
     <nuxt />
-    <hr />
     <footerComponent />
   </div>
 </template>
@@ -73,16 +72,11 @@ html {
   background-color: #35495e;
 }
 
-footer {
-  margin-top: 20px;
-  text-align: center;
-  margin-bottom: 20px;
-}
 hr {
   margin-top: 10px;
 }
 .header {
-  height: 100px;
+  height: $headerHeight;
   overflow: hidden;
 }
 </style>

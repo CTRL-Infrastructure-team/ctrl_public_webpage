@@ -32,6 +32,18 @@ module.exports = {
   loading: {
     color: '#fff'
   },
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in',
+    beforeEnter(el) {},
+    afterEnter(el) {
+      this.$store.commit("doFooter");
+    },
+    beforeLeave(el) {
+      console.log("before Leave");
+      this.$store.commit("doFooter");
+    }
+  },
   /*
    ** Global CSS
    */

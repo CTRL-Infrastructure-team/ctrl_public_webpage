@@ -35,12 +35,6 @@ export default {
     return {
       mainimg: [img1, img2, img3, img4]
     };
-  },
-  mounted() {
-    this.$store.commit("doFooter");
-  },
-  destroyed() {
-    this.$store.commit("doFooter");
   }
 };
 </script>

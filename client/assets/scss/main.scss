@@ -29,3 +29,17 @@
   top: -100%;
   height: 0;
 }
+
+.layouts-enter-active {
+  transition: opacity 0.5s;
+}
+
+.layouts-leave {
+  transform: opacity 0.5s;
+}
+
+.layouts-enter {
+  opacity: 0;
+}
+
+.layouts-leave-to {}

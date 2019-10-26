@@ -1,9 +1,11 @@
 <template>
   <div>
-    <footer class="footer" v-if="$store.state.created">
-      footer
-      <span class="copyright">&copy; 2019 CTRL web creater</span>
-    </footer>
+    <transition>
+      <footer class="footer" v-if="$store.state.created">
+        <hr />footer
+        <span class="copyright">&copy; 2019 CTRL web creater</span>
+      </footer>
+    </transition>
   </div>
 </template>
 <script>
@@ -17,5 +19,18 @@ export default {
 }
 .copyright {
   font-size: 10px;
+}
+.v-enter {
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
+.v-enter-active {
+  transition: all 2s;
+}
+hr {
+}
+footer {
 }
 </style>

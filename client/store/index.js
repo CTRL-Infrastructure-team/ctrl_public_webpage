@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 
 export const state = () => ({
   isguideFlug: false,
-  created: false
+  created: true
 })
 
 export const mutations = {
