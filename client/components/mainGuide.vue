@@ -7,15 +7,15 @@
   </transition>
 </template>
 <script>
-import { TweenMax, Expo, Elasric } from "gsap";
 import { mapGetters, mapMutations } from "vuex";
-import { format } from "upath";
+import { TweenMax, Expo, Elasric } from "gsap";
+
 export default {
   name: "main_guide",
   props: {
     name: { type: String, default: "this is name" },
     color: { default: "red" },
-    img: { type: String, default: "_nuxt/client/assets/img/img4.jpg" }
+    img: { type: String }
   },
   data() {
     return {
@@ -25,7 +25,8 @@ export default {
         display: "block"
       },
       show: false,
-      isTheFlug: false
+      isTheFlug: false,
+      isCenter: false
     };
   },
   computed: {
@@ -35,21 +36,22 @@ export default {
   },
   methods: {
     doBig() {
-      console.log("hover");
-      this.isTheFlug = !this.isTheFlug;
-      this.$store.commit("doGuideflugOn");
+      let img = this.img;
+      this.$emit("open", img);
     },
     center() {
       if (this.isTheFlug === true) {
-        this.isTheFlug = !this.isTheFlug;
         return;
       }
-      this.show = !this.show;
     },
-    none() {}
+    none() {
+      this.show = true;
+      this.isTheFlug = false;
+    }
   },
   mounted() {
     this.show = !this.show;
+    this.isTheFlug = false;
   },
   watch: {
     guideFlug(val) {
@@ -85,8 +87,9 @@ export default {
 }
 .box {
   position: relative;
-  margin-top: 20px;
   overflow: hidden;
+  height: 40vh;
+  width: 40%;
 
   cursor: pointer;
 }

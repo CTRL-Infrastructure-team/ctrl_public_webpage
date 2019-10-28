@@ -1,15 +1,20 @@
 <template>
   <div>
     <div class="flex">
-      <!-- <img src="~/assets/img/img3.jpg" /> -->
-      <mainGuide name="1" class="guide" color="darkblue" :img="mainimg[0]" />
-      <mainGuide name="2" class="guide" color="pink" :img="mainimg[1]" />
-      <mainGuide name="3" class="guide" color="gray" :img="mainimg[2]" />
-      <mainGuide name="4" class="guide" color="black" :img="mainimg[3]" />
+      <mainGuide
+        name="1"
+        color="darkblue"
+        class="mp0"
+        :img="item"
+        v-for="(item,index) in mainimg"
+        :key="index"
+        @open="openModal"
+      />
+      <myModal v-if="modal" :img="modalImg" @close="closeModal"></myModal>
     </div>
     <div class="flex">
       <news />
-      <twitterbox></twitterbox>
+      <twitterbox class="twitterBox"></twitterbox>
     </div>
   </div>
 </template>
@@ -19,6 +24,9 @@
 import mainGuide from "~/components/mainGuide";
 import news from "~/components/news";
 import twitterbox from "~/components/twitter";
+import { mapGetters, mapMutations } from "vuex";
+import { TweenMax, Expo, Elasric } from "gsap";
+import myModal from "~/components/modal";
 
 //画像インポート
 import img1 from "~/assets/img/img1.jpg";
@@ -29,28 +37,51 @@ export default {
   components: {
     mainGuide,
     news,
-    twitterbox
+    twitterbox,
+    myModal
   },
   data() {
     return {
-      mainimg: [img1, img2, img3, img4]
+      mainimg: [img1, img2, img3, img4],
+      isCenter: false,
+      isflex: true,
+      modal: false,
+      modalImg: img1
     };
-  }
+  },
+  methods: {
+    openModal(modalImg) {
+      console.log(modalImg);
+      this.modalImg = modalImg;
+      this.modal = true;
+    },
+    closeModal() {
+      this.modal = false;
+    }
+  },
+  computed: {}
 };
 </script>
 
-<style>
-.guide {
-  margin-top: 20px;
-  height: 40vh;
-  width: 40%;
-}
+<style lang="scss" scoped>
 .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+}
+.guide {
+  margin-top: 20px;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 .img {
   object-fit: cover;
+}
+
+.twitterBox {
+  height: 400px;
+  overflow-y: scroll;
 }
 </style>

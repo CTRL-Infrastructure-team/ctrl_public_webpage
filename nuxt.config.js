@@ -35,14 +35,19 @@ module.exports = {
   pageTransition: {
     name: 'page',
     mode: 'out-in',
-    beforeEnter(el) {},
     afterEnter(el) {
+      console.log("entered");
       this.$store.commit("doFooter");
     },
     beforeLeave(el) {
       console.log("before Leave");
       this.$store.commit("doFooter");
+    },
+    enterCancelled(el) {
+      console.log("cancel");
+      this.$store.commit("doFooter");
     }
+
   },
   /*
    ** Global CSS
