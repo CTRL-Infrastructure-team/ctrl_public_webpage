@@ -4,8 +4,8 @@
       <div class="theflex_cell">Logo</div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="searchbar" class="textform"/>
-          <input type="submit" value="検索" class="button"/>
+          <input type="text" placeholder="検索内容を入力" class="textform"/><!--
+          --><input type="submit" value="検索" class="button"/>
         </form>
       </div>
     </header>
@@ -31,21 +31,29 @@ export default {
     margin-right: 10px;
   }
 }
+@media screen and (min-width: 600px){
+  
 .search_form{
   margin-right: 20px;
 }
 .textform{
-  border: 2px solid #328d55;
-  line-height: 1.5em;
+  // border: 2px solid #328d55;
+  line-height: 1.8em;
+  background-color: #506657;
+  color: #f0f0f0;
+  border: none;
+  
 }
 .button{
-  color: #f0f0f0;
+  color: #c9c2c2;
   cursor: pointer;
   border: 2px solid #328d55;
   background-color: #328d55;
+
   &:hover{
     background-color: #2c2c2c;
     color: #328d55;
   }
+}
 }
 </style>
