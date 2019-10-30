@@ -3,7 +3,10 @@
     <header class="theflex">
       <div class="theflex_cell">Logo</div>
       <div class="theflex_cell">
-        <input type="text" placeholder="seachbar" />
+        <form class="search_form">
+          <input type="text" placeholder="searchbar" class="textform"/>
+          <input type="submit" value="検索" class="button"/>
+        </form>
       </div>
     </header>
   </div>
@@ -26,6 +29,23 @@ export default {
     line-height: 60px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+}
+.search_form{
+  margin-right: 20px;
+}
+.textform{
+  border: 2px solid #328d55;
+  line-height: 1.5em;
+}
+.button{
+  color: #f0f0f0;
+  cursor: pointer;
+  border: 2px solid #328d55;
+  background-color: #328d55;
+  &:hover{
+    background-color: #2c2c2c;
+    color: #328d55;
   }
 }
 </style>
