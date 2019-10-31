@@ -3,23 +3,17 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
-          <img :src="img" width="100px" height="100px" />
+          <slot />
         </div>
         <footer class="modal-footer">
-          <slot name="footer">
-            <button @click="$emit('close')">Close</button>
-          </slot>
+          <button @click="$emit('close')">Close</button>
         </footer>
       </div>
     </div>
   </transition>
 </template>
 <script>
-export default {
-  props: {
-    img: String
-  }
-};
+export default {};
 </script>
 <style lang="scss" scoped>
 .modal {

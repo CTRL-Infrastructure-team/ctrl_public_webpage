@@ -6,14 +6,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  doGuideflugOn: function (state) {
-    console.log(state.isguideFlug)
-    state.isguideFlug = !state.isguideFlug;
-  },
+  //フッターアニメーション制御 nuxt.config.jsで発火
   doFooter: function (state) {
     state.created = !state.created;
   }
-}
-export const getters = {
-  guideFlug: state => state.isguideFlug
 }

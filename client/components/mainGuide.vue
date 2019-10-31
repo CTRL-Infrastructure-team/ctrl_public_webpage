@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div @click="doBig" class="box" :style="{background:color}" v-if="show">
+    <div @click="doModal" class="box" :style="{background:color}" v-if="show">
       <img :src="img" class="img" :style="imgStyle" />
       <span class="imgTitle">{{name}}</span>
     </div>
@@ -8,8 +8,6 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { TweenMax, Expo, Elasric } from "gsap";
-
 export default {
   name: "main_guide",
   props: {
@@ -24,40 +22,21 @@ export default {
         height: 100 + "%",
         display: "block"
       },
-      show: false,
-      isTheFlug: false,
-      isCenter: false
+      show: false
     };
   },
-  computed: {
-    ...mapGetters({
-      guideFlug: "guideFlug"
-    })
-  },
+
   methods: {
-    doBig() {
+    //モーダルウインドウオープン
+    doModal() {
       let img = this.img;
       this.$emit("open", img);
-    },
-    center() {
-      if (this.isTheFlug === true) {
-        return;
-      }
-    },
-    none() {
-      this.show = true;
-      this.isTheFlug = false;
     }
   },
+  //cssトランジション制御
   mounted() {
     this.show = !this.show;
     this.isTheFlug = false;
-  },
-  watch: {
-    guideFlug(val) {
-      console.log("change");
-      val ? this.center() : this.none();
-    }
   }
 };
 </script>

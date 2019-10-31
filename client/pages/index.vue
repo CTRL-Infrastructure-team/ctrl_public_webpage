@@ -10,7 +10,9 @@
         :key="index"
         @open="openModal"
       />
-      <myModal v-if="modal" :img="modalImg" @close="closeModal"></myModal>
+      <myModal v-if="modal" @close="closeModal">
+        <img :src="modalImg" class="img" />
+      </myModal>
     </div>
     <div class="flex">
       <news />
@@ -50,11 +52,13 @@ export default {
     };
   },
   methods: {
+    //モーダルウインドウをオープンする
     openModal(modalImg) {
       console.log(modalImg);
       this.modalImg = modalImg;
       this.modal = true;
     },
+    //closeモーダルウインドウ
     closeModal() {
       this.modal = false;
     }
@@ -78,6 +82,15 @@ export default {
 }
 .img {
   object-fit: cover;
+  transition: all 0.5s;
+  opacity: 0.6;
+  width: 300px;
+  height: 300px;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    object-fit: cover;
+    overflow: hidden;
+  }
 }
 
 .twitterBox {

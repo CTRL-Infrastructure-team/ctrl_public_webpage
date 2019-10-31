@@ -29,8 +29,4 @@ export default {
 .v-enter-active {
   transition: all 2s;
 }
-hr {
-}
-footer {
-}
 </style>
