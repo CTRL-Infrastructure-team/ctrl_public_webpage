@@ -42,7 +42,7 @@ export default {
   background-color: #506657;
   color: #f0f0f0;
   border: none;
-  
+  padding-left: 5px;
 }
 .button{
   color: #c9c2c2;
