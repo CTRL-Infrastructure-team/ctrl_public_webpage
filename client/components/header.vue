@@ -2,13 +2,10 @@
   <div>
     <header class="theflex">
       <div class="theflex_cell logo">Logo</div>
-      <div class="mob" id="mob">
-          <input class="mobile_search" type="button" value="検索" v-on:click="onClick" id="aa"/>
-      </div>
       <div class="theflex_cell">
-        <form class="search_form" id="vanish">
+        <form class="search_form">
           <input type="text" placeholder="検索内容を入力" class="textform"/><!--
-          --><input type="submit" value="検索" class="button"/>
+          --><input type="submit" value="検索" class="button" />
         </form>
       </div>
     </header>
@@ -16,22 +13,7 @@
 </template>
 <script>
 export default {
-  name: "theHeader",
-  methods: {
-    //検索ボタンを出す
-          onClick: function(event){
-            let obj = document.getElementById("vanish");
-            obj.classList.toggle("active");
-            let obj2 = document.getElementById("mob");
-            obj2.classList.toggle("moba");
-            if(document.getElementById("aa").value == "閉じる"){
-              document.getElementById("aa").value = "検索";
-            }
-            else{
-            document.getElementById("aa").value = "閉じる";
-            }
-          }  
-  }
+  name: "theHeader"
 };
 </script>
 <style lang="scss">
@@ -49,22 +31,7 @@ export default {
     margin-right: 10px;
   }
 }
-//モバイルの時検索ボタンを隠す
-.mob{
-  position: absolute;
-  right: 30px;
-  @include mq(){
-    transform: translateY(-60px);
-  }
-}
-.moba{
-  transform: translateX(-230px);
-}
-.mobile_search{
-  background-color: #328d55;
-  color: #c9c2c2;
-  border: none;
-}
+
 
 .search_form{
   transform: translateY(-300px); 
