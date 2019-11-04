@@ -18,6 +18,7 @@
 export default {
   name: "theHeader",
   methods: {
+    //検索ボタンを出す
           onClick: function(event){
             let obj = document.getElementById("vanish");
             obj.classList.toggle("active");
@@ -48,10 +49,18 @@ export default {
     margin-right: 10px;
   }
 }
-
+//モバイルの時検索ボタンを隠す
 .mob{
   position: absolute;
   right: 30px;
+}
+.moba{
+  transform: translateX(-230px);
+}
+.mobile_search{
+  background-color: #328d55;
+  color: #c9c2c2;
+  border: none;
 }
 
 .search_form{
@@ -62,9 +71,6 @@ export default {
   transform: translateY(0px);
 }
 
-.moba{
-  transform: translateX(-230px);
-}
 
 @media screen and (min-width: 600px){
   //ロゴのcss
