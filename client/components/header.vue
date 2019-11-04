@@ -32,10 +32,11 @@ export default {
   }
 }
 @media screen and (min-width: 600px){
-  
+  //検索バーのcss
 .search_form{
   margin-right: 20px;
 }
+//入力フォームのcss
 .textform{
   // border: 2px solid #328d55;
   line-height: 1.8em;
@@ -44,6 +45,7 @@ export default {
   border: none;
   padding-left: 5px;
 }
+//検索ボタンのcss
 .button{
   color: #c9c2c2;
   cursor: pointer;
@@ -53,6 +55,7 @@ export default {
   &:hover{
     background-color: #2c2c2c;
     color: #328d55;
+    transition: 500ms;
   }
 }
 }
