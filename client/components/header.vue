@@ -53,6 +53,9 @@ export default {
 .mob{
   position: absolute;
   right: 30px;
+  @include mq(){
+    transform: translateY(-60px);
+  }
 }
 .moba{
   transform: translateX(-230px);
@@ -64,7 +67,11 @@ export default {
 }
 
 .search_form{
-  transform: translateY(-300px) 
+  transform: translateY(-300px); 
+  @include mq(){
+    margin-right: 20px;
+    transform: translateY(0);
+  }
 }
 
 .active{
@@ -72,19 +79,14 @@ export default {
 }
 
 
-@media screen and (min-width: 600px){
   //ロゴのcss
 .logo{
-  margin-left: 50px;
+  @include mq(){
+    margin-left: 50px;
+  }
 }
-.mob{
-  transform: translateY(-60px);
-}
-  //検索バーのcss
-.search_form{
-  margin-right: 20px;
-  transform: translateY(0);
-}
+
+
 //入力フォームのcss
 .textform{
   // border: 2px solid #328d55;
@@ -107,5 +109,5 @@ export default {
     transition: 500ms;
   }
 }
-}
+
 </style>
