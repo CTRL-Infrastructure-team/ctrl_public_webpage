@@ -3,6 +3,7 @@
     <transition>
       <footer class="footer" v-if="$store.state.created">
         <hr />footer
+        <ul></ul>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
       </footer>
     </transition>
