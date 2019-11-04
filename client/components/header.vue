@@ -1,9 +1,12 @@
 <template>
   <div>
     <header class="theflex">
-      <div class="theflex_cell">Logo</div>
+      <div class="theflex_cell logo">Logo</div>
+      <div class="mob" id="mob">
+          <input class="mobile_search" type="button" value="検索" v-on:click="onClick" id="aa"/>
+      </div>
       <div class="theflex_cell">
-        <form class="search_form">
+        <form class="search_form" id="vanish">
           <input type="text" placeholder="検索内容を入力" class="textform"/><!--
           --><input type="submit" value="検索" class="button"/>
         </form>
@@ -13,7 +16,21 @@
 </template>
 <script>
 export default {
-  name: "theHeader"
+  name: "theHeader",
+  methods: {
+          onClick: function(event){
+            let obj = document.getElementById("vanish");
+            obj.classList.toggle("active");
+            let obj2 = document.getElementById("mob");
+            obj2.classList.toggle("moba");
+            if(document.getElementById("aa").value == "閉じる"){
+              document.getElementById("aa").value = "検索";
+            }
+            else{
+            document.getElementById("aa").value = "閉じる";
+            }
+          }  
+  }
 };
 </script>
 <style lang="scss">
@@ -31,10 +48,36 @@ export default {
     margin-right: 10px;
   }
 }
+
+.mob{
+  position: absolute;
+  right: 30px;
+}
+
+.search_form{
+  transform: translateY(-300px) 
+}
+
+.active{
+  transform: translateY(0px);
+}
+
+.moba{
+  transform: translateX(-230px);
+}
+
 @media screen and (min-width: 600px){
+  //ロゴのcss
+.logo{
+  margin-left: 50px;
+}
+.mob{
+  transform: translateY(-60px);
+}
   //検索バーのcss
 .search_form{
   margin-right: 20px;
+  transform: translateY(0);
 }
 //入力フォームのcss
 .textform{
@@ -51,7 +94,7 @@ export default {
   cursor: pointer;
   border: 2px solid #328d55;
   background-color: #328d55;
-
+  transition :500ms;
   &:hover{
     background-color: #2c2c2c;
     color: #328d55;
