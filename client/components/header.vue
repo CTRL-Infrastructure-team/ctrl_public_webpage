@@ -32,7 +32,7 @@ export default {
   }
 }
 
-
+//検索バーのcss
 .search_form{
   transform: translateY(-300px); 
   @include mq(){
