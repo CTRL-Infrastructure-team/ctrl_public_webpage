@@ -41,10 +41,6 @@ export default {
   }
 }
 
-.active{
-  transform: translateY(0px);
-}
-
 
   //ロゴのcss
 .logo{
@@ -56,24 +52,28 @@ export default {
 
 //入力フォームのcss
 .textform{
-  // border: 2px solid #328d55;
-  line-height: 1.8em;
-  background-color: #506657;
-  color: #f0f0f0;
-  border: none;
-  padding-left: 5px;
+  @include mq{
+    // border: 2px solid #328d55;
+    line-height: 1.8em;
+    background-color: #506657;
+    color: #f0f0f0;
+    border: none;
+    padding-left: 5px;
+  }
 }
 //検索ボタンのcss
 .button{
-  color: #c9c2c2;
-  cursor: pointer;
-  border: 2px solid #328d55;
-  background-color: #328d55;
-  transition :500ms;
-  &:hover{
-    background-color: #2c2c2c;
-    color: #328d55;
-    transition: 500ms;
+  @include mq{
+    color: #c9c2c2;
+    cursor: pointer;
+    border: 2px solid #328d55;
+    background-color: #328d55;
+    transition :500ms;
+    &:hover{
+      background-color: #2c2c2c;
+      color: #328d55;
+      transition: 500ms;
+    }
   }
 }
 
