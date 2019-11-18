@@ -24,14 +24,17 @@
     </div>
     <div>this is third news</div>
     <div class="flexNews">
-      <mainGuide name="first news" class="main guide" color="#4ff0f0" />
+      <mainGuide name="third news" class="main guide" color="#4f4fff" />
     </div>
-    <div class="box27">
-      <span class="box-title">タイトル</span>
+    <div class="box27-a">
+      <!-- <span class="box-title">タイトル</span> -->
       <p>ラベルをつけたようなデザイン<br>
         2行目<br>
         3行目
       </p>
+    </div>
+    <div class="box4">
+      <p>ここに文章</p>
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
@@ -56,9 +59,9 @@ div {
   border: solid black 0px;
 }
 .flexNews {
-  width: 100%;
+  width: 80%;
   //display: flex;
-  border: solid black 1px;
+  // border: solid black 1px;
   justify-content: space-around;
   flex-wrap: wrap;
 
@@ -139,6 +142,19 @@ div {
     right: 0;
 }
 .box19 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.box4{
+    padding: 8px 19px;
+    margin: 2em 0;
+    color:#cde4ff;
+    //background:  #2c2c2f;
+    border-top: solid 1px #cde4ff;
+    border-bottom: solid 1px #cde4ff;
+}
+.box4 p {
     margin: 0; 
     padding: 0;
 }

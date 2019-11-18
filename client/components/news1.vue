@@ -20,7 +20,7 @@ export default {
 .main_img {
   //   color: blue;
   box-sizing: auto; //ここがmainGuide.vueと違う
-  width: 250%;
+  width: 130%;
   //height: 100px;
   //height: 40vh;
   background: red;
