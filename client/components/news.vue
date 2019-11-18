@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>News</h1>
+    <div class="scroll">
     <div>this is first news.</div>
     <div class="flexNews">
       <mainGuide name="first news" class="main guide" color="#4ff0f0" />
@@ -34,7 +35,11 @@
       </p>
     </div>
     <div class="box4">
-      <p>ここに文章</p>
+      <p>こっちのほうが見栄えいいかも…</p>
+    </div>
+    <div class="box4">
+      <p>twitter boxは黒くならないのだろうか？</p>
+    </div>
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
@@ -158,4 +163,12 @@ div {
     margin: 0; 
     padding: 0;
 }
+.scroll{
+  overflow-y: scroll;
+}
+/*
+.scroll::-webkit-scrollbar{
+  width: 5px;
+}
+*/
 </style>

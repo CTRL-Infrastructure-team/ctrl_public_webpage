@@ -78,7 +78,7 @@ export default {
 }
 
 .news_box {
-  width: 40%
+  width: 40%;
 }
 .guide {
   margin-top: 20px;
