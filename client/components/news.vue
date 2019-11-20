@@ -2,44 +2,45 @@
   <div>
     <h1>News</h1>
     <div class="scroll">
-    <div>this is first news.</div>
-    <div class="flexNews">
-      <mainGuide name="first news" class="main guide" color="#4ff0f0" />
-    </div>
-    <div class="box27">
-      <span class="box-title">タイトル</span>
-      <p>ラベルをつけたようなデザイン<br>
-        2行目<br>
-        3行目
-      </p>
-    </div>
-    <div>this is second news.</div>
-    <div class="flexNews">
-      <mainGuide name="second news" class="main guide" color="#4f4fff" />
-    </div>
-    <div class="box27-a">
-      <span class="box-title">迷言</span>
-      <div class="box19">
-        <p>htmlが挿さらない</p>
+        <div>this is first news.</div>
+        <div class="flexNews">
+        <mainGuide name="first news" class="main guide" color="#4ff0f0" />
       </div>
-    </div>
-    <div>this is third news</div>
-    <div class="flexNews">
-      <mainGuide name="third news" class="main guide" color="#4f4fff" />
-    </div>
-    <div class="box27-a">
-      <!-- <span class="box-title">タイトル</span> -->
-      <p>ラベルをつけたようなデザイン<br>
-        2行目<br>
-        3行目
-      </p>
-    </div>
-    <div class="box4">
-      <p>こっちのほうが見栄えいいかも…</p>
-    </div>
-    <div class="box4">
-      <p>twitter boxは黒くならないのだろうか？</p>
-    </div>
+      <div class="box27">
+        <span class="box-title">タイトル</span>
+        <p>ラベルをつけたようなデザイン<br>
+            2行目<br>
+          3行目
+        </p>
+      </div>
+      <div>this is second news.</div>
+      <div class="flexNews">
+        <mainGuide name="second news" class="main guide" color="#4f4fff" />
+      </div>
+      <div class="box27-a">
+        <span class="box-title">迷言</span>
+        <div class="box19">
+          <p>htmlが挿さらない</p>
+        </div>
+      </div>
+      <div>this is third news</div>
+      <div class="flexNews">
+        <mainGuide name="third news" class="main guide" color="#4f4fff" />
+      </div>
+      <div class="box27-a">
+        <!-- <span class="box-title">タイトル</span> -->
+        <p>ラベルをつけたようなデザイン<br>
+          2行目<br>
+          3行目
+        </p>
+      </div>
+      <div class="box4">
+        <p>こっちのほうが見栄えいいかも…</p>
+      </div>
+      <div class="box4">
+        <h2>twitter boxは黒くならないのだろうか？</h2>
+        <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
+      </div>
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
@@ -154,7 +155,7 @@ div {
 .box4{
     padding: 8px 19px;
     margin: 2em 0;
-    color:#cde4ff;
+    color:#ffffff;
     //background:  #2c2c2f;
     border-top: solid 1px #cde4ff;
     border-bottom: solid 1px #cde4ff;
@@ -164,11 +165,42 @@ div {
     padding: 0;
 }
 .scroll{
-  overflow-y: scroll;
+  height: 30em;
+  padding: 0 5px;
+  overflow-x: hidden;
+  //overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar{
+  //background:#09C9D9;
+  width: 7px;
+
+}
+.scroll::-webkit-scrollbar-thumb {
+  
+  background: linear-gradient(0deg,#43e2c6,#3183d0);
+  //background: #43e2c6;
+  border-radius: 3px;
+
 }
 /*
 .scroll::-webkit-scrollbar{
   width: 5px;
+}
+*/
+/*
+/* スクロールバーの横幅設定 
+.scroll.deco::-webkit-scrollbar{
+  width: 5px;
+}
+/* スクロールバーの背景色、角丸指定  
+.scroll::-webkit-scrollbar-track{
+  border-radius: 1px;
+}
+/*スクロールバーの色・角丸指定
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+	background:#09C9D9;
 }
 */
 </style>
