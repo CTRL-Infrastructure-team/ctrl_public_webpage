@@ -2,7 +2,7 @@
   <div>
     <header class="theflex">
       <div class="theflex_cell">
-        <nuxt-link to="~/pages/index.vue">
+        <nuxt-link to="/">
         <img src="~/assets/img/KariLogo.jpg" class="img">
         </nuxt-link>
         </div>
