@@ -1,7 +1,11 @@
 <template>
   <div>
     <header class="theflex">
-      <div class="theflex_cell logo">Logo</div>
+      <div class="theflex_cell">
+        <nuxt-link to="~/pages/index.vue">
+        <img src="~/assets/img/KariLogo.jpg" class="img">
+        </nuxt-link>
+        </div>
       <div class="theflex_cell">
         <form class="search_form">
           <input type="text" placeholder="検索内容を入力" class="textform"/><!--
@@ -34,18 +38,11 @@ export default {
 
 //検索バーのcss
 .search_form{
-  transform: translateY(-300px); 
+  display: none;
   @include mq(){
+    display: block;
     margin-right: 20px;
     transform: translateY(0);
-  }
-}
-
-
-  //ロゴのcss
-.logo{
-  @include mq(){
-    margin-left: 50px;
   }
 }
 
@@ -76,5 +73,13 @@ export default {
     }
   }
 }
-
+.img{
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  @include mq{
+    margin-left: 50px;
+  }
+}
 </style>
