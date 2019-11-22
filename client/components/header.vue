@@ -5,7 +5,12 @@
         <nuxt-link to="/">
         <img src="~/assets/img/KariLogo.jpg" class="img">
         </nuxt-link>
+      </div>
+      <div class="theflex_cell">
+        <div class="second">
+          <span>～</span><span>C</span><span>T</span><span>R</span><span>L</span><span>ホ</span><span>ー</span><span>ム</span><span>ペ</span><span>ー</span><span>ジ</span><span>へ</span><span>よ</span><span>う</span><span>こ</span><span>そ</span><span>～</span>
         </div>
+      </div>
       <div class="theflex_cell">
         <form class="search_form">
           <input type="text" placeholder="検索内容を入力" class="textform"/><!--
@@ -41,7 +46,7 @@ export default {
   display: none;
   @include mq(){
     display: block;
-    margin-right: 20px;
+    margin-right: 10px;
     transform: translateY(0);
   }
 }
@@ -73,6 +78,8 @@ export default {
     }
   }
 }
+
+//画像のcss
 .img{
   height: 60px;
   margin: 0;
@@ -81,5 +88,87 @@ export default {
   @include mq{
     margin-left: 50px;
   }
+}
+
+//文字のcss
+.second{
+  display: none;
+  @include mq{
+    display: contents;
+    span{
+      font-size: 20px;
+      display: inline-block;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+.second:hover span{
+  animation: hove 0.5s ease-in-out;
+}
+
+  @keyframes hove{
+    0%{
+      transform: translateY(0px);
+    }
+    33%{
+      transform: translateY(-10px);
+    }
+    100%{
+      transform: translateY(0px);
+    }
+  }
+
+.second:hover span:nth-child(1) {
+  animation-delay: 0;
+}
+.second:hover span:nth-child(2) {
+  animation-delay: 25ms;
+}
+.second:hover span:nth-child(3) {
+  animation-delay: 50ms;
+}
+.second:hover span:nth-child(4) {
+  animation-delay: 75ms;
+}
+.second:hover span:nth-child(5) {
+  animation-delay: 100ms;
+}
+.second:hover span:nth-child(6) {
+  animation-delay: 125ms;
+}
+.second:hover span:nth-child(7) {
+  animation-delay: 150ms;
+}
+.second:hover span:nth-child(8) {
+  animation-delay: 175ms;
+}
+.second:hover span:nth-child(9) {
+  animation-delay: 200ms;
+}
+.second:hover span:nth-child(10) {
+  animation-delay: 225ms;
+}
+.second:hover span:nth-child(11) {
+  animation-delay: 250ms;
+}
+.second:hover span:nth-child(12) {
+  animation-delay: 275ms;
+}
+.second:hover span:nth-child(13) {
+  animation-delay: 300ms;
+}
+.second:hover span:nth-child(14) {
+  animation-delay: 325ms;
+}
+.second:hover span:nth-child(15) {
+  animation-delay: 350ms;
+}
+.second:hover span:nth-child(16) {
+  animation-delay: 375ms;
+}
+.second:hover span:nth-child(17) {
+  animation-delay: 400ms;
 }
 </style>
