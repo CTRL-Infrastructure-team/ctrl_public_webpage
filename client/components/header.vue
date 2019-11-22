@@ -96,6 +96,7 @@ export default {
   @include mq{
     display: contents;
     span{
+      color:#328d55;
       font-size: 20px;
       display: inline-block;
     }
@@ -114,6 +115,7 @@ export default {
     }
     33%{
       transform: translateY(-10px);
+      color: #ff00b3;
     }
     100%{
       transform: translateY(0px);
