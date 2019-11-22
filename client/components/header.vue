@@ -45,7 +45,7 @@ export default {
 .search_form{
   display: none;
   @include mq(){
-    display: block;
+    display: inline;
     margin-right: 10px;
     transform: translateY(0);
   }
@@ -86,7 +86,7 @@ export default {
   padding: 0;
   display: block;
   @include mq{
-    margin-left: 50px;
+    margin-left: 10px;
   }
 }
 
@@ -94,10 +94,10 @@ export default {
 .second{
   display: none;
   @include mq{
-    display: contents;
+    display: block;
     span{
       color:#328d55;
-      font-size: 20px;
+      font-size: 18px;
       display: inline-block;
     }
     &:hover{
