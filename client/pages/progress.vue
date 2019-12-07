@@ -1,15 +1,17 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="8">
+      <div v-for="i in 20" :key="i">
+      <el-col :span="8" >
+        <workCard />
+      </el-col>
+      </div>
+      <!-- <el-col :span="8">
         <workCard />
       </el-col>
       <el-col :span="8">
         <workCard />
-      </el-col>
-      <el-col :span="8">
-        <workCard />
-      </el-col>
+      </el-col> -->
     </el-row>
   </div>
 </template>
@@ -23,4 +25,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.el-col {
+  margin: 20px 0px;
+}
 </style>

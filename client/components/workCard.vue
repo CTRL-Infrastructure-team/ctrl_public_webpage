@@ -2,11 +2,10 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>Card name</span>
-                <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button>
+                <span>タイトル</span>
             </div>
             <div v-for="o in 4" :key="o" class="text item">
-                {{'List item ' + o }}
+                {{'項目 ' + o }}
             </div>
         </el-card>
     </div>
@@ -39,6 +38,8 @@ clear: both
 }
 
 .box-card {
-width: 480px;
+width: 90%;
+background-color: #2c2c2c;
+color: $mainchar;
 }
 </style>
