@@ -21,6 +21,10 @@ export default {
 // font-size: 14px;
 }
 
+.el-card {
+    margin: 0 auto;
+}
+
 .item {
 margin-bottom: 18px;
 }
