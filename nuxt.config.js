@@ -53,13 +53,17 @@ module.exports = {
    ** Global CSS
    */
   css: [{
-    src: '~/assets/scss/main.scss',
-    lang: 'scss'
-  }, ],
+      src: '~/assets/scss/main.scss',
+      lang: 'scss'
+    }, 
+    'element-ui/lib/theme-chalk/index.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~plugins/element-ui'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -86,6 +90,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    vendor: ['element-ui'],
     /*
      ** You can extend webpack config here
      */

@@ -1,8 +1,16 @@
 <template>
-  <div>進捗一覧</div>
+  <div class="content">
+    <workCard />
+  </div>
 </template>
 <script>
-export default {};
+import workCard from '~/components/workCard.vue'
+
+export default {
+  components :{
+    workCard
+  }
+};
 </script>
 <style lang="scss" scoped>
 </style>
