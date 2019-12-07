@@ -21,8 +21,6 @@ export default {
   align-items: center;
   justify-content: space-between;
   &_cell {
-    /* justify-content: flex-start; */
-    /* margin-bottom: 10px; */
     line-height: 60px;
     margin-left: 10px;
     margin-right: 10px;

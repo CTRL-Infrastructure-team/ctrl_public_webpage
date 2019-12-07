@@ -6,7 +6,9 @@
           <slot />
         </div>
         <footer class="modal-footer">
-          <button @click="$emit('close')">Close</button>
+          <div class="modal-botton_circle">
+            <div @click="$emit('close')" class="modal-button_inner">Close</div>
+          </div>
         </footer>
       </div>
     </div>
@@ -31,8 +33,11 @@ export default {};
   }
 
   &-window {
+    position: absolute;
     background: #fff;
     overflow: hidden;
+    width: 90%;
+    top: 20%;
   }
 
   &-content {
@@ -43,6 +48,20 @@ export default {};
     background: #ccc;
     padding: 10px;
     text-align: right;
+  }
+  &-button {
+    &_circle {
+      &:hover {
+        background: #f0f0f0;
+        border-radius: 50%;
+      }
+    }
+
+    &_inner {
+      background: rgba(10, 10, 10, 0.2);
+      color: rgba(200, 200, 200, 0.7);
+      cursor: pointer;
+    }
   }
 }
 

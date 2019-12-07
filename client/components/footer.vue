@@ -20,6 +20,8 @@ export default {
 .copyright {
   font-size: 10px;
 }
+
+//アニメーション制御だから触らないで
 .v-enter {
   opacity: 0;
 }
