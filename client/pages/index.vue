@@ -11,12 +11,12 @@
         @open="openModal(index,$event)"
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
-        <div class="modal_flex">
-          <div class="modal_flex_img">
+        <div class="modal-flex">
+          <div class="modal-flex_img">
             <img :src="modalImg" class="img" />
           </div>
-          <div class="modal_flex_text">
-            <h2>{{modalText.title}}</h2>
+          <div class="modal-flex-text">
+            <h2 class="modal-flex-text_title">{{modalText.title}}</h2>
             <p>{{modalText.body}}</p>
           </div>
         </div>
@@ -134,15 +134,20 @@ export default {
 
 .modal {
   width: 90%;
-  &_flex {
+  &-flex {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    &_img {
+    &-img {
       width: 35%;
     }
-    &_text {
+    &-text {
       width: 60%;
+      font-family: "Times New Roman", Times, serif;
+
+      &_title {
+        font-family: 黎ミン L;
+      }
     }
   }
 }
