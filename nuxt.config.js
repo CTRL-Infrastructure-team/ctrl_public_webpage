@@ -35,6 +35,7 @@ module.exports = {
   pageTransition: {
     name: 'page',
     mode: 'out-in',
+    //フッターアニメーション制御
     afterEnter(el) {
       console.log("entered");
       this.$store.commit("doFooter");

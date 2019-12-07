@@ -20,6 +20,8 @@ export default {
 .copyright {
   font-size: 10px;
 }
+
+//アニメーション制御だから触らないで
 .v-enter {
   opacity: 0;
 }
@@ -28,9 +30,5 @@ export default {
 }
 .v-enter-active {
   transition: all 2s;
-}
-hr {
-}
-footer {
 }
 </style>
