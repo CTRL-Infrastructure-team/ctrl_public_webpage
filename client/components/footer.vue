@@ -2,7 +2,7 @@
   <div>
     <transition>
       <footer class="footer" v-if="$store.state.created">
-        <hr />footer
+        <hr />footer 
          <ul class = "link">
            <li class="leftlink">
              <nuxt-link to="/">Top</nuxt-link>
