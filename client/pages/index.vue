@@ -2,12 +2,11 @@
   <div>
     <div class="flex">
       <mainGuide
-        name="1"
-        color="darkblue"
         class="mp0"
-        :img="item"
-        v-for="(item,index) in mainimg"
+        :img="item.img"
+        v-for="(item,index) in mainGuideprops"
         :key="index"
+        :name="item.title"
         @open="openModal(index,$event)"
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
@@ -52,7 +51,15 @@ export default {
   },
   data() {
     return {
-      mainimg: [img1, img2, img3, img4],
+      mainGuideprops: [
+        {
+          img: img1,
+          title: "ＣＴＲＬとは？"
+        },
+        { img: img2, title: "どんな人がいるの？" },
+        { img: img3, title: "活動内容は？" },
+        { img: img4, title: "活動場所は？" }
+      ],
       isCenter: false,
       isflex: true,
       modal: false,
@@ -132,6 +139,17 @@ export default {
   overflow-y: scroll;
 }
 
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
 .modal {
   width: 90%;
   &-flex {
@@ -143,10 +161,17 @@ export default {
     }
     &-text {
       width: 60%;
-      font-family: "Times New Roman", Times, serif;
 
       &_title {
-        font-family: 黎ミン L;
+        font-family: monospace;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-left: 3px;
+        border-bottom: 1px solid rgb(42, 54, 219);
+        border-left: 4px solid rgb(42, 54, 219);
       }
     }
   }
