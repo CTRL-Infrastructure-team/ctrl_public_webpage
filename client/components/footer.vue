@@ -2,7 +2,18 @@
   <div>
     <transition>
       <footer class="footer" v-if="$store.state.created">
-        <hr />footer
+        <hr />footer 
+         <ul class = "link">
+           <li class="leftlink">
+             <nuxt-link to="/">Top</nuxt-link>
+             <nuxt-link to="/report">活動報告</nuxt-link>
+             <nuxt-link to="/progress">作品</nuxt-link>
+             <nuxt-link to="/inquiry">問い合わせ</nuxt-link>
+           </li>
+           <li class="rightlink">
+              <nuxt-link to="twitter.vue"><img src="D:\Web\github\client\assets\img\img5.jpg" alt="Twitter"></nuxt-link>
+           </li>
+         </ul>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
       </footer>
     </transition>
