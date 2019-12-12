@@ -2,7 +2,10 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>タイトル</span>
+                <span>作品名</span>
+            </div>
+            <div>
+                <img :src="img"/>
             </div>
             <div v-for="o in 4" :key="o" class="text item">
                 {{'項目 ' + o }}
@@ -10,11 +13,25 @@
         </el-card>
     </div>
 </template>
+
 <script>
+import twitter_img from "~/assets/img/img5.jpg"
+
 export default {
-  
+
+    //この辺全部progress.vueに移行
+    data() {
+        return {
+            img: twitter_img
+        }
+    },
+    async asyncData({ app }) {
+        const data = await app.axios.$get('http://localhost:3000/api/')
+        return { data: data }
+    },
 };
 </script>
+
 <style lang="scss" scoped>
 .text {
 // font-size: 14px;
@@ -41,5 +58,9 @@ clear: both
 width: 90%;
 background-color: #2c2c2c;
 color: $mainchar;
+}
+
+img {
+    width: 35px;
 }
 </style>
