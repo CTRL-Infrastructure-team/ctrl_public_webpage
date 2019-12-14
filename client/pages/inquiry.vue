@@ -11,7 +11,9 @@
         メールアドレス：
         <span class="required">任意</span>
       </label>
-      <input id="mymail" type="email" name="mymail" value="me@example.com" />
+      <!-- <input id="mymail" type="email" name="mymail" value="me@example.com" /> -->
+      <input id="mymail" type="email" name="mymail" placeholder="me@example.com"/>
+      
     </div>
     <div class="control">
       <button type="submit">送信</button>
