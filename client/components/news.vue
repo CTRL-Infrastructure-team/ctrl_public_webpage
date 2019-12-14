@@ -2,15 +2,16 @@
   <div>
     <h1>News</h1>
     <div class="scroll">
-        <div>this is first news.</div>
-        <div class="flexNews">
+      <div>this is first news.</div>
+      <div class="flexNews">
         <mainGuide name="first news" class="main guide" color="#4ff0f0" />
       </div>
       <div class="box27">
         <span class="box-title">タイトル</span>
-        <p>ラベルをつけたようなデザイン<br>
-            2行目<br>
-          3行目
+        <p>
+          ラベルをつけたようなデザイン
+          <br />2行目
+          <br />3行目
         </p>
       </div>
       <div>this is second news.</div>
@@ -29,9 +30,10 @@
       </div>
       <div class="box27-a">
         <!-- <span class="box-title">タイトル</span> -->
-        <p>ラベルをつけたようなデザイン<br>
-          2行目<br>
-          3行目
+        <p>
+          ラベルをつけたようなデザイン
+          <br />2行目
+          <br />3行目
         </p>
       </div>
       <div class="box4">
@@ -96,7 +98,7 @@ div {
   font-weight: bold;
   border-radius: 5px 5px 0 0;
 }
-.box27 p{
+.box27 p {
   margin: 0;
   padding: 0;
 }
@@ -124,64 +126,61 @@ div {
   border-radius: 5px 5px 0 0;
 }
 .box19 {
-    position: relative;
-    padding:0.25em 1em;
-    
+  position: relative;
+  padding: 0.25em 1em;
 }
-.box19:before,.box19:after{ 
-    content:'';
-    width: 20px;
-    height: 30px;
-    position: absolute;
-    display: inline-block;
+.box19:before,
+.box19:after {
+  content: "";
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
 }
-.box19:before{
-    border-left: solid 1px #5767bf;
-    border-top: solid 1px #5767bf;
-    top:0;
-    left: 0;
+.box19:before {
+  border-left: solid 1px #5767bf;
+  border-top: solid 1px #5767bf;
+  top: 0;
+  left: 0;
 }
-.box19:after{
-    border-right: solid 1px #5767bf;
-    border-bottom: solid 1px #5767bf;
-    bottom:0;
-    right: 0;
+.box19:after {
+  border-right: solid 1px #5767bf;
+  border-bottom: solid 1px #5767bf;
+  bottom: 0;
+  right: 0;
 }
 .box19 p {
-    margin: 0; 
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.box4{
-    padding: 8px 19px;
-    margin: 2em 0;
-    color:#ffffff;
-    //background:  #2c2c2f;
-    border-top: solid 1px #cde4ff;
-    border-bottom: solid 1px #cde4ff;
+.box4 {
+  padding: 8px 19px;
+  margin: 2em 0;
+  color: #ffffff;
+  //background:  #2c2c2f;
+  border-top: solid 1px #cde4ff;
+  // border-bottom: solid 1px #cde4ff;
 }
 .box4 p {
-    margin: 0; 
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
-.scroll{
+.scroll {
   height: 30em;
   padding: 0 5px;
   overflow-x: hidden;
   //overflow-y: scroll;
 }
 
-.scroll::-webkit-scrollbar{
+.scroll::-webkit-scrollbar {
   //background:#09C9D9;
   width: 7px;
-
 }
 .scroll::-webkit-scrollbar-thumb {
-  
-  background: linear-gradient(0deg,#43e2c6,#3183d0);
+  background: linear-gradient(0deg, #43e2c6, #3183d0);
   //background: #43e2c6;
   border-radius: 3px;
-
 }
 /*
 .scroll::-webkit-scrollbar{
