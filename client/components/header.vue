@@ -22,9 +22,9 @@
       <div id="menu" class="menu" v-bind:class='{open:isOpen}'>
         <ul>
           <li><nuxt-link to="/">Top</nuxt-link></li>
-          <li>活動報告</li>
-          <li>作品紹介</li>
-          <li>お問合せ</li>
+          <li><nuxt-link to="/report">活動報告</nuxt-link></li>
+          <li><nuxt-link to="/progress">作品紹介</nuxt-link></li>
+          <li><nuxt-link to="/inquiry">お問合せ</nuxt-link></li>
         </ul>
       </div>
     </header>
@@ -145,9 +145,14 @@ export default {
   & ul{
     padding:0;
     & li{
-    padding: 2px;
-    margin: 10px;
-    border: solid 2px #c9c2c2;
+      padding: 2px;
+      margin: 10px;
+      border: solid 2px #c9c2c2;
+      & a{
+        text-decoration: none;
+        text-emphasis: none;
+        color:#c9c2c2;
+      }
     }
   }
   @include mq{
