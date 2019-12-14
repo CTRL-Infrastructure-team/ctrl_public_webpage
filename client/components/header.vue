@@ -13,7 +13,7 @@
         </form>
       </div>
       <div class="theflex_cell">
-        <div class="humburger" v-on:click='isOpen=!isOpen' v-bind="{open:isOpen}">
+        <div class="humburger" v-on:click='isOpen=!isOpen'>
           <span class="top"></span>
           <span class="middle"></span>
           <span class="bottom"></span>
@@ -126,9 +126,6 @@ export default {
       background-color: #c9c2c2;
       margin: 7px;
     }
-    &.open{
-
-    }
 }
 
 
@@ -147,7 +144,7 @@ export default {
   line-height: 60px;
   text-align: center;
   transition: all 0.5s ease-in-out;
-  transform: translateX(1000px);
+  transform: translateX(100%);
   & ul{
     padding:0;
     & a{
