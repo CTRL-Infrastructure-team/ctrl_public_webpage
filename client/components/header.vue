@@ -21,7 +21,7 @@
       </div>
       <div id="menu" class="menu" v-bind:class='{open:isOpen}'>
         <ul>
-          <li>Top</li>
+          <li><nuxt-link to="/">Top</nuxt-link></li>
           <li>活動報告</li>
           <li>作品紹介</li>
           <li>お問合せ</li>
@@ -80,14 +80,14 @@ export default {
 //検索ボタンのcss
 .button{
   @include mq{
-    color: #c9c2c2;
     cursor: pointer;
     border: 2px solid #328d55;
-    background-color: #328d55;
+    color: #328d55;
+     background-color: #2c2c2c;
     transition :500ms;
     &:hover{
-      background-color: #2c2c2c;
-      color: #328d55;
+      color: #c9c2c2;
+      background-color: #328d55;
       transition: 500ms;
     }
   }
@@ -108,10 +108,13 @@ export default {
 .theflex_cell:last-child{
   @include mq{
     display: none;
-  }  
+  } 
 }
 
 .humburger{
+  @include mq{
+    display: none;
+  }
   display: flex;
   flex-direction: column;
   height: 60px;
@@ -137,7 +140,7 @@ export default {
   background-color: #328d55;
   line-height: 60px;
   text-align: center;
-  transition: all 0.5s ease-out;
+  transition: all 0.3s ease-in-out;
   transform: translateX(1000px);
   & ul{
     padding:0;
@@ -146,6 +149,9 @@ export default {
     margin: 10px;
     border: solid 2px #c9c2c2;
     }
+  }
+  @include mq{
+    display: none;
   }
 }
 
