@@ -25,6 +25,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.content {
+  width: 100%;
+  padding: 0px 5%;
+}
+
 .el-col {
   margin: 20px 0px;
 }
