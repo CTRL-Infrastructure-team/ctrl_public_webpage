@@ -105,7 +105,7 @@ export default {
 }
 
 
-.theflex_cell:last-child{
+.theflex_cell:nth-child(3){
   @include mq{
     display: none;
   } 
