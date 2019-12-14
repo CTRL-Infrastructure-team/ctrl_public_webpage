@@ -25,8 +25,35 @@ export default {
 <style lang="scss">
 li {
   list-style: none;
+  background-color: #666;
+  height: 1cm;
+  
   ul {
     display: inline;
+    
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: whitesmoke;
+    margin: auto;
+      
+    :link{
+      color: whitesmoke;
+    }
+    :visited{
+      color: whitesmoke;
+    }
+    :hover{
+      background-color: gray;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
   }
 }
+
+
+
 </style>
