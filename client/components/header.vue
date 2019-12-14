@@ -62,7 +62,6 @@ export default {
   @include mq(){
     display: inline;
     margin-right: 10px;
-    transform: translateY(0);
   }
 }
 
@@ -125,14 +124,12 @@ export default {
     }
 }
 
-.menu{
-  display: none;
-}
 
-.menu.open{
-  display: block;
+.menu{
+  opacity: 0;
   z-index: 5;
   width: 100%;
+  height: 100%;
   position: absolute;
   padding: 10px;
   top:60px;
@@ -140,6 +137,8 @@ export default {
   background-color: #328d55;
   line-height: 60px;
   text-align: center;
+  transition: all 0.5s ease-out;
+  transform: translateX(1000px);
   & ul{
     padding:0;
     & li{
@@ -150,6 +149,10 @@ export default {
   }
 }
 
+.menu.open{
+  opacity: 1;
+  transform: translateX(0);
+}
 
 
 </style>
