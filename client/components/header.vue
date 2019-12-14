@@ -40,7 +40,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .theflex {
   display: flex;
   height: 60px;
@@ -132,13 +132,13 @@ export default {
 .menu{
   opacity: 0;
   z-index: 5;
+  background-color: #328d55;
   width: 100%;
   height: 100%;
   position: absolute;
   padding: 10px;
   top:60px;
   right: 0;
-  background-color: #328d55;
   line-height: 60px;
   text-align: center;
   transition: all 0.5s ease-in-out;
