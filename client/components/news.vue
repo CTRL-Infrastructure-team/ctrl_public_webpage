@@ -178,8 +178,8 @@ div {
   width: 7px;
 }
 .scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(0deg, #43e2c6, #3183d0);
-  //background: #43e2c6;
+  //background: linear-gradient(0deg, #43e2c6, #3183d0);
+  background: #888888;
   border-radius: 3px;
 }
 /*
