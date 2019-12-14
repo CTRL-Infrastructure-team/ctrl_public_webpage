@@ -1,8 +1,9 @@
 <template>
   <div>
+    <srideShow :srideData="mainGuideprops" class="smartPhone" @open="openModal($event)" />
     <div class="flex">
       <mainGuide
-        class="mp0"
+        class="mp0 desctop"
         :img="item.img"
         v-for="(item,index) in mainGuideprops"
         :key="index"
@@ -36,6 +37,7 @@ import twitterbox from "~/components/twitter";
 import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
+import srideShow from "~/components/srideShow";
 
 //画像インポート
 import img1 from "~/assets/img/img1.jpg";
@@ -47,7 +49,8 @@ export default {
     mainGuide,
     news,
     twitterbox,
-    myModal
+    myModal,
+    srideShow
   },
   data() {
     return {
@@ -92,7 +95,7 @@ export default {
     //モーダルウインドウをオープンする
     openModal(index, modalImg) {
       console.log(index, modalImg);
-      this.modalImg = modalImg;
+      this.modalImg = this.mainGuideprops[index].img;
       this.modal = true;
       this.modalText = this.modalTexts[index];
     },
@@ -119,11 +122,12 @@ export default {
   display: block;
 }
 .img {
-  display: inline-block;
-  object-fit: cover;
-  transition: all 0.5s;
-  opacity: 0.6;
+  display: none;
   @include mq(sm) {
+    display: inline-block;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: all 0.5s;
     height: 200px;
     width: 200px;
   }
@@ -131,6 +135,20 @@ export default {
     // transform: scale(1.1, 1.1);
     object-fit: cover;
     overflow: hidden;
+  }
+}
+
+.smartPhone {
+  @include mq(sm) {
+    display: none;
+  }
+}
+
+.desctop {
+  display: none;
+
+  @include mq(sm) {
+    display: block;
   }
 }
 
@@ -153,14 +171,19 @@ export default {
 .modal {
   width: 90%;
   &-flex {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    @include mq(sm) {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
     &-img {
       width: 35%;
     }
     &-text {
-      width: 60%;
+      width: 100%;
+      @include mq(sm) {
+        width: 60%;
+      }
 
       &_title {
         font-family: monospace;
