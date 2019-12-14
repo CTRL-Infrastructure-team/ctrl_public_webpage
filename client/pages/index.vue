@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex">
+    <div class="flex flex_center">
       <mainGuide
         class="mp0"
         :img="item.img"
@@ -21,8 +21,8 @@
         </div>
       </myModal>
     </div>
-    <div class="flex">
-      <news />
+    <div class="flex flex_around">
+      <news class="news_box" />
       <twitterbox class="twitterBox"></twitterbox>
     </div>
   </div>
@@ -108,9 +108,19 @@ export default {
 <style lang="scss" scoped>
 .flex {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  &_center {
+    justify-content: center;
+    align-items: center;
+  }
+  &_around {
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+}
+
+.news_box {
+  width: 40%;
 }
 .guide {
   margin-top: 20px;
