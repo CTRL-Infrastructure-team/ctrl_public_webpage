@@ -10,6 +10,9 @@
              <nuxt-link to="/progress" class="select_menu">作品</nuxt-link>
              <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
            </li>
+           <li class="mail-adress">
+             <p>連絡先:tcu.ctrl@gmail.com</p>
+            </li>
            <li class="rightlink">
               <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"><img class="twitter_style" :src="twitter_img" alt="Twitter"></a>
            </li>
@@ -33,6 +36,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+
+.mail-adress{
+  margin-top:10%;
+}
 .footer {
   background: inherit;
 }
