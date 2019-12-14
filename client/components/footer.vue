@@ -11,7 +11,7 @@
              <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
            </li>
            <li class="rightlink">
-              <nuxt-link to="twitter.vue"><img class="twitter_style" :src="twitter_img" alt="Twitter"></nuxt-link>
+              <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"><img class="twitter_style" :src="twitter_img" alt="Twitter"></a>
            </li>
          </ul>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
