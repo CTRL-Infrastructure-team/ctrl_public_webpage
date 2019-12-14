@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <el-row>
-      <div v-for="i in 20" :key="i">
+      <div v-for="i in 7" :key="i">
       <el-col :span="8" >
         <workCard />
       </el-col>
