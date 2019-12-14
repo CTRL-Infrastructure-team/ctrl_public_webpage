@@ -35,7 +35,7 @@ li {
     text-decoration: none;
     outline: none;
     color: whitesmoke;
-    margin: auto;
+    line-height: 1cm;
       
     :link{
       color: whitesmoke;
