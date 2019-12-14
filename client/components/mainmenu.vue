@@ -26,13 +26,11 @@ export default {
 li {
   list-style: none;
   background-color: #666;
-  height: 1cm;
   
   ul {
     display: inline;
     
     text-align: center;
-    text-decoration: none;
     outline: none;
     color: whitesmoke;
     line-height: 1cm;
