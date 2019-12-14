@@ -2,24 +2,19 @@
   <transition name="modal" appear>
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
-        <div class="modal-content">
-          <img :src="img" width="100px" height="100px" />
+        <div class="modal-button_circle">
+          <div @click="$emit('close')" class="modal-button_inner">×</div>
         </div>
-        <footer class="modal-footer">
-          <slot name="footer">
-            <button @click="$emit('close')">Close</button>
-          </slot>
-        </footer>
+        <div class="modal-content">
+          <slot />
+        </div>
+        <footer class="modal-footer"></footer>
       </div>
     </div>
   </transition>
 </template>
 <script>
-export default {
-  props: {
-    img: String
-  }
-};
+export default {};
 </script>
 <style lang="scss" scoped>
 .modal {
@@ -37,33 +32,70 @@ export default {
   }
 
   &-window {
-    background: #fff;
-    overflow: hidden;
+    position: absolute;
+    background: #f0f0f0;
+    // overflow: ;
+    width: 90%;
+    top: 20%;
   }
 
   &-content {
     padding: 10px 20px;
   }
 
-  &-footer {
-    background: #ccc;
-    padding: 10px;
-    text-align: right;
+  // &-footer {
+  //   background: #ccc;
+  //   padding: 10px;
+  //   text-align: right;
+  // }
+  &-button {
+    &_circle {
+      // display: table;
+      position: absolute;
+      right: 0;
+      top: 0px;
+      width: 50px;
+      margin-left: auto;
+      height: 50px;
+      border-radius: 50%;
+      z-index: 50;
+      // opacity: 0;
+      background: rgba(#f0f0f0, 0);
+      &:hover {
+        background: #f0f0f0;
+        border-radius: 50%;
+        opacity: 1;
+        transition: all 0.4s;
+      }
+    }
+
+    &_inner {
+      // display: table-cell;
+      color: rgba(230, 230, 230, 1);
+      width: 50px;
+      font-size: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 40px;
+      opacity: 1;
+      cursor: pointer;
+      vertical-align: middle;
+      &:hover {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
   }
 }
 
-// オーバーレイのトランジション
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.4s;
 
-  // オーバーレイに包含されているモーダルウィンドウのトランジション
   .modal-window {
     transition: opacity 0.4s, transform 0.4s;
   }
 }
 
-// ディレイを付けるとモーダルウィンドウが消えた後にオーバーレイが消える
 .modal-leave-active {
   transition: opacity 0.6s ease 0.4s;
 }

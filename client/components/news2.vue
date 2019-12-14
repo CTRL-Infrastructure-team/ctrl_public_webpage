@@ -1,26 +1,20 @@
 <template>
-  <transition @mouseenter="titileOn = true">
-    <div
-      @click="doModal"
-      @mouseenter="titileOn = !titileOn"
-      @mouseleave="titileOn = !titileOn"
-      class="box"
-      :style="{background:color}"
-      v-if="show"
-    >
+  <transition>
+    <div @click="doBig" class="box" :style="{background:color}" v-if="show">
       <img :src="img" class="img" :style="imgStyle" />
-      <transition name="title">
-        <span class="imgTitle" v-if="titileOn">{{name}}</span>
-      </transition>
+      <span class="imgTitle">{{name}}</span>
     </div>
   </transition>
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { TweenMax, Expo, Elasric } from "gsap";
+
 export default {
   name: "main_guide",
   props: {
     name: { type: String, default: "this is name" },
+    color: { default: "red" },
     img: { type: String }
   },
   data() {
@@ -31,21 +25,39 @@ export default {
         display: "block"
       },
       show: false,
-      titileOn: false
+      isTheFlug: false,
+      isCenter: false
     };
   },
-
+  computed: {
+    ...mapGetters({
+      guideFlug: "guideFlug"
+    })
+  },
   methods: {
-    //モーダルウインドウオープン
-    doModal() {
+    doBig() {
       let img = this.img;
       this.$emit("open", img);
+    },
+    center() {
+      if (this.isTheFlug === true) {
+        return;
+      }
+    },
+    none() {
+      this.show = true;
+      this.isTheFlug = false;
     }
   },
-  //cssトランジション制御
   mounted() {
     this.show = !this.show;
     this.isTheFlug = false;
+  },
+  watch: {
+    guideFlug(val) {
+      console.log("change");
+      val ? this.center() : this.none();
+    }
   }
 };
 </script>
@@ -60,18 +72,16 @@ export default {
     overflow: hidden;
   }
 }
-
 .imgTitle {
   position: absolute;
-  bottom: 5%;
-  right: 5%;
+  top: 50%;
+  left: 50%;
   z-index: 2;
-  color: rgba(#f0f0f0, 0.8);
+  color: $maincolorBlack;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 40px;
   font-family: Quicksand, sans-serif;
-  opacity: 1;
-  transition: all 0.3s;
+  transform: translate(-50%, -50%);
   margin: 0;
   padding: 0;
 }
@@ -79,15 +89,9 @@ export default {
   position: relative;
   overflow: hidden;
   height: 40vh;
-  width: 50%;
-  cursor: pointer;
+  width: 40%;
 
-  &:hover {
-    background: linear-gradient(
-      rgba(0, 0, 0, 0) 0 80%,
-      rgba(0, 0, 0, 0.9) 80% 100%
-    );
-  }
+  cursor: pointer;
 }
 .v-enter {
   opacity: 0;
@@ -96,21 +100,6 @@ export default {
   opacity: 1;
 }
 .v-enter-active {
-  transition: all 1s;
-}
-
-.title-enter-active,
-.title-leave-active {
-  transition: all 0.5s;
-}
-
-.title-enter, .title-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-.dpNone {
-  display: none;
-  opacity: 0;
   transition: all 1s;
 }
 </style>
