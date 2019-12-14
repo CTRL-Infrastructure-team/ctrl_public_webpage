@@ -77,8 +77,8 @@ hr {
 }
 .header {
   height: $headerHeight;
-  position: relative;
-  overflow: hidden;
+  // position: relative;
+  // overflow: hidden;
   z-index: 30;
 }
 </style>
