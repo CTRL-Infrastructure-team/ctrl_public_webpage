@@ -20,11 +20,11 @@
         </div>
       </div>
       <div id="menu" class="menu" v-bind:class='{open:isOpen}'>
-        <ul>
-          <li><nuxt-link to="/">Top</nuxt-link></li>
-          <li><nuxt-link to="/report">活動報告</nuxt-link></li>
-          <li><nuxt-link to="/progress">作品紹介</nuxt-link></li>
-          <li><nuxt-link to="/inquiry">お問合せ</nuxt-link></li>
+        <ul v-on:click='isOpen=!isOpen'>
+          <nuxt-link to="/"><li>Top</li></nuxt-link>
+          <nuxt-link to="/report"><li>活動報告</li></nuxt-link>
+          <nuxt-link to="/progress"><li>作品紹介</li></nuxt-link>
+          <nuxt-link to="/inquiry"><li>お問合せ</li></nuxt-link>
         </ul>
       </div>
     </header>
@@ -144,15 +144,15 @@ export default {
   transform: translateX(1000px);
   & ul{
     padding:0;
-    & li{
-      padding: 2px;
-      margin: 10px;
-      border: solid 2px #c9c2c2;
-      & a{
+    & a{
         text-decoration: none;
         text-emphasis: none;
         color:#c9c2c2;
       }
+    & li{
+      padding: 10px;
+      margin: 10px;
+      border: solid 2px #c9c2c2;
     }
   }
   @include mq{
