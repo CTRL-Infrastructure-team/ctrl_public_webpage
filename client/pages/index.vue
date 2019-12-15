@@ -12,9 +12,9 @@
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
         <div class="modal-flex">
-          <div class="modal-flex_img">
-            <img :src="modalImg" class="img" />
-          </div>
+          <!-- <div class="modal-flex_img"> -->
+          <img :src="modalImg" class="img modal-flex_img" />
+          <!-- </div> -->
           <div class="modal-flex-text">
             <h2 class="modal-flex-text_title">{{modalText.title}}</h2>
             <p>{{modalText.body}}</p>
@@ -109,6 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$modalBorder: #8193a9;
 .flex {
   display: flex;
   justify-content: center;
@@ -171,16 +172,20 @@ export default {
 .modal {
   width: 90%;
   &-flex {
+    color: #cecece;
     @include mq(sm) {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
     }
-    &-img {
+    &_img {
       width: 35%;
+      overflow: hidden;
+      border-radius: 4px;
     }
     &-text {
       width: 100%;
+      line-height: 30px;
       @include mq(sm) {
         width: 60%;
       }
@@ -192,9 +197,9 @@ export default {
         white-space: nowrap;
         margin-bottom: 20px;
         margin-top: 10px;
-        padding-left: 3px;
-        border-bottom: 1px solid rgb(42, 54, 219);
-        border-left: 4px solid rgb(42, 54, 219);
+        padding-left: 5px;
+        border-bottom: 1px solid $modalBorder;
+        border-left: 4px solid $modalBorder;
       }
     }
   }
