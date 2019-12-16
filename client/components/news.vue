@@ -170,6 +170,7 @@ div {
   height: 30em;
   padding: 0 5px;
   overflow-x: hidden;
+  background-color: #2c2c2f;
   //overflow-y: scroll;
 }
 
@@ -202,4 +203,30 @@ div {
 	background:#09C9D9;
 }
 */
+.modal {
+  width: 90%;
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &-img {
+      width: 35%;
+    }
+    &-text {
+      width: 60%;
+
+      &_title {
+        font-family: monospace;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-left: 3px;
+        border-bottom: 1px solid rgb(42, 54, 219);
+        border-left: 4px solid rgb(42, 54, 219);
+      }
+    }
+  }
+}
 </style>
