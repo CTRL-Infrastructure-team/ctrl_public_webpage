@@ -39,6 +39,11 @@ export default {
 
 .leftlink {
   margin-top: 20px;
+  list-style: none;
+}
+
+.rightlink {
+  list-style: none;
 }
 
 .copyright {
