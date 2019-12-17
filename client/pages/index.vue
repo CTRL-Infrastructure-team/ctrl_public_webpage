@@ -120,7 +120,7 @@ export default {
 }
 
 .news_box {
-  width: 40%;
+  width: 50%;
 }
 .guide {
   margin-top: 20px;
@@ -145,8 +145,9 @@ export default {
 }
 
 .twitterBox {
-  height: 400px;
-  overflow-y: scroll;
+  width: 30%;
+  height: 500px;
+  //overflow-y: scroll;
 }
 
 @keyframes typing {

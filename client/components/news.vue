@@ -2,6 +2,10 @@
   <div>
     <h1>News</h1>
     <div class="scroll">
+      <div class="modal-flex-text">
+        <h2 class="modal-flex-text_title">modal-flex-text</h2>
+        <p>modalText.body</p>
+      </div>
       <div>this is first news.</div>
       <div class="flexNews">
         <mainGuide name="first news" class="main guide" color="#4ff0f0" />
@@ -43,6 +47,7 @@
         <h2>twitter boxは黒くならないのだろうか？</h2>
         <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
       </div>
+      
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
@@ -217,7 +222,7 @@ div {
 
       &_title {
         font-family: monospace;
-        width: 100%;
+        width: 165%;
         overflow: hidden;
         white-space: nowrap;
         margin-bottom: 20px;
