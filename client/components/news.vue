@@ -3,11 +3,13 @@
     <h1>News</h1>
     <div class="scroll">
       <div class="back">
-        
+        <!-- <article /> -->
         <div class="modal-flex-text">
-          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
+          <h2 class="modal-flex-text_title">{{ sample_data.title }}</h2>
           <div class="modal-flex-text_content">
-            modalText.body　本文を入力
+            {{ '日付 : ' + sample_data.date }}
+                <br>
+            {{ '概要 : ' + sample_data.overview }}
           </div>
           <p>modalText.body　本文を入力</p>
         </div>
@@ -44,15 +46,30 @@
 <script>
 //import news1 from './news1'
 import mainGuide from "~/components/news1";
+     /*Vue.component('article',{
+        data: function(){
+          return {
+      count: 0
+          }
+        },
+        template: '<div class="modal-flex-text"><h2 class="modal-flex-text_title">{{ sample_data.title }}</h2><div class="modal-flex-text_content">{{  sample_data.date }}<br>{{  sample_data.overview }}</div><p>modalText.body　本文を入力</p></div>'
+      });*/
+//new Vue({el: '#components-demo'});
 export default {
-  /*data () {
-    return {
-      // greeting: <mainGuide name="4" class="main guide" color="black" />
-      greeting:'third'
-    }
-  }*/
   components: {
-    mainGuide
+    //mainGuide,
+    //article
+  },
+  //el: '#components-demo',
+  data () {
+    return {
+      sample_data: {
+        title: 'タイトルです',
+        date: '2019-12-28',
+        overview: 'この作品の概要です。',
+        
+      }
+    }
   }
 };
 </script>
