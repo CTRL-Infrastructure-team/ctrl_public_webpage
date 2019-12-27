@@ -2,52 +2,41 @@
   <div>
     <h1>News</h1>
     <div class="scroll">
-      <div class="modal-flex-text">
-        <h2 class="modal-flex-text_title">modal-flex-text</h2>
-        <p>modalText.body</p>
-      </div>
-      <div>this is first news.</div>
-      <div class="flexNews">
-        <mainGuide name="first news" class="main guide" color="#4ff0f0" />
-      </div>
-      <div class="box27">
-        <span class="box-title">タイトル</span>
-        <p>
-          ラベルをつけたようなデザイン
-          <br />2行目
-          <br />3行目
-        </p>
-      </div>
-      <div>this is second news.</div>
-      <div class="flexNews">
-        <mainGuide name="second news" class="main guide" color="#4f4fff" />
-      </div>
-      <div class="box27-a">
-        <span class="box-title">迷言</span>
-        <div class="box19">
-          <p>htmlが挿さらない</p>
+      <div class="back">
+        
+        <div class="modal-flex-text">
+          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
+          <div class="modal-flex-text_content">
+            modalText.body　本文を入力
+          </div>
+          <p>modalText.body　本文を入力</p>
+        </div>
+        <div class="modal-flex-text">
+          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
+          <div class="modal-flex-text_content">
+            modalText.body　本文を入力
+          </div>
+          <p>modalText.body　本文を入力</p>
+        </div>
+        <div class="modal-flex-text">
+          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
+          <div class="modal-flex-text_content">
+            modalText.body　本文を入力
+          </div>
+          <p>modalText.body　本文を入力</p>
+        </div>
+        <div class="modal-flex-text">
+          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
+          <div class="modal-flex-text_content">
+            modalText.body　本文を入力
+          </div>
+          <p>modalText.body　本文を入力</p>
+        </div>
+        <div class="box4">
+          <h2>twitter boxは黒くならないのだろうか？</h2>
+          <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
         </div>
       </div>
-      <div>this is third news</div>
-      <div class="flexNews">
-        <mainGuide name="third news" class="main guide" color="#4f4fff" />
-      </div>
-      <div class="box27-a">
-        <!-- <span class="box-title">タイトル</span> -->
-        <p>
-          ラベルをつけたようなデザイン
-          <br />2行目
-          <br />3行目
-        </p>
-      </div>
-      <div class="box4">
-        <p>こっちのほうが見栄えいいかも…</p>
-      </div>
-      <div class="box4">
-        <h2>twitter boxは黒くならないのだろうか？</h2>
-        <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
-      </div>
-      
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
@@ -68,9 +57,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-div {
-  border: solid black 0px;
-}
+$modalBorder: #8193a9;
 .flexNews {
   width: 80%;
   //display: flex;
@@ -173,10 +160,15 @@ div {
 }
 .scroll {
   height: 30em;
-  padding: 0 5px;
   overflow-x: hidden;
-  background-color: #2c2c2f;
   //overflow-y: scroll;
+}
+.back{
+  padding-top: 1px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 25px;
+  background-color: #292F33;
 }
 
 .scroll::-webkit-scrollbar {
@@ -228,8 +220,12 @@ div {
         margin-bottom: 20px;
         margin-top: 10px;
         padding-left: 3px;
-        border-bottom: 1px solid rgb(42, 54, 219);
-        border-left: 4px solid rgb(42, 54, 219);
+        border-bottom: 1px solid $modalBorder;
+        border-left: 4px solid $modalBorder;
+      }
+
+      &_content{
+        padding: 0 0px;
       }
     }
   }
