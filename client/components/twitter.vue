@@ -28,7 +28,7 @@ div {
 
 .TwitterBox::-webkit-scrollbar {
   //background:#09C9D9;
-  width: 7px;
+  width: 4px;
 }
 .TwitterBox::-webkit-scrollbar-thumb {
   //background: linear-gradient(0deg, #43e2c6, #3183d0);

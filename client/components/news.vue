@@ -3,41 +3,15 @@
     <h1>News</h1>
     <div class="scroll">
       <div class="back">
-        <!-- <article /> -->
-        <div class="modal-flex-text">
-          <h2 class="modal-flex-text_title">{{ sample_data.title }}</h2>
-          <div class="modal-flex-text_content">
-            {{ '日付 : ' + sample_data.date }}
-                <br>
-            {{ '概要 : ' + sample_data.overview }}
-          </div>
-          <p>modalText.body　本文を入力</p>
-        </div>
-        <div class="modal-flex-text">
-          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
-          <div class="modal-flex-text_content">
-            modalText.body　本文を入力
-          </div>
-          <p>modalText.body　本文を入力</p>
-        </div>
-        <div class="modal-flex-text">
-          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
-          <div class="modal-flex-text_content">
-            modalText.body　本文を入力
-          </div>
-          <p>modalText.body　本文を入力</p>
-        </div>
-        <div class="modal-flex-text">
-          <h2 class="modal-flex-text_title">modal-flex-text（ここがタイトル）</h2>
-          <div class="modal-flex-text_content">
-            modalText.body　本文を入力
-          </div>
-          <p>modalText.body　本文を入力</p>
-        </div>
         <div class="box4">
-          <h2>twitter boxは黒くならないのだろうか？</h2>
-          <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
+          <h2>twitter boxと色を揃えてみた</h2>
+          <p>ページのソースから、カラーコードを探り出した</p>
         </div>
+        <articleItem />
+        <articleItem />
+        <articleItem />
+        <articleItem />
+        <articleItem />
       </div>
     </div>
     <!-- <div id="app1">{{ greeting }}</div> -->
@@ -46,6 +20,7 @@
 <script>
 //import news1 from './news1'
 import mainGuide from "~/components/news1";
+import articleItem from "~/components/article";
      /*Vue.component('article',{
         data: function(){
           return {
@@ -58,9 +33,8 @@ import mainGuide from "~/components/news1";
 export default {
   components: {
     //mainGuide,
-    //article
+    articleItem
   },
-  //el: '#components-demo',
   data () {
     return {
       sample_data: {
