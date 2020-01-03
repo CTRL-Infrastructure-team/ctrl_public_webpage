@@ -7,14 +7,13 @@
           <h2>twitter boxと色を揃えてみた</h2>
           <p>ページのソースから、カラーコードを探り出した</p>
         </div>
-        <articleItem />
-        <articleItem />
-        <articleItem />
-        <articleItem />
-        <articleItem />
+        <div v-for="i in 5" :key="i">
+          <el-low :span="8">
+            <articleItem title="CTRLのNEWS" />
+          </el-low>
+        </div>
       </div>
     </div>
-    <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
 </template>
 <script>
@@ -37,12 +36,7 @@ export default {
   },
   data () {
     return {
-      sample_data: {
-        title: 'タイトルです',
-        date: '2019-12-28',
-        overview: 'この作品の概要です。',
-        
-      }
+
     }
   }
 };
