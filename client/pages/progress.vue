@@ -21,7 +21,20 @@ import workCard from '~/components/workCard.vue'
 export default {
   components :{
     workCard
-  }
+  },
+  // data() {
+  //     return {
+  //         img: work_img,
+  //         sample_data: {
+  //             date: '2019-12-13',
+  //             overview: 'この作品の概要です。',
+  //         }
+  //     }
+  // },
+  // async asyncData({ app }) {
+  //     const data = await app.$axios.get('http://localhost:3000/api/')
+  //     return { data: data }
+  // },
 };
 </script>
 <style lang="scss" scoped>

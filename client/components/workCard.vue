@@ -33,7 +33,7 @@ export default {
         }
     },
     async asyncData({ app }) {
-        const data = await app.axios.$get('http://localhost:3000/api/')
+        const data = await app.$axios.get('http://localhost:3000/api/')
         return { data: data }
     },
 };
@@ -77,5 +77,10 @@ color: $mainchar;
 
 img {
     width: 80%;
+}
+
+a {
+    text-decoration: none;
+    color: $mainchar;
 }
 </style>
