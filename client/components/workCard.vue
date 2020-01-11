@@ -2,13 +2,13 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <h3><nuxt-link to="/pastWorks/_pastWork">{{ work.title }}</nuxt-link></h3>
+                <h3><nuxt-link :to="`/pastWorks/${work.title}`" :work="work">{{ work.title }}</nuxt-link></h3>
             </div>
             <div class="img_holder">
                 <img :src="img" />
             </div>
             <div class="text item">
-                {{ '日付 : ' + work.time }}
+                {{ '日付 : ' + work.time }} {{ '  制作者 : ' + work.contributor }}
                 <br>
                 {{ '概要 : ' + work.content }}
             </div>
@@ -17,15 +17,14 @@
 </template>
 
 <script>
-import work_img from "~/assets/img/img4.jpg"
-
 export default {
     props: ['work'],
     data() {
         return {
-            img: this.work.img_url,
+            img: this.work.img_url
         }
     },
+
 };
 </script>
 
