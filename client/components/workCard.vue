@@ -8,7 +8,9 @@
                 <img :src="img" />
             </div>
             <div class="text item">
-                {{ '日付 : ' + work.time }} {{ '  制作者 : ' + work.contributor }}
+                {{ '日付 : ' + work.time }} 
+                <br>
+                {{ '  制作者 : ' + work.contributor }}
                 <br>
                 {{ '概要 : ' + work.content }}
             </div>
