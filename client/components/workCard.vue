@@ -2,16 +2,15 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <h3><nuxt-link to="/pastWorks/_pastWork">作品名</nuxt-link></h3>
+                <h3><nuxt-link to="/pastWorks/_pastWork">{{ work.title }}</nuxt-link></h3>
             </div>
             <div class="img_holder">
-                <img :src="img"/>
+                <img :src="img" />
             </div>
-            <!-- <div v-for="o in 4" :key="o" class="text item"> -->
             <div class="text item">
-                {{ '日付 : ' + sample_data.date }}
+                {{ '日付 : ' + work.time }}
                 <br>
-                {{ '概要 : ' + sample_data.overview }}
+                {{ '概要 : ' + work.content }}
             </div>
         </el-card>
     </div>
@@ -21,20 +20,11 @@
 import work_img from "~/assets/img/img4.jpg"
 
 export default {
-
-    //この辺全部progress.vueに移行
+    props: ['work'],
     data() {
         return {
-            img: work_img,
-            sample_data: {
-                date: '2019-12-13',
-                overview: 'この作品の概要です。',
-            }
+            img: this.work.img_url,
         }
-    },
-    async asyncData({ app }) {
-        const data = await app.$axios.get('http://localhost:3000/api/')
-        return { data: data }
     },
 };
 </script>
@@ -42,10 +32,6 @@ export default {
 <style lang="scss" scoped>
 .content {
     width: 100%;
-}
-
-.text {
-// font-size: 14px;
 }
 
 .el-card {

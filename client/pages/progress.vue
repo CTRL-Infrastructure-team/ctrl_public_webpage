@@ -1,41 +1,36 @@
 <template>
   <div class="content">
     <el-row>
-      <div v-for="i in 7" :key="i">
+      <div v-for="work in works" :key="work">
       <el-col :span="8" >
-        <workCard />
+        <workCard  :work="work"/>
       </el-col>
       </div>
-      <!-- <el-col :span="8">
-        <workCard />
-      </el-col>
-      <el-col :span="8">
-        <workCard />
-      </el-col> -->
     </el-row>
   </div>
 </template>
 <script>
 import workCard from '~/components/workCard.vue'
+import pastWork from '~/pages/pastWorks/data.json'
 
 export default {
   components :{
     workCard
   },
-  // data() {
-  //     return {
-  //         img: work_img,
-  //         sample_data: {
-  //             date: '2019-12-13',
-  //             overview: 'この作品の概要です。',
-  //         }
-  //     }
+  data() {
+    var works = []
+    return { works: works }
+  },
+  created() {
+    this.works = pastWork.pastWorks
+    console.log(this.works)
+  },
+  // async asyncData({app}) {
+  //   const datas = await app.$axios.get('./data.json')
+  //   const works = datas.pastWorks
+  //   return { works: works }
   // },
-  // async asyncData({ app }) {
-  //     const data = await app.$axios.get('http://localhost:3000/api/')
-  //     return { data: data }
-  // },
-};
+}
 </script>
 <style lang="scss" scoped>
 .content {
