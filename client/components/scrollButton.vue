@@ -1,28 +1,37 @@
 <template>
     <div>
-        <div class="button" @click="gotop">
-            
-            
+        <div id="button" class="button" @click="gotop">
             <span>
                 <div class="left">
                 </div>
                 <div class="right">
                 </div>
             </span>
-            
-            
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "scrollButton",
-    methods: {
-        gotop: function() {
+    mounted() {
+        window.addEventListener('scroll', this.handlescroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handlescroll);
+    },
+    methods:  {
+        gotop: () => {
            window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
+        },
+        handlescroll:() => {
+            let scrollY = window.scrollY;
+            if(scrollY > 0){
+                let element = document.getElementById("button");
+                element.classList.add("active");
+            }
         }
     }
 }
@@ -38,6 +47,11 @@ export default {
         background-color: #328d55;
         bottom: 5%;
         right: 5%;
+        cursor: pointer;
+        opacity: 0.6;
+    }
+    .button.active{
+        opacity: 1;
     }
 
     span{
