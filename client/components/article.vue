@@ -2,7 +2,7 @@
   <div>
     <div class="modal-flex-text">
       <!-- <div id="app"> -->
-        <button @click="fetch">fetch</button>
+        <!-- <button @click="fetch">fetch</button> -->
         <!-- <div>{{sample_data}}</div> -->
       <div v-for="sample_content in sample_contents" :key="sample_content.date">
         <h2 class="modal-flex-text_title">{{ title }}</h2>
@@ -34,8 +34,9 @@ export default {
     */
 
   data:() =>({
-    sample_contents:[]
+    sample_contents:data
   }),
+  /*
   methods:{
     fetch(){
       this.sample_contents = data
@@ -65,8 +66,9 @@ export default {
   data:{
     sample_data:[]
   },
+  */
   mounted(){
-    axios.get("../assets/data/data.json")
+    this.$axios.get("../assets/data/data.json")
     .then(response => {
       this.results = response.data
       console.log(response.data)
@@ -77,7 +79,7 @@ export default {
       let posts = this.results;
     }
   }
-  */
+  
 }
 </script>
 <style lang="scss" scoped>
