@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import data from '../assets/data/data.json'
+import data from '~/assets/data/data.json'
 import axios from '@nuxtjs/axios'
 
 export default {
