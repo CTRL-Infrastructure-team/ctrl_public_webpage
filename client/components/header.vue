@@ -8,10 +8,8 @@
       </div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="検索内容を入力" class="textform" />
-          <!--
-          -->
-          <input type="submit" value="検索" class="button" />
+          <input type="text" placeholder="検索内容を入力" class="textform" /><!--
+          --><input type="submit" value="検索" class="button" />
         </form>
       </div>
       <div class="theflex_cell">
@@ -157,6 +155,7 @@ export default {
       color: #c9c2c2;
     }
     & li {
+      list-style: none;
       font-size: 1.2em;
       padding: 10px;
       margin: 10px;
