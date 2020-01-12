@@ -64,9 +64,10 @@ export default {
 
     },
     doValidateEmail(data,index){
-
+      this.email.value ? '': this.email.alert = '値を入力してください'
    },
     doValidateInquiry(data,index){
+      this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
 
    },
   },
