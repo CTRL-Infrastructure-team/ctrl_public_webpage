@@ -5,6 +5,7 @@
       <mainmenu></mainmenu>
     </header>
     <nuxt />
+    <scrollButton />
     <footerComponent />
   </div>
 </template>
@@ -12,11 +13,13 @@
 import headerComponent from "~/components/header";
 import footerComponent from "~/components/footer";
 import mainmenu from "~/components/mainmenu";
+import scrollButton from "~/components/scrollButton";
 
 export default {
   components: {
     headerComponent,
     footerComponent,
+    scrollButton,
     mainmenu
   }
 };
