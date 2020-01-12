@@ -124,7 +124,7 @@ $modalBorder: #8193a9;
 }
 
 .news_box {
-  width: 40%;
+  width: 50%;
 }
 .guide {
   margin-top: 20px;
@@ -164,8 +164,9 @@ $modalBorder: #8193a9;
 }
 
 .twitterBox {
-  height: 400px;
-  overflow-y: scroll;
+  width: 30%;
+  height: 500px;
+  //overflow-y: scroll;
 }
 
 @keyframes typing {
