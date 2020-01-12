@@ -2,70 +2,47 @@
   <div>
     <h1>News</h1>
     <div class="scroll">
-      <div>this is first news.</div>
-      <div class="flexNews">
-        <mainGuide name="first news" class="main guide" color="#4ff0f0" />
-      </div>
-      <div class="box27">
-        <span class="box-title">タイトル</span>
-        <p>
-          ラベルをつけたようなデザイン
-          <br />2行目
-          <br />3行目
-        </p>
-      </div>
-      <div>this is second news.</div>
-      <div class="flexNews">
-        <mainGuide name="second news" class="main guide" color="#4f4fff" />
-      </div>
-      <div class="box27-a">
-        <span class="box-title">迷言</span>
-        <div class="box19">
-          <p>htmlが挿さらない</p>
+      <div class="back">
+        <div class="box4">
+          <h2>twitter boxと色を揃えてみた</h2>
+          <p>ページのソースから、カラーコードを探り出した</p>
         </div>
-      </div>
-      <div>this is third news</div>
-      <div class="flexNews">
-        <mainGuide name="third news" class="main guide" color="#4f4fff" />
-      </div>
-      <div class="box27-a">
-        <!-- <span class="box-title">タイトル</span> -->
-        <p>
-          ラベルをつけたようなデザイン
-          <br />2行目
-          <br />3行目
-        </p>
-      </div>
-      <div class="box4">
-        <p>こっちのほうが見栄えいいかも…</p>
-      </div>
-      <div class="box4">
-        <h2>twitter boxは黒くならないのだろうか？</h2>
-        <p>twitterアプリやwebにはダークモードが存在するので、それが使えるかも</p>
+        <articleItem title="CTRLのNEWS" />
+        <!-- <div v-for="i in 5" :key="i"> -->
+          <!-- <el-low :span="8"> -->
+          <!-- </el-low> -->
+        <!-- </div> -->
       </div>
     </div>
-    <!-- <div id="app1">{{ greeting }}</div> -->
   </div>
 </template>
 <script>
 //import news1 from './news1'
 import mainGuide from "~/components/news1";
+import articleItem from "~/components/article";
+     /*Vue.component('article',{
+        data: function(){
+          return {
+      count: 0
+          }
+        },
+        template: '<div class="modal-flex-text"><h2 class="modal-flex-text_title">{{ sample_data.title }}</h2><div class="modal-flex-text_content">{{  sample_data.date }}<br>{{  sample_data.overview }}</div><p>modalText.body　本文を入力</p></div>'
+      });*/
+//new Vue({el: '#components-demo'});
 export default {
-  /*data () {
-    return {
-      // greeting: <mainGuide name="4" class="main guide" color="black" />
-      greeting:'third'
-    }
-  }*/
   components: {
-    mainGuide
+    //mainGuide,
+    articleItem
+  },
+  data () {
+    return {
+
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
-div {
-  border: solid black 0px;
-}
+$modalBorder: #8193a9;
 .flexNews {
   width: 80%;
   //display: flex;
@@ -168,9 +145,15 @@ div {
 }
 .scroll {
   height: 30em;
-  padding: 0 5px;
   overflow-x: hidden;
   //overflow-y: scroll;
+}
+.back{
+  padding-top: 1px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 25px;
+  background-color: #292F33;
 }
 
 .scroll::-webkit-scrollbar {
@@ -202,4 +185,34 @@ div {
 	background:#09C9D9;
 }
 */
+.modal {
+  width: 90%;
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &-img {
+      width: 35%;
+    }
+    &-text {
+      width: 60%;
+
+      &_title {
+        font-family: monospace;
+        width: 165%;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-left: 3px;
+        border-bottom: 1px solid $modalBorder;
+        border-left: 4px solid $modalBorder;
+      }
+
+      &_content{
+        padding: 0 0px;
+      }
+    }
+  }
+}
 </style>
