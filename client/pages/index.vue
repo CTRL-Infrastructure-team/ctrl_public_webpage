@@ -88,7 +88,8 @@ export default {
           body: "世田谷キャンパス1号館2階　Ｆ教室(12F)で活動しています。"
         }
       ],
-      modalText: ""
+      modalText: "",
+
     };
   },
   methods: {
@@ -150,7 +151,8 @@ $modalBorder: #8193a9;
 }
 
 .smartPhone {
-  @include mq(sm) {
+  display: block;
+  @include mq() {
     display: none;
   }
 }
@@ -158,7 +160,7 @@ $modalBorder: #8193a9;
 .desctop {
   display: none;
 
-  @include mq(sm) {
+  @include mq() {
     display: block;
   }
 }

@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>
-    nemui twitter
-    </h1>
     <div class="TwitterBox">
       <a
         class="twitter-timeline"
@@ -15,7 +12,8 @@
 </template>
 <style lang="scss" scoped>
 
-.twitterBox{
+.twitterBox {
+  margin-top: 40px;
   overflow-y: hidden;
 }
 .TwitterBox {
