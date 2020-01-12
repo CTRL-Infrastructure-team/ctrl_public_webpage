@@ -2,7 +2,7 @@
   <div class="body">
     <header class="header">
       <headerComponent />
-      <mainmenu></mainmenu>
+      <mainmenu :menu="menu"></mainmenu>
     </header>
     <nuxt />
     <scrollButton />
@@ -21,6 +21,16 @@ export default {
     footerComponent,
     scrollButton,
     mainmenu
+  },
+  data(){
+    return{
+      menu: [
+        { name: "Top", to: "/" },
+        { name: "活動報告", to: "/report" },
+        { name: "作品", to: "/progress" },
+        { name: "問い合わせ", to: "/inquiry" }
+      ],
+    }
   }
 };
 </script>
