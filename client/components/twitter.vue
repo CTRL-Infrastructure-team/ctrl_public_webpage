@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>
-    nemui twitter
-    </h1>
     <div class="TwitterBox">
       <a
         class="twitter-timeline"
@@ -18,7 +15,8 @@ div {
   // width: 40%;
 }
 
-.twitterBox{
+.twitterBox {
+  margin-top: 40px;
   overflow-y: hidden;
 }
 .TwitterBox {

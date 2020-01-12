@@ -9,8 +9,7 @@
       <div class="theflex_cell">
         <form class="search_form">
           <input type="text" placeholder="検索内容を入力" class="textform" />
-          <!--
-          -->
+
           <input type="submit" value="検索" class="button" />
         </form>
       </div>

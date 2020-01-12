@@ -150,7 +150,8 @@ $modalBorder: #8193a9;
 }
 
 .smartPhone {
-  @include mq(sm) {
+  display: block;
+  @include mq() {
     display: none;
   }
 }
@@ -158,7 +159,7 @@ $modalBorder: #8193a9;
 .desctop {
   display: none;
 
-  @include mq(sm) {
+  @include mq() {
     display: block;
   }
 }
