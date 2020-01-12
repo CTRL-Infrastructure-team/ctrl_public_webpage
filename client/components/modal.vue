@@ -2,9 +2,7 @@
   <transition name="modal" appear>
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
-        <div class="modal-button_circle">
-          <div @click="$emit('close')" class="modal-button_inner">×</div>
-        </div>
+        <div class="modal-button_circle"></div>
         <div class="modal-content">
           <slot />
         </div>
@@ -17,6 +15,8 @@
 export default {};
 </script>
 <style lang="scss" scoped>
+$backcolor: #1e1e1e;
+$textColor: #f0f0f0;
 .modal {
   &.modal-overlay {
     display: flex;
@@ -33,57 +33,15 @@ export default {};
 
   &-window {
     position: absolute;
-    background: #f0f0f0;
+    background: $backcolor;
     // overflow: ;
     width: 90%;
     top: 20%;
+    border-radius: 10px;
   }
 
   &-content {
     padding: 10px 20px;
-  }
-
-  // &-footer {
-  //   background: #ccc;
-  //   padding: 10px;
-  //   text-align: right;
-  // }
-  &-button {
-    &_circle {
-      // display: table;
-      position: absolute;
-      right: 0;
-      top: 0px;
-      width: 50px;
-      margin-left: auto;
-      height: 50px;
-      border-radius: 50%;
-      z-index: 50;
-      // opacity: 0;
-      background: rgba(#f0f0f0, 0);
-      &:hover {
-        background: #f0f0f0;
-        border-radius: 50%;
-        opacity: 1;
-        transition: all 0.4s;
-      }
-    }
-
-    &_inner {
-      // display: table-cell;
-      color: rgba(230, 230, 230, 1);
-      width: 50px;
-      font-size: 50px;
-      height: 50px;
-      text-align: center;
-      line-height: 40px;
-      opacity: 1;
-      cursor: pointer;
-      vertical-align: middle;
-      &:hover {
-        color: rgba(0, 0, 0, 0.6);
-      }
-    }
   }
 }
 

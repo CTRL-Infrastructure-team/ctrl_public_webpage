@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="flex flex_center">
+    <srideShow :srideData="mainGuideprops" class="smartPhone" @open="openModal($event)" />
+    <div class="flex">
       <mainGuide
-        class="mp0"
+        class="mp0 desctop"
         :img="item.img"
         v-for="(item,index) in mainGuideprops"
         :key="index"
@@ -11,9 +12,9 @@
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
         <div class="modal-flex">
-          <div class="modal-flex_img">
-            <img :src="modalImg" class="img" />
-          </div>
+          <!-- <div class="modal-flex_img"> -->
+          <img :src="modalImg" class="img modal-flex_img" />
+          <!-- </div> -->
           <div class="modal-flex-text">
             <h2 class="modal-flex-text_title">{{modalText.title}}</h2>
             <p>{{modalText.body}}</p>
@@ -36,6 +37,7 @@ import twitterbox from "~/components/twitter";
 import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
+import srideShow from "~/components/srideShow";
 
 //画像インポート
 import img1 from "~/assets/img/img1.jpg";
@@ -47,7 +49,8 @@ export default {
     mainGuide,
     news,
     twitterbox,
-    myModal
+    myModal,
+    srideShow
   },
   data() {
     return {
@@ -92,7 +95,7 @@ export default {
     //モーダルウインドウをオープンする
     openModal(index, modalImg) {
       console.log(index, modalImg);
-      this.modalImg = modalImg;
+      this.modalImg = this.mainGuideprops[index].img;
       this.modal = true;
       this.modalText = this.modalTexts[index];
     },
@@ -106,6 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$modalBorder: #8193a9;
 .flex {
   display: flex;
   flex-wrap: wrap;
@@ -120,7 +124,7 @@ export default {
 }
 
 .news_box {
-  width: 40%;
+  width: 50%;
 }
 .guide {
   margin-top: 20px;
@@ -129,11 +133,12 @@ export default {
   display: block;
 }
 .img {
-  display: inline-block;
-  object-fit: cover;
-  transition: all 0.5s;
-  opacity: 0.6;
+  display: none;
   @include mq(sm) {
+    display: inline-block;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: all 0.5s;
     height: 200px;
     width: 200px;
   }
@@ -144,9 +149,24 @@ export default {
   }
 }
 
+.smartPhone {
+  @include mq(sm) {
+    display: none;
+  }
+}
+
+.desctop {
+  display: none;
+
+  @include mq(sm) {
+    display: block;
+  }
+}
+
 .twitterBox {
-  height: 400px;
-  overflow-y: scroll;
+  width: 30%;
+  height: 500px;
+  //overflow-y: scroll;
 }
 
 @keyframes typing {
@@ -163,14 +183,23 @@ export default {
 .modal {
   width: 90%;
   &-flex {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    &-img {
+    color: #cecece;
+    @include mq(sm) {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    &_img {
       width: 35%;
+      overflow: hidden;
+      border-radius: 4px;
     }
     &-text {
-      width: 60%;
+      width: 100%;
+      line-height: 30px;
+      @include mq(sm) {
+        width: 60%;
+      }
 
       &_title {
         font-family: monospace;
@@ -179,9 +208,9 @@ export default {
         white-space: nowrap;
         margin-bottom: 20px;
         margin-top: 10px;
-        padding-left: 3px;
-        border-bottom: 1px solid rgb(42, 54, 219);
-        border-left: 4px solid rgb(42, 54, 219);
+        padding-left: 5px;
+        border-bottom: 1px solid $modalBorder;
+        border-left: 4px solid $modalBorder;
       }
     }
   }
