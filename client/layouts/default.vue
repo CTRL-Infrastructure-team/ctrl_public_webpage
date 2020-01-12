@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <header class="header">
       <headerComponent />
       <mainmenu></mainmenu>
@@ -23,8 +23,8 @@ export default {
 </script>
 <style lang="scss">
 html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -76,9 +76,7 @@ hr {
   margin-top: 10px;
 }
 .header {
-  height: $headerHeight;
-  // position: relative;
-  // overflow: hidden;
-  z-index: 30;
+  // height: $headerHeight;
+  position: relative;
 }
 </style>
