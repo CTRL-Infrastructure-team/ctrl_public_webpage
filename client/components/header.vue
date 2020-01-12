@@ -8,10 +8,8 @@
       </div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="検索内容を入力" class="textform" />
-          <!--
-          -->
-          <input type="submit" value="検索" class="button" />
+          <input type="text" placeholder="検索内容を入力" class="textform" /><!--
+          --><input type="submit" value="検索" class="button" />
         </form>
       </div>
       <div class="theflex_cell">
@@ -136,13 +134,12 @@ export default {
 }
 .menu {
   position: absolute;
-  overflow: auto;
+  overflow: hidden;
   opacity: 0;
   z-index: 10;
   background-color: #328d55;
-  width: 100%;
+  width: 0;
   height: 100vh;
-  padding: 10px;
   top: 60px;
   right: 0;
   bottom: 0;
@@ -158,6 +155,7 @@ export default {
       color: #c9c2c2;
     }
     & li {
+      list-style: none;
       font-size: 1.2em;
       padding: 10px;
       margin: 10px;
@@ -171,7 +169,9 @@ export default {
 
 .open {
   opacity: 1;
+  width: 100%;
   display: block;
+  padding: 10px;
   transform: translateX(0);
 }
 </style>
