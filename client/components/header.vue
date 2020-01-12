@@ -8,9 +8,14 @@
       </div>
       <div class="theflex_cell">
         <form class="search_form">
+<<<<<<< HEAD
           <input type="text" placeholder="検索内容を入力" class="textform" />
 
           <input type="submit" value="検索" class="button" />
+=======
+          <input type="text" placeholder="検索内容を入力" class="textform" /><!--
+          --><input type="submit" value="検索" class="button" />
+>>>>>>> 948cdb72ec8741a5356c1b6843c78b6b12b0f0b0
         </form>
       </div>
       <div class="theflex_cell">
@@ -156,6 +161,7 @@ export default {
       color: #c9c2c2;
     }
     & li {
+      list-style: none;
       font-size: 1.2em;
       padding: 10px;
       margin: 10px;
