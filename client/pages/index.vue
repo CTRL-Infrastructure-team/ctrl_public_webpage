@@ -88,7 +88,8 @@ export default {
           body: "世田谷キャンパス1号館2階　Ｆ教室(12F)で活動しています。"
         }
       ],
-      modalText: ""
+      modalText: "",
+
     };
   },
   methods: {
