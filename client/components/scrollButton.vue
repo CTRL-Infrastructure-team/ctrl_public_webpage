@@ -28,9 +28,13 @@ export default {
         },
         handlescroll:() => {
             let scrollY = window.scrollY;
-            if(scrollY > 0){
+            if(scrollY > 50){
                 let element = document.getElementById("button");
                 element.classList.add("active");
+            }
+            if(scrollY <= 50){
+                let element = document.getElementById("button");
+                element.classList.remove("active");
             }
         }
     }
