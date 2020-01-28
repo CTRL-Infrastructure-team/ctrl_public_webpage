@@ -124,8 +124,16 @@ $modalBorder: #8193a9;
       flex-wrap: nowrap;
       flex-direction: column;
       justify-content: space-around;
-      align-items: flex-start;
+      align-items: center;
     }
+  }
+  .news_box {
+    width: 90%;
+  }
+  .twitterBox {
+    width: 90%;
+    height: 300px;
+    //overflow-y: scroll;
   }
 }
 
@@ -146,10 +154,15 @@ $modalBorder: #8193a9;
     align-items: flex-start;
   }
 }
-}
 
-.news_box {
-  width: 50%;
+  .news_box {
+    width: 50%;
+  }
+  .twitterBox {
+    width: 30%;
+    //height: 500px;
+    //overflow-y: scroll;
+  }
 }
 .guide {
   margin-top: 20px;
@@ -189,11 +202,7 @@ $modalBorder: #8193a9;
   }
 }
 
-.twitterBox {
-  width: 30%;
-  //height: 500px;
-  //overflow-y: scroll;
-}
+
 
 @keyframes typing {
   from {
