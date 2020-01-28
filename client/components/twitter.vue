@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Tweets</h1>
     <div class="TwitterBox">
       <a
         class="twitter-timeline"
@@ -11,16 +12,13 @@
   </div>
 </template>
 <style lang="scss" scoped>
-div {
-  // width: 40%;
-}
 
 .twitterBox {
-  margin-top: 40px;
+  margin-top: 0px;
   overflow-y: hidden;
 }
 .TwitterBox {
-  height: 450px;
+  height: 480px;
   overflow-y: scroll;
 }
 

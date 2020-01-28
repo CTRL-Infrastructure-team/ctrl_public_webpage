@@ -3,7 +3,7 @@
     <srideShow :srideData="mainGuideprops" class="smartPhone" @open="openModal($event)" />
     <div class="flex">
       <mainGuide
-        class="mp0 desctop"
+        class="mp0 desktop"
         :img="item.img"
         v-for="(item,index) in mainGuideprops"
         :key="index"
@@ -111,21 +111,58 @@ export default {
 
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
-.flex {
+
+ @media screen and (max-width: 499px) {
+  .flex {
+    display: flex;
+  
+    &_center {
+      justify-content: center;
+      align-items: center;
+    }
+    &_around {
+      flex-wrap: nowrap;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+  .news_box {
+    width: 90%;
+  }
+  .twitterBox {
+    width: 90%;
+    height: 300px;
+    //overflow-y: scroll;
+  }
+}
+
+
+@media screen and (min-width:500px){
+  .flex {
   display: flex;
   flex-wrap: wrap;
+  // flex-direction: column;
   &_center {
     justify-content: center;
     align-items: center;
   }
   &_around {
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
   }
 }
 
-.news_box {
-  width: 50%;
+  .news_box {
+    width: 50%;
+  }
+  .twitterBox {
+    width: 30%;
+    //height: 500px;
+    //overflow-y: scroll;
+  }
 }
 .guide {
   margin-top: 20px;
@@ -157,7 +194,7 @@ $modalBorder: #8193a9;
   }
 }
 
-.desctop {
+.desktop {
   display: none;
 
   @include mq() {
@@ -165,11 +202,7 @@ $modalBorder: #8193a9;
   }
 }
 
-.twitterBox {
-  width: 30%;
-  height: 500px;
-  //overflow-y: scroll;
-}
+
 
 @keyframes typing {
   from {
