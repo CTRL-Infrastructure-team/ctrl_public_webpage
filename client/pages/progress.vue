@@ -7,6 +7,10 @@
       </el-col>
       </div>
     </el-row>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="worksLength">
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -18,18 +22,47 @@ export default {
     workCard
   },
   data() {
-    var works = []
-    return { works: works }
+    let works = []
+    let worksLength = []
+    return { works: works,
+      worksLength: worksLength
+    }
   },
   created() {
     this.works = pastWork.pastWorks
     console.log(this.works)
+
+    // 記事の数によってページ分割
+
+    let pageDatas = new Map()
+    let countPages = 0
+    let start = 0
+    let end = 10
+    this.worksLength = this.works.length
+
+    while(this.worksLength > 10) {
+      pageDatas.set(countPages, this.works.slice(start, end))
+      start += 10
+      end += 10
+      if(end > this.worksLength) {
+        end = this.worksLength
+      }
+      this.worksLength -= 10
+      ++countPages
+    }
+
+    //オブジェクトの内容確認
+    pageDatas.get(0).forEach((value, index, array) => {
+      console.log(value)
+    })
+
   },
-  // async asyncData({app}) {
-  //   const datas = await app.$axios.get('./data.json')
-  //   const works = datas.pastWorks
-  //   return { works: works }
-  // },
+  methods: {
+    //引数でページ番号を渡す
+    selectPage(index) {
+      this.works = pageDatas.get(index + 1)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -41,4 +74,9 @@ export default {
 .el-col {
   margin: 20px 0px;
 }
+
+// .el-pagination {
+//   background-color: $maincolorBlack;
+//   color: $maincolorBlack;
+// }
 </style>
