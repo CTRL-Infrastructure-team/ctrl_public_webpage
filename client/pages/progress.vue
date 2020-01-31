@@ -1,15 +1,17 @@
 <template>
   <div class="content">
     <el-row>
-      <div v-for="work in works" :key="work">
+      <div v-for="(work, index) in works" :key="`${currentPage}${index}`">
       <el-col :span="8" >
         <workCard  :work="work"/>
       </el-col>
       </div>
     </el-row>
     <el-pagination
+      class="pagination"
       layout="prev, pager, next"
-      :total="worksLength">
+      :total="countPages * 10"
+      @current-change="handleCurrentPage">
     </el-pagination>
   </div>
 </template>
@@ -24,43 +26,57 @@ export default {
   data() {
     let works = []
     let worksLength = []
+    let countPages = 1
+    let pageDatas = new Map()
+    let currentPage = 1
     return { works: works,
-      worksLength: worksLength
+      worksLength: worksLength,
+      countPages: countPages,
+      pageDatas: pageDatas,
+      currentPage: currentPage
     }
   },
   created() {
     this.works = pastWork.pastWorks
-    console.log(this.works)
+
+    // console.log(this.works)
 
     // 記事の数によってページ分割
-
-    let pageDatas = new Map()
-    let countPages = 0
     let start = 0
-    let end = 10
+    let end = 9
     this.worksLength = this.works.length
 
-    while(this.worksLength > 10) {
-      pageDatas.set(countPages, this.works.slice(start, end))
-      start += 10
-      end += 10
-      if(end > this.worksLength) {
-        end = this.worksLength
-      }
-      this.worksLength -= 10
-      ++countPages
+    while(this.worksLength > 9) {
+      this.pageDatas.set(this.countPages, this.works.slice(start, end))
+      start += 9
+      end += 9
+      this.worksLength -= 9
+      this.countPages++
     }
 
+    end = this.works.length
+    this.pageDatas.set(this.countPages, this.works.slice(start, end)) 
+
+    // console.log(this.countPages)
+
     //オブジェクトの内容確認
-    pageDatas.get(0).forEach((value, index, array) => {
-      console.log(value)
-    })
+    // this.pageDatas.get(1).forEach((value, index, array) => {
+    //   console.log(value)
+    // })
+    
+    this.works = this.pageDatas.get(1)
 
   },
   methods: {
     //引数でページ番号を渡す
-    selectPage(index) {
-      this.works = pageDatas.get(index + 1)
+    handleCurrentPage(index) {
+      // console.log("index : " + index)
+      this.works = this.pageDatas.get(index)
+      this.currentPage = index
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+      })
     }
   }
 }
@@ -75,7 +91,15 @@ export default {
   margin: 20px 0px;
 }
 
-// .el-pagination {
+.el-pagination {
+  text-align: center;
+}
+
+// .pagination button{
+//   background-color: $maincolorBlack;
+//   color: $maincolorBlack;
+// }
+// .el-pager .number{
 //   background-color: $maincolorBlack;
 //   color: $maincolorBlack;
 // }
