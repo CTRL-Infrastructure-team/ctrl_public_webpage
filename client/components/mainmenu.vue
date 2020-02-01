@@ -33,7 +33,7 @@ li {
     text-align: center;
     outline: none;
     color: whitesmoke;
-    line-height: 1cm;
+    line-height: 1.5cm;
       
     :link{
       color: whitesmoke;
