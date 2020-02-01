@@ -1,12 +1,17 @@
 <template>
-  <div class="content">
+  <div class="content" @resize="windowResize">
     <el-row>
-      <div v-for="work in works" :key="work">
-      <el-col :span="8" >
+      <div v-for="(work, index) in works" :key="`${currentPage}${index}`">
+      <el-col :span="cardWidth" >
         <workCard  :work="work"/>
       </el-col>
       </div>
     </el-row>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="countPages * 10"
+      @current-change="handleCurrentPage">
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -18,18 +23,71 @@ export default {
     workCard
   },
   data() {
-    var works = []
-    return { works: works }
+    let works = []
+    let worksLength = []
+    let countPages = 1
+    let pageDatas = new Map()
+    let currentPage = 1
+    let cardWidth = 8
+    return { works: works,
+      worksLength: worksLength,
+      countPages: countPages,
+      pageDatas: pageDatas,
+      currentPage: currentPage,
+      cardWidth: cardWidth
+    }
   },
   created() {
     this.works = pastWork.pastWorks
-    console.log(this.works)
+
+    // 記事の数によってページ分割
+    let start = 0
+    let end = 9
+    this.worksLength = this.works.length
+
+    while(this.worksLength > 9) {
+      this.pageDatas.set(this.countPages, this.works.slice(start, end))
+      start += 9
+      end += 9
+      this.worksLength -= 9
+      this.countPages++
+    }
+
+    end = this.works.length
+    this.pageDatas.set(this.countPages, this.works.slice(start, end)) 
+    this.works = this.pageDatas.get(1)
   },
-  // async asyncData({app}) {
-  //   const datas = await app.$axios.get('./data.json')
-  //   const works = datas.pastWorks
-  //   return { works: works }
-  // },
+  mounted() {
+    let windowSize = window.innerWidth
+    if(windowSize <= 768) {
+      this.cardWidth = 24
+    } else {
+      this.cardWidth = 8
+    }
+    window.addEventListener('resize', this.windowResize)
+  },
+  beforeDestroy() {
+    window.addEventListener('resize', this.windowResize)
+  },
+  methods: {
+    //引数でページ番号を渡す
+    handleCurrentPage: function(index) {
+      this.works = this.pageDatas.get(index)
+      this.currentPage = index
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+      })
+    },
+    windowResize: function() {
+      let windowSize = window.innerWidth
+      if(windowSize <= 768) {
+        this.cardWidth = 24
+      } else {
+        this.cardWidth = 8
+      }
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -40,5 +98,18 @@ export default {
 
 .el-col {
   margin: 20px 0px;
+}
+
+.el-pagination {
+  text-align: center;
+  color: #2c2c2c;
+}
+
+ul.el-pager {
+  background-color: $maincolorBlack;
+}
+
+ul .number {
+  background-color: $maincolorBlack;
 }
 </style>
