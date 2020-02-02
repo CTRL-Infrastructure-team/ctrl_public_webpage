@@ -2,7 +2,7 @@
   <div class="content"> 
     <h2>{{ title }}</h2>
     <el-row>
-      <el-col :span="14">
+      <el-col :span="topImage">
         <div class="flex_images_top">
           <el-image
             :src="img"
@@ -13,7 +13,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="7">
+      <el-col :span="secondImage">
         <div class="flex_images">
           <el-image
             :src="img2"
@@ -22,7 +22,7 @@
           </el-image>
         </div>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="thirdImage">
         <div class="flex_images">
           <el-image
             :src="img3"
@@ -33,7 +33,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="7">
+      <el-col :span="topImage">
       {{ '投稿日 : ' + submission.time }}
       <br>
       {{ '制作者 : ' + submission.contributor }}
@@ -56,6 +56,9 @@ import pastWork from '~/pages/pastWorks/data.json'
 export default {
   data() {
     var submission = []
+    let topImage
+    let secondImage
+    let thirdImage
     return {
       title: this.$route.params.pastWork,
       img: img,
@@ -66,7 +69,10 @@ export default {
         img2,
         img3
       ],
-      submission: submission
+      submission: submission,
+      topImage: topImage,
+      secondImage: secondImage,
+      thirdImage: thirdImage
     }
   },
   created() {
@@ -80,8 +86,38 @@ export default {
       }
     });
     this.submission = work
+  },
+  mounted() {
+    let windowSize = window.innerWidth
+    if(windowSize <= 768) {
+      this.topImage = 24
+      this.secondImage = 12
+      this.thirdImage = 12
+    } else {
+      this.topImage = 14
+      this.secondImage = 7
+      this.thirdImage = 7
+    }
+    window.addEventListener('resize', this.windowResize)
+  },
+  beforeDestroy() {
+    window.addEventListener('resize', this.windowResize)
+  },
+  methods: {
+    windowResize: function() {
+      let windowSize = window.innerWidth
+      if(windowSize <= 768) {
+        this.topImage = 24
+        this.secondImage = 12
+        this.thirdImage = 12
+      } else {
+        this.topImage = 14
+        this.secondImage = 7
+        this.thirdImage = 7
+      }
+    }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 
@@ -92,10 +128,17 @@ export default {
 .flex_images_top {
   width: 95%;
   max-height: 50%;
+  margin: 0 auto;
+  @include mq{
+    margin: 0px 0px;
+  }
 }
 .flex_images {
-  margin: 20px 0px;
   width: 90%;
   max-height: 50%;
+  margin: 20px auto;
+  @include mq{
+    margin: 20px 0px;
+  }
 }
 </style>
