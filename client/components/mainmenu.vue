@@ -1,19 +1,21 @@
 <template>
   <div>
     <li>
-      <ul v-for="item in menu" :key="item.to">
-        <nuxt-link :to="item.to">{{item.name}}</nuxt-link>
-      </ul>
+      <nuxt-link v-for="item in menu" :key="item.to" :to="item.to" class="link">
+        <ul>{{item.name}}</ul>  
+      </nuxt-link>
     </li>
   </div>
 </template>
 <script>
 export default {
   name: "main_menu",
+  
   props:{
     menu:{
       type: Array,
-      required: true
+      required: true,
+      
       }
   }
 };
@@ -22,30 +24,38 @@ export default {
 li {
   list-style: none;
   background-color: #666;
-  height: 1cm;
+  display: none;
+  @include mq {
+    display: flex;
+  }
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap:nowrap;
+  line-height: 1.5cm;
+  
+  :hover {
+    background-color: gray;
+  }
 
   ul {
-    display: inline;
-
-    text-align: center;
-    text-decoration: none;
     outline: none;
     color: whitesmoke;
-    line-height: 1cm;
-
-    :link {
+    padding: 0cm 0cm;
+    width: 4cm;
+    text-align: center;
+      
+    :link{
       color: whitesmoke;
     }
     :visited {
       color: whitesmoke;
     }
-    :hover {
-      background-color: gray;
-    }
-
-    a {
-      text-decoration: none;
-    }
+    
+    border-right: thin whitesmoke solid;
+    
   }
+}
+.link{
+  text-decoration: none;
 }
 </style>
