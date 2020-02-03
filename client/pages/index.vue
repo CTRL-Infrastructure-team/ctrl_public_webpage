@@ -112,7 +112,7 @@ export default {
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
 
- @media screen and (max-width: 499px) {
+ @media screen and (max-width: 767px) {
   .flex {
     display: flex;
   
@@ -138,7 +138,7 @@ $modalBorder: #8193a9;
 }
 
 
-@media screen and (min-width:500px){
+@media screen and (min-width:768px){
   .flex {
   display: flex;
   flex-wrap: wrap;
