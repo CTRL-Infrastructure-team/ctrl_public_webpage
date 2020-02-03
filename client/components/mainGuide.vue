@@ -5,7 +5,6 @@
       @mouseenter="titileOn = !titileOn"
       @mouseleave="titileOn = !titileOn"
       class="box"
-      :style="{background:color}"
       v-if="show"
     >
       <img :src="img" class="img" :style="imgStyle" />

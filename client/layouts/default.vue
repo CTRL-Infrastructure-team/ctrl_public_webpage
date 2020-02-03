@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="body">
     <header class="header">
       <headerComponent />
-      <mainmenu></mainmenu>
+      <mainmenu :menu="menu"></mainmenu>
     </header>
     <nuxt />
+    <scrollButton />
     <footerComponent />
   </div>
 </template>
@@ -12,19 +13,31 @@
 import headerComponent from "~/components/header";
 import footerComponent from "~/components/footer";
 import mainmenu from "~/components/mainmenu";
+import scrollButton from "~/components/scrollButton";
 
 export default {
   components: {
     headerComponent,
     footerComponent,
+    scrollButton,
     mainmenu
+  },
+  data(){
+    return{
+      menu: [
+        { name: "Top", to: "/" },
+        { name: "活動報告", to: "/report" },
+        { name: "作品", to: "/progress" },
+        { name: "問い合わせ", to: "/inquiry" }
+      ],
+    }
   }
 };
 </script>
 <style lang="scss">
 html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -76,9 +89,7 @@ hr {
   margin-top: 10px;
 }
 .header {
-  height: $headerHeight;
-  // position: relative;
-  // overflow: hidden;
-  z-index: 30;
+  // height: $headerHeight;
+  position: relative;
 }
 </style>

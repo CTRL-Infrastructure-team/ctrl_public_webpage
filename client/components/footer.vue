@@ -10,8 +10,11 @@
              <nuxt-link to="/progress" class="select_menu">作品</nuxt-link>
              <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
            </li>
+           <li class="mail-adress">
+             <p>連絡先:tcu.ctrl@gmail.com</p>
+            </li>
            <li class="rightlink">
-              <nuxt-link to="twitter.vue"><img class="twitter_style" :src="twitter_img" alt="Twitter"></nuxt-link>
+              <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"><img class="twitter_style" :src="twitter_img" alt="Twitter"></a>
            </li>
          </ul>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
@@ -33,12 +36,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+
+.mail-adress{
+  margin-top:10%;
+}
 .footer {
   background: inherit;
 }
 
 .leftlink {
   margin-top: 20px;
+  list-style: none;
+}
+
+.rightlink {
+  list-style: none;
 }
 
 .copyright {
