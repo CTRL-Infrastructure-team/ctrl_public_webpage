@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <header class="header">
-      <headerComponent />
+      <headerComponent :menu="menu"/>
       <mainmenu :menu="menu"></mainmenu>
     </header>
     <nuxt />

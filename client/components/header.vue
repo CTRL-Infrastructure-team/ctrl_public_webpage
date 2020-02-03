@@ -8,10 +8,7 @@
       </div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="検索内容を入力" class="textform" />
-          <!--
-          -->
-          <input type="submit" value="検索" class="button" />
+          <input type="text" placeholder="検索内容を入力" class="textform" /><input type="submit" value="検索" class="button" />
         </form>
       </div>
       <div class="theflex_cell">
@@ -23,18 +20,11 @@
       </div>
       <div id="menu" class="menu" v-bind:class="{open:isOpen}">
         <ul v-on:click="isOpen=!isOpen">
-          <nuxt-link to="/">
-            <li>Top</li>
-          </nuxt-link>
-          <nuxt-link to="/report">
-            <li>活動報告</li>
-          </nuxt-link>
-          <nuxt-link to="/progress">
-            <li>作品紹介</li>
-          </nuxt-link>
-          <nuxt-link to="/inquiry">
-            <li>お問合せ</li>
-          </nuxt-link>
+            <nuxt-link v-for="item in menu" :key="item.to" :to="item.to">
+                <li >
+                {{item.name}}
+                </li>
+            </nuxt-link>
         </ul>
       </div>
     </header>
@@ -47,6 +37,12 @@ export default {
     return {
       isOpen: false
     };
+  },
+  props:{
+    menu:{
+      type: Array,
+      required: true
+      }
   }
 };
 </script>
@@ -78,7 +74,7 @@ export default {
 .textform {
   @include mq {
     // border: 2px solid #328d55;
-    line-height: 1.8em;
+    height: 26px;
     background-color: #506657;
     color: #f0f0f0;
     border: none;
@@ -151,6 +147,7 @@ export default {
   transform: translateX(100%);
   & ul {
     padding: 0;
+    height: 100%;
     & a {
       text-decoration: none;
       text-emphasis: none;
