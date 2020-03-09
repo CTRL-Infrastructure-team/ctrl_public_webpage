@@ -151,8 +151,8 @@ $modalBorder: #8193a9;
 .back{
   padding-top: 1px;
   padding-bottom: 5px;
-  padding-right: 5px;
-  padding-left: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
   background-color: #292F33;
 }
 

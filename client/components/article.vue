@@ -85,7 +85,7 @@ export default {
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
 .modal {
-  width: 90%;
+  width: 100%;
   &-flex {
     display: flex;
     justify-content: space-between;
@@ -94,11 +94,11 @@ $modalBorder: #8193a9;
       width: 35%;
     }
     &-text {
-      width: 90%;
+      width: 100%;
 
       &_title {
         font-family: monospace;
-        width: 165%;
+        width: 100%;
         overflow: hidden;
         white-space: nowrap;
         margin-bottom: 20px;
