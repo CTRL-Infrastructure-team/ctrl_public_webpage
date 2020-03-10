@@ -7,23 +7,9 @@
           <h2>twitter boxと色を揃えてみた</h2>
           <p>ページのソースから、カラーコードを探り出した</p>
         </div>
-        <!-- < content="コンテンツ" img_url="url" overview="概要" contributor="投稿者" twitter_id="id"> -->
         <div v-for="sample_content in sample_contents" :key="sample_content.date">
-          <!-- <h2 class="modal-flex-text_title">{{ title }}</h2> -->
           <articleItem v-bind:post="sample_content" />
-          <!-- <div class="modal-flex-text_content">
-            {{ '日付 : ' + sample_content.date }}
-              <br>
-            {{ '概要 : ' + sample_content.overview }}
-              <br>
-            {{'本文：' + sample_content.content}}
-          </div> -->
-          <!-- {{info}} -->
         </div>
-        <!-- <div v-for="i in 5" :key="i"> -->
-          <!-- <el-low :span="8"> -->
-          <!-- </el-low> -->
-        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -64,20 +50,6 @@ export default {
   
 }
 
-/*
-
-export default {
-  components: {
-    //mainGuide,
-    articleItem
-  },
-  data () {
-    return {
-
-    }
-  }
-};
-*/
 </script>
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
@@ -170,7 +142,7 @@ $modalBorder: #8193a9;
 }
 
 .box4 {
-  padding: 8px 19px;
+  padding: 10px 10px;
   margin: 2em 0;
   color: #ffffff;
   //background:  #2c2c2f;
@@ -188,9 +160,9 @@ $modalBorder: #8193a9;
 }
 .back{
   padding-top: 1px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   padding-right: 10px;
-  padding-left: 10px;
+  padding-left: 15px;
   background-color: #292F33;
 }
 
