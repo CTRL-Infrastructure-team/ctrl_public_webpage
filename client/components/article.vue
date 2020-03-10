@@ -1,23 +1,12 @@
 <template>
   <div>
     <div class="modal-flex-text">
-      <!-- <div id="app"> -->
-        <!-- <button @click="fetch">fetch</button> -->
-        <!-- <div>{{sample_data}}</div> -->
-      <div v-for="sample_content in sample_contents" :key="sample_content.date">
-        <h2 class="modal-flex-text_title">{{ title }}</h2>
-        <div class="modal-flex-text_content">
-          {{ '日付 : ' + sample_content.date }}
+      <h2 class="modal-flex-text_title">{{ post.title }}</h2>
+      {{ '日付 : ' + post.date }}
               <br>
-          {{ '概要 : ' + sample_content.overview }}
+      {{ '概要 : ' + post.overview }}
               <br>
-          {{'本文：' + sample_content.content}}
-        <!-- {{info}} -->
-        </div>
-
-      <!-- <h2 class="modal-flex-text_title">{{ sample_data.title }}</h2> -->
-        <p>modalText.body　本文を入力</p>
-      </div>
+      {{'本文：' + post.content}}
     </div>
   </div>
 </template>
@@ -55,7 +44,14 @@ export default {
     }
   },
   */
-  props: ['title'],
+  props: ['post'],
+  /*
+  props: ['time'],
+  props: ['content'],
+  props: ['img_url'],
+  props: ['overview'],
+  props: ['contributor'],
+  props: ['twitter_id'],
   /*
   async asyncData({ app }) {
     const data = await app.axios.$get('http://localhost:3000/api/')
@@ -68,7 +64,7 @@ export default {
   },
   */
   mounted(){
-    this.$axios.get("../assets/data/data.json")
+    this.$axios.get("~/assets/data/data.json")
     .then(response => {
       this.results = response.data
       console.log(response.data)
