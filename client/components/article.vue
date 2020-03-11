@@ -8,10 +8,10 @@
       {{ '概要 : ' + post.overview }}
       <br>
       {{'本文 : ' + post.content}}
-      <br>
-      {{'投稿者 : ' + post.contributor}}
-      <br>
-      {{'Twitter ID:' + post.twitter_id}}
+      <!-- <br> -->
+      <!-- {{'投稿者 : ' + post.contributor}} -->
+      <!-- <br> -->
+      <!-- {{'Twitter ID:' + post.twitter_id}} -->
       
       </div>
     </div>
