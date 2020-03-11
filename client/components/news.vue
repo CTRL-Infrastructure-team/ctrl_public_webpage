@@ -7,39 +7,49 @@
           <h2>twitter boxと色を揃えてみた</h2>
           <p>ページのソースから、カラーコードを探り出した</p>
         </div>
-        <articleItem title="CTRLのNEWS" />
-        <!-- <div v-for="i in 5" :key="i"> -->
-          <!-- <el-low :span="8"> -->
-          <!-- </el-low> -->
-        <!-- </div> -->
+        <div v-for="sample_content in sample_contents" :key="sample_content.date">
+          <articleItem v-bind:post="sample_content" />
+        </div>
       </div>
     </div>
   </div>
+  
 </template>
 <script>
 //import news1 from './news1'
 import mainGuide from "~/components/news1";
 import articleItem from "~/components/article";
-     /*Vue.component('article',{
-        data: function(){
-          return {
-      count: 0
-          }
-        },
-        template: '<div class="modal-flex-text"><h2 class="modal-flex-text_title">{{ sample_data.title }}</h2><div class="modal-flex-text_content">{{  sample_data.date }}<br>{{  sample_data.overview }}</div><p>modalText.body　本文を入力</p></div>'
-      });*/
-//new Vue({el: '#components-demo'});
-export default {
+import data from '~/assets/data/data.json';
+import axios from '@nuxtjs/axios';
+
+
+
+export default { 
   components: {
     //mainGuide,
     articleItem
   },
-  data () {
-    return {
-
+  data:() =>({
+    sample_contents:data
+  }),
+  
+  // props: ['title'],
+  
+  mounted(){
+    this.$axios.get("~/assets/data/data.json")
+    .then(response => {
+      this.results = response.data
+      console.log(response.data)
+    })
+  },
+  computed:{
+    processedPosts(){
+      let posts = this.results;
     }
   }
-};
+  
+}
+
 </script>
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
@@ -132,7 +142,7 @@ $modalBorder: #8193a9;
 }
 
 .box4 {
-  padding: 8px 19px;
+  padding: 10px 10px;
   margin: 2em 0;
   color: #ffffff;
   //background:  #2c2c2f;
@@ -150,9 +160,9 @@ $modalBorder: #8193a9;
 }
 .back{
   padding-top: 1px;
-  padding-bottom: 5px;
-  padding-right: 5px;
-  padding-left: 25px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  padding-left: 15px;
   background-color: #292F33;
 }
 
