@@ -1,48 +1,58 @@
 <template>
-  <div>
-   <div class="panel-default">
-    <div class="panel-header">
-      パネルの見出し
-    </div>
-    <div class="panel-body">
-		パネルの内容
-	　</div>
-   </div>
+  <div class="reportContent">
+    <el-row>
+     <div v-for="work in works" :key="work">
+       <el-col :span="8">
+         <workCard　:work="work"/>
+       </el-col>
+     </div>
+    </el-row>
   </div>
 </template>
 
 
 <script>
-export default {};
+import reportContent from '~/pages/pastWorks/data.json'
+import { pastWorks } from '../../api/model';
+export default {
+  components :{
+    workCard
+  },
+  data(){
+    var works = []
+    return {works: works }
+  },
+  created(){
+    this.works = pastWorks.pastWorks
+  },
+};
+  
 
 </script>
 <style lang="scss" scoped>
 
 .panel-default{
-  box-shadow: 2px 2px 4px 3px #000000;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom: 5%;
+  box-shadow: 2px 2px 4px 3px #2c2c2f;
+  margin: 2% 5% 2% 5%;
+  border: solid 2px #4ff0f0;
 }
 
 .panel-header{
   display: flex;
   justify-content: space-between;
-  background-color: #000000;
+  background-color: #2c2c2f;
   height: 50px;
 
 color: #FFFFFF;
-border-bottom: 2px solid #FFFFFF;
+border-bottom: 2px solid #4ff0f0;
 }
 
 .panel-body{
   display: flex;
   justify-content: space-between;
-  background-color: #000000;
+  background-color: #2c2c2f;
   height: 100px;
 
-color: #FFFFFF;
-margin-bottom: 5%;
-border-bottom: 2px solid #000000;
+
 }
 </style>
