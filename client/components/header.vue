@@ -76,7 +76,7 @@ export default {
   @include mq {
     // border: 2px solid #328d55;
     height: 26px;
-    background-color: #506657;
+    background-color: #434644;
     color: #f0f0f0;
     border: none;
     padding-left: 5px;
@@ -86,13 +86,13 @@ export default {
 .button {
   @include mq {
     cursor: pointer;
-    border: 2px solid #328d55;
-    color: #328d55;
+    border: 2px solid #606964;
+    color: #5c6961;
     background-color: #2c2c2c;
     transition: 500ms;
     &:hover {
       color: #c9c2c2;
-      background-color: #328d55;
+      background-color: #6c7a72;
       transition: 500ms;
     }
   }
@@ -137,7 +137,7 @@ export default {
   overflow: hidden;
   opacity: 0;
   z-index: 10;
-  background-color: #328d55;
+  background-color: #6d7570;
   width: 0;
   height: 100vh;
   top: 60px;
