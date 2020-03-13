@@ -238,5 +238,11 @@
             "producer": "コットン",
             "twitter_id": "@aaa"
         }
-    ]
+    ],
+    "reportContent":[
+        {
+            "title": "見出し",
+            "content": "詳細内容"
+        }
+    ]   
 }
