@@ -3,7 +3,7 @@
     <header class="theflex">
       <div class="theflex_cell">
         <nuxt-link to="/">
-          <img src="~/assets/img/KariLogo.jpg" class="img" />
+          <img src="~/assets/img/logo_200120_0001.jpg" class="img" />
         </nuxt-link>
       </div>
       <div class="theflex_cell">
@@ -61,6 +61,7 @@ export default {
   }
 }
 
+
 //検索バーのcss
 .search_form {
   display: none;
@@ -103,6 +104,7 @@ export default {
   margin: 0;
   padding: 0;
   display: block;
+  mix-blend-mode:darken;
   @include mq {
     margin-left: 10px;
   }
