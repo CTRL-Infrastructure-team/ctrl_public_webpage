@@ -1,34 +1,47 @@
-// const express = require("express");
-// const app = express();
-// const mongoose = rewuire('mongoose');
-// const mongoose = mongoose.Schema;
+const express = require("express"),
+    app = express(),
+    progress = require('./controllers/progress'),
+    situations = require('./controllers/situations'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    database = require('./models/models');
 
-// var currentSituation = new Schema({
-//     'date': Date,
-//     'title': String,
-//     'imgUrl': String,
-//     '': String,
-//     'Twitter': String
-// });
+let pastWorks = database.pastWorks;
+    currentSituation = database.currentSituation;
 
+// app.use('/', progress);
+// app.use('/', situations);
 
-// app.get("/progress", function(req, res) {
-//     var pastWorks = new Schema({
-//         'date': Date,
-//         'title': String,
-//         'imgUrl': String,
-//         '': String,
-//         'Twitter': String    
-//     });
-//     mongoose.connect('mongodb://127.0.0.1/strlPublicSite');
-//     var pastWorks = mongoose.model('pastWorks', pastWorks);
+//strategy用のフォルダを作成してぶち込む
+passport.use(new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+        let findedPassword = user.password,
+            checkPassword = bcrypt.compareSync(password, findedPassword);
+        
+        if(err) {
+            return done(err);
+        }
+        if(!user) {
+            return done(null, false, { message: 'ユーザ名が間違っています。' });
+        }
+        if(!checkPassword) {
+            return done(null, false, { message: 'パスワードが間違っています。' })
+        }
+        return done(null, user);
+    });
+}));
 
-//     pastWorks.find({}, function(err, result){
-//         res.json();
-//     })
-// });
+passport.serializeUser((id, done) => {
+    done(null, user.id);
+});
 
-// module.exports = {
-//     path: "/api/",  
-//     handler: app
-// };
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        done(err, user);
+    });
+})
+
+module.exports = {
+    path: "/api/",  
+    handler: app
+};
