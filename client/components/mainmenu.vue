@@ -29,7 +29,7 @@ li {
     display: flex;
   }
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   flex-wrap:nowrap;
   line-height: 1.5cm;
   
@@ -52,6 +52,7 @@ li {
     }
     
     border-right: thin whitesmoke solid;
+    border-left: thin whitesmoke solid;
     
   }
 }
