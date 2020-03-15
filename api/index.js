@@ -19,7 +19,6 @@ mongoose.Promise = global.Promise;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-passport.use(passportLocal);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
@@ -29,6 +28,7 @@ app.use(
     saveUninitialized: false
   })
 );
+passport.use(passportLocal);
 
 // create show update delete
 

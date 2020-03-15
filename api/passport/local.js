@@ -13,15 +13,17 @@ module.exports = new LocalStrategy(
 
     // console.log(checkPassword)
     User.findOne({ username: username }, (err, user) => {
-      let findedPassword = user.password,
-        checkPassword = bcrypt.compareSync(password, findedPassword);
+      //   console.log(err | user);
 
       if (err) {
+        console.log(err.message);
         return done(err);
       }
       if (!user) {
         return done(null, false, { message: "ユーザ名が間違っています。" });
       }
+      let findedPassword = user.password,
+        checkPassword = bcrypt.compareSync(password, findedPassword);
       if (!checkPassword) {
         return done(null, false, { message: "パスワードが間違っています。" });
       }
