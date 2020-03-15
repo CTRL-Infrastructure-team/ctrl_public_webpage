@@ -1,10 +1,8 @@
 const mongoose = require("mongoose"),
-  pastWorks = require("./model");
-const data = require("./data").pastWorks;
-let testPastwork;
-const pastworkController = require("./controller/pastworkController");
+  pastWorks = require("../models/pastWork"),
+  data = require("./data").pastWorks;
 
-mongoose.connect("mongodb://mongo:27017/User_db", {
+mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false

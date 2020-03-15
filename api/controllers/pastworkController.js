@@ -1,4 +1,4 @@
-const pastWork = require("../models/pastWork");
+const PastWork = require("../models/pastWork");
 const mongoose = require("mongoose");
 
 const convert = string => {
@@ -25,11 +25,8 @@ String.prototype.partMatch = function() {
 module.exports = {
   showSearch(req, res) {
     let serch = convert(req.body.serch);
-    console.log(serch.katakana().partMatch(), serch.katakana());
-    console.log(serch);
 
-    pastWork
-      .find({ title: serch.katakana().partMatch() })
+    PastWork.find({ title: serch.katakana().partMatch() })
       // .find({ content: serch })
       .limit(10)
       .exec((err, data) => {

@@ -1,15 +1,18 @@
 const mongoose = require("mongoose"),
-  { Schema } = mongoose;
+  { Schema } = mongoose,
+  pastWorksSchama = new Schema(
+    {
+      title: {
+        type: String,
+        required: true
+      },
+      content: String,
+      download_url: String,
+      img_url: String,
+      contributor: { type: Schema.Types.ObjectId, ref: "User" },
+      twitter_id: { type: Schema.Types.ObjectId, ref: "User" }
+    },
+    { timestamps: true }
+  );
 
-const pastWorks = new Schema({
-  time: Date,
-  title: String,
-  content: String,
-  download_url: String,
-  img_url: String,
-  contributor: { type: Schema.Types.ObjectId, ref: "Users" },
-  producer: { type: Schema.Types.ObjectId, ref: "Users" },
-  twitter_id: { type: Schema.Types.ObjectId, ref: "Users" }
-});
-
-module.exports = mongoose.model("pastWork", pastWorks);
+module.exports = mongoose.model("PastWork", pastWorksSchama);
