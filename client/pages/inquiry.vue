@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -65,8 +66,14 @@ export default {
     doSendForm() {
       const sendText = `${this.inquiry}\n From:${this.email}`;
       console.log("send");
-      this.$axios
-        .post("/api/mail", sendText)
+      axios
+        .post(
+          "/api/mail/",
+          { text: sendText },
+          {
+            headers: { "Content-Type": "application/json" }
+          }
+        )
         .then(val => {
           console.log(val);
         })

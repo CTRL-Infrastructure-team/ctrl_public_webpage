@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const mailData = require("../../key/config");
-
+// gmailでの送信はよろしくないから別の方法を取るべき。
 const smtpConfig = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -22,7 +22,7 @@ const createMail = text => {
 module.exports = {
   sendMail(req, res) {
     console.log(req.body);
-    smtpConfig.sendMail(createMail(req.body), function(error, info) {
+    smtpConfig.sendMail(createMail(req.body.text), function(error, info) {
       error ? console.log(error) : console.log(`Email send:${info.response}`);
     });
     res.send({

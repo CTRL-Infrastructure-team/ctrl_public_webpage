@@ -8,41 +8,51 @@
       </div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="検索内容を入力" class="textform" /><input type="submit" value="検索" class="button" />
+          <!-- <input
+            type="text"
+            placeholder="検索内容を入力"
+            class="textform"
+          /><input type="submit" value="検索" class="button" /> -->
+          <serchinput />
         </form>
       </div>
       <div class="theflex_cell">
-        <div class="humburger" v-on:click="isOpen=!isOpen">
+        <div class="humburger" v-on:click="isOpen = !isOpen">
           <span class="top"></span>
           <span class="middle"></span>
           <span class="bottom"></span>
         </div>
       </div>
-      <div id="menu" class="menu" v-bind:class="{open:isOpen}">
-        <ul v-on:click="isOpen=!isOpen">
-            <nuxt-link v-for="item in menu" :key="item.to" :to="item.to">
-                <li >
-                {{item.name}}
-                </li>
-            </nuxt-link>
+      <div id="menu" class="menu" v-bind:class="{ open: isOpen }">
+        <ul v-on:click="isOpen = !isOpen">
+          <nuxt-link v-for="item in menu" :key="item.to" :to="item.to">
+            <li>
+              {{ item.name }}
+            </li>
+          </nuxt-link>
         </ul>
       </div>
     </header>
   </div>
 </template>
 <script>
+import serchinput from "@/components/serchinput";
+
 export default {
   name: "theHeader",
+  components: {
+    serchinput
+  },
   data() {
     return {
       isOpen: false
     };
   },
-  props:{
-    menu:{
+  props: {
+    menu: {
       type: Array,
       required: true
-      }
+    }
   }
 };
 </script>
