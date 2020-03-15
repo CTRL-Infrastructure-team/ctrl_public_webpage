@@ -35,6 +35,11 @@
         <div class="form-button-file">
           <el-button>ファイルを選択</el-button>
         </div>
+        <div>
+          Twitter IDを掲載する
+        </div>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
         <div class="form-button">
           <el-button @clicl="doSendForm">内容を確認する</el-button>
         </div>
@@ -77,14 +82,16 @@ export default {
   margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 30px;
+  margin-right: 30px;
   font-size: 20px;
 }
 .form {
-  height: 450px;
+  height: 500px;
   width: 90%;
   margin-top: 10px;
   margin-bottom: 20px;
   margin-left: 50px;
+  margin-right: 50px;
   &-box {
     margin-bottom: 1.8em;
     p:nth-child(1) {
@@ -95,6 +102,7 @@ export default {
     }
   }
   &-button{
+    margin-top: 1.8em;
     &-file{
       width: 5em;
       margin-bottom: 3em;
