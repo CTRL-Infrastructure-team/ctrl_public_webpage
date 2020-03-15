@@ -6,7 +6,7 @@
             <div class="drop" v-bind:class="{'changed':changed}" @dragover.prevent="makeborder($event)" @drop.prevent="upload($event)">
             image1<br><input type="file" id="upload_image" accept="image/*"/><br>
             <p >ここに画像をドロップ</p>
-            <img v-show="preview" v-bind:src="preview" style="width:300px;">
+            <img v-show="preview" v-bind:src="preview" >
             </div>
             image2<br><input type="file" accept="image/*"/><br>
             file<br><input type="file"/><br>
