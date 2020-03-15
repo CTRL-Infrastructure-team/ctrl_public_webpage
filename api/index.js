@@ -7,7 +7,7 @@ const express = require("express"),
   session = require("express-session"),
   database = require("./models/models");
 
-const mailController = require("./controllers/mailController");
+// const mailController = require("./controllers/mailController");
 const pastworkController = require("./controllers/pastworkController");
 const mongoose = require("mongoose");
 
@@ -33,7 +33,7 @@ mongoose.connect("mongodb://mongo:27017/User_db", {
 app.use(passport.session());
 app.use(passport.initialize());
 
-app.post("/mail", mailController.sendMail);
+// app.post("/mail", mailController.sendMail);
 
 app.post("/pastworksearch", pastworkController.showSearch);
 
