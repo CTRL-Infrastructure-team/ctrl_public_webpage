@@ -23,21 +23,21 @@ const pastWorks = new Schema({
 });
 
 const Users = new Schema({
-	'name': String,
+	'username': String,
 	'password': String
-});
-
-Users.pre('save', (next) => {
-	let user = this,
-		hashed_password = bcrypt.hashSync(user.password, 60);
-
-	user.password = hashed_password;
-	next();
 });
 
 mongoose.connect('mongodb://127.0.0.1/ctrlPublicSite', {
 	 useNewUrlParser: true,
 	 useUnifiedTopology: true
+});
+
+Users.pre('save', function(next) {
+	let user = this,
+		hashed_password = bcrypt.hashSync(user.password, 10);
+
+	user.password = hashed_password;
+	next();
 });
 
 exports.Users = mongoose.model('User', Users); 

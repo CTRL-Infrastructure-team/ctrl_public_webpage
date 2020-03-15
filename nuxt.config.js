@@ -91,7 +91,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['element-ui'],
+    // vendor: ['element-ui'],
     /*
      ** You can extend webpack config here
      */
