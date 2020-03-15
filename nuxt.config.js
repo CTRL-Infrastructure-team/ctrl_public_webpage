@@ -1,40 +1,43 @@
 module.exports = {
-  mode: 'universal',
+  mode: "universal",
   srcDir: "./client/",
-  serverMiddleware: ["~~/api/"],
+  serverMiddleware: ["@@/api/"],
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
-    meta: [{
-        charset: 'utf-8'
+    title: process.env.npm_package_name || "",
+    meta: [
+      {
+        charset: "utf-8"
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
       },
       {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: "#fff"
   },
   pageTransition: {
-    name: 'page',
-    mode: 'out-in',
+    name: "page",
+    mode: "out-in",
     //フッターアニメーション制御
     afterEnter(el) {
       console.log("entered");
@@ -48,23 +51,21 @@ module.exports = {
       console.log("cancel");
       this.$store.commit("doFooter");
     }
-
   },
   /*
    ** Global CSS
    */
-  css: [{
-      src: '~/assets/scss/main.scss',
-      lang: 'scss'
-    }, 
-    'element-ui/lib/theme-chalk/index.css'
+  css: [
+    {
+      src: "~/assets/scss/main.scss",
+      lang: "scss"
+    },
+    "element-ui/lib/theme-chalk/index.css"
   ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~plugins/element-ui'
-  ],
+  plugins: ["~plugins/element-ui"],
   /*
    ** Nuxt.js dev-modules
    */
@@ -74,18 +75,18 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    "@nuxtjs/axios",
+    "@nuxtjs/style-resources"
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: "http://client:3000"
+  },
   styleResources: {
-    scss: [
-      '~assets/scss/variable.scss'
-    ]
+    scss: ["~assets/scss/variable.scss"]
   },
   /*
    ** Build configuration
@@ -97,4 +98,4 @@ module.exports = {
      */
     extend(config, ctx) {}
   }
-}
+};
