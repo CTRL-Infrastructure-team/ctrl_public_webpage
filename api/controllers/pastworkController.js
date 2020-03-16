@@ -33,5 +33,13 @@ module.exports = {
         err ? console.log(err.message) : console.log(data[0]);
         res.send(err || data);
       });
+  },
+  show(req, res) {
+    let id = req.params.pastWorkId;
+    console.log(id, req.params);
+    PastWork.findById(id).then(value => {
+      console.log(value);
+      res.send(value);
+    });
   }
 };

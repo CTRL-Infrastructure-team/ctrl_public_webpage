@@ -10,10 +10,24 @@ const pastworkController = require("./controllers/pastworkController"),
   situationController = require("./controllers/situationController"),
   userController = require("./controllers/userController");
 
-mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+var os = require("os");
+var hostname = os.hostname();
+const tl =
+  hostname.includes("DESKTOP") ||
+  hostname.includes("localhost") ||
+  hostname.includes("MAC");
+
+if (tl) {
+  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+} else {
+  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+}
 mongoose.Promise = global.Promise;
 
 app.use(express.json());
@@ -41,6 +55,7 @@ app.post("/logout", userController.logout);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
+app.get("/pastWork/:pastWorkId", pastworkController.show);
 
 //mailMethods
 // app.post("/mail", mailController.sendMail);

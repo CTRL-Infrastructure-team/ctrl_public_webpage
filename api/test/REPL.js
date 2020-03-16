@@ -1,12 +1,24 @@
 const mongoose = require("mongoose"),
   pastWorks = require("../models/pastWork"),
   data = require("./data").pastWorks;
+var os = require("os");
+var hostname = os.hostname();
+const tl =
+  hostname.includes("DESKTOP") ||
+  hostname.includes("localhost") ||
+  hostname.includes("MAC");
 
-mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-});
+if (tl) {
+  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+} else {
+  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+}
 mongoose.Promise = global.Promise;
 
 pastWorks
