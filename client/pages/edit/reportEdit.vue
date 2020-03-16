@@ -25,16 +25,33 @@
             v-model="inquiry.value"
             name="inquiry"
             type="textarea"
+            rows="7"
+            cols="100"
             @change="doValidateInquiry(inquiry)"
           ></el-input>
           {{inquiry.alert}}
         </div>
-        <div>
+        <div class="form-button-file">
           画像:
         </div>
-        <div class="form-button-file">
-          <el-button>ファイルを選択</el-button>
+        <el-upload
+          class="upload-demo"
+          drag
+          action="localhost:3000"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          :auto-upload="false"
+          :limit="1"
+          multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+        </el-upload>
+        <div class="form-button">
+          Twitter IDを掲載する
         </div>
+        <el-checkbox v-model="checked">Twitter IDを掲載する</el-checkbox>
         <div class="form-button">
           <el-button @clicl="doSendForm">内容を確認する</el-button>
         </div>
@@ -42,6 +59,7 @@
   </div>
 </template>
 <script>
+import { Input } from 'element-ui'
 export default {
   data(){
     return{
@@ -53,11 +71,21 @@ export default {
         value:'',
         alert:''
       },
-
+      fileList:[],
+      checked: false,
       alert:''
     }
   },
   methods:{
+    handleRemove(file,fileList){
+      console.log(file, fileList);
+    },
+    handlePreview(file){
+      console.log(file);
+    },
+    doSendFile(){
+      
+    },
     doSendForm(){
 
     },
@@ -77,15 +105,19 @@ export default {
   margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 30px;
+  margin-right: 30px;
   font-size: 20px;
 }
 .form {
-  height: 450px;
-  width: 90%;
+  height: 800px;
   margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 50px;
+  margin-bottom: 50px;
+  margin-left: 60px;
+  margin-right: 10px;
   &-box {
+    //width: 90%;
+    //margin-left: 10px;
+    margin-right: 50px;
     margin-bottom: 1.8em;
     p:nth-child(1) {
       margin-bottom: 0.5rem;
@@ -95,9 +127,10 @@ export default {
     }
   }
   &-button{
+    margin-top: 1.8em;
     &-file{
-      width: 5em;
-      margin-bottom: 3em;
+      width: 10em;
+      margin-bottom: 1em;
     }
   }
   p {
