@@ -16,30 +16,33 @@
 </template>
 <script>
 import workCard from '~/components/workCard.vue'
-import pastWork from '~/pages/pastWorks/data.json'
+// import pastWork from '~/pages/pastWorks/data.json'
+import axios from 'axios'
 
 export default {
   components :{
     workCard
   },
+  async asyncData() {
+    let res = await axios.get('/api/pastWorks'),
+        pastWorks = res.data
+    return { pastWorks }
+  },
   data() {
-    let works = []
-    let worksLength = []
-    let countPages = 1
-    let pageDatas = new Map()
-    let currentPage = 1
-    let cardWidth = 8
-    return { works: works,
-      worksLength: worksLength,
-      countPages: countPages,
-      pageDatas: pageDatas,
-      currentPage: currentPage,
-      cardWidth: cardWidth
+    return { works: [],
+      worksLength: [],
+      countPages: 1,
+      pageDatas: new Map(),
+      currentPage: 1,
+      cardWidth: 8
     }
   },
   created() {
-    this.works = pastWork.pastWorks
+    // this.works = pastWork.pastWorks
+    this.works = this.pastWorks
 
+    console.log(this.works)
+    
     // 記事の数によってページ分割
     let start = 0
     let end = 9

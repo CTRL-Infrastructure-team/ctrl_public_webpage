@@ -56,6 +56,7 @@ app.post("/logout", userController.logout);
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
+app.get('/pastWorks', pastworkController.worksList);
 
 //mailMethods
 // app.post("/mail", mailController.sendMail);

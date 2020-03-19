@@ -41,5 +41,11 @@ module.exports = {
       console.log(value);
       res.send(value);
     });
+  },
+  worksList(req, res) {
+    PastWork.find({}).then(result => {
+      console.log(result)
+      res.send(result)
+    })
   }
 };
