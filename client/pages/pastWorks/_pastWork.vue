@@ -41,15 +41,7 @@ import pastWork from "~/pages/pastWorks/data.json";
 import axios from "axios";
 export default {
   async asyncData({ params, app }) {
-    console.log(params.pastWork);
-    console.log(process.server);
-    let data;
-    if (process.server) {
-      data = await app.$axios.$get(`/api/pastWork/${params.pastWork}`);
-    } else {
-      let res = await axios.get(`/api/pastWork/${params.pastWork}`);
-      data = res.data;
-    }
+    let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
     return { ...data };
   },
   data() {
