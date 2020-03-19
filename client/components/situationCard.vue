@@ -71,9 +71,7 @@ color: $mainchar;
 img{
   width: 30vw;
 }
-img{
-   width:30vw;
-}
+
 a {
     text-decoration: none;
     color: $mainchar;
