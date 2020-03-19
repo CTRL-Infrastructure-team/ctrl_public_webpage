@@ -60,16 +60,31 @@ background-color: #2c2c2c;
 color: $mainchar;
 }
 
+
 .img_holder {
-    width: 100%;
+  margin-left: 10px;
+  width: 30vw;
+  margin-right: 10px;
+  
 }
 
-img {
-    width: 80%;
+img{
+  width: 30vw;
 }
-
+img{
+   width:30vw;
+}
 a {
     text-decoration: none;
     color: $mainchar;
+}
+.flex{
+    &-box {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
 }
 </style>
