@@ -21,18 +21,19 @@
 import reportContent from "~/pages/pastWorks/data.json";
 // import { pastWorks } from '../../api/model';
 import situationCard from "~/components/situationCard.vue";
+import windowResize from "~/plugins/windowResizeMixins";
 
 export default {
   components: {
     situationCard
   },
+  mixins: [windowResize],
   data() {
     return {
       works: [],
       worksLength: [],
       countPages: 1,
       currentPage: 1,
-      cardWidth: 24,
       pageDatas: new Map()
     };
   },
@@ -56,24 +57,13 @@ export default {
     this.pageDatas.set(this.countPages, this.works.slice(start, end));
     this.works = this.pageDatas.get(1);
   },
-  mounted() {
-    let windowSize = window.innerWidth;
-    if (windowSize <= 768) {
-      this.cardWidth = 24;
-    } else {
-      this.cardWidth = 8;
+
+  computed: {
+    cardWidth() {
+      return this.innerWidth < 768 ? 24 : 8;
     }
-    window.addEventListener("resize", this.windowReSize);
   },
   methods: {
-    windowReSize: function() {
-      let windowSize = window.innerWidth;
-      if (windowSize <= 768) {
-        this.cardWidth = 24;
-      } else {
-        this.cardWidth = 8;
-      }
-    },
     handleCurrentPages: function(index) {
       this.works = this.pageDatas.get(index);
       this.currentPage = index;

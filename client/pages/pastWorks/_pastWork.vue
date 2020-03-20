@@ -9,12 +9,12 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="secondImage">
+      <el-col :span="topImage / 2">
         <div class="flex_images">
           <el-image :src="img2" :preview-src-list="images"> </el-image>
         </div>
       </el-col>
-      <el-col :span="thirdImage">
+      <el-col :span="topImage / 2">
         <div class="flex_images">
           <el-image :src="img3" :preview-src-list="images"> </el-image>
         </div>
@@ -38,12 +38,15 @@ import img from "~/assets/img/img4.jpg";
 import img2 from "~/assets/img/img2.jpg";
 import img3 from "~/assets/img/img1.jpg";
 import pastWork from "~/pages/pastWorks/data.json";
+import windowResize from "~/plugins/windowResizeMixins";
+
 import axios from "axios";
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
     return { ...data };
   },
+  mixins: [windowResize],
   data() {
     var submission = [];
     let topImage;
@@ -55,10 +58,7 @@ export default {
       img2: img2,
       img3: img3,
       images: [img, img2, img3],
-      submission: submission,
-      topImage: topImage,
-      secondImage: secondImage,
-      thirdImage: thirdImage
+      submission: submission
     };
   },
   created() {
@@ -73,34 +73,9 @@ export default {
     });
     this.submission = work;
   },
-  mounted() {
-    let windowSize = window.innerWidth;
-    if (windowSize <= 768) {
-      this.topImage = 24;
-      this.secondImage = 12;
-      this.thirdImage = 12;
-    } else {
-      this.topImage = 14;
-      this.secondImage = 7;
-      this.thirdImage = 7;
-    }
-    window.addEventListener("resize", this.windowResize);
-  },
-  beforeDestroy() {
-    window.addEventListener("resize", this.windowResize);
-  },
-  methods: {
-    windowResize: function() {
-      let windowSize = window.innerWidth;
-      if (windowSize <= 768) {
-        this.topImage = 24;
-        this.secondImage = 12;
-        this.thirdImage = 12;
-      } else {
-        this.topImage = 14;
-        this.secondImage = 7;
-        this.thirdImage = 7;
-      }
+  computed: {
+    topImage() {
+      return this.innerWidth < 768 ? 24 : 14;
     }
   }
 };
