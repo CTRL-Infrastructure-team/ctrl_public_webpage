@@ -48,12 +48,7 @@ export default {
   },
   mixins: [windowResize],
   data() {
-    var submission = [];
-    let topImage;
-    let secondImage;
-    let thirdImage;
     return {
-      // title: this.$route.params.pastWork,
       img: img,
       img2: img2,
       img3: img3,
@@ -62,10 +57,10 @@ export default {
     };
   },
   created() {
-    var works = pastWork.pastWorks;
-    var work = [];
-    // console.log(works);
-    var para = this.$route.params.pastWork;
+    let works = pastWork.pastWorks,
+        work = [],
+        para = this.$route.params.pastWork;
+    
     Object.keys(works).forEach(function(key) {
       if (works[key].title == para) {
         work = works[key];

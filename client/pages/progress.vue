@@ -43,6 +43,7 @@ export default {
   created() {
     this.works = pastWork.pastWorks;
     console.log(this.innerWidth, this._windowResize);
+
     // 記事の数によってページ分割
     let start = 0;
     let end = 9;
