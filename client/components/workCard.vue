@@ -2,7 +2,7 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <h3><nuxt-link :to="`/pastWorks/${work.title}`" :work="work">{{ work.title }}</nuxt-link></h3>
+                <h3><nuxt-link :to="`/pastWorks/${work._id}`" :work="work">{{ work.title }}</nuxt-link></h3>
             </div>
             <div class="img_holder">
                 <img :src="img" />
@@ -22,11 +22,8 @@
 export default {
     props: ['work'],
     data() {
-        return {
-            img: this.work.img_url
-        }
+        return { img: this.work.img_url }
     },
-
 };
 </script>
 

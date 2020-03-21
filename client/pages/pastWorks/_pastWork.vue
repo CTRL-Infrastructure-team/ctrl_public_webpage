@@ -1,36 +1,38 @@
 <template>
   <div class="content">
-    <h2>{{ title }}</h2>
-    <el-row>
-      <el-col :span="topImage">
-        <div class="flex_images_top">
-          <el-image :src="img" :preview-src-list="images"> </el-image>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="secondImage">
-        <div class="flex_images">
-          <el-image :src="img2" :preview-src-list="images"> </el-image>
-        </div>
-      </el-col>
-      <el-col :span="thirdImage">
-        <div class="flex_images">
-          <el-image :src="img3" :preview-src-list="images"> </el-image>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="topImage">
-        {{ "投稿日 : " + createdAt }}
-        <br />
-        {{ "制作者 : " + producer }}
-        <br />
-        {{ content }}
-        <br />
-        {{ "ダウンロードはこちら : " + download_url }}
-      </el-col>
-    </el-row>
+    <div class="work-wrapper">
+      <h2>{{ title }}</h2>
+      <el-row>
+        <el-col :span="topImage">
+          <div class="flex_images_top">
+            <el-image :src="img" :preview-src-list="images"> </el-image>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="secondImage">
+          <div class="flex_images">
+            <el-image :src="img2" :preview-src-list="images"> </el-image>
+          </div>
+        </el-col>
+        <el-col :span="thirdImage">
+          <div class="flex_images">
+            <el-image :src="img3" :preview-src-list="images"> </el-image>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="topImage">
+          {{ "投稿日 : " + createdAt }}
+          <br />
+          {{ "制作者 : " + producer }}
+          <br />
+          {{ content }}
+          <br />
+          {{ "ダウンロードはこちら : " + download_url }}
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 <script>
@@ -53,27 +55,22 @@ export default {
     return { ...data };
   },
   data() {
-    var submission = [];
-    let topImage;
-    let secondImage;
-    let thirdImage;
     return {
-      // title: this.$route.params.pastWork,
       img: img,
       img2: img2,
       img3: img3,
       images: [img, img2, img3],
-      submission: submission,
-      topImage: topImage,
-      secondImage: secondImage,
-      thirdImage: thirdImage
+      submission: [],
+      topImage: 0,
+      secondImage: 0,
+      thirdImage: 0
     };
   },
   created() {
-    var works = pastWork.pastWorks;
-    var work = [];
-    // console.log(works);
-    var para = this.$route.params.pastWork;
+    let works = pastWork.pastWorks,
+        work = [],
+        para = this.$route.params.pastWork;
+    
     Object.keys(works).forEach(function(key) {
       if (works[key].title == para) {
         work = works[key];

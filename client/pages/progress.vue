@@ -16,7 +16,6 @@
 </template>
 <script>
 import workCard from '~/components/workCard.vue'
-// import pastWork from '~/pages/pastWorks/data.json'
 import axios from 'axios'
 
 export default {
@@ -38,10 +37,7 @@ export default {
     }
   },
   created() {
-    // this.works = pastWork.pastWorks
     this.works = this.pastWorks
-
-    console.log(this.works)
     
     // 記事の数によってページ分割
     let start = 0

@@ -44,7 +44,6 @@ module.exports = {
   },
   worksList(req, res) {
     PastWork.find({}).then(result => {
-      console.log(result)
       res.send(result)
     })
   }
