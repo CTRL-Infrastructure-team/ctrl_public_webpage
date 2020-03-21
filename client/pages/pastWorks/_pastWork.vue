@@ -53,7 +53,7 @@ export default {
       img2: img2,
       img3: img3,
       images: [img, img2, img3],
-      submission: submission
+      submission: []
     };
   },
   created() {
