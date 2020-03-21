@@ -1,25 +1,25 @@
 <template>
   <div class="reportContent">
-    <el-row>
-      <div v-for="work in works" :key="work.id">
-        <el-col :span="24" class="single-panel">
-          <!-- <workCard :work="work"/> -->
-          <situationCard :situation="work" />
-        </el-col>
-      </div>
-    </el-row>
-    <el-pagination
-      layout="prev, pager, next"
-      :total="countPages * 10"
-      @current-change="handleCurrentPages"
-    >
-    </el-pagination>
+    <div class="card-wrapper">
+      <el-row>
+        <div v-for="work in works" :key="work.id">
+          <el-col :span="24" class="single-panel">
+            <situationCard :situation="work" />
+          </el-col>
+        </div>
+      </el-row>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="countPages * 10"
+        @current-change="handleCurrentPages"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
 import reportContent from "~/pages/pastWorks/data.json";
-// import { pastWorks } from '../../api/model';
 import situationCard from "~/components/situationCard.vue";
 import windowResize from "~/plugins/windowResizeMixins";
 
@@ -39,7 +39,6 @@ export default {
   },
   created() {
     this.works = reportContent.currentSituation;
-    // this.works = reportContent.pastWorks
     this.worksLength = this.works.length;
 
     let start = 0,
@@ -83,6 +82,10 @@ export default {
 }
 
 .reportContent {
+  width: 100%;
+}
+
+.card-wrapper {
   width: 60%;
   margin: 0 auto;
 }

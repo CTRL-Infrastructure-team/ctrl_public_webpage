@@ -8,7 +8,7 @@
                 <img :src="img" />
             </div>
             <div class="text item">
-                {{ '日付 : ' + work.time }} 
+                {{ '日付 : ' + modifiedTime }} 
                 <br>
                 {{ '  制作者 : ' + work.contributor }}
                 <br>
@@ -19,10 +19,16 @@
 </template>
 
 <script>
+import moment from 'moment'
+import modify from '~/plugins/modifiedTime'
+
 export default {
     props: ['work'],
     data() {
-        return { img: this.work.img_url }
+        return {
+            img: this.work.img_url, 
+            modifiedTime: modify(this.work.createdAt) 
+        }
     },
 };
 </script>

@@ -19,32 +19,26 @@
 import workCard from "~/components/workCard.vue";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
+import modify from "~/plugins/modifiedTime";
 
 export default {
   components: {
     workCard
   },
   mixins: [windowResize],
+  async asyncData({ app }) {
+    let works = await app.$axios.asyncGet(`/api/pastWorks`)
+    return { works }
+  },
   data() {
-    let works = [];
-    let worksLength = [];
-    let countPages = 1;
-    let pageDatas = new Map();
-    let currentPage = 1;
-    let cardWidth = 8;
     return {
-      works: works,
-      worksLength: worksLength,
-      countPages: countPages,
-      pageDatas: pageDatas,
-      currentPage: currentPage
+      worksLength: [],
+      countPages: 1,
+      pageDatas: new Map(),
+      currentPage: 1
     };
   },
   created() {
-    this.works = pastWork.pastWorks;
-    console.log(this.innerWidth, this._windowResize);
-
-    // 記事の数によってページ分割
     let start = 0;
     let end = 9;
     this.worksLength = this.works.length;

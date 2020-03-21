@@ -39,11 +39,13 @@ import img2 from "~/assets/img/img2.jpg";
 import img3 from "~/assets/img/img1.jpg";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
+import modify from "~/plugins/modifiedTime";
 
-import axios from "axios";
+// import axios from "axios";
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
+    data.createdAt = modify(data.createdAt);
     return { ...data };
   },
   mixins: [windowResize],
@@ -53,7 +55,8 @@ export default {
       img2: img2,
       img3: img3,
       images: [img, img2, img3],
-      submission: []
+      submission: [],
+      modifiedTime: this.createdAt
     };
   },
   created() {
