@@ -86,13 +86,13 @@ export default {
 .button {
   @include mq {
     cursor: pointer;
-    border: 2px solid #606964;
+    border: 2px solid #666;
     color: #5c6961;
     background-color: #2c2c2c;
     transition: 500ms;
     &:hover {
       color: #c9c2c2;
-      background-color: #6c7a72;
+      background-color: #666;
       transition: 500ms;
     }
   }
