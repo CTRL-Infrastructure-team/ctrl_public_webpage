@@ -18,7 +18,7 @@
             <label for="inquiry">本文</label>
             <span>(必須)</span>
           </p>
-          <p>内容を入力してください</p>
+          <p>成果物の内容を入力してください</p>
           <el-input
             placeholder="内容を入力"
             v-model="inquiry.value"
@@ -142,7 +142,9 @@ span{
 
 }
 //画像アップロード
+@include mq{
 .images{
+    
     display:flex;
     flex-direction: rows;
     justify-content: space-around;
@@ -153,5 +155,6 @@ span{
 }
 .image2{
     margin: 10px;
+}
 }
 </style>
