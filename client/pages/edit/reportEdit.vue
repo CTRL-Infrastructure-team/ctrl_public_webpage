@@ -48,10 +48,10 @@
           <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
           <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
         </el-upload>
-        <div class="form-button">
+        <!-- <div class="form-button">
           Twitter IDを掲載する
-        </div>
-        <el-checkbox v-model="checked">Twitter IDを掲載する</el-checkbox>
+        </div> -->
+        <el-checkbox v-model="checked" class="checkbox">Twitter IDを掲載する</el-checkbox>
         <div class="form-button">
           <el-button @clicl="doSendForm">内容を確認する</el-button>
         </div>
@@ -108,6 +108,13 @@ export default {
   margin-right: 30px;
   font-size: 20px;
 }
+.el-upload__tip{
+  color: white;
+}
+.checkbox{
+  margin-top: 1.5em;
+  color: white;
+}
 .form {
   height: 800px;
   margin-top: 10px;
@@ -127,7 +134,7 @@ export default {
     }
   }
   &-button{
-    margin-top: 1.8em;
+    margin-top: 2.5em;
     &-file{
       width: 10em;
       margin-bottom: 1em;
