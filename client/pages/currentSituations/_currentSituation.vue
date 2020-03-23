@@ -1,17 +1,20 @@
 <template>
   <div class="content"> 
     <h2>{{ title }}</h2>
-    <el-row>
-      <el-col :span="topImage">
-        <div class="flex_images_top">
+    <div class="flex-box">
+      <div class="flex-box-images">
+        <el-row>
+          <!-- <el-col :span="topImage"> -->
+          <div class="flex_images_top">
           <el-image
             :src="img"
             :preview-src-list="images"
           >
           </el-image>
-        </div>
-      </el-col>
-    </el-row>
+          </div>
+        <!-- </el-col> -->
+      </el-row>
+      <div class="row_image">
     <el-row>
       <el-col :span="secondImage">
         <div class="flex_images">
@@ -32,6 +35,8 @@
         </div>
       </el-col>
     </el-row>
+    </div>
+    </div>
     <el-row>
       <el-col :span="topImage">
       {{ '投稿日 : ' + submission.time }}
@@ -43,8 +48,7 @@
       {{ 'ダウンロードはこちら : ' + submission.download_url }}
       </el-col>
     </el-row>
-
-    
+    </div>  
   </div>
 </template>
 <script>
@@ -120,13 +124,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.el{
+  &-row{
+    //margin-left: 100px;
+    //width: 600px;
+  }
+  &-col{
+    //width: 600px
+    //margin-right: 30px;
+  }
+}
+
 
 .content {
   margin: 20px 20px;
 }
 
 .flex_images_top {
-  width: 95%;
+  width: 100%;
   max-height: 50%;
   margin: 0 auto;
   @include mq{
@@ -139,6 +154,22 @@ export default {
   margin: 20px auto;
   @include mq{
     margin: 20px 0px;
+  }
+  //margin-left: 40px;
+}
+@media screen and (min-width:768px){
+  .row_image{
+    padding-right: 30px;
+  }
+  .flex-box{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    &-images{
+      width: 600px;
+    }
   }
 }
 </style>
