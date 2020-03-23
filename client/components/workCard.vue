@@ -2,13 +2,13 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <h3><nuxt-link :to="`/pastWorks/${work.title}`" :work="work">{{ work.title }}</nuxt-link></h3>
+                <h3><nuxt-link :to="`/pastWorks/${work._id}`" :work="work">{{ work.title }}</nuxt-link></h3>
             </div>
             <div class="img_holder">
                 <img :src="img" />
             </div>
             <div class="text item">
-                {{ '日付 : ' + work.time }} 
+                {{ '日付 : ' + modifiedTime }} 
                 <br>
                 {{ '  制作者 : ' + work.contributor }}
                 <br>
@@ -19,14 +19,17 @@
 </template>
 
 <script>
+import moment from 'moment'
+import modify from '~/plugins/modifiedTime'
+
 export default {
     props: ['work'],
     data() {
         return {
-            img: this.work.img_url
+            img: this.work.img_url, 
+            modifiedTime: modify(this.work.createdAt) 
         }
     },
-
 };
 </script>
 

@@ -1,44 +1,44 @@
 <template>
   <div class="reportContent">
-    <el-row>
-      <div v-for="work in works" :key="work.id">
-        <el-col :span="24" class="single-panel">
-          <!-- <workCard :work="work"/> -->
-          <situationCard :situation="work" />
-        </el-col>
-      </div>
-    </el-row>
-    <el-pagination
-      layout="prev, pager, next"
-      :total="countPages * 10"
-      @current-change="handleCurrentPages"
-    >
-    </el-pagination>
+    <div class="card-wrapper">
+      <el-row>
+        <div v-for="work in works" :key="work.id">
+          <el-col :span="24" class="single-panel">
+            <situationCard :situation="work" />
+          </el-col>
+        </div>
+      </el-row>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="countPages * 10"
+        @current-change="handleCurrentPages"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
 import reportContent from "~/pages/pastWorks/data.json";
-// import { pastWorks } from '../../api/model';
 import situationCard from "~/components/situationCard.vue";
+import windowResize from "~/plugins/windowResizeMixins";
 
 export default {
   components: {
     situationCard
   },
+  mixins: [windowResize],
   data() {
     return {
       works: [],
       worksLength: [],
       countPages: 1,
       currentPage: 1,
-      cardWidth: 24,
       pageDatas: new Map()
     };
   },
   created() {
     this.works = reportContent.currentSituation;
-    // this.works = reportContent.pastWorks
     this.worksLength = this.works.length;
 
     let start = 0,
@@ -56,24 +56,13 @@ export default {
     this.pageDatas.set(this.countPages, this.works.slice(start, end));
     this.works = this.pageDatas.get(1);
   },
-  mounted() {
-    let windowSize = window.innerWidth;
-    if (windowSize <= 768) {
-      this.cardWidth = 24;
-    } else {
-      this.cardWidth = 8;
+
+  computed: {
+    cardWidth() {
+      return this.innerWidth < 768 ? 24 : 8;
     }
-    window.addEventListener("resize", this.windowReSize);
   },
   methods: {
-    windowReSize: function() {
-      let windowSize = window.innerWidth;
-      if (windowSize <= 768) {
-        this.cardWidth = 24;
-      } else {
-        this.cardWidth = 8;
-      }
-    },
     handleCurrentPages: function(index) {
       this.works = this.pageDatas.get(index);
       this.currentPage = index;
@@ -93,6 +82,10 @@ export default {
 }
 
 .reportContent {
+  width: 100%;
+}
+
+.card-wrapper {
   width: 60%;
   margin: 0 auto;
 }
