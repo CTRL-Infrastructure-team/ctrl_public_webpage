@@ -6,15 +6,11 @@ module.exports = new LocalStrategy(
   {
     usernameField: "username",
     passwordField: "password",
-    passReqToCallback: true
+    passReqToCallback: true,
+    session: false
   },
   (req, username, password, done) => {
-    console.log("ここまでは来てる", req.body);
-
-    // console.log(checkPassword)
     User.findOne({ username: username }, (err, user) => {
-      //   console.log(err | user);
-
       if (err) {
         console.log(err.message);
         return done(err);
