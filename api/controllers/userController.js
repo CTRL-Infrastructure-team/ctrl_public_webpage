@@ -3,10 +3,8 @@ const passport = require("passport"),
 
 module.exports = {
   login: passport.authenticate("local", {
-    // successRedirect: "/pastWorks/loginSample",
     successRedirect: "/",
     failureRedirect: "/progress",
-    // failureFlash: true,
     session: true
   }),
   create(req, res, next) {

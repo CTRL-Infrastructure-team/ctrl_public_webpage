@@ -8,6 +8,7 @@
       </div>
     </el-row>
     <el-pagination
+      background
       layout="prev, pager, next"
       :total="countPages * 10"
       @current-change="handleCurrentPage"
