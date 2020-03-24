@@ -46,5 +46,26 @@ module.exports = {
     PastWork.find({}).then(result => {
       res.send(result)
     })
+  },
+  createWork(req, res) {
+    let username
+
+    User.findById(req.user).then(user => {
+      username = user.username
+    })
+
+    let newWork = new PastWork({
+      title: req.body.title,
+      content: req.body.content,
+      download_url: '#',
+      img_utl: '#',
+      contributor: username,
+      twitter_id: '@example'
+    })
+    
+    newWork.save(err => {
+      console.log(err);
+      res.send();
+    });
   }
 };

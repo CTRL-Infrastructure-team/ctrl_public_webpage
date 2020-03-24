@@ -5,7 +5,6 @@ module.exports = {
   login: passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/progress",
-    // failureFlash: true,
     session: true
   }),
   create(req, res, next) {
@@ -26,12 +25,17 @@ module.exports = {
   },
   logout(req, res) {
     req.logout();
-    res.send("logout!!");
+    res.send("logout success");
   },
-  common(req, res, next) {
-    if (req.session.user) {
-      User.findById(id).lean.exec((err, result) => {});
-    } else {
+  common(req, res) {
+    if (req.user) {
+      User.findById(req.user).then(result => {
+        console.log(result);
+      });
+      res.send();
+      } else {
+      console.log("no user!");
+      res.send();
     }
   }
 };
