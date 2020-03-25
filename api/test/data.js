@@ -1,5 +1,5 @@
 module.exports = {
-  currentSituation: [
+  currentSituations: [
     {
       time: "2019/07/23",
       title: "進捗発表会",

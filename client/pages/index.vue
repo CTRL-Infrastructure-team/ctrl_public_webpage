@@ -23,7 +23,7 @@
       </myModal>
     </div>
     <div class="flex flex_around">
-      <news class="news_box" />
+      <news class="news_box" :articles="articles"/>
       <twitterbox class="twitterBox"></twitterbox>
     </div>
   </div>
@@ -38,6 +38,7 @@ import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
+import axios from "axios";
 
 //画像インポート
 import whatIs from "~/assets/img/whatIs.jpg";
@@ -51,6 +52,11 @@ export default {
     twitterbox,
     myModal,
     srideShow
+  },
+  async asyncData({ app }) {
+    let articles = await app.$axios.asyncGet('/api/situations')
+    console.log(articles)
+    return { articles }
   },
   data() {
     return {

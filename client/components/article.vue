@@ -1,30 +1,24 @@
 <template>
   <div>
     <div class="modal-flex-text">
-      <h2 class="modal-flex-text_title">{{ post.title }}</h2>
+      <h2 class="modal-flex-text_title">{{ article.title }}</h2>
       <div class="modal-flex-text_content">
-      {{ '日付 : ' + post.date }}
+      {{ '日付 : ' + article.time }}
       <br>
-      {{ '概要 : ' + post.overview }}
+      {{ '概要 : ' + article.content }}
       <br>
-      {{'本文 : ' + post.content}}
+      {{'本文 : ' + article.content }}
       <!-- <br> -->
       <!-- {{'投稿者 : ' + post.contributor}} -->
       <!-- <br> -->
       <!-- {{'Twitter ID:' + post.twitter_id}} -->
-      
       </div>
     </div>
   </div>
 </template>
 <script>
-import data from '~/assets/data/data.json'
-import axios from '@nuxtjs/axios'
-
 export default {
-  
-  props: ['post'],
-  
+  props: ['article']
 }
 </script>
 <style lang="scss" scoped>

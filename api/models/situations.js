@@ -5,8 +5,10 @@ const mongoose = require("mongoose"),
     title: String,
     content: String,
     img_url: String,
-    contributor: { type: Schema.Types.ObjectId, ref: "Users" },
-    twitter_id: { type: Schema.Types.ObjectId, ref: "Users" }
+    contributor: String,
+    twitter_id: String
+    // contributor: { type: Schema.Types.ObjectId, ref: "Users" },
+    // twitter_id: { type: Schema.Types.ObjectId, ref: "Users" }
   });
 
 module.exports = mongoose.model("Situation", SituationsSchema);

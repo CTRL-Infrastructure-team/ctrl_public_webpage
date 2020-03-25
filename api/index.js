@@ -62,6 +62,7 @@ app.post("/logout", userController.logout);
 app.get("/userTest", userController.common);
 
 //situationMethods
+app.get("/situations", situationController.show);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
