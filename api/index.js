@@ -3,7 +3,7 @@ const express = require("express"),
   passport = require("passport"),
   session = require("express-session"),
   mongoose = require("mongoose"),
-  passportLocal = require("./passport/local");
+  passportLocal = require("./config/passport/local");
 
 // const mailController = require("./controllers/mailController");
 const pastworkController = require("./controllers/pastworkController"),
