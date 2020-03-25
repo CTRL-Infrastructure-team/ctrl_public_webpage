@@ -1,5 +1,18 @@
 const PastWork = require("../models/pastWork");
 const mongoose = require("mongoose");
+const pkgcloud = require("pkgcloud");
+
+// const openstack = pkgcloud.storage.createClient({
+//   provider: 'openstack',
+//   username: 'username',
+//   password: 'password',
+//   authUrl: 'service url'
+// });
+
+// const writeStream = openstack.upload({
+//   container: 'container name',
+//   remote: 'remote file name'
+// });
 
 const convert = string => {
   return {
