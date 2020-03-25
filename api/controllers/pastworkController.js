@@ -1,18 +1,5 @@
 const PastWork = require("../models/pastWork");
 const mongoose = require("mongoose");
-const pkgcloud = require("pkgcloud");
-
-// const openstack = pkgcloud.storage.createClient({
-//   provider: 'openstack',
-//   username: 'username',
-//   password: 'password',
-//   authUrl: 'service url'
-// });
-
-// const writeStream = openstack.upload({
-//   container: 'container name',
-//   remote: 'remote file name'
-// });
 
 const convert = string => {
   return {
@@ -62,6 +49,8 @@ module.exports = {
   },
   createWork(req, res) {
     let username
+    const filename = req.files[0].buffer.toString();
+    console.log("filename", filename);
 
     User.findById(req.user).then(user => {
       username = user.username

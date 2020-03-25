@@ -3,7 +3,9 @@ const express = require("express"),
   passport = require("passport"),
   session = require("express-session"),
   mongoose = require("mongoose"),
-  passportLocal = require("./config/passport/local");
+  passportLocal = require("./config/passport/local"),
+  multer = require("multer"),
+  upload = multer();
 
 // const mailController = require("./controllers/mailController");
 const pastworkController = require("./controllers/pastworkController"),
@@ -63,12 +65,14 @@ app.get("/userTest", userController.common);
 
 //situationMethods
 app.get("/situations", situationController.situationsList);
+app.post("/situation", upload.any(), situationController.createSituation);
 app.get("/situations/:situationId", situationController.show);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
+app.post("/pastWork", upload.any(), pastworkController.createWork);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
-app.get('/pastWorks', pastworkController.worksList);
+app.get("/pastWorks", pastworkController.worksList);
 
 //mailMethods
 // app.post("/mail", mailController.sendMail);
