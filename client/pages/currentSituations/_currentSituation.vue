@@ -14,28 +14,7 @@
           </div>
         <!-- </el-col> -->
       </el-row>
-      <div class="row_image">
-    <el-row>
-      <el-col :span="secondImage">
-        <div class="flex_images">
-          <el-image
-            :src="img2"
-            :preview-src-list="images"
-          >
-          </el-image>
-        </div>
-      </el-col>
-      <el-col :span="thirdImage">
-        <div class="flex_images">
-          <el-image
-            :src="img3"
-            :preview-src-list="images"
-          >
-          </el-image>
-        </div>
-      </el-col>
-    </el-row>
-    </div>
+      
     </div>
     <el-row>
       <el-col :span="topImage">
@@ -126,7 +105,8 @@ export default {
 <style lang="scss" scoped>
 .el{
   &-row{
-    //margin-left: 100px;
+    margin-left: 10px;
+    margin-top: 10px;
     //width: 600px;
   }
   &-col{
@@ -138,6 +118,7 @@ export default {
 
 .content {
   margin: 20px 20px;
+  
 }
 
 .flex_images_top {
@@ -168,7 +149,10 @@ export default {
     justify-content: flex-start;
     align-items: stretch;
     &-images{
-      width: 600px;
+      width: 400px;
+      margin-top: 50px;
+      margin-right: 30px;
+      margin-bottom: 20px;
     }
   }
 }
