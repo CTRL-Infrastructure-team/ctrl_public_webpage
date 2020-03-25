@@ -1,7 +1,6 @@
 module.exports = {
   currentSituations: [
     {
-      time: "2019/07/23",
       title: "進捗発表会",
       content: "学祭の進捗発表会です。",
       img_url: "_nuxt/client/assets/img/img2.jpg",
@@ -9,7 +8,6 @@ module.exports = {
       twitter_id: "@aaa"
     },
     {
-      time: "2019/12/31",
       title: "コミケ",
       content: "コミケでサークル参加してきました。",
       img_url: "_nuxt/client/assets/img/img4.jpg",

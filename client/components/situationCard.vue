@@ -9,7 +9,7 @@
           <img :src="situation.img_url" />
         </div>
         <div class="text item">
-          {{ '日付 : ' + situation.time }} 
+          {{ '日付 : ' + timestamp }} 
           <br>
           {{ '  制作者 : ' + situation.contributor }}
           <br>
@@ -21,13 +21,15 @@
 </template>
 
 <script>
+import modify from "~/plugins/modifiedTime";
+
 export default {
   props: ['situation'],
-  // data() {
-    // return {
-    //   img: this.situation.img_url
-    // }
-  // },
+  computed: {
+    timestamp() {
+      return modify(this.situation.createdAt)
+    }
+  },
 };
 </script>
 
