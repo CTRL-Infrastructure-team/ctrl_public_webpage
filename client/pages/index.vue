@@ -40,9 +40,9 @@ import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
 
 //画像インポート
-import img1 from "~/assets/img/img1.jpg";
-import img2 from "~/assets/img/img2.jpg";
-import img3 from "~/assets/img/img3.jpg";
+import whatIs from "~/assets/img/whatIs.jpg";
+import whoIs from "~/assets/img/whoIs.jpg";
+import contentIs from "~/assets/img/contentIs.jpg";
 import img4 from "~/assets/img/img4.jpg";
 export default {
   components: {
@@ -55,18 +55,15 @@ export default {
   data() {
     return {
       mainGuideprops: [
-        {
-          img: img1,
-          title: "ＣＴＲＬとは？"
-        },
-        { img: img2, title: "どんな人がいるの？" },
-        { img: img3, title: "活動内容は？" },
+        { img: whatIs, title: "ＣＴＲＬとは？"},
+        { img: whoIs, title: "どんな人がいるの？" },
+        { img: contentIs, title: "活動内容は？" },
         { img: img4, title: "活動場所は？" }
       ],
       isCenter: false,
       isflex: true,
       modal: false,
-      modalImg: img1,
+      modalImg: whatIs,
       modalTexts: [
         {
           title: "CTRLとは？",
