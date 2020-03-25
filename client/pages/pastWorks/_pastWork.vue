@@ -43,7 +43,6 @@ import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
 import modify from "~/plugins/modifiedTime";
 
-// import axios from "axios";
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);

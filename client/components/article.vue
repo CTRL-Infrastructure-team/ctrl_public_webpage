@@ -3,7 +3,7 @@
     <div class="modal-flex-text">
       <h2 class="modal-flex-text_title">{{ article.title }}</h2>
       <div class="modal-flex-text_content">
-      {{ '日付 : ' + article.time }}
+      {{ '日付 : ' + timestamp }}
       <br>
       {{ '概要 : ' + article.content }}
       <br>
@@ -17,8 +17,15 @@
   </div>
 </template>
 <script>
+import modify from "~/plugins/modifiedTime";
+
 export default {
-  props: ['article']
+  props: ['article'],
+  computed: {
+    timestamp() {
+      return modify(this.article.createdAt)
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>

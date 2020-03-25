@@ -20,7 +20,6 @@
 import workCard from "~/components/workCard.vue";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
-import modify from "~/plugins/modifiedTime";
 
 export default {
   components: {

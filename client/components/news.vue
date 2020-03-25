@@ -20,24 +20,13 @@
 </template>
 <script>
 import articleItem from "~/components/article";
-import data from '~/assets/data/data.json';
 import axios from 'axios';
 
 export default { 
   components: {
-    //mainGuide,
     articleItem
   },
-  props: ['articles'],
-  data() {
-    return { sample_contents:data }
-  },
-  computed:{
-    processedPosts(){
-      let posts = this.results;
-    }
-  }
-  
+  props: ['articles']
 }
 
 </script>
