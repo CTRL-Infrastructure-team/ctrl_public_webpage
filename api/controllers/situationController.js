@@ -1,11 +1,15 @@
 const Situation = require("../models/situations");
 
 module.exports = {
-  show(req, res) {
-    console.log("api/situations");
+  situationsList(req, res) {
     Situation.find({}).then(situations => {
       res.send(situations);
     })
-    // res.send("received data!")
+  },
+  show(req, res) {
+    let situationId = req.params.situationId
+    Situation.findById(situationId).then(situation => {
+      res.send(situation);
+    });
   }
 };

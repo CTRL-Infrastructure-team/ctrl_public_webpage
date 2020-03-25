@@ -2,11 +2,11 @@
   <div class="content">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <h3><nuxt-link :to="`/currentSituations/${situation.title}`" :situation="situation">{{ situation.title }}</nuxt-link></h3>
+        <h3><nuxt-link :to="`/currentSituations/${situation._id}`">{{ situation.title }}</nuxt-link></h3>
       </div>
       <div class="flex-box">
         <div class="img_holder">
-          <img :src="img" />
+          <img :src="situation.img_url" />
         </div>
         <div class="text item">
           {{ '日付 : ' + situation.time }} 
@@ -23,11 +23,11 @@
 <script>
 export default {
   props: ['situation'],
-  data() {
-    return {
-      img: this.situation.img_url
-    }
-  },
+  // data() {
+    // return {
+    //   img: this.situation.img_url
+    // }
+  // },
 };
 </script>
 

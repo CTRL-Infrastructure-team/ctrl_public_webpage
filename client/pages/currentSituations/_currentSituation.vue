@@ -18,13 +18,11 @@
     </div>
     <el-row>
       <el-col :span="topImage">
-      {{ '投稿日 : ' + submission.time }}
+      {{ '投稿日 : ' + time }}
       <br>
-      {{ '制作者 : ' + submission.contributor }}
+      {{ '制作者 : ' + contributor }}
       <br>
-      {{ submission.content }} 
-      <br>
-      {{ 'ダウンロードはこちら : ' + submission.download_url }}
+      {{ content }} 
       </el-col>
     </el-row>
     </div>  
@@ -37,6 +35,11 @@ import img3 from '~/assets/img/img1.jpg'
 import pastWork from '~/pages/pastWorks/data.json'
 
 export default {
+  async asyncData({ params, app }) {
+    let data = await app.$axios.asyncGet(`/api/situations/${params.currentSituation}`);
+    // data.createdAt = modify(data.createdAt);
+    return { ...data };
+  },
   data() {
     var submission = []
     let topImage
