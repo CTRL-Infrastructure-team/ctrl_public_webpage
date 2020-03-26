@@ -3,7 +3,9 @@ const express = require("express"),
   passport = require("passport"),
   session = require("express-session"),
   mongoose = require("mongoose"),
-  passportLocal = require("./passport/local");
+  passportLocal = require("./config/passport/local"),
+  multer = require("multer"),
+  upload = multer();
 
 // const mailController = require("./controllers/mailController");
 const pastworkController = require("./controllers/pastworkController"),
@@ -32,17 +34,26 @@ mongoose.Promise = global.Promise;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(
   session({
     secret: "keyboard cat",
-    resave: true,
+    resave: false,
     saveUninitialized: false
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(passportLocal);
+
+passport.serializeUser((user, done) => {
+  console.log(user)
+  done(null, user.id);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 // create show update delete
 
@@ -50,13 +61,18 @@ passport.use(passportLocal);
 app.post("/login", userController.login);
 app.post("/users/create", userController.create);
 app.post("/logout", userController.logout);
+app.get("/userTest", userController.common);
 
 //situationMethods
+app.get("/situations", situationController.situationsList);
+app.post("/situation", upload.any(), situationController.createSituation);
+app.get("/situations/:situationId", situationController.show);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
+app.post("/pastWork", upload.any(), pastworkController.createWork);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
-app.get('/pastWorks', pastworkController.worksList);
+app.get("/pastWorks", pastworkController.worksList);
 
 //mailMethods
 // app.post("/mail", mailController.sendMail);

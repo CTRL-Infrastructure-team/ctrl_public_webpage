@@ -1,5 +1,7 @@
 const mongoose = require("mongoose"),
   pastWorks = require("../models/pastWork"),
+  Situations = require("../models/situations"),
+  situation_data = require("./data").currentSituations,
   data = require("./data").pastWorks;
 var os = require("os");
 var hostname = os.hostname();
@@ -40,4 +42,15 @@ pastWorks
   })
   .then(data => {
     console.log(data);
+  });
+
+Situations
+  .remove({})
+  .then(() => {
+    for(let slot of situation_data) {
+      Situations.create(slot);
+    }
+  })
+  .then(() => {
+    Situations.find({}).then(data => {console.log(data)});
   });

@@ -8,6 +8,7 @@
       </div>
     </el-row>
     <el-pagination
+      background
       layout="prev, pager, next"
       :total="countPages * 10"
       @current-change="handleCurrentPage"
@@ -19,7 +20,6 @@
 import workCard from "~/components/workCard.vue";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
-import modify from "~/plugins/modifiedTime";
 
 export default {
   components: {

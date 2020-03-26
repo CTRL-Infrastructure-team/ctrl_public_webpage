@@ -8,18 +8,20 @@
           </el-col>
         </div>
       </el-row>
-      <el-pagination
-        layout="prev, pager, next"
-        :total="countPages * 10"
-        @current-change="handleCurrentPages"
-      >
-      </el-pagination>
+      <div class="pagination-wrapper">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="countPages * 10"
+          @current-change="handleCurrentPages"
+        >
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import reportContent from "~/pages/pastWorks/data.json";
 import situationCard from "~/components/situationCard.vue";
 import windowResize from "~/plugins/windowResizeMixins";
 
@@ -27,10 +29,13 @@ export default {
   components: {
     situationCard
   },
+  async asyncData({ params, app }) {
+    let works = await app.$axios.asyncGet(`/api/situations`);
+    return { works }
+  },
   mixins: [windowResize],
   data() {
     return {
-      works: [],
       worksLength: [],
       countPages: 1,
       currentPage: 1,
@@ -38,11 +43,10 @@ export default {
     };
   },
   created() {
-    this.works = reportContent.currentSituation;
     this.worksLength = this.works.length;
 
     let start = 0,
-      end = 9;
+        end = 9;
 
     while (this.worksLength > 9) {
       this.pageDatas.set(this.countPages, this.works.slice(start, end));
@@ -109,5 +113,9 @@ export default {
   justify-content: space-between;
   background-color: #2c2c2f;
   height: 100px;
+}
+
+.pagination-wrapper {
+  text-align: center;
 }
 </style>

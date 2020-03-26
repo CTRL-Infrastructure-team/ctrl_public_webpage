@@ -7,8 +7,11 @@
           <h2>twitter boxと色を揃えてみた</h2>
           <p>ページのソースから、カラーコードを探り出した</p>
         </div>
-        <div v-for="sample_content in sample_contents" :key="sample_content.date">
+        <!-- <div v-for="sample_content in sample_contents" :key="sample_content.date">
           <articleItem v-bind:post="sample_content" />
+        </div> -->
+        <div v-for="article in articles" :key="article.id">
+          <articleItem :article="article" />
         </div>
       </div>
     </div>
@@ -16,38 +19,14 @@
   
 </template>
 <script>
-//import news1 from './news1'
-import mainGuide from "~/components/news1";
 import articleItem from "~/components/article";
-import data from '~/assets/data/data.json';
-import axios from '@nuxtjs/axios';
-
-
+import axios from 'axios';
 
 export default { 
   components: {
-    //mainGuide,
     articleItem
   },
-  data:() =>({
-    sample_contents:data
-  }),
-  
-  // props: ['title'],
-  
-  mounted(){
-    this.$axios.get("~/assets/data/data.json")
-    .then(response => {
-      this.results = response.data
-      console.log(response.data)
-    })
-  },
-  computed:{
-    processedPosts(){
-      let posts = this.results;
-    }
-  }
-  
+  props: ['articles']
 }
 
 </script>
