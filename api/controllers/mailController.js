@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const mailData = require("../../key/config");
+const mailData = require("../config/key/config.js");
 // gmailでの送信はよろしくないから別の方法を取るべき。
 const axios = require("axios");
 const smtpConfig = nodemailer.createTransport({

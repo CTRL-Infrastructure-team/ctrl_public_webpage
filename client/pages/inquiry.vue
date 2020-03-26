@@ -39,7 +39,7 @@
           {{ inquiry.alert }}
         </div>
         <div class="form-button">
-          <el-button @click="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">内容を送信する</el-button>
         </div>
       </form>
     </el-card>
@@ -76,6 +76,7 @@ export default {
         )
         .then(val => {
           console.log(val);
+          window.alert("送信しました！！");
         })
         .catch(error => {
           console.log(error.message);
