@@ -3,37 +3,32 @@
     <header class="theflex">
       <div class="theflex_cell">
         <nuxt-link to="/">
-          <img src="~/assets/img/KariLogo.jpg" class="img" />
+          <img src="~/assets/img/logo.png" class="img" />
         </nuxt-link>
       </div>
       <div class="theflex_cell">
         <form class="search_form">
-          <input type="text" placeholder="検索内容を入力" class="textform" />
-          <!--
-          -->
-          <input type="submit" value="検索" class="button" />
+          <!-- <input
+            type="text"
+            placeholder="検索内容を入力"
+            class="textform"
+          /><input type="submit" value="検索" class="button" /> -->
+          <serchinput />
         </form>
       </div>
       <div class="theflex_cell">
-        <div class="humburger" v-on:click="isOpen=!isOpen">
+        <div class="humburger" v-on:click="isOpen = !isOpen">
           <span class="top"></span>
           <span class="middle"></span>
           <span class="bottom"></span>
         </div>
       </div>
-      <div id="menu" class="menu" v-bind:class="{open:isOpen}">
-        <ul v-on:click="isOpen=!isOpen">
-          <nuxt-link to="/">
-            <li>Top</li>
-          </nuxt-link>
-          <nuxt-link to="/report">
-            <li>活動報告</li>
-          </nuxt-link>
-          <nuxt-link to="/progress">
-            <li>作品紹介</li>
-          </nuxt-link>
-          <nuxt-link to="/inquiry">
-            <li>お問合せ</li>
+      <div id="menu" class="menu" v-bind:class="{ open: isOpen }">
+        <ul v-on:click="isOpen = !isOpen">
+          <nuxt-link v-for="item in menu" :key="item.to" :to="item.to">
+            <li>
+              {{ item.name }}
+            </li>
           </nuxt-link>
         </ul>
       </div>
@@ -41,12 +36,23 @@
   </div>
 </template>
 <script>
+import serchinput from "@/components/serchinput";
+
 export default {
   name: "theHeader",
+  components: {
+    serchinput
+  },
   data() {
     return {
       isOpen: false
     };
+  },
+  props: {
+    menu: {
+      type: Array,
+      required: true
+    }
   }
 };
 </script>
@@ -65,6 +71,7 @@ export default {
   }
 }
 
+
 //検索バーのcss
 .search_form {
   display: none;
@@ -78,8 +85,8 @@ export default {
 .textform {
   @include mq {
     // border: 2px solid #328d55;
-    line-height: 1.8em;
-    background-color: #506657;
+    height: 26px;
+    background-color: #434644;
     color: #f0f0f0;
     border: none;
     padding-left: 5px;
@@ -89,13 +96,13 @@ export default {
 .button {
   @include mq {
     cursor: pointer;
-    border: 2px solid #328d55;
-    color: #328d55;
+    border: 2px solid #666;
+    color: #5c6961;
     background-color: #2c2c2c;
     transition: 500ms;
     &:hover {
       color: #c9c2c2;
-      background-color: #328d55;
+      background-color: #666;
       transition: 500ms;
     }
   }
@@ -139,7 +146,7 @@ export default {
   overflow: hidden;
   opacity: 0;
   z-index: 10;
-  background-color: #328d55;
+  background-color: #6d7570;
   width: 0;
   height: 100vh;
   top: 60px;
@@ -151,6 +158,7 @@ export default {
   transform: translateX(100%);
   & ul {
     padding: 0;
+    height: 100%;
     & a {
       text-decoration: none;
       text-emphasis: none;

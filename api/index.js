@@ -1,34 +1,82 @@
-// const express = require("express");
-// const app = express();
-// const mongoose = rewuire('mongoose');
-// const mongoose = mongoose.Schema;
+const express = require("express"),
+  app = express(),
+  passport = require("passport"),
+  session = require("express-session"),
+  mongoose = require("mongoose"),
+  passportLocal = require("./config/passport/local"),
+  multer = require("multer"),
+  upload = multer();
 
-// var currentSituation = new Schema({
-//     'date': Date,
-//     'title': String,
-//     'imgUrl': String,
-//     '': String,
-//     'Twitter': String
-// });
+const mailController = require("./controllers/mailController");
+const pastworkController = require("./controllers/pastworkController"),
+  situationController = require("./controllers/situationController"),
+  userController = require("./controllers/userController");
 
+var os = require("os");
+var hostname = os.hostname();
+const tl =
+  hostname.includes("DESKTOP") ||
+  hostname.includes("localhost") ||
+  hostname.includes("MAC");
 
-// app.get("/progress", function(req, res) {
-//     var pastWorks = new Schema({
-//         'date': Date,
-//         'title': String,
-//         'imgUrl': String,
-//         '': String,
-//         'Twitter': String    
-//     });
-//     mongoose.connect('mongodb://127.0.0.1/strlPublicSite');
-//     var pastWorks = mongoose.model('pastWorks', pastWorks);
+if (tl) {
+  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+} else {
+  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+}
+mongoose.Promise = global.Promise;
 
-//     pastWorks.find({}, function(err, result){
-//         res.json();
-//     })
-// });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
-// module.exports = {
-//     path: "/api/",  
-//     handler: app
-// };
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(passportLocal);
+
+passport.serializeUser((user, done) => {
+  console.log(user)
+  done(null, user.id);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+// create show update delete
+
+//userMethods
+app.post("/login", userController.login);
+app.post("/users/create", userController.create);
+app.post("/logout", userController.logout);
+app.get("/userTest", userController.common);
+
+//situationMethods
+app.get("/situations", situationController.situationsList);
+app.post("/situation", upload.any(), situationController.createSituation);
+app.get("/situations/:situationId", situationController.show);
+
+//pastworkMethods
+app.post("/pastworksearch", pastworkController.showSearch);
+app.post("/pastWork", upload.any(), pastworkController.createWork);
+app.get("/pastWork/:pastWorkId", pastworkController.show);
+app.get("/pastWorks", pastworkController.worksList);
+
+//mailMethods
+app.post("/mail", mailController.sendMail, mailController.sendSlack);
+module.exports = {
+  path: "/api/",
+  handler: app
+};

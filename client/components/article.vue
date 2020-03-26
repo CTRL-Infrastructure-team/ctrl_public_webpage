@@ -1,91 +1,37 @@
 <template>
   <div>
     <div class="modal-flex-text">
-      <!-- <div id="app"> -->
-        <!-- <button @click="fetch">fetch</button> -->
-        <!-- <div>{{sample_data}}</div> -->
-      <div v-for="sample_content in sample_contents" :key="sample_content.date">
-        <h2 class="modal-flex-text_title">{{ title }}</h2>
-        <div class="modal-flex-text_content">
-          {{ '日付 : ' + sample_content.date }}
-              <br>
-          {{ '概要 : ' + sample_content.overview }}
-              <br>
-          {{'本文：' + sample_content.content}}
-        <!-- {{info}} -->
-        </div>
-
-      <!-- <h2 class="modal-flex-text_title">{{ sample_data.title }}</h2> -->
-        <p>modalText.body　本文を入力</p>
+      <h2 class="modal-flex-text_title">{{ article.title }}</h2>
+      <div class="modal-flex-text_content">
+      {{ '日付 : ' + timestamp }}
+      <br>
+      {{ '概要 : ' + article.content }}
+      <br>
+      {{'本文 : ' + article.content }}
+      <!-- <br> -->
+      <!-- {{'投稿者 : ' + post.contributor}} -->
+      <!-- <br> -->
+      <!-- {{'Twitter ID:' + post.twitter_id}} -->
       </div>
     </div>
   </div>
 </template>
 <script>
-import data from '~/assets/data/data.json'
-import axios from '@nuxtjs/axios'
+import modify from "~/plugins/modifiedTime";
 
 export default {
-  /*
-  data: () => {
-    users: users,
-  },
-  
-    */
-
-  data:() =>({
-    sample_contents:data
-  }),
-  /*
-  methods:{
-    fetch(){
-      this.sample_contents = data
+  props: ['article'],
+  computed: {
+    timestamp() {
+      return modify(this.article.createdAt)
     }
   },
-  /*
-  data () {
-    return {
-      sample_data: {
-        number: 1,
-        title: 'タイトルです',
-        date: '2019-12-28',
-        overview: 'この作品の概要です。',
-        content: '本文です。'
-      }
-    }
-  },
-  */
-  props: ['title'],
-  /*
-  async asyncData({ app }) {
-    const data = await app.axios.$get('http://localhost:3000/api/')
-    return { data: data }
-  },
-  /*
-  el:'#app',
-  data:{
-    sample_data:[]
-  },
-  */
-  mounted(){
-    this.$axios.get("../assets/data/data.json")
-    .then(response => {
-      this.results = response.data
-      console.log(response.data)
-    })
-  },
-  computed:{
-    processedPosts(){
-      let posts = this.results;
-    }
-  }
-  
 }
 </script>
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
 .modal {
-  width: 90%;
+  width: 100%;
   &-flex {
     display: flex;
     justify-content: space-between;
@@ -94,14 +40,16 @@ $modalBorder: #8193a9;
       width: 35%;
     }
     &-text {
-      width: 90%;
+      width: 100%;
+       padding-bottom: 10px;
+      
 
       &_title {
         font-family: monospace;
-        width: 165%;
+        width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         margin-top: 10px;
         padding-left: 3px;
         border-bottom: 1px solid $modalBorder;
@@ -109,7 +57,7 @@ $modalBorder: #8193a9;
       }
 
       &_content{
-        padding: 0 0px;
+        padding-left: 10px;
       }
     }
   }

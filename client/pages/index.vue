@@ -23,7 +23,7 @@
       </myModal>
     </div>
     <div class="flex flex_around">
-      <news class="news_box" />
+      <news class="news_box" :articles="articles"/>
       <twitterbox class="twitterBox"></twitterbox>
     </div>
   </div>
@@ -38,11 +38,12 @@ import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
+import axios from "axios";
 
 //画像インポート
-import img1 from "~/assets/img/img1.jpg";
-import img2 from "~/assets/img/img2.jpg";
-import img3 from "~/assets/img/img3.jpg";
+import whatIs from "~/assets/img/whatIs.jpg";
+import whoIs from "~/assets/img/whoIs.jpg";
+import contentIs from "~/assets/img/contentIs.jpg";
 import img4 from "~/assets/img/img4.jpg";
 export default {
   components: {
@@ -52,21 +53,23 @@ export default {
     myModal,
     srideShow
   },
+  async asyncData({ app }) {
+    let articles = await app.$axios.asyncGet('/api/situations')
+    console.log(articles)
+    return { articles }
+  },
   data() {
     return {
       mainGuideprops: [
-        {
-          img: img1,
-          title: "ＣＴＲＬとは？"
-        },
-        { img: img2, title: "どんな人がいるの？" },
-        { img: img3, title: "活動内容は？" },
+        { img: whatIs, title: "ＣＴＲＬとは？"},
+        { img: whoIs, title: "どんな人がいるの？" },
+        { img: contentIs, title: "活動内容は？" },
         { img: img4, title: "活動場所は？" }
       ],
       isCenter: false,
       isflex: true,
       modal: false,
-      modalImg: img1,
+      modalImg: whatIs,
       modalTexts: [
         {
           title: "CTRLとは？",
@@ -112,7 +115,7 @@ export default {
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
 
- @media screen and (max-width: 499px) {
+ @media screen and (max-width: 767px) {
   .flex {
     display: flex;
   
@@ -138,7 +141,7 @@ $modalBorder: #8193a9;
 }
 
 
-@media screen and (min-width:500px){
+@media screen and (min-width:768px){
   .flex {
   display: flex;
   flex-wrap: wrap;

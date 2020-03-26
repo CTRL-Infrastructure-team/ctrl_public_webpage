@@ -11,7 +11,9 @@
             <label for="email">返信先メールアドレス</label>
             <span>(必須)</span>
           </p>
-          <p>問い合わせへの返答をお送りするための連絡先メールアドレスを正確に入力してください。</p>
+          <p>
+            問い合わせへの返答をお送りするための連絡先メールアドレスを正確に入力してください。
+          </p>
           <el-input
             placeholder="メールアドレス"
             v-model="email.value"
@@ -19,7 +21,7 @@
             clearable
             @change="doValidateEmail(email)"
           ></el-input>
-          {{email.alert}}
+          {{ email.alert }}
         </div>
         <div class="form-inquiry form-box">
           <p>
@@ -34,44 +36,59 @@
             type="textarea"
             @change="doValidateInquiry(inquiry)"
           ></el-input>
-          {{inquiry.alert}}
+          {{ inquiry.alert }}
         </div>
         <div class="form-button">
-          <el-button @clicl="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">内容を確認する</el-button>
         </div>
       </form>
     </el-card>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
-  data(){
-    return{
-      inquiry:{
-        value:'',
-        alert:''
+  data() {
+    return {
+      inquiry: {
+        value: "",
+        alert: ""
       },
-      email:{
-        value:'',
-        alert:'',
+      email: {
+        value: "",
+        alert: ""
       },
 
-      alert:''
-    }
+      alert: ""
+    };
   },
-  methods:{
-    doSendForm(){
-
+  methods: {
+    doSendForm() {
+      const sendText = `${this.inquiry}\n From:${this.email}`;
+      console.log("send");
+      axios
+        .post(
+          "/api/mail",
+          { text: this.inquiry.value, email: this.email.value },
+          {
+            headers: { "Content-Type": "application/json" }
+          }
+        )
+        .then(val => {
+          console.log(val);
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
     },
-    doValidateEmail(data,index){
-      this.email.value ? '': this.email.alert = '値を入力してください'
-   },
-    doValidateInquiry(data,index){
-      this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
-
-   },
-  },
-}
+    doValidateEmail(data, index) {
+      this.email.value ? "" : (this.email.alert = "値を入力してください");
+    },
+    doValidateInquiry(data, index) {
+      this.inquiry.value ? "" : (this.inquiry.alert = "値を入力してください");
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 .card {
@@ -79,7 +96,7 @@ export default {
 }
 .form {
   margin: 0 calc(30px - 1rem);
-  font-family: 'ヒラギノ角ゴシック';
+  font-family: "ヒラギノ角ゴシック";
   margin-top: 20px;
   font-size: calc(10px + 0.625vw);
   &-box {
@@ -110,7 +127,7 @@ export default {
   margin-bottom: 10px;
   span {
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 15px;
       left: -20px;
@@ -122,7 +139,7 @@ export default {
     }
     position: relative;
     margin-left: 50px;
-    font-family: 'ヒラギノ角ゴシック';
+    font-family: "ヒラギノ角ゴシック";
     text-align: left;
     font-size: calc(17px + 0.625vw);
     font-weight: 500;

@@ -2,7 +2,7 @@
   <div>
     <div class="srideShow">
       <div
-        v-for="(sride,index) in srideStyle"
+        v-for="(sride, index) in srideStyle"
         :key="index"
         @click="doModal"
         @touchstart="recodeX"
@@ -11,14 +11,14 @@
       >
         <img :src="sride.img" :style="sride.style" class="sride_img" />
       </div>
-      <span class="sride_title">{{nowTitle}}</span>
+      <span class="sride_title">{{ nowTitle }}</span>
     </div>
     <div class="flex">
       <div
-        v-for="(value,index) in srideStyle"
+        v-for="(value, index) in srideStyle"
         :key="index"
         class="box"
-        :class="{box_active:value.isActive}"
+        :class="{ box_active: value.isActive }"
         @click="changeActive(index)"
       ></div>
     </div>

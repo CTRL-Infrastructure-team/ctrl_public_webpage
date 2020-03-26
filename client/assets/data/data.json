@@ -1,30 +1,38 @@
 [
   {
     "id": 1,
-    "title": "タイトルです",
-    "date": "2019-12-28",
-    "overview": "この作品の概要です。",
-    "content": "本文です。"
+    "date": "2020-03-09",
+    "title": "ゲーム（デモ版）のリリース",
+    "overview": "将棋ゲーム",
+    "content": "マキアさんが、将棋ゲームのデモ版をリリースしました。終盤になると、思考時間が長くなるそうです。",
+    "contributor":"polyester",
+    "twitter_id":"polyester_CTRL"
   },
   {
     "id": 2,
-    "title": "タイトルです",
     "date": "2019-12-29",
+    "title": "タイトルです",
     "overview": "この作品の概要です。",
-    "content": "本文です。"
+    "content": "本文です。",
+    "contributor":"polyester",
+    "twitter_id":"polyester_CTRL"
   },
   {
     "id": 3,
-    "title": "タイトルです",
     "date": "2019-12-30",
+    "title": "タイトルです",
     "overview": "この作品の概要です。",
-    "content": "本文です。"
+    "content": "本文です。",
+    "contributor":"polyester",
+    "twitter_id":"polyester_CTRL"
   },
   {
     "id": 4,
-    "title": "タイトルです",
     "date": "2019-12-31",
+    "title": "タイトルです",
     "overview": "コミケ4日目です。",
-    "content": "ブースの設営完了しました！今回は「南ユ-30a」にて新刊及び既刊の頒布を行います。今回は委託でデジタルコンテンツ研究会の新譜「Memories」の頒布も行います。是非お越しください！"
+    "content": "ブースの設営完了しました！今回は「南ユ-30a」にて新刊及び既刊の頒布を行います。今回は委託でデジタルコンテンツ研究会の新譜「Memories」の頒布も行います。是非お越しください！",
+    "contributor":"polyester",
+    "twitter_id":""
   }
 ]
