@@ -1,25 +1,27 @@
 <template>
   <div class="reportContent">
-    <el-row>
-      <div v-for="work in works" :key="work.id">
-        <el-col :span="24" class="single-panel">
-          <!-- <workCard :work="work"/> -->
-          <situationCard :situation="work" />
-        </el-col>
+    <div class="card-wrapper">
+      <el-row>
+        <div v-for="work in works" :key="work.id">
+          <el-col :span="24" class="single-panel">
+            <situationCard :situation="work" />
+          </el-col>
+        </div>
+      </el-row>
+      <div class="pagination-wrapper">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="countPages * 10"
+          @current-change="handleCurrentPages"
+        >
+        </el-pagination>
       </div>
-    </el-row>
-    <el-pagination
-      layout="prev, pager, next"
-      :total="countPages * 10"
-      @current-change="handleCurrentPages"
-    >
-    </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
-import reportContent from "~/pages/pastWorks/data.json";
-// import { pastWorks } from '../../api/model';
 import situationCard from "~/components/situationCard.vue";
 import windowResize from "~/plugins/windowResizeMixins";
 
@@ -27,10 +29,13 @@ export default {
   components: {
     situationCard
   },
+  async asyncData({ params, app }) {
+    let works = await app.$axios.asyncGet(`/api/situations`);
+    return { works }
+  },
   mixins: [windowResize],
   data() {
     return {
-      works: [],
       worksLength: [],
       countPages: 1,
       currentPage: 1,
@@ -38,12 +43,10 @@ export default {
     };
   },
   created() {
-    this.works = reportContent.currentSituation;
-    // this.works = reportContent.pastWorks
     this.worksLength = this.works.length;
 
     let start = 0,
-      end = 9;
+        end = 9;
 
     while (this.worksLength > 9) {
       this.pageDatas.set(this.countPages, this.works.slice(start, end));
@@ -83,6 +86,10 @@ export default {
 }
 
 .reportContent {
+  width: 100%;
+}
+
+.card-wrapper {
   width: 60%;
   margin: 0 auto;
 }
@@ -106,5 +113,9 @@ export default {
   justify-content: space-between;
   background-color: #2c2c2f;
   height: 100px;
+}
+
+.pagination-wrapper {
+  text-align: center;
 }
 </style>
