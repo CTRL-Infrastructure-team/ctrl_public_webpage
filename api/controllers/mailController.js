@@ -1,32 +1,54 @@
-// const nodemailer = require("nodemailer");
-// const mailData = require("../../key/config");
-// // gmailでの送信はよろしくないから別の方法を取るべき。
-// const smtpConfig = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: mailData.senderEmailAddress,
-//     pass: mailData.senderEmailPassword
-//   }
-// });
-// const createMail = text => {
-//   return {
-//     from: mailData.senderEmailAddress,
-//     to: mailData.senderEmailAddress,
-//     subject: "ＣＴＲＬＨＰからの問い合わせ",
-//     text: text
-//   };
-// };
+const nodemailer = require("nodemailer");
+const mailData = require("../../key/config");
+// gmailでの送信はよろしくないから別の方法を取るべき。
+const axios = require("axios");
+const smtpConfig = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: mailData.senderEmailAddress,
+    pass: mailData.senderEmailPassword
+  }
+});
+const createMailmessage = (text, email) => {
+  return {
+    from: mailData.senderEmailAddress,
+    to: email,
+    subject: "問い合わせを受け付けました。",
+    text: `このメールアドレスは送信専用です。返信しても反応はできません。\n返信には時間がかかる場合がございます。\n 以下の内容で問い合わせを受けつけました。\n${text}`
+  };
+};
+const slackSendmessage = (text, email) => {
+  return {
+    text: `CTRLホームページから問い合わせです。\n 内容：${text} \n email: ${email}`
+  };
+};
 
-// module.exports = {
-//   sendMail(req, res) {
-//     console.log(req.body);
-//     smtpConfig.sendMail(createMail(req.body.text), function(error, info) {
-//       error ? console.log(error) : console.log(`Email send:${info.response}`);
-//     });
-//     res.send({
-//       val: "testOK"
-//     });
-//   }
-// };
+module.exports = {
+  sendMail(req, res, next) {
+    smtpConfig.sendMail(
+      createMailmessage(req.body.text, req.body.email),
+      function(error, info) {
+        error ? console.log(error) : console.log(`Email send:${info.response}`);
+        next();
+      }
+    );
+  },
+  sendSlack(req, res) {
+    axios
+      .post(
+        "https://hooks.slack.com/services/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",
+        JSON.stringify(slackSendmessage(req.body.text, req.body.email))
+      )
+      .then(() => console.log("send"))
+      .catch(err => console.log(err.message));
+
+    res.send({
+      val: "testOK"
+    });
+  }
+};
+// smtpConfig.sendMail(createMail("test"), function(error, info) {
+//   error ? console.log(error) : console.log(`Email send:${info.response}`);
+// });

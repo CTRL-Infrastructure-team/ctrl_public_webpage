@@ -68,8 +68,8 @@ export default {
       console.log("send");
       axios
         .post(
-          "/api/mail/",
-          { text: sendText },
+          "/api/mail",
+          { text: this.inquiry.value, email: this.email.value },
           {
             headers: { "Content-Type": "application/json" }
           }

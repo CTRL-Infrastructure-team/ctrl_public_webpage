@@ -5,7 +5,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   passportLocal = require("./passport/local");
 
-// const mailController = require("./controllers/mailController");
+const mailController = require("./controllers/mailController");
 const pastworkController = require("./controllers/pastworkController"),
   situationController = require("./controllers/situationController"),
   userController = require("./controllers/userController");
@@ -58,7 +58,7 @@ app.post("/pastworksearch", pastworkController.showSearch);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
 
 //mailMethods
-// app.post("/mail", mailController.sendMail);
+app.post("/mail", mailController.sendMail, mailController.sendSlack);
 module.exports = {
   path: "/api/",
   handler: app
