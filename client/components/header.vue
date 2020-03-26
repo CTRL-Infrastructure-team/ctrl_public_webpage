@@ -3,7 +3,7 @@
     <header class="theflex">
       <div class="theflex_cell">
         <nuxt-link to="/">
-          <img src="~/assets/img/logo_200120_0001.jpg" class="img" />
+          <img src="~/assets/img/logo.png" class="img" />
         </nuxt-link>
       </div>
       <div class="theflex_cell">
@@ -96,13 +96,13 @@ export default {
 .button {
   @include mq {
     cursor: pointer;
-    border: 2px solid #606964;
+    border: 2px solid #666;
     color: #5c6961;
     background-color: #2c2c2c;
     transition: 500ms;
     &:hover {
       color: #c9c2c2;
-      background-color: #6c7a72;
+      background-color: #666;
       transition: 500ms;
     }
   }
@@ -114,7 +114,6 @@ export default {
   margin: 0;
   padding: 0;
   display: block;
-  mix-blend-mode:darken;
   @include mq {
     margin-left: 10px;
   }
