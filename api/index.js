@@ -22,12 +22,12 @@ const tl =
 if (tl) {
   mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: false
   });
 } else {
-  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
+  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: false
   });
 }
 mongoose.Promise = global.Promise;
