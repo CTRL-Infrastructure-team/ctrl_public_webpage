@@ -1,19 +1,19 @@
 <template>
   <div class="form">
     <div class="page-title">
-      <span>問い合わせ</span>
+      <span>ログインページ</span>
     </div>
 
-    <el-card class="card op03">
+    <el-card class="login-card">
       <form action="post" class="form">
-        <div class="form-email form-box">
+        <div class="form-loginId form-box">
           <p>
-            <label for="email">返信先メールアドレス</label>
+            <label for="id">ログインIDまたはメールアドレス</label>
             <span>(必須)</span>
           </p>
-          <p>問い合わせへの返答をお送りするための連絡先メールアドレスを正確に入力してください。</p>
+          <!-- <p>問い合わせへの返答をお送りするための連絡先メールアドレスを正確に入力してください。</p> -->
           <el-input
-            placeholder="メールアドレス"
+            placeholder="IDまたはメールアドレス"
             v-model="email.value"
             name="email"
             clearable
@@ -21,23 +21,23 @@
           ></el-input>
           {{email.alert}}
         </div>
-        <div class="form-inquiry form-box">
+        <div class="form-password form-box">
           <p>
-            <label for="inquiry">問い合わせ本文</label>
+            <label for="password">パスワード</label>
             <span>(必須)</span>
           </p>
-          <p>問い合わせ内容を入力してください</p>
+          <!-- <p>問い合わせ内容を入力してください</p> -->
           <el-input
-            placeholder="要件を入力"
-            v-model="inquiry.value"
-            name="inquiry"
-            type="textarea"
+            placeholder="パスワード"
+            v-model="password.value"
+            name="password"
+            type="password"
             @change="doValidateInquiry(inquiry)"
           ></el-input>
-          {{inquiry.alert}}
+          {{password.alert}}
         </div>
         <div class="form-button">
-          <el-button @clicl="doSendForm">内容を確認する</el-button>
+          <el-button @clicl="doSendForm">ログイン</el-button>
         </div>
       </form>
     </el-card>
@@ -47,7 +47,7 @@
 export default {
   data(){
     return{
-      inquiry:{
+      password:{
         value:'',
         alert:''
       },
