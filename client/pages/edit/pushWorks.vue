@@ -6,7 +6,7 @@
     <div class="form">
       <div class="form-inquiry form-box">
         <p>
-          <label for="inquiry">タイトル</label>
+          <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
         <br>
@@ -15,73 +15,76 @@
       
       <div class="form-inquiry form-box">
           <p>
-            <label for="inquiry">本文</label>
+            <label for="content">本文</label>
             <span>(必須)</span>
           </p>
           <p>成果物の内容を入力してください</p>
           <el-input
             placeholder="内容を入力"
             v-model="inquiry.value"
-            name="inquiry"
+            name="content"
             type="textarea"
             rows="7"
             cols="100"
-            @change="doValidateInquiry(inquiry)"
+            @change="doValidateInquiry(content)"
           ></el-input>
           {{inquiry.alert}}
         </div>
         <div class="images">
-        <div class="image1">
-          画像1:
-        <el-upload
-          class="upload-demo"
-          drag
-          action="localhost:3000"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          :auto-upload="false"
-          :limit="1"
-          multiple>
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-        </el-upload>
+          <div class="image1">
+            画像1:
+            <el-upload
+              class="upload-demo"
+              drag
+              action="localhost:3000"
+              :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :file-list="fileList1"
+              :auto-upload="false"
+              :limit="1"
+              multiple>
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+              <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+            </el-upload>
+            <p>
+              <img src="data.image1">
+            </p>
+          </div>
+          <div class="image2">
+            画像2：
+            <el-upload
+              class="upload-demo2"
+              drag
+              action="localhost:3000"
+              :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :file-list="fileList2"
+              :auto-upload="false"
+              :limit="1"
+              multiple>
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+              <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+            </el-upload>
+          </div>
         </div>
-        <div class="image2">
-        画像2:
-        <el-upload
-          class="upload-demo"
-          drag
-          action="localhost:3000"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          :auto-upload="false"
-          :limit="1"
-          multiple>
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-        </el-upload>
-        </div>
-        </div>
-        <div fileUpload>
-        ファイルをアップロード
-        <el-upload
-          class="upload-demo"
-          drag
-          action="localhost:3000"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          :auto-upload="false"
-          :limit="1"
-          multiple>
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-        </el-upload>
-        </div>
+          <div fileUpload>
+          ファイルをアップロード
+              <el-upload
+                class="upload-demo"
+                drag
+                action="localhost:3000"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :file-list="fileList3"
+                :auto-upload="false"
+                :limit="1"
+                multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+              </el-upload>
+          </div>
         <div class="form-button">
           Twitter IDを掲載する
         </div>
@@ -97,15 +100,22 @@ import { Input } from 'element-ui'
 export default {
      data(){
     return{
+      data:{
+        image1:'',
+        image2:'',
+
+      },
       title:{
         value:'',
         alert:'',
       },
-      inquiry:{
+      content:{
         value:'',
         alert:''
       },
-      fileList:[],
+      fileList1:[],
+      fileList2:[],
+      fileList2:[],
       checked: false,
       alert:''
     }
@@ -126,7 +136,7 @@ export default {
       this.title.value ? '': this.title.alert = '値を入力してください'
    },
     doValidateInquiry(data,index){
-      this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
+      this.content.value ? '': this.content.alert = '値を入力してください'
    },
   }
 }
