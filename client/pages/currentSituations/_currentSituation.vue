@@ -92,6 +92,7 @@ export default {
     padding-right: 30px;
   }
   .flex-box{
+    margin-top: 20px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -99,7 +100,7 @@ export default {
     align-items: stretch;
     &-images{
       width: 400px;
-      margin-top: 50px;
+      //margin-top: 50px;
       margin-right: 30px;
       margin-bottom: 20px;
     }
