@@ -1,10 +1,16 @@
-const pkgcloud = require("pkgcloud");
+const pkgcloud = require("pkgcloud"),
+      { createReadStream } = require("fs"),
+      { PassThrough } = require('stream');
+
+require('dotenv').config();
 
 const openstack = pkgcloud.storage.createClient({
   provider: 'openstack',
-  username: 'username',
-  password: 'password',
-  authUrl: 'service url'
+  username: process.env.CONOHA_USERNAME,
+  password: process.env.CONOHA_PASSWORD,
+  authUrl: process.env.CONOHA_AUTH_URL,
+  tenantId: process.env.CONOHA_TENANT_ID,
+  region: process.env.CONOHA_REGION
 });
 
 module.exports = (fileList) => {
@@ -14,7 +20,7 @@ module.exports = (fileList) => {
       if(err) {
         console.log(err);
       }
-      let uploadFile = fs.createReadStream(fileList[0]),
+      let uploadFile = createReadStream(fileList[0].path),
       writeStream = openstack.upload({
         container: container.name,
         remote: fileList[0].originalname
@@ -24,6 +30,7 @@ module.exports = (fileList) => {
           console.log(err.message);
       });
       writeStream.on('success', (file) => {
+          console.log(file);
           console.log("upload success!");
       });
 

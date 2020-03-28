@@ -1,6 +1,6 @@
 const Situation = require("../models/situations"),
       openstack = require("../config/openstack");
-
+  
 module.exports = {
   situationsList(req, res) {
     Situation.find({}).then(situations => {
@@ -17,7 +17,7 @@ module.exports = {
     const receiveFiles = req.files;
     let receiveTitle = req.body.title;
     console.log("title", receiveTitle);
-    console.log("file", receiveFile);
+    console.log("file", receiveFiles);
     openstack(receiveFiles);
     res.send("response catch!");
 
