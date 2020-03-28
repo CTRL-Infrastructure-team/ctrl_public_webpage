@@ -1,4 +1,5 @@
-const Situation = require("../models/situations");
+const Situation = require("../models/situations"),
+      openstack = require("../config/openstack");
 
 module.exports = {
   situationsList(req, res) {
@@ -13,24 +14,28 @@ module.exports = {
     });
   },
   createSituation(req, res) {
-    const filename = req.files[0].buffer.toString();
-    console.log("filename", filename);
+    const receiveFiles = req.files;
+    let receiveTitle = req.body.title;
+    console.log("title", receiveTitle);
+    console.log("file", receiveFile);
+    openstack(receiveFiles);
+    res.send("response catch!");
 
-    User.findById(req.user).then(user => {
-      username = user.username
-    })
+    // User.findById(req.user).then(user => {
+    //   username = user.username
+    // })
 
-    let newSituation = new Situation({
-      title: req.body.title,
-      content: req.body.content,
-      img_utl: '#',
-      contributor: username,
-      twitter_id: '@example'
-    })
+    // let newSituation = new Situation({
+    //   title: req.body.title,
+    //   content: req.body.content,
+    //   img_utl: '#',
+    //   contributor: username,
+    //   twitter_id: '@example'
+    // })
     
-    newSituation.save(err => {
-      console.log(err);
-      res.send();
-    });
+    // newSituation.save(err => {
+    //   console.log(err);
+    //   res.send();
+    // });
   }
 };
