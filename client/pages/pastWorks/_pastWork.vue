@@ -1,23 +1,23 @@
 <template>
   <div class="content">
-    <div class="content-wrapper">
+    <el-card class="content-wrapper">
       <h2>{{ title }}</h2>
       <el-row>
         <el-col :span="topImage">
           <div class="flex_images_top">
-            <el-image :src="top_img_url" :preview-src-list="images"> </el-image>
+            <el-image style="width: 100%;" :src="top_img_url" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image :src="other_img_url[0]" :preview-src-list="images"> </el-image>
+            <el-image style="width: 100%;" :src="other_img_url[0]" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image :src="other_img_url[1]" :preview-src-list="images"> </el-image>
+            <el-image style="width: 100%;" :src="other_img_url[1]" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
       </el-row>
@@ -32,7 +32,7 @@
           {{ "ダウンロードはこちら : " }} <a :href="download_url">download!</a>
         </el-col>
       </el-row>
-    </div>
+    </el-card>
   </div>
 </template>
 <script>
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       images: [],
-      modifiedTime: this.createdAt
+      modifiedTime: this.createdAt,
     };
   },
   created() {
@@ -76,23 +76,26 @@ export default {
 .content-wrapper {
   margin: 0 auto;
   width: 90%;
-  max-width: 600px;
+  max-width: 700px;
+  background-color: #2c2c2c;
+  color: $mainchar;
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.el-row {
+  margin: 0px auto;
 }
 
 .flex_images_top {
   width: 95%;
-  max-height: 50%;
   margin: 0 auto;
-  @include mq {
-    margin: 0px 0px;
-  }
+  text-align: center;
 }
 .flex_images {
   width: 90%;
-  max-height: 50%;
   margin: 20px auto;
-  @include mq {
-    margin: 20px 0px;
-  }
+  vertical-align: bottom;
 }
 </style>

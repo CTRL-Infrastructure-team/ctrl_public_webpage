@@ -1,28 +1,28 @@
 <template>
   <div class="content"> 
-    <h2>{{ title }}</h2>
-    <div class="flex-box">
-      <div class="flex-box-images">
-        <el-row>
-          <div class="flex_images_top">
-            <el-image
-              :src="img_url"
-              :preview-src-list="[img_url]"
-            >
-            </el-image>
-          </div>
+    <el-card class="content-wrapper">
+      <h2>{{ title }}</h2>
+      <div class="flex-box">
+        <div class="flex-box-images">
+            <div class="flex_images_top">
+              <el-image
+                :src="img_url"
+                :preview-src-list="[img_url]"
+              >
+              </el-image>
+            </div>
+      </div>
+      <el-row>
+        <el-col :span="topImage">
+        {{ '投稿日 : ' + createdAt }}
+        <br>
+        {{ '投稿者 : ' + contributor }}
+        <br>
+        {{ content }} 
+        </el-col>
       </el-row>
-    </div>
-    <el-row>
-      <el-col :span="topImage">
-      {{ '投稿日 : ' + createdAt }}
-      <br>
-      {{ '制作者 : ' + contributor }}
-      <br>
-      {{ content }} 
-      </el-col>
-    </el-row>
-    </div>  
+      </div>
+    </el-card>
   </div>
 </template>
 <script>
@@ -66,8 +66,16 @@ export default {
 
 
 .content {
-  margin: 20px 20px;
-  
+  margin: 20px 0px;
+  width: 100%;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 800px;
+  background-color: #2c2c2c;
+  color: $mainchar;
 }
 
 .flex_images_top {
@@ -87,12 +95,12 @@ export default {
   }
   //margin-left: 40px;
 }
-@media screen and (min-width:768px){
-  .row_image{
-    padding-right: 30px;
+.flex-box{
+  margin-top: 20px;
+  &-images {
+    text-align: center;
   }
-  .flex-box{
-    margin-top: 20px;
+  @include mq {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -100,10 +108,15 @@ export default {
     align-items: stretch;
     &-images{
       width: 400px;
-      //margin-top: 50px;
       margin-right: 30px;
       margin-bottom: 20px;
     }
+  }
+}
+
+@media screen and (min-width:768px){
+  .row_image{
+    padding-right: 30px;
   }
 }
 </style>

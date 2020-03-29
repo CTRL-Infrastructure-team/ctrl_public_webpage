@@ -4,8 +4,7 @@
             <div slot="header" class="clearfix">
                 <h3><nuxt-link :to="`/pastWorks/${work._id}`" :work="work">{{ work.title }}</nuxt-link></h3>
             </div>
-            <div class="img_holder">
-                <img :src="img" />
+            <div class="img_holder" :style="`background-image: url(${img})`">
             </div>
             <div class="text item">
                 {{ '日付 : ' + modifiedTime }} 
@@ -43,30 +42,30 @@ export default {
 }
 
 .item {
-margin-bottom: 18px;
+    margin-bottom: 18px;
 }
 
 .clearfix:before,
 .clearfix:after {
-display: table;
-content: "";
+    display: table;
+    content: "";
 }
 .clearfix:after {
-clear: both
+    clear: both
 }
 
 .box-card {
-width: 100%;
-background-color: #2c2c2c;
-color: $mainchar;
+    width: 100%;
+    height: 450px;
+    background-color: #2c2c2c;
+    color: $mainchar;
 }
 
 .img_holder {
     width: 100%;
-}
-
-img {
-    width: 80%;
+    padding-top: 56.25%;
+    background-position: center center;
+    background-size: cover;
 }
 
 a {

@@ -90,12 +90,18 @@ export default {
 }
 
 .card-wrapper {
-  width: 60%;
   margin: 0 auto;
+  width: 90%;
+  @include mq {
+    width: 60%;
+  }
 }
 
 .single-panel {
-  margin: 40px 0px;
+  margin: 10px 0px;
+  @include mq {
+    margin: 20px 0px;
+  }
 }
 
 .panel-header {

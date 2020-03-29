@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import querystring from "querystring";
 import axios from "axios";
 
 export default {
