@@ -15,11 +15,9 @@ module.exports = {
       res.send(situation);
     });
   },
-  createSituation(req, res) {
+  async createSituation(req, res) {
     const receiveFiles = req.files,
           requestPath = 'situation';
-    openstack(requestPath, receiveFiles);
-    
     User.findById(req.user).then(user => {
       username = user.username;
       let newSituation = new Situation({
@@ -29,9 +27,11 @@ module.exports = {
         contributor: username,
         twitter_id: '@example'
       });
-      
+      openstack(requestPath, receiveFiles)
       newSituation.save(err => {
-        console.log(err);
+        if(err) {
+          console.log(err);
+        }
         res.send("response catch!");
       });
     });

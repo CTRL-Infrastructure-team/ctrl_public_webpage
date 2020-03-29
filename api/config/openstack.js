@@ -1,5 +1,5 @@
 const pkgcloud = require("pkgcloud"),
-      { createReadStream } = require("fs");
+      { createReadStream, unlink } = require("fs");
 
 require('dotenv').config();
 
@@ -26,6 +26,7 @@ module.exports = (requestPath, fileList) => {
         console.log(err);
       }
       fileList.map((file) => {
+        console.log(file.path)
         let uploadFile = createReadStream(file.path),
         writeStream = openstack.upload({
           container: container.name,
@@ -35,9 +36,16 @@ module.exports = (requestPath, fileList) => {
         writeStream.on('error', (err) => {
           console.log(err.message);
         });
-        writeStream.on('success', (file) => {
-          console.log(file);
+        
+        writeStream.on('success', (result) => {
+          console.log(result);
           console.log("upload success!");
+          unlink( file.path, err => {
+            if(err) {
+              console.log(err);
+            }
+            console.log('file removed!');
+          })
         });
         
         uploadFile.pipe(writeStream);

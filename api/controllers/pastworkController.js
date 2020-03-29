@@ -45,7 +45,7 @@ module.exports = {
     });
   },
   worksList(req, res) {
-    PastWork.find({}).then(result => {
+    PastWork.find({}).sort({ createdAt: -1 }).then(result => {
       res.send(result)
     })
   },
@@ -61,8 +61,7 @@ module.exports = {
         gameFile = receiveFiles.filter(file => {
           return file.fieldname === 'gameFile'
         });
-    openstack(requestPath, receiveFiles);
-
+        
     User.findById(req.user).then(user => {
       username = user.username;
       let newWork = new PastWork({
@@ -77,7 +76,8 @@ module.exports = {
         contributor: username,
         twitter_id: '@example'
       });
-
+      openstack(requestPath, receiveFiles);
+          
       newWork.save(err => {
           console.log(err);
           res.send("push work!");

@@ -5,19 +5,19 @@
       <el-row>
         <el-col :span="topImage">
           <div class="flex_images_top">
-            <el-image :src="img" :preview-src-list="images"> </el-image>
+            <el-image :src="top_img_url" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image :src="img2" :preview-src-list="images"> </el-image>
+            <el-image :src="other_img_url[0]" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image :src="img3" :preview-src-list="images"> </el-image>
+            <el-image :src="other_img_url[1]" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
       </el-row>
@@ -25,21 +25,17 @@
         <el-col :span="topImage">
           {{ "投稿日 : " + createdAt }}
           <br />
-          {{ "制作者 : " + producer }}
+          {{ "制作者 : " + contributor }}
           <br />
           {{ content }}
           <br />
-          {{ "ダウンロードはこちら : " + download_url }}
+          {{ "ダウンロードはこちら : " }} <a :href="download_url">download!</a>
         </el-col>
       </el-row>
     </div>
   </div>
 </template>
 <script>
-import img from "~/assets/img/img4.jpg";
-import img2 from "~/assets/img/img2.jpg";
-import img3 from "~/assets/img/img1.jpg";
-import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
 import modify from "~/plugins/modifiedTime";
 
@@ -52,25 +48,16 @@ export default {
   mixins: [windowResize],
   data() {
     return {
-      img: img,
-      img2: img2,
-      img3: img3,
-      images: [img, img2, img3],
-      submission: [],
+      images: [],
       modifiedTime: this.createdAt
     };
   },
   created() {
-    let works = pastWork.pastWorks,
-        work = [],
-        para = this.$route.params.pastWork;
-    
-    Object.keys(works).forEach(function(key) {
-      if (works[key].title == para) {
-        work = works[key];
-      }
-    });
-    this.submission = work;
+    this.images = [
+        this.top_img_url,
+        this.other_img_url[0],
+        this.other_img_url[1]
+    ]
   },
   computed: {
     topImage() {
