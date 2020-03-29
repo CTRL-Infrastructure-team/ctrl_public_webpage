@@ -6,8 +6,8 @@
         <el-row>
           <div class="flex_images_top">
             <el-image
-              :src="img"
-              :preview-src-list="images"
+              :src="img_url"
+              :preview-src-list="[img_url]"
             >
             </el-image>
           </div>
