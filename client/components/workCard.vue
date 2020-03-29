@@ -26,7 +26,7 @@ export default {
     props: ['work'],
     data() {
         return {
-            img: this.work.img_url, 
+            img: this.work.top_img_url, 
             modifiedTime: modify(this.work.createdAt) 
         }
     },

@@ -91,3 +91,6 @@ sw.*
 
 # email data
 key/
+
+# image data
+cache/

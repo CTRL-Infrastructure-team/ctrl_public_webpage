@@ -30,6 +30,9 @@ export default {
       return modify(this.situation.createdAt)
     }
   },
+  mounted() {
+    console.log("situation.img_url", this.situation.img_url)
+  }
 };
 </script>
 

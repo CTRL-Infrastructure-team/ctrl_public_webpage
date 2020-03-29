@@ -8,7 +8,10 @@ const mongoose = require("mongoose"),
       },
       content: String,
       download_url: String,
-      img_url: String,
+      top_img_url: String,
+      other_img_url: [{
+         type: String 
+      }],
       contributor: String,
       twitter_id: String,
       producer: String

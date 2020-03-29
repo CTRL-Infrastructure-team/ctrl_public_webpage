@@ -1,26 +1,55 @@
-// const pkgcloud = require("pkgcloud");
+const pkgcloud = require("pkgcloud"),
+      { createReadStream, unlink } = require("fs");
 
-// const openstack = pkgcloud.storage.createClient({
-//   provider: 'openstack',
-//   username: 'username',
-//   password: 'password',
-//   authUrl: 'service url'
-// });
+require('dotenv').config();
 
-// openstack.createContainer({
-//   name: 'my-container',
-//   }, (err, container) => {
-//     if(err) {
-//       console.log(err);
-//     }
-//   }
-// );
+const openstack = pkgcloud.storage.createClient({
+  provider: 'openstack',
+  username: process.env.CONOHA_USERNAME,
+  password: process.env.CONOHA_PASSWORD,
+  authUrl: process.env.CONOHA_AUTH_URL,
+  tenantId: process.env.CONOHA_TENANT_ID,
+  region: process.env.CONOHA_REGION
+});
 
-// const writeStream = openstack.upload({
-//   container: 'container name',
-//   remote: 'remote file name'
-// });
-
-// module.exports = {
-
-// };
+module.exports = (requestPath, fileList) => {
+  let containerName = '';
+  if(requestPath === 'situation') {
+    containerName = 'ctrl-situations';
+  } else {
+    containerName = 'ctrl-pastworks';
+  }
+  openstack.createContainer({
+    name: containerName,
+    }, (err, container) => {
+      if(err) {
+        console.log(err);
+      }
+      fileList.map((file) => {
+        console.log(file.path)
+        let uploadFile = createReadStream(file.path),
+        writeStream = openstack.upload({
+          container: container.name,
+          remote: file.originalname
+        });
+        
+        writeStream.on('error', (err) => {
+          console.log(err.message);
+        });
+        
+        writeStream.on('success', (result) => {
+          console.log(result);
+          console.log("upload success!");
+          unlink( file.path, err => {
+            if(err) {
+              console.log(err);
+            }
+            console.log('file removed!');
+          })
+        });
+        
+        uploadFile.pipe(writeStream);
+      })
+    }
+  )
+};

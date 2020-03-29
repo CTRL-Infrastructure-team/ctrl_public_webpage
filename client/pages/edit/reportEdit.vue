@@ -37,10 +37,12 @@
         <el-upload
           class="upload-demo"
           drag
-          action="localhost:3000"
+          action=""
+          :on-change="dropImage"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :file-list="fileList"
+          list-type="picture"
           :auto-upload="false"
           :limit="1"
           multiple>
@@ -53,27 +55,23 @@
         </div> -->
         <el-checkbox v-model="checked" class="checkbox">Twitter IDを掲載する</el-checkbox>
         <div class="form-button">
-          <el-button @clicl="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">内容を確認する</el-button>
         </div>
     </div>
   </div>
 </template>
 <script>
 import { Input } from 'element-ui'
+import axios from 'axios'
+
 export default {
   data(){
     return{
-      title:{
-        value:'',
-        alert:'',
-      },
-      inquiry:{
-        value:'',
-        alert:''
-      },
-      fileList:[],
+      title: { value:'', alert:'' },
+      inquiry: { value:'', alert:'' },
+      fileList: [],
       checked: false,
-      alert:''
+      alert: ''
     }
   },
   methods:{
@@ -86,8 +84,25 @@ export default {
     doSendFile(){
       
     },
+    dropImage(file, fileList) {
+      this.fileList = fileList
+      console.log(this.fileList[0].raw)
+      console.log("file upload!")
+    },
     doSendForm(){
+      let formData = new FormData(),
+          uploadImage = this.fileList[0].raw
 
+      formData.append('file', uploadImage)
+      formData.append('title', this.title.value)
+      formData.append('inquery', this.inquiry.value)
+
+      axios.post('/api/situation',
+        formData,
+        { header: { 'Content-Type': 'multipart/form-data' } }
+      ).then(result => {
+        console.log(result)
+      })
     },
     doValidateTitle(data,index){
       this.title.value ? '': this.title.alert = '値を入力してください'
