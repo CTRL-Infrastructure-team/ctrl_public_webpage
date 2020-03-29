@@ -1,6 +1,5 @@
 const pkgcloud = require("pkgcloud"),
-      { createReadStream } = require("fs"),
-      { PassThrough } = require('stream');
+      { createReadStream } = require("fs");
 
 require('dotenv').config();
 
@@ -13,28 +12,36 @@ const openstack = pkgcloud.storage.createClient({
   region: process.env.CONOHA_REGION
 });
 
-module.exports = (fileList) => {
+module.exports = (requestPath, fileList) => {
+  let containerName = '';
+  if(requestPath === 'situation') {
+    containerName = 'ctrl-situations';
+  } else {
+    containerName = 'ctrl-pastworks';
+  }
   openstack.createContainer({
-    name: 'ctrl-situations',
+    name: containerName,
     }, (err, container) => {
       if(err) {
         console.log(err);
       }
-      let uploadFile = createReadStream(fileList[0].path),
-      writeStream = openstack.upload({
-        container: container.name,
-        remote: fileList[0].originalname
-      });
-
-      writeStream.on('error', (err) => {
+      fileList.map((file) => {
+        let uploadFile = createReadStream(file.path),
+        writeStream = openstack.upload({
+          container: container.name,
+          remote: file.originalname
+        });
+        
+        writeStream.on('error', (err) => {
           console.log(err.message);
-      });
-      writeStream.on('success', (file) => {
+        });
+        writeStream.on('success', (file) => {
           console.log(file);
           console.log("upload success!");
-      });
-
-      uploadFile.pipe(writeStream);
+        });
+        
+        uploadFile.pipe(writeStream);
+      })
     }
   )
 };

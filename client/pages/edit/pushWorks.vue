@@ -38,12 +38,11 @@
             <el-upload
               class="upload-demo"
               drag
-              action="localhost:3000"
-              :on-preview="handlePreview1"
-              :on-remove="handleRemove1"
-              :file-list="fileList1"
+              action=""
+              :on-change="changeTopImage"
+              :file-list="topImage"
               :auto-upload="false"
-              :list-type="picture"
+              list-type="picture"
               :limit="1"
               @change="setImage1($event)"
               multiple>
@@ -62,13 +61,12 @@
             <el-upload
               class="upload-demo2"
               drag
-              action="localhost:3000"
-              :on-preview="handlePreview2"
-              :on-remove="handleRemove2"
-              :file-list="fileList2"
+              action=""
+              :on-change="changeOtherImage"
+              :file-list="otherImage"
               :auto-upload="false"
-              :list-type="picture"
-              :limit="1"
+              list-type="picture"
+              :limit="2"
               multiple>
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
@@ -84,10 +82,9 @@
               <el-upload
                 class="upload-demo"
                 drag
-                action="localhost:3000"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :file-list="fileList"
+                action=""
+                :on-change="changeGameFile"
+                :file-list="gameFile"
                 :auto-upload="false"
                 :limit="1"
                 multiple>
@@ -100,58 +97,58 @@
         </div>
         <el-checkbox v-model="checked">Twitter IDを掲載する</el-checkbox>
         <div class="form-button">
-          <el-button @clicl="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">内容を確認する</el-button>
         </div>
     </div>
   </div>
 </template>
 <script>
 import { Input } from 'element-ui'
+import axios from 'axios'
+
 export default {
      data() {
        return{
-      data:{
-        image1:'',
-        image2:'',
-      },
-      title:{
-        value:'',
-        alert:'',
-      },
-      content:{
-        value:'',
-        alert:''
-      },
-      fileList1:[],
-      fileList2:[],
-      fileList:[],
+      data: { image1:'', image2:'' },
+      title: { value:'', alert:'' },
+      content: { value:'', alert:'' },
+      topImage: [],
+      otherImage: [],
+      gameFile: [],
       checked: false,
-      alert:''
+      alert: ''
     }
   },
   methods:{
-    handleRemove(file,fileList){
-      console.log(file, fileList);
+    changeTopImage(file, topImage) {
+      this.topImage = topImage
     },
-    handlePreview(file){
-      console.log(file);
+    changeOtherImage(file, otherImage) {
+      this.otherImage = otherImage
     },
-    handleRemove1(file,fileList1){
-      console.log(file, fileList);
-    },
-    handlePreview1(file){
-      console.log(file);
-    },
-    handleRemove2(file,fileList2){
-      console.log(file, fileList);
-    },
-    handlePreview2(file){
-      console.log(file);
-    },
-    doSendFile(){
-      
+    changeGameFile(file, gameFile) {
+      this.gameFile = gameFile
     },
     doSendForm(){
+      let formData = new FormData(),
+          uploadFile = this.gameFile[0].raw,
+          uploadTopImage = this.topImage[0].raw
+
+      this.otherImage.map(image => {
+        formData.append('otherImage', image.raw)
+      })
+
+      formData.append('gameFile', uploadFile)
+      formData.append('topImage', uploadTopImage)
+      formData.append('title', this.title.value)
+      formData.append('content', this.content.value)
+
+      axios.post('/api/pastWork',
+        formData,
+        { header: { 'Content-Type': 'multipart/form-data' } }
+      ).then(result => {
+        console.log(result)
+      })
     },
     doValidateTitle(data,index){
       this.title.value ? '': this.title.alert = '値を入力してください'

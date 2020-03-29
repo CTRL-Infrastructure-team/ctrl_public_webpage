@@ -35,10 +35,10 @@
           画像:
         </div>
         <el-upload
-          :on-change="dropImage"
           class="upload-demo"
           drag
           action=""
+          :on-change="dropImage"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :file-list="fileList"
@@ -67,17 +67,11 @@ import axios from 'axios'
 export default {
   data(){
     return{
-      title:{
-        value:'',
-        alert:'',
-      },
-      inquiry:{
-        value:'',
-        alert:''
-      },
-      fileList:[],
+      title: { value:'', alert:'' },
+      inquiry: { value:'', alert:'' },
+      fileList: [],
       checked: false,
-      alert:''
+      alert: ''
     }
   },
   methods:{
