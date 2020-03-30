@@ -12,9 +12,7 @@
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
         <div class="modal-flex">
-          <!-- <div class="modal-flex_img"> -->
           <img :src="modalImg" class="img modal-flex_img" />
-          <!-- </div> -->
           <div class="modal-flex-text">
             <h2 class="modal-flex-text_title">{{modalText.title}}</h2>
             <p>{{modalText.body}}</p>
@@ -22,7 +20,7 @@
         </div>
       </myModal>
     </div>
-    <div class="flex flex_around">
+    <div class="flex flex-around">
       <news class="news_box" :articles="articles"/>
       <twitterbox class="twitterBox"></twitterbox>
     </div>
@@ -123,7 +121,8 @@ $modalBorder: #8193a9;
       justify-content: center;
       align-items: center;
     }
-    &_around {
+    &-around {
+      margin: 20px 0px;
       flex-wrap: nowrap;
       flex-direction: column;
       justify-content: space-around;
@@ -143,26 +142,29 @@ $modalBorder: #8193a9;
 
 @media screen and (min-width:768px){
   .flex {
-  display: flex;
+    display: flex;
   flex-wrap: wrap;
   // flex-direction: column;
   &_center {
     justify-content: center;
     align-items: center;
   }
-  &_around {
+  &-around {
+    margin: 20px 0px;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-start;
   }
 }
 
   .news_box {
     width: 50%;
+    margin: 0px 30px;
   }
   .twitterBox {
     width: 30%;
+    margin: 0px 30px;
     //height: 500px;
     //overflow-y: scroll;
   }

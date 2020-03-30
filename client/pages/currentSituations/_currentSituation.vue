@@ -14,11 +14,9 @@
       </div>
       <el-row>
         <el-col :span="topImage">
-        {{ '投稿日 : ' + createdAt }}
-        <br>
-        {{ '投稿者 : ' + contributor }}
-        <br>
-        {{ content }} 
+          <div>{{ '投稿日 : ' + createdAt }}</div>
+          <div>{{ '投稿者 : ' + contributor }}</div>
+          <div>{{ content }}</div> 
         </el-col>
       </el-row>
       </div>
@@ -54,13 +52,7 @@ export default {
 <style lang="scss" scoped>
 .el{
   &-row{
-    margin-left: 10px;
-    margin-top: 10px;
-    //width: 600px;
-  }
-  &-col{
-    //width: 600px
-    //margin-right: 30px;
+    margin: 10px;
   }
 }
 
