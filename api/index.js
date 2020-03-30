@@ -5,7 +5,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   passportLocal = require("./config/passport/local"),
   multer = require("multer");
-  upload = multer({ dest: './api/config/cache/' })
+upload = multer({ dest: "./api/config/cache/" });
 // let storage = multer.diskStorage({
 //   destination: (req, file, cb) => { cb(null, '/api/config/cache/') },
 //   filename: (req, file, cb) => { cb(null, file.originalname) }
@@ -30,7 +30,7 @@ if (tl) {
     useUnifiedTopology: false
   });
 } else {
-  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
+  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
     useNewUrlParser: true,
     useUnifiedTopology: false
   });
@@ -52,12 +52,12 @@ app.use(passport.session());
 passport.use(passportLocal);
 
 passport.serializeUser((user, done) => {
-  console.log(user)
+  console.log(user);
   done(null, user.id);
 });
 
 passport.deserializeUser((user, done) => {
-    done(null, user);
+  done(null, user);
 });
 
 // create show update delete
@@ -70,7 +70,17 @@ app.get("/userTest", userController.common);
 
 //situationMethods
 app.get("/situations", situationController.situationsList);
-app.post("/situation", upload.any(), situationController.createSituation);
+app.post(
+  "/situation",
+  (req, res, next) => {
+    console.log(req.body);
+    next();
+  },
+  situationController.SituationValidate,
+  situationController.validateResult,
+  upload.any(),
+  situationController.createSituation
+);
 app.get("/situations/:situationId", situationController.show);
 
 //pastworkMethods

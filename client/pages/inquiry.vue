@@ -65,7 +65,6 @@ export default {
   methods: {
     doSendForm() {
       const sendText = `${this.inquiry}\n From:${this.email}`;
-      console.log("send");
       axios
         .post(
           "/api/mail",

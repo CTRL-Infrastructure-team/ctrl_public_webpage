@@ -1,39 +1,54 @@
-const Situation = require("../models/situations"),
-      User = require("../models/user"),
-      openstack = require("../config/openstack");
-require('dotenv').config();
+const { Situation, SituationValidate } = require("../models/situations"),
+  User = require("../models/user"),
+  openstack = require("../config/openstack"),
+  { validationResult } = require("express-validator");
+require("dotenv").config();
 
 module.exports = {
   situationsList(req, res) {
-    Situation.find({}).sort({ createdAt: -1 }).then(situations => {
-      res.send(situations);
-    })
+    Situation.find({})
+      .sort({ createdAt: -1 })
+      .then(situations => {
+        res.send(situations);
+      });
   },
   show(req, res) {
-    let situationId = req.params.situationId
+    let situationId = req.params.situationId;
     Situation.findById(situationId).then(situation => {
       res.send(situation);
     });
   },
   async createSituation(req, res) {
     const receiveFiles = req.files,
-          requestPath = 'situation';
+      requestPath = "situation";
     User.findById(req.user).then(user => {
       username = user.username;
       let newSituation = new Situation({
         title: req.body.title,
         content: req.body.inquery,
-        img_url: process.env.CONOHA_STORAGE_URL	+ 'ctrl-situations/' + receiveFiles[0].originalname,
+        img_url:
+          process.env.CONOHA_STORAGE_URL +
+          "ctrl-situations/" +
+          receiveFiles[0].originalname,
         contributor: username,
-        twitter_id: '@example'
+        twitter_id: "@example"
       });
-      openstack(requestPath, receiveFiles)
+      openstack(requestPath, receiveFiles);
       newSituation.save(err => {
-        if(err) {
+        if (err) {
           console.log(err);
         }
         res.send("response catch!");
       });
     });
+  },
+  SituationValidate: SituationValidate,
+  validateResult(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    console.log(req.body, errors.array());
+    next();
   }
 };
