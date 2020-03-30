@@ -96,5 +96,15 @@ module.exports = {
       });
     });
   },
+  userPastWorks(req, res) {
+    User.findById(req.user).then(user => {
+      PastWork.find({ contributor: user.username }).then(data => {
+        res.send(data);
+      });
+    });
+  },
+  deleteWork(req, res) {
+    res.send('send');
+  },
   PastWorkValidate
 };
