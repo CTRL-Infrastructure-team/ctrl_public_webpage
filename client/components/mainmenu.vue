@@ -82,8 +82,8 @@ li {
 .text-wrapper {
   text-decoration: none;
   color: #f0f0f0;
-  font-size: calc(12px + 0.4vw);
-  word-wrap: nowrap;
+  font-size: calc(12.5px + 0.4vw);
+  white-space: nowrap;
   opacity: 0.8;
   &:hover {
     transition: 0.3s all ease;

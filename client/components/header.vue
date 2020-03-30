@@ -68,8 +68,7 @@ export default {
     margin-right: 10px;
   }
   &_menu {
-    flex: 4 1;
-    margin-right: 10%;
+    flex: 5 1;
   }
 }
 
