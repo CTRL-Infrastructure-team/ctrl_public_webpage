@@ -129,7 +129,7 @@ export default {
     &::before {
       content: "";
       position: absolute;
-      top: 15px;
+      top: 55%;
       left: -20px;
       width: 12px;
       height: 12px;
@@ -141,7 +141,7 @@ export default {
     margin-left: 50px;
     font-family: "ヒラギノ角ゴシック";
     text-align: left;
-    font-size: calc(17px + 0.625vw);
+    font-size: calc(15px + 0.8vw);
     font-weight: 500;
   }
 }
