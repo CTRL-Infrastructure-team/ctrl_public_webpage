@@ -11,7 +11,7 @@
         <div class="text item">
           {{ '日付 : ' + timestamp }} 
           <br>
-          {{ '  制作者 : ' + situation.contributor }}
+          {{ '投稿者 : ' + situation.contributor }}
           <br>
           {{ '概要 : ' + situation.content }}
         </div>
@@ -66,14 +66,20 @@ export default {
 
 
 .img_holder {
-  margin-left: 10px;
-  width: 30vw;
-  margin-right: 10px;
-  
+  margin: 0px 0px;
+  // width: 100%;
+  text-align: center;
+  @include mq {
+    margin: 0px 10px;
+    width: 30vw;
+  }
 }
 
 img{
-  width: 30vw;
+  width: 100%;
+  @include mq {
+    width: 30vw;
+  }
 }
 
 a {
@@ -82,11 +88,16 @@ a {
 }
 .flex{
   &-box {
+    // width: 100%;
     display: flex;
     flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
     align-items: stretch;
+    @include mq {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
   }
 }
 </style>

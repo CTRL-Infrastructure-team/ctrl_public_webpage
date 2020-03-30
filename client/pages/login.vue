@@ -5,46 +5,51 @@
     </div>
 
     <el-card class="login-card">
-      <form action="post" class="form">
+      <form method="POST" action="/api/login" class="form">
         <div class="form-loginId form-box">
           <p>
-            <label for="id">ログインIDまたはメールアドレス</label>
+            <label for="id">ログインID</label>
             <span>(必須)</span>
           </p>
-          <!-- <p>問い合わせへの返答をお送りするための連絡先メールアドレスを正確に入力してください。</p> -->
           <el-input
-            placeholder="IDまたはメールアドレス"
-            v-model="email.value"
-            name="email"
+            placeholder="ID"
+            v-model="username.value"
+            name="username"
             clearable
-            @change="doValidateEmail(email)"
+            @change="doValidateUser(username)"
           ></el-input>
+<<<<<<< HEAD
           {{ email.alert }}
+=======
+          {{ username.alert }}
+>>>>>>> 44092c854863761aebd33a3de9e0eed2ab02ffeb
         </div>
         <div class="form-password form-box">
           <p>
             <label for="password">パスワード</label>
             <span>(必須)</span>
           </p>
-          <!-- <p>問い合わせ内容を入力してください</p> -->
           <el-input
             placeholder="パスワード"
             v-model="password.value"
             name="password"
             type="password"
-            @change="doValidateInquiry(inquiry)"
+            @change="doValidatePassword(password)"
           ></el-input>
           {{ password.alert }}
         </div>
         <div class="form-button">
-          <el-button @clicl="doSendForm">ログイン</el-button>
+          <el-button native-type="submit">ログイン</el-button>
         </div>
       </form>
     </el-card>
   </div>
 </template>
 <script>
+import axios from "axios"
+
 export default {
+<<<<<<< HEAD
   data() {
     return {
       password: {
@@ -69,6 +74,24 @@ export default {
     }
   }
 };
+=======
+  data(){
+    return{
+      username: { value:'', alert:'' },
+      password: { value:'', alert:'' },
+      alert: ''
+    }
+  },
+  methods:{
+    doValidateUser(data,index){
+      this.username.value ? '': this.username.alert = '値を入力してください'
+   },
+    doValidatePassword(data,index){
+      this.password.value ? '': this.password.alert = '値を入力してください'
+   },
+  },
+}
+>>>>>>> 44092c854863761aebd33a3de9e0eed2ab02ffeb
 </script>
 <style lang="scss" scoped>
 .card {

@@ -26,19 +26,17 @@ module.exports = (requestPath, fileList) => {
         console.log(err);
       }
       fileList.map((file) => {
-        console.log(file.path)
         let uploadFile = createReadStream(file.path),
         writeStream = openstack.upload({
           container: container.name,
           remote: file.originalname
         });
         
-        writeStream.on('error', (err) => {
+        writeStream.on('error', err => {
           console.log(err.message);
         });
         
-        writeStream.on('success', (result) => {
-          console.log(result);
+        writeStream.on('success', result => {
           console.log("upload success!");
           unlink( file.path, err => {
             if(err) {

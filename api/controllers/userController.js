@@ -4,7 +4,7 @@ const passport = require("passport"),
 module.exports = {
   login: passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/progress",
+    failureRedirect: "/login",
     session: true
   }),
   create(req, res, next) {
