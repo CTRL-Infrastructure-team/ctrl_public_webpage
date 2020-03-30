@@ -4,21 +4,6 @@
       <footer class="footer around" v-if="$store.state.created">
         <hr />
         <div class="contaner">
-<<<<<<< HEAD
-          <nuxt-link to="/" class="select_menu">Top</nuxt-link>
-          <nuxt-link to="/report" class="select_menu">活動報告</nuxt-link>
-          <nuxt-link to="/progress" class="select_menu">作品</nuxt-link>
-          <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
-        </div>
-        <li class="mail-adress">
-          <p>連絡先:tcu.ctrl@gmail.com</p>
-        </li>
-        <li class="rightlink">
-          <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"
-            ><img class="twitter_style" :src="twitter_img" alt="Twitter"
-          /></a>
-        </li>
-=======
           <nuxt-link
             :to="to.to"
             class="select_menu"
@@ -35,32 +20,22 @@
             <img class="icon_style" alt="email" :src="gmail_img" />
           </a>
         </div>
->>>>>>> feature/footer
         <span class="copyright">&copy; 2019 CTRL web creater</span>
       </footer>
     </transition>
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-import twitter_img from "~/assets/img/img5.jpg";
-=======
 import twitter_img from "~/static/twitter.png";
 import gmail_img from "~/static/gmail.png";
->>>>>>> feature/footer
-
 export default {
   props: {
     menu: Array
   },
   data() {
     return {
-<<<<<<< HEAD
-      twitter_img: twitter_img
-=======
       twitter_img,
       gmail_img
->>>>>>> feature/footer
     };
   },
   name: "footer_component"
@@ -70,20 +45,6 @@ export default {
 .mail-adress {
   margin-top: 10%;
 }
-<<<<<<< HEAD
-.contaner {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 25px 10%;
-  a {
-    flex: 1 1 200px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 14px;
-  }
-}
-=======
 .around {
   justify-content: space-around;
   a {
@@ -110,7 +71,6 @@ export default {
     }
   }
 }
->>>>>>> feature/footer
 .leftlink {
   margin-top: 20px;
   list-style: none;
