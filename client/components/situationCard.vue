@@ -9,7 +9,7 @@
         <div class="img_holder">
           <img :src="situation.img_url" />
         </div>
-        <div class="text item">
+        <div class="text-wrapper">
           <div>{{ '日付 : ' + timestamp }}</div>
           <div>{{ '投稿者 : ' + situation.contributor }}</div>
           <div>{{ '概要 : ' + situation.content }}</div>
@@ -44,8 +44,8 @@ export default {
   margin: 0 auto;
 }
 
-.item {
-  margin-bottom: 18px;
+.text-wrapper {
+  margin: 10px;
 }
 
 .clearfix:before,

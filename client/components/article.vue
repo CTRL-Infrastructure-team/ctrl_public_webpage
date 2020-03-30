@@ -1,17 +1,12 @@
 <template>
   <div>
     <div class="modal-flex-text">
-      <h2 class="modal-flex-text_title">{{ article.title }}</h2>
-      <div class="modal-flex-text_content">
-      {{ '日付 : ' + timestamp }}
-      <br>
-      {{ '概要 : ' + article.content }}
-      <br>
-      {{'本文 : ' + article.content }}
-      <!-- <br> -->
-      <!-- {{'投稿者 : ' + post.contributor}} -->
-      <!-- <br> -->
-      <!-- {{'Twitter ID:' + post.twitter_id}} -->
+      <nuxt-link :to="`/currentSituations/${article._id}`">
+        <h2 class="modal-flex-text--title">{{ article.title }}</h2>
+      </nuxt-link>
+      <div class="modal-flex-text--content">
+        <div>{{ '日付 : ' + timestamp }}</div>
+        <div>{{ '内容 : ' + article.content }}</div>
       </div>
     </div>
   </div>
@@ -43,8 +38,7 @@ $modalBorder: #8193a9;
       width: 100%;
        padding-bottom: 10px;
       
-
-      &_title {
+      &--title {
         font-family: monospace;
         width: 100%;
         overflow: hidden;
@@ -56,10 +50,15 @@ $modalBorder: #8193a9;
         border-left: 4px solid $modalBorder;
       }
 
-      &_content{
+      &--content{
         padding-left: 10px;
       }
     }
   }
+}
+
+a {
+  text-decoration: none;
+  color: $mainchar;
 }
 </style>
