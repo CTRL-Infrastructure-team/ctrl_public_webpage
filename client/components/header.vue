@@ -1,22 +1,18 @@
 <template>
   <div class="header_box">
-    <header class="theflex">
-      <div class="theflex_cell">
+    <header class="flex">
+      <div class="flex_cell">
         <nuxt-link to="/">
           <img src="~/assets/img/logo.png" class="img" />
         </nuxt-link>
       </div>
-      <div class="theflex_cell">
+      <mainmenu :menu="menu" class="flex_menu" />
+      <div class="flex_cell">
         <form class="search_form">
-          <!-- <input
-            type="text"
-            placeholder="検索内容を入力"
-            class="textform"
-          /><input type="submit" value="検索" class="button" /> -->
           <serchinput />
         </form>
       </div>
-      <div class="theflex_cell">
+      <div class="flex_cell">
         <div class="humburger" v-on:click="isOpen = !isOpen">
           <span class="top"></span>
           <span class="middle"></span>
@@ -37,13 +33,13 @@
 </template>
 <script>
 import serchinput from "@/components/serchinput";
-import menu from "@/components/mainmenu.vue";
+import mainmenu from "@/components/mainmenu.vue";
 
 export default {
   name: "theHeader",
   components: {
     serchinput,
-    menu
+    mainmenu
   },
   data() {
     return {
@@ -59,7 +55,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.theflex {
+.flex {
   display: flex;
   // height: 60px;
   position: relative;
@@ -70,6 +66,10 @@ export default {
     line-height: 60px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+  &_menu {
+    flex: 4 1;
+    margin-right: 10%;
   }
 }
 
@@ -120,7 +120,7 @@ export default {
   }
 }
 
-.theflex_cell:nth-child(3) {
+.flex_cell:nth-child(4) {
   @include mq {
     display: none;
   }

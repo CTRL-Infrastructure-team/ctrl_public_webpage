@@ -21,7 +21,9 @@
             clearable
             @change="doValidateEmail(email)"
           ></el-input>
-          {{ email.alert }}
+          <span class="red">
+            {{ email.alert }}
+          </span>
         </div>
         <div class="form-inquiry form-box">
           <p>
@@ -36,7 +38,9 @@
             type="textarea"
             @change="doValidateInquiry(inquiry)"
           ></el-input>
-          {{ inquiry.alert }}
+          <span class="red">
+            {{ inquiry.alert }}
+          </span>
         </div>
         <div class="form-button">
           <el-button @click="doSendForm">内容を送信する</el-button>
@@ -74,18 +78,18 @@ export default {
           }
         )
         .then(val => {
-          console.log(val);
-          window.alert("送信しました！！");
+          if ("error" in val.data) {
+            val.data.error.forEach(message => {
+              this.$set(this[message.param], "alert", message.msg);
+            });
+          } else {
+            this.$set(this.email, "value", "");
+            this.$set(this.inquiry, "value", "");
+          }
         })
         .catch(error => {
-          console.log(error.message);
+          console.error(error);
         });
-    },
-    doValidateEmail(data, index) {
-      this.email.value ? "" : (this.email.alert = "値を入力してください");
-    },
-    doValidateInquiry(data, index) {
-      this.inquiry.value ? "" : (this.inquiry.alert = "値を入力してください");
     }
   }
 };
@@ -120,6 +124,9 @@ export default {
       vertical-align: center;
     }
   }
+}
+.red {
+  color: red;
 }
 .page-title {
   height: 30px;

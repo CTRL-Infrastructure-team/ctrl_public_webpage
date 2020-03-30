@@ -2,9 +2,8 @@
   <div class="body">
     <header class="header">
       <headerComponent :menu="menu" />
-      <mainmenu :menu="menu"></mainmenu>
     </header>
-    <nuxt />
+    <nuxt class="body" />
     <scrollButton />
     <footerComponent :menu="menu" />
   </div>
@@ -72,6 +71,9 @@ html {
 .button--green:hover {
   color: #fff;
   background-color: #3b8070;
+}
+.body {
+  min-height: 100vh;
 }
 
 .button--grey {

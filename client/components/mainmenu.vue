@@ -2,9 +2,9 @@
   <div class="content">
     <div class="menu-wrapper">
       <div v-for="item in menu" :key="item.id" class="single-menu">
-      <nuxt-link :key="item.to" :to="item.to" class="text-wrapper">
-        {{item.name}}
-      </nuxt-link>
+        <nuxt-link :key="item.to" :to="item.to" class="text-wrapper">
+          {{ item.name }}
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -12,10 +12,10 @@
 <script>
 export default {
   // name: "main_menu",
-  props:{
-    menu:{
+  props: {
+    menu: {
       type: Array,
-      required: true,
+      required: true
     }
   }
 };
@@ -35,7 +35,7 @@ export default {
   justify-content: center;
   align-items: center;
   background: #2c2c2c;
-@include mq {
+  @include mq {
     display: flex;
   }
 }
@@ -48,9 +48,9 @@ li {
   }
   flex-direction: row;
   justify-content: center;
-  flex-wrap:nowrap;
+  flex-wrap: nowrap;
   line-height: 1.5cm;
-  
+
   :hover {
     background-color: gray;
   }
@@ -62,7 +62,7 @@ li {
     width: 100px;
     text-align: center;
     display: inline-block;
-    :link{
+    :link {
       color: whitesmoke;
     }
     :visited {
@@ -81,7 +81,13 @@ li {
 
 .text-wrapper {
   text-decoration: none;
-  color: whitesmoke;
-  font-size: calc(15px + 0.4vw);
+  color: #f0f0f0;
+  font-size: calc(12px + 0.4vw);
+  word-wrap: nowrap;
+  opacity: 0.8;
+  &:hover {
+    transition: 0.3s all ease;
+    opacity: 1;
+  }
 }
 </style>

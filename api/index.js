@@ -50,13 +50,14 @@ app.use(
 
 const commonValidateError = (req, res, next) => {
   const errors = validationResult(req);
-  console.log(req.body, errors);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors });
+    return res.json({
+      status: "error",
+      error: errors.array()
+    });
   }
   next();
 };
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(passportLocal);
@@ -104,7 +105,14 @@ app.get("/pastWorks", pastworkController.worksList);
 // app.get("/user/pastWorks", pastworkController.userPastWorks);
 
 //mailMethods
-app.post("/mail", mailController.sendMail, mailController.sendSlack);
+app.post(
+  "/mail",
+  mailController.validateMail,
+  commonValidateError,
+  mailController.sendMail,
+  mailController.sendSlack
+);
+
 module.exports = {
   path: "/api/",
   handler: app

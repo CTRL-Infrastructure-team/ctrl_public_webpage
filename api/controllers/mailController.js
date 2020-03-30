@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const mailData = require("../config/key/config.js");
 // gmailでの送信はよろしくないから別の方法を取るべき。
 const axios = require("axios");
+const { checkSchema } = require("express-validator");
 const smtpConfig = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -47,7 +48,19 @@ module.exports = {
     res.send({
       val: "testOK"
     });
-  }
+  },
+  validateMail: checkSchema({
+    email: {
+      in: ["body"],
+      isEmail: true,
+      errorMessage: "不正なメールアドレスです。"
+    },
+    inquiry: {
+      in: ["body"],
+      exists: true,
+      errorMessage: "何かしら入力して"
+    }
+  })
 };
 // smtpConfig.sendMail(createMail("test"), function(error, info) {
 //   error ? console.log(error) : console.log(`Email send:${info.response}`);
