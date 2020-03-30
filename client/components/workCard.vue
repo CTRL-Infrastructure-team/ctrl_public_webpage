@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             img: this.work.top_img_url, 
-            modifiedTime: modify(this.work.createdAt) 
+            modifiedTime: modify(this.work.createdAt)
         }
     },
 };
@@ -70,7 +70,7 @@ export default {
 
 .text-title {
     font-weight: bolder;
-    font-size: 1.3rem;
+    font-size: calc(15px + 0.6vw);
 }
 
 a {
