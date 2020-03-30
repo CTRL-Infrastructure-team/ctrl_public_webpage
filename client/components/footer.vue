@@ -3,47 +3,53 @@
     <transition>
       <footer class="footer" v-if="$store.state.created">
         <hr />
-         <ul class = "link">
-           <li class="leftlink">
-             <nuxt-link to="/" class="select_menu">Top</nuxt-link>
-             <nuxt-link to="/report" class="select_menu">活動報告</nuxt-link>
-             <nuxt-link to="/progress" class="select_menu">作品</nuxt-link>
-             <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
-           </li>
-           <li class="mail-adress">
-             <p>連絡先:tcu.ctrl@gmail.com</p>
-            </li>
-           <li class="rightlink">
-              <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"><img class="twitter_style" :src="twitter_img" alt="Twitter"></a>
-           </li>
-         </ul>
+        <div class="contaner">
+          <nuxt-link to="/" class="select_menu">Top</nuxt-link>
+          <nuxt-link to="/report" class="select_menu">活動報告</nuxt-link>
+          <nuxt-link to="/progress" class="select_menu">作品</nuxt-link>
+          <nuxt-link to="/inquiry" class="select_menu">問い合わせ</nuxt-link>
+        </div>
+        <li class="mail-adress">
+          <p>連絡先:tcu.ctrl@gmail.com</p>
+        </li>
+        <li class="rightlink">
+          <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"
+            ><img class="twitter_style" :src="twitter_img" alt="Twitter"
+          /></a>
+        </li>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
       </footer>
     </transition>
   </div>
 </template>
 <script>
-import twitter_img from "~/assets/img/img5.jpg"
+import twitter_img from "~/assets/img/img5.jpg";
 
 export default {
   data() {
     return {
       twitter_img: twitter_img
-    }
+    };
   },
   name: "footer_component"
 };
 </script>
 <style lang="scss" scoped>
-
-
-.mail-adress{
-  margin-top:10%;
+.mail-adress {
+  margin-top: 10%;
 }
-.footer {
-  background: inherit;
+.contaner {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 25px 10%;
+  a {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
 }
-
 .leftlink {
   margin-top: 20px;
   list-style: none;

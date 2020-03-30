@@ -1,12 +1,12 @@
 <template>
   <div class="body">
     <header class="header">
-      <headerComponent :menu="menu"/>
+      <headerComponent :menu="menu" />
       <mainmenu :menu="menu"></mainmenu>
     </header>
     <nuxt />
     <scrollButton />
-    <footerComponent />
+    <footerComponent class="footer" />
   </div>
 </template>
 <script>
@@ -22,22 +22,22 @@ export default {
     scrollButton,
     mainmenu
   },
-  data(){
-    return{
+  data() {
+    return {
       menu: [
         { name: "Top", to: "/" },
         { name: "活動報告", to: "/report" },
         { name: "作品", to: "/progress" },
         { name: "問い合わせ", to: "/inquiry" }
-      ],
-    }
+      ]
+    };
   }
 };
 </script>
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -54,6 +54,10 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.footer {
+  background: #2c2c2c;
 }
 
 .button--green {
