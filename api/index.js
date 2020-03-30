@@ -4,8 +4,9 @@ const express = require("express"),
   session = require("express-session"),
   mongoose = require("mongoose"),
   passportLocal = require("./config/passport/local"),
-  multer = require("multer");
-upload = multer({ dest: "./api/config/cache/" });
+  multer = require("multer"),
+  { validationResult } = require("express-validator"),
+  upload = multer({ dest: "./api/config/cache/" });
 // let storage = multer.diskStorage({
 //   destination: (req, file, cb) => { cb(null, '/api/config/cache/') },
 //   filename: (req, file, cb) => { cb(null, file.originalname) }
@@ -47,6 +48,15 @@ app.use(
   })
 );
 
+const commonValidateError = (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(req.body, errors);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors });
+  }
+  next();
+};
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(passportLocal);
@@ -72,24 +82,26 @@ app.get("/userTest", userController.common);
 app.get("/situations", situationController.situationsList);
 app.post(
   "/situation",
-  (req, res, next) => {
-    console.log(req.body);
-    next();
-  },
-  situationController.SituationValidate,
-  situationController.validateResult,
   upload.any(),
+  situationController.SituationValidate,
+  commonValidateError,
   situationController.createSituation
 );
 app.get("/situations/:situationId", situationController.show);
-app.get("/user/situations", situationController.userSituations);
+// app.get("/user/situations", situationController.userSituations);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
-app.post("/pastWork", upload.any(), pastworkController.createWork);
+app.post(
+  "/pastWork",
+  upload.any(),
+  pastworkController.PastWorkValidate,
+  commonValidateError,
+  pastworkController.createWork
+);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
 app.get("/pastWorks", pastworkController.worksList);
-app.get("/user/pastWorks", pastworkController.userPastWorks);
+// app.get("/user/pastWorks", pastworkController.userPastWorks);
 
 //mailMethods
 app.post("/mail", mailController.sendMail, mailController.sendSlack);

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
+  { checkSchema } = require("express-validator"),
   pastWorksSchama = new Schema(
     {
       title: {
@@ -9,9 +10,11 @@ const mongoose = require("mongoose"),
       content: String,
       download_url: String,
       top_img_url: String,
-      other_img_url: [{
-         type: String 
-      }],
+      other_img_url: [
+        {
+          type: String
+        }
+      ],
       contributor: String,
       twitter_id: String,
       producer: String
@@ -19,6 +22,22 @@ const mongoose = require("mongoose"),
       // twitter_id: { type: Schema.Types.ObjectId, ref: "User" }
     },
     { timestamps: true }
-  );
+  ),
+  validatePastWorkSchema = checkSchema({
+    title: {
+      in: ["body"],
+      exists: true,
+      errorMessage: "title is wrong",
+      isLength: { options: { max: 15 }, errorMessage: "max 15words" }
+    },
+    content: {
+      in: ["body"],
+      exists: true,
+      errorMessage: "content is wrong"
+    }
+  });
 
-module.exports = mongoose.model("PastWork", pastWorksSchama);
+module.exports = {
+  PastWork: mongoose.model("PastWork", pastWorksSchama),
+  PastWorkValidate: validatePastWorkSchema
+};

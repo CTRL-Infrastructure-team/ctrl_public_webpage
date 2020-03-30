@@ -1,7 +1,7 @@
-const PastWork = require("../models/pastWork"),
-      User = require("../models/user"),
-      openstack = require("../config/openstack");
-require('dotenv').config();
+const { PastWork, PastWorkValidate } = require("../models/pastWork"),
+  User = require("../models/user"),
+  openstack = require("../config/openstack");
+require("dotenv").config();
 
 const convert = string => {
   return {
@@ -45,43 +45,56 @@ module.exports = {
     });
   },
   worksList(req, res) {
-    PastWork.find({}).sort({ createdAt: -1 }).then(result => {
-      res.send(result)
-    })
+    PastWork.find({})
+      .sort({ createdAt: -1 })
+      .then(result => {
+        res.send(result);
+      });
   },
   createWork(req, res) {
     const receiveFiles = req.files,
-          requestPath = 'pastwork';
+      requestPath = "pastwork";
     let topImage = receiveFiles.filter(file => {
-          return file.fieldname === 'topImage';
-        }),
-        otherImage = receiveFiles.filter(file => {
-          return file.fieldname === 'otherImage';
-        }),
-        gameFile = receiveFiles.filter(file => {
-          return file.fieldname === 'gameFile'
-        });
-        
+        return file.fieldname === "topImage";
+      }),
+      otherImage = receiveFiles.filter(file => {
+        return file.fieldname === "otherImage";
+      }),
+      gameFile = receiveFiles.filter(file => {
+        return file.fieldname === "gameFile";
+      });
+
     User.findById(req.user).then(user => {
       username = user.username;
       let newWork = new PastWork({
         title: req.body.title,
         content: req.body.content,
-        download_url: process.env.CONOHA_STORAGE_URL + 'ctrl-pastworks/' + gameFile[0].originalname,
-        top_img_url: process.env.CONOHA_STORAGE_URL + 'ctrl-pastworks/' + topImage[0].originalname,
+        download_url:
+          process.env.CONOHA_STORAGE_URL +
+          "ctrl-pastworks/" +
+          gameFile[0].originalname,
+        top_img_url:
+          process.env.CONOHA_STORAGE_URL +
+          "ctrl-pastworks/" +
+          topImage[0].originalname,
         other_img_url: [
-          process.env.CONOHA_STORAGE_URL + 'ctrl-pastworks/' + otherImage[0].originalname,
-          process.env.CONOHA_STORAGE_URL + 'ctrl-pastworks/' + otherImage[1].originalname
+          process.env.CONOHA_STORAGE_URL +
+            "ctrl-pastworks/" +
+            otherImage[0].originalname,
+          process.env.CONOHA_STORAGE_URL +
+            "ctrl-pastworks/" +
+            otherImage[1].originalname
         ],
         contributor: username,
-        twitter_id: '@example'
+        twitter_id: "@example"
       });
       openstack(requestPath, receiveFiles);
-          
+
       newWork.save(err => {
-          console.log(err);
-          res.send("push work!");
+        console.log(err);
+        res.send("push work!");
       });
     });
-  }
+  },
+  PastWorkValidate
 };

@@ -18,11 +18,7 @@
             clearable
             @change="doValidateUser(username)"
           ></el-input>
-<<<<<<< HEAD
-          {{ email.alert }}
-=======
           {{ username.alert }}
->>>>>>> 44092c854863761aebd33a3de9e0eed2ab02ffeb
         </div>
         <div class="form-password form-box">
           <p>
@@ -46,52 +42,25 @@
   </div>
 </template>
 <script>
-import axios from "axios"
+import axios from "axios";
 
 export default {
-<<<<<<< HEAD
   data() {
     return {
-      password: {
-        value: "",
-        alert: ""
-      },
-      email: {
-        value: "",
-        alert: ""
-      },
-
+      username: { value: "", alert: "" },
+      password: { value: "", alert: "" },
       alert: ""
     };
   },
   methods: {
-    doSendForm() {},
-    doValidateEmail(data, index) {
-      // this.email.value ? '': this.email.alert = '値を入力してください'
+    doValidateUser(data, index) {
+      this.username.value ? "" : (this.username.alert = "値を入力してください");
     },
-    doValidateInquiry(data, index) {
-      // this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
+    doValidatePassword(data, index) {
+      this.password.value ? "" : (this.password.alert = "値を入力してください");
     }
   }
 };
-=======
-  data(){
-    return{
-      username: { value:'', alert:'' },
-      password: { value:'', alert:'' },
-      alert: ''
-    }
-  },
-  methods:{
-    doValidateUser(data,index){
-      this.username.value ? '': this.username.alert = '値を入力してください'
-   },
-    doValidatePassword(data,index){
-      this.password.value ? '': this.password.alert = '値を入力してください'
-   },
-  },
-}
->>>>>>> 44092c854863761aebd33a3de9e0eed2ab02ffeb
 </script>
 <style lang="scss" scoped>
 .card {

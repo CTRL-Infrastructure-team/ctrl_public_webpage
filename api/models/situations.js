@@ -23,7 +23,8 @@ const validateSituationSchema = checkSchema({
   },
   content: {
     in: ["body"],
-    exists: true
+    exists: true,
+    errorMessage: "content is wrong"
   }
 });
 module.exports = {

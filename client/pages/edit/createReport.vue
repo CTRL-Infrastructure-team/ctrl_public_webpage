@@ -4,9 +4,9 @@
       活動報告の編集ページ
     </div>
     <div class="form">
-      <div class="form-inquiry form-box">
+      <div class="form-content form-box">
         <p>
-          <label for="inquiry">タイトル</label>
+          <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
         <!-- <p style="white-space: pre-line">{{message}}</p> -->
@@ -14,22 +14,22 @@
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
 
-      <div class="form-inquiry form-box">
+      <div class="form-content form-box">
         <p>
-          <label for="inquiry">本文</label>
+          <label for="content">本文</label>
           <span>(必須)</span>
         </p>
         <p>内容を入力してください</p>
         <el-input
           placeholder="内容を入力"
-          v-model="inquiry.value"
-          name="inquiry"
+          v-model="content.value"
+          name="content"
           type="textarea"
           rows="7"
           cols="100"
-          @change="doValidateInquiry(inquiry)"
+          @change="doValidateInquiry(content)"
         ></el-input>
-        {{ inquiry.alert }}
+        {{ content.alert }}
       </div>
       <div class="form-button-file">
         画像:
@@ -63,6 +63,9 @@
       >
       <div class="form-button">
         <el-button @click="doSendForm">内容を確認する</el-button>
+        <div class="alert">
+          {{ alert }}
+        </div>
       </div>
     </div>
   </div>
@@ -75,7 +78,7 @@ export default {
   data() {
     return {
       title: { value: "", alert: "" },
-      inquiry: { value: "", alert: "" },
+      content: { value: "", alert: "" },
       fileList: [],
       checked: false,
       alert: ""
@@ -95,12 +98,12 @@ export default {
       console.log("file upload!");
     },
     doSendForm() {
+      if (!("raw" in this.fileList)) return (this.alert = "画像ないよ！");
       let formData = new FormData(),
         uploadImage = this.fileList[0].raw;
-
       formData.append("file", uploadImage);
       formData.append("title", this.title.value);
-      formData.append("inquery", this.inquiry.value);
+      formData.append("content", this.content.value);
 
       axios
         .post("/api/situation", formData, {
@@ -117,7 +120,7 @@ export default {
       this.title.value ? "" : (this.title.alert = "値を入力してください");
     },
     doValidateInquiry(data, index) {
-      this.inquiry.value ? "" : (this.inquiry.alert = "値を入力してください");
+      this.content.value ? "" : (this.content.alert = "値を入力してください");
     }
   }
 };
@@ -175,5 +178,8 @@ export default {
       vertical-align: center;
     }
   }
+}
+.alert {
+  color: rgb(230, 30, 30);
 }
 </style>
