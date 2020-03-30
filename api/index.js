@@ -101,8 +101,9 @@ app.post(
   pastworkController.createWork
 );
 app.get("/pastWork/:pastWorkId", pastworkController.show);
+app.delete("/pastWork/:pastWorkId", pastworkController.deleteWork);
 app.get("/pastWorks", pastworkController.worksList);
-// app.get("/user/pastWorks", pastworkController.userPastWorks);
+app.get("/user/pastWorks", pastworkController.userPastWorks);
 
 //mailMethods
 app.post(
