@@ -51,6 +51,7 @@ export default {
         height: 350px;
     }
 }
+
 .detail-link {
     position: absolute;
     display: block;
