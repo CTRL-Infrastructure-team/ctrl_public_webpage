@@ -18,8 +18,6 @@ const mongoose = require("mongoose"),
       contributor: String,
       twitter_id: String,
       producer: String
-      // contributor: { type: Schema.Types.ObjectId, ref: "User" },
-      // twitter_id: { type: Schema.Types.ObjectId, ref: "User" }
     },
     { timestamps: true }
   ),

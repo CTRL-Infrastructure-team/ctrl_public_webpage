@@ -1,6 +1,9 @@
 <template>
   <div class="reportContent">
     <div class="card-wrapper">
+      <div class="page-title">
+        <span>活動報告</span>
+      </div>
       <el-row>
         <div v-for="work in works" :key="work.id">
           <el-col :span="24" class="single-panel">
@@ -87,6 +90,7 @@ export default {
 
 .reportContent {
   width: 100%;
+  padding: 0px 5%;
 }
 
 .card-wrapper {
@@ -95,10 +99,35 @@ export default {
   max-width: 800px;
 }
 
+.page-title {
+  height: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  span {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: -20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background: #f0f0f0;
+    }
+    position: relative;
+    margin-left: 30px;
+    font-family: "ヒラギノ角ゴシック";
+    text-align: left;
+    font-size: calc(17px + 0.625vw);
+    font-weight: 500;
+  }
+}
+
 .single-panel {
-  margin: 10px 0px;
+  margin-bottom: 20px;
   @include mq {
-    margin: 20px 0px;
+    margin-bottom: 30px;
   }
 }
 
