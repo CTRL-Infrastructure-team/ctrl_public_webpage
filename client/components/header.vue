@@ -37,11 +37,13 @@
 </template>
 <script>
 import serchinput from "@/components/serchinput";
+import menu from "@/components/mainmenu.vue";
 
 export default {
   name: "theHeader",
   components: {
-    serchinput
+    serchinput,
+    menu
   },
   data() {
     return {
@@ -70,7 +72,6 @@ export default {
     margin-right: 10px;
   }
 }
-
 
 //検索バーのcss
 .search_form {

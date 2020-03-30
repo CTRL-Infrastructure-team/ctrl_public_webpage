@@ -1,35 +1,53 @@
 <template>
-  <div>
-    <li>
-      <nuxt-link v-for="item in menu" :key="item.to" :to="item.to" class="link">
-        <ul>{{item.name}}</ul>  
+  <div class="content">
+    <div class="menu-wrapper">
+      <div v-for="item in menu" :key="item.id" class="single-menu">
+      <nuxt-link :key="item.to" :to="item.to" class="text-wrapper">
+        {{item.name}}
       </nuxt-link>
-    </li>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: "main_menu",
-  
+  // name: "main_menu",
   props:{
     menu:{
       type: Array,
       required: true,
-      
-      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
+.content {
+  height: 100%;
+  height: 60px;
+  z-index: 11;
+}
+
+.menu-wrapper {
+  // width: 100%;
+  height: 60px;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #2c2c2c;
+@include mq {
+    display: flex;
+  }
+}
+
 li {
   list-style: none;
-  background-color: #666;
   display: none;
   @include mq {
     display: flex;
   }
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap:nowrap;
   line-height: 1.5cm;
   
@@ -40,23 +58,30 @@ li {
   ul {
     outline: none;
     color: whitesmoke;
-    padding: 0cm 0cm;
-    width: 4cm;
+    // padding: 0px 0px;
+    width: 100px;
     text-align: center;
-      
+    display: inline-block;
     :link{
       color: whitesmoke;
     }
     :visited {
       color: whitesmoke;
     }
-    
     border-right: thin whitesmoke solid;
-    border-left: thin whitesmoke solid;
-    
   }
 }
-.link{
+.single-menu {
+  width: 20%;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.text-wrapper {
   text-decoration: none;
+  color: whitesmoke;
+  font-size: calc(15px + 0.4vw);
 }
 </style>
