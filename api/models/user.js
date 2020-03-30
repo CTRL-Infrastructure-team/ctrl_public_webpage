@@ -4,7 +4,10 @@ const mongoose = require("mongoose"),
 const UserSchema = new Schema({
   username: String,
   password: String,
-  twitter_id: String
+  twitter_id: String,
+  works: [{ type:  Schema.Types.ObjectId, ref: 'pastWorksSchama' }],
+  situations: [{ type:  Schema.Types.ObjectId, ref: 'SituationsSchema'}],
+  rentingBooks: [{ type:  Schema.Types.ObjectId, ref: 'BooksSchema' }]
 });
 
 UserSchema.pre("save", async function(next) {

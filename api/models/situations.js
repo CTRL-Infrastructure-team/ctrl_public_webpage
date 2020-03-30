@@ -7,8 +7,6 @@ const mongoose = require("mongoose"),
       img_url: String,
       contributor: String,
       twitter_id: String
-      // contributor: { type: Schema.Types.ObjectId, ref: "Users" },
-      // twitter_id: { type: Schema.Types.ObjectId, ref: "Users" }
     },
     { timestamps: true }
   );
