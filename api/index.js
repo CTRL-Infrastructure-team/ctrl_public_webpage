@@ -72,12 +72,14 @@ app.get("/userTest", userController.common);
 app.get("/situations", situationController.situationsList);
 app.post("/situation", upload.any(), situationController.createSituation);
 app.get("/situations/:situationId", situationController.show);
+app.get("/user/situations", situationController.userSituations);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);
 app.post("/pastWork", upload.any(), pastworkController.createWork);
 app.get("/pastWork/:pastWorkId", pastworkController.show);
 app.get("/pastWorks", pastworkController.worksList);
+app.get("/user/pastWorks", pastworkController.userPastWorks);
 
 //mailMethods
 app.post("/mail", mailController.sendMail, mailController.sendSlack);

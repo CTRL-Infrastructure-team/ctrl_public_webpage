@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      活動報告の編集ページ
+      活動報告投稿ページ
     </div>
     <div class="form">
       <div class="form-inquiry form-box">

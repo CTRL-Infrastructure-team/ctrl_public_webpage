@@ -92,9 +92,7 @@ export default {
 .card-wrapper {
   margin: 0 auto;
   width: 90%;
-  @include mq {
-    width: 60%;
-  }
+  max-width: 800px;
 }
 
 .single-panel {
