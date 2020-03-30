@@ -3,10 +3,10 @@
     <h1>News</h1>
     <div class="scroll">
       <div class="back">
-        <div class="box4">
+        <!-- <div class="box4">
           <h2>twitter boxと色を揃えてみた</h2>
           <p>ページのソースから、カラーコードを探り出した</p>
-        </div>
+        </div> -->
         <!-- <div v-for="sample_content in sample_contents" :key="sample_content.date">
           <articleItem v-bind:post="sample_content" />
         </div> -->
