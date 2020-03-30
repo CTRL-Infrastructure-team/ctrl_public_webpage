@@ -6,11 +6,7 @@
     </header>
     <nuxt />
     <scrollButton />
-<<<<<<< HEAD
-    <footerComponent class="footer" />
-=======
     <footerComponent :menu="menu" />
->>>>>>> feature/footer
   </div>
 </template>
 <script>
