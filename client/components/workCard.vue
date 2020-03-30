@@ -1,24 +1,21 @@
 <template>
     <div class="content">
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <h3><nuxt-link :to="`/pastWorks/${work._id}`" :work="work">{{ work.title }}</nuxt-link></h3>
-            </div>
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
+            <nuxt-link :to="`/pastWorks/${work._id}`" :work="work" class="detail-link">
+            </nuxt-link>
             <div class="img_holder" :style="`background-image: url(${img})`">
             </div>
-            <div class="text item">
-                {{ '日付 : ' + modifiedTime }} 
-                <br>
-                {{ '  制作者 : ' + work.contributor }}
-                <br>
-                {{ '概要 : ' + work.content }}
+            <div class="text-wrapper">
+                <div class="text-title">{{ work.title }}</div>
+                <div class="text-other">{{ '日付 : ' + modifiedTime }}</div>
+                <div class="text-other">{{ '  制作者 : ' + work.contributor }}</div>
+                <div class="text-other">{{ '概要 : ' + work.content }}</div>
             </div>
         </el-card>
     </div>
 </template>
 
 <script>
-import moment from 'moment'
 import modify from '~/plugins/modifiedTime'
 
 export default {
@@ -41,24 +38,26 @@ export default {
     margin: 0 auto;
 }
 
-.item {
-    margin-bottom: 18px;
-}
-
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: "";
-}
-.clearfix:after {
-    clear: both
+.text-wrapper {
+    margin: 20px 20px;
 }
 
 .box-card {
     width: 100%;
-    height: 450px;
     background-color: #2c2c2c;
     color: $mainchar;
+    position: relative;
+    @include mq {
+        height: 350px;
+    }
+}
+.detail-link {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .img_holder {
@@ -66,6 +65,11 @@ export default {
     padding-top: 56.25%;
     background-position: center center;
     background-size: cover;
+}
+
+.text-title {
+    font-weight: bolder;
+    font-size: 1.3rem;
 }
 
 a {

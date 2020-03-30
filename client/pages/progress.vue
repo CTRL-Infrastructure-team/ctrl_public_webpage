@@ -1,12 +1,14 @@
 <template>
   <div class="content">
-    <el-row>
-      <div v-for="(work, index) in works" :key="`${currentPage}${index}`">
-        <el-col :span="cardWidth">
-          <workCard :work="work" />
-        </el-col>
-      </div>
-    </el-row>
+    <div class="card-wrapper">
+      <el-row>
+        <div v-for="(work, index) in works" :key="`${currentPage}${index}`">
+          <el-col :span="cardWidth">
+            <workCard :work="work" />
+          </el-col>
+        </div>
+      </el-row>
+    </div>
     <el-pagination
       background
       layout="prev, pager, next"
@@ -77,6 +79,11 @@ export default {
 .content {
   width: 100%;
   padding: 0px 5%;
+}
+
+.card-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .el-col {
