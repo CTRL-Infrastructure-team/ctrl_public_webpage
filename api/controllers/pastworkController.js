@@ -68,7 +68,9 @@ module.exports = {
 
     User.findById(req.user).then(user => {
       let username = user.username,
-          receiveTwitterId = '';
+          receiveTwitterId = '',
+          workIdentification = Math.random().toString(36).slice(-8);
+      console.log("workIdentification", workIdentification);
       if(req.body.twitter === "true") {
         receiveTwitterId = user.twitter_id
       }
@@ -78,23 +80,27 @@ module.exports = {
             download_url:
               process.env.CONOHA_STORAGE_URL +
               "ctrl-pastworks/" +
+              workIdentification +
               gameFile[0].originalname,
             top_img_url:
               process.env.CONOHA_STORAGE_URL +
               "ctrl-pastworks/" +
+              workIdentification +
               topImage[0].originalname,
             other_img_url: [
               process.env.CONOHA_STORAGE_URL +
                 "ctrl-pastworks/" +
+                workIdentification +
                 otherImage[0].originalname,
               process.env.CONOHA_STORAGE_URL +
                 "ctrl-pastworks/" +
+                workIdentification +
                 otherImage[1].originalname
             ],
             contributor: username,
             twitter_id: receiveTwitterId
           });
-      uploadFiles(requestPath, receiveFiles);
+      uploadFiles(requestPath, receiveFiles, workIdentification);
 
       newWork.save(err => {
         if(err) {

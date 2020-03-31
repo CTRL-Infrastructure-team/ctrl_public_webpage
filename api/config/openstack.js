@@ -29,7 +29,7 @@ const fileNameModify = (requestPath, filePath) => {
 };
 
 module.exports = {
-  uploadFiles(requestPath, fileList) {
+  uploadFiles(requestPath, fileList, workIdentification) {
     let containerName = requestJudge(requestPath);
 
     openstack.createContainer({
@@ -42,7 +42,7 @@ module.exports = {
           let uploadFile = createReadStream(file.path),
           writeStream = openstack.upload({
             container: container.name,
-            remote: file.originalname
+            remote: workIdentification + file.originalname
           });
           
           writeStream.on('error', err => {

@@ -22,18 +22,20 @@ module.exports = {
     const receiveFiles = req.files,
       requestPath = "situation";
     User.findById(req.user).then(user => {
-      username = user.username;
-      let newSituation = new Situation({
-        title: req.body.title,
-        content: req.body.content,
-        img_url:
-          process.env.CONOHA_STORAGE_URL +
-          "ctrl-situations/" +
-          receiveFiles[0].originalname,
-        contributor: username,
-        twitter_id: "@example"
-      });
-      uploadFiles(requestPath, receiveFiles);
+      let username = user.username,
+          situationIdentification = Math.random().toString(36).slice(-8),
+          newSituation = new Situation({
+            title: req.body.title,
+            content: req.body.content,
+            img_url:
+              process.env.CONOHA_STORAGE_URL +
+              "ctrl-situations/" +
+              situationIdentification +
+              receiveFiles[0].originalname,
+            contributor: username,
+            twitter_id: "@example"
+          });
+      uploadFiles(requestPath, receiveFiles, situationIdentification);
       newSituation.save(err => {
         if (err) {
           console.log(err);
