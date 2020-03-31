@@ -1,6 +1,6 @@
 const { PastWork, PastWorkValidate } = require("../models/pastWork"),
   User = require("../models/user"),
-  { uploadFiles } = require("../config/openstack");
+  { uploadFiles, deleteFiles } = require("../config/openstack");
 require("dotenv").config();
 
 const convert = string => {
@@ -54,6 +54,8 @@ module.exports = {
   createWork(req, res) {
     const receiveFiles = req.files,
       requestPath = "pastwork";
+    console.log("req..body.twitter", req.body.twitter);
+    console.log(typeof(req.body.twitter));
     let topImage = receiveFiles.filter(file => {
         return file.fieldname === "topImage";
       }),
@@ -65,47 +67,66 @@ module.exports = {
       });
 
     User.findById(req.user).then(user => {
-      username = user.username;
+      let username = user.username,
+          receiveTwitterId = '';
+      if(req.body.twitter === "true") {
+        receiveTwitterId = user.twitter_id
+      }
       let newWork = new PastWork({
-        title: req.body.title,
-        content: req.body.content,
-        download_url:
-          process.env.CONOHA_STORAGE_URL +
-          "ctrl-pastworks/" +
-          gameFile[0].originalname,
-        top_img_url:
-          process.env.CONOHA_STORAGE_URL +
-          "ctrl-pastworks/" +
-          topImage[0].originalname,
-        other_img_url: [
-          process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            otherImage[0].originalname,
-          process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            otherImage[1].originalname
-        ],
-        contributor: username,
-        twitter_id: "@example"
-      });
+            title: req.body.title,
+            content: req.body.content,
+            download_url:
+              process.env.CONOHA_STORAGE_URL +
+              "ctrl-pastworks/" +
+              gameFile[0].originalname,
+            top_img_url:
+              process.env.CONOHA_STORAGE_URL +
+              "ctrl-pastworks/" +
+              topImage[0].originalname,
+            other_img_url: [
+              process.env.CONOHA_STORAGE_URL +
+                "ctrl-pastworks/" +
+                otherImage[0].originalname,
+              process.env.CONOHA_STORAGE_URL +
+                "ctrl-pastworks/" +
+                otherImage[1].originalname
+            ],
+            contributor: username,
+            twitter_id: receiveTwitterId
+          });
       uploadFiles(requestPath, receiveFiles);
 
       newWork.save(err => {
-        console.log(err);
+        if(err) {
+          console.log(err);
+        }
         res.send("push work!");
       });
     });
   },
   userPastWorks(req, res) {
     User.findById(req.user).then(user => {
-      PastWork.find({ contributor: user.username }).then(data => {
+      PastWork.find({ contributor: user.username })
+        .sort({ createdAt: -1 })
+        .then(data => {
         res.send(data);
       });
     });
   },
   deleteWork(req, res) {
-
-    res.send('send');
+    let id = req.params.pastWorkId,
+        requestPath = "pastwork";
+    PastWork.findById(id).then(work => {
+      deleteFiles(requestPath, work.top_img_url);
+      deleteFiles(requestPath, work.download_url);
+      work.other_img_url.map((url) => {
+        deleteFiles(requestPath, url);
+      })
+      PastWork.findByIdAndDelete(id).then(result => {
+        console.log("result", result);
+        res.send('delete');
+      })
+    });
   },
   PastWorkValidate
 };

@@ -130,6 +130,7 @@ export default {
       formData.append('topImage', uploadTopImage)
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
+      formData.append('twitter', this.checked)
 
       axios.post('/api/pastWork',
         formData,

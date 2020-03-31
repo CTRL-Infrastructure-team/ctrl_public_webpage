@@ -1,6 +1,6 @@
 const { Situation, SituationValidate } = require("../models/situations"),
   User = require("../models/user"),
-  { uploadFiles } = require("../config/openstack"),
+  { uploadFiles, deleteFiles } = require("../config/openstack"),
   { validationResult } = require("express-validator");
 require("dotenv").config();
 
@@ -40,6 +40,26 @@ module.exports = {
         }
         res.send("response catch!");
       });
+    });
+  },
+  userSituations(req, res) {
+    User.findById(req.user).then(user => {
+      Situation.find({ contributor: user.username })
+        .sort({ createdAt: -1 })
+        .then(data => {
+        res.send(data);
+      });
+    });
+  },
+  deleteSituation(req, res) {
+    let id = req.params.situationId,
+        requestPath = "situation";
+    Situation.findById(id).then(situation => {
+      deleteFiles(requestPath, situation.img_url);
+      Situation.findByIdAndDelete(id).then(result => {
+        console.log("result", result);
+        res.send('delete');
+      })
     });
   },
   SituationValidate: SituationValidate

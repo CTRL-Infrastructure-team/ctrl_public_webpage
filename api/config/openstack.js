@@ -12,14 +12,26 @@ const openstack = pkgcloud.storage.createClient({
   region: process.env.CONOHA_REGION
 });
 
+const requestJudge = (requestPath) => {
+  if(requestPath === 'situation') {
+    return 'ctrl-situations';
+  } else {
+    return 'ctrl-pastworks';
+  }
+};
+
+const fileNameModify = (requestPath, filePath) => {
+  if(requestPath === 'situation') {
+    return filePath.substring(93);
+  } else {
+    return filePath.substring(92);
+  }
+};
+
 module.exports = {
   uploadFiles(requestPath, fileList) {
-    let containerName = '';
-    if(requestPath === 'situation') {
-      containerName = 'ctrl-situations';
-    } else {
-      containerName = 'ctrl-pastworks';
-    }
+    let containerName = requestJudge(requestPath);
+
     openstack.createContainer({
       name: containerName,
       }, (err, container) => {
@@ -52,7 +64,14 @@ module.exports = {
       }
     )
   },
-  deleteFile(requestPath, file) {
-    
+  deleteFiles(requestPath, filePath) {
+    let containerName = requestJudge(requestPath),
+        fileName = fileNameModify(requestPath, filePath);
+
+    console.log("fileName", fileName);
+    console.log("containerName", containerName);
+    openstack.removeFile(containerName, fileName, (err, result) => {
+      console.log("result", result);
+    });
   }
 };

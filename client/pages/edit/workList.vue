@@ -2,16 +2,15 @@
   <div class="content">
     <div class="card-wrapper" v-for="work in works" :key="work.id">
       <el-card>
-        <div slot="header">
-          <h3>sample</h3>
+        <div slot="header" class="card-title">
+          {{ work.title }}
         </div>
         <div class="card-content">
           <div>{{ work.createdAt }}</div>
-          <div>{{ work.title }}</div>
           <div>{{ work.content }}</div>
           <div class="card-button">
             <el-button>編集する</el-button>
-            <el-button @click="deleteWork">削除する</el-button>
+            <el-button @click="deleteWork(work._id)">削除する</el-button>
           </div>
         </div>
       </el-card>
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import workCard from "~/components/workCard.vue";
 import axios from "axios";
 
 export default {
@@ -29,9 +27,10 @@ export default {
     return{ works }
   },
   methods: {
-    deleteWork() {
-      axios.delete('/api/pastWork/:pastWorkId').then(result => {
+    deleteWork(id) {
+      axios.delete(`/api/pastWork/${id}`).then(result => {
         console.log(result);
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
       })
     }
   }
@@ -50,6 +49,10 @@ export default {
   width: 90%;
   max-width: 800px;
   margin: 10px auto;
+}
+
+.card-title {
+  font-size: calc(15px + 0.5vw);
 }
 
 .card-button {

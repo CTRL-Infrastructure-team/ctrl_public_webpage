@@ -26,6 +26,9 @@
             <div class="content-title">{{ title }}</div>
             <div class="content-text">{{ "投稿日 : " + createdAt }}</div>
             <div class="content-text">{{ "制作者 : " + contributor }}</div>
+            <div v-if="twitterShow" class="content-text">
+              {{ 'Twitter ID : ' + twitter_id }}
+            </div>
             <div class="content-text">{{ content }}</div>
             <div class="content-download">
               <div class="content-text">{{ "ダウンロードはこちら : " }}</div>
@@ -48,7 +51,7 @@ import download_icon from "~/static/download.png";
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
-    data.createdAt = modify(data.createdAt);
+        data.createdAt = modify(data.createdAt)
     return { ...data };
   },
   mixins: [windowResize],
@@ -56,7 +59,8 @@ export default {
     return {
       images: [],
       modifiedTime: this.createdAt,
-      download_icon
+      download_icon,
+      twitterShow: false
     };
   },
   created() {
@@ -65,10 +69,16 @@ export default {
         this.other_img_url[0],
         this.other_img_url[1]
     ]
+    if(this.twitter_id !== "") {
+      this.twitterShow = true
+    }
   },
   computed: {
     topImage() {
       return 24;
+    },
+    showTwitter() {
+
     }
   }
 };

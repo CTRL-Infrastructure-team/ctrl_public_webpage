@@ -3,7 +3,7 @@ const passport = require("passport"),
 
 module.exports = {
   login: passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/edit/management",
     failureRedirect: "/login",
     session: true
   }),
@@ -14,9 +14,11 @@ module.exports = {
     //     receivePassword = req.body.password,
     let receiveName = "cotton",
       receivePassword = "password",
+      twitterId = "@example",
       newUser = new User({
         username: receiveName,
-        password: receivePassword
+        password: receivePassword,
+        twitter_id: twitterId
       });
 
     newUser.save(err => {

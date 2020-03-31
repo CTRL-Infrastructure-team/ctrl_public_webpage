@@ -9,6 +9,7 @@
                 <div class="text-title">{{ work.title }}</div>
                 <div class="text-other">{{ '日付 : ' + modifiedTime }}</div>
                 <div class="text-other">{{ '  制作者 : ' + work.contributor }}</div>
+                <div v-if="twitterShow" class="text-other">{{ 'Twitter ID : ' + work.twitter_id }}</div>
                 <div class="text-other">{{ '概要 : ' + work.content }}</div>
             </div>
         </el-card>
@@ -21,9 +22,14 @@ import modify from '~/plugins/modifiedTime'
 export default {
     props: ['work'],
     data() {
+        let twitterShow = false
+        if(this.work.twitter_id !== "") {
+            twitterShow = true
+        }
         return {
             img: this.work.top_img_url, 
-            modifiedTime: modify(this.work.createdAt)
+            modifiedTime: modify(this.work.createdAt),
+            twitterShow
         }
     },
 };
