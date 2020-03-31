@@ -98,7 +98,7 @@ export default {
       console.log("file upload!");
     },
     doSendForm() {
-      if (!("raw" in this.fileList)) return (this.alert = "画像ないよ！");
+      if (!("raw" in this.fileList[0])) return (this.alert = "画像ないよ！");
       let formData = new FormData(),
         uploadImage = this.fileList[0].raw;
       formData.append("file", uploadImage);

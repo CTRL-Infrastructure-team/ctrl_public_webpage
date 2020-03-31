@@ -1,6 +1,6 @@
 const { Situation, SituationValidate } = require("../models/situations"),
   User = require("../models/user"),
-  openstack = require("../config/openstack"),
+  { uploadFiles } = require("../config/openstack"),
   { validationResult } = require("express-validator");
 require("dotenv").config();
 
@@ -25,7 +25,7 @@ module.exports = {
       username = user.username;
       let newSituation = new Situation({
         title: req.body.title,
-        content: req.body.inquery,
+        content: req.body.content,
         img_url:
           process.env.CONOHA_STORAGE_URL +
           "ctrl-situations/" +
@@ -33,7 +33,7 @@ module.exports = {
         contributor: username,
         twitter_id: "@example"
       });
-      openstack(requestPath, receiveFiles);
+      uploadFiles(requestPath, receiveFiles);
       newSituation.save(err => {
         if (err) {
           console.log(err);

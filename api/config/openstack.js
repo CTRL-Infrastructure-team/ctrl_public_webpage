@@ -12,42 +12,47 @@ const openstack = pkgcloud.storage.createClient({
   region: process.env.CONOHA_REGION
 });
 
-module.exports = (requestPath, fileList) => {
-  let containerName = '';
-  if(requestPath === 'situation') {
-    containerName = 'ctrl-situations';
-  } else {
-    containerName = 'ctrl-pastworks';
-  }
-  openstack.createContainer({
-    name: containerName,
-    }, (err, container) => {
-      if(err) {
-        console.log(err);
-      }
-      fileList.map((file) => {
-        let uploadFile = createReadStream(file.path),
-        writeStream = openstack.upload({
-          container: container.name,
-          remote: file.originalname
-        });
-        
-        writeStream.on('error', err => {
-          console.log(err.message);
-        });
-        
-        writeStream.on('success', result => {
-          console.log("upload success!");
-          unlink( file.path, err => {
-            if(err) {
-              console.log(err);
-            }
-            console.log('file removed!');
-          })
-        });
-        
-        uploadFile.pipe(writeStream);
-      })
+module.exports = {
+  uploadFiles(requestPath, fileList) {
+    let containerName = '';
+    if(requestPath === 'situation') {
+      containerName = 'ctrl-situations';
+    } else {
+      containerName = 'ctrl-pastworks';
     }
-  )
+    openstack.createContainer({
+      name: containerName,
+      }, (err, container) => {
+        if(err) {
+          console.log(err);
+        }
+        fileList.map((file) => {
+          let uploadFile = createReadStream(file.path),
+          writeStream = openstack.upload({
+            container: container.name,
+            remote: file.originalname
+          });
+          
+          writeStream.on('error', err => {
+            console.log(err.message);
+          });
+          
+          writeStream.on('success', result => {
+            console.log("upload success!");
+            unlink( file.path, err => {
+              if(err) {
+                console.log(err);
+              }
+              console.log('file removed!');
+            })
+          });
+          
+          uploadFile.pipe(writeStream);
+        })
+      }
+    )
+  },
+  deleteFile(requestPath, file) {
+    
+  }
 };

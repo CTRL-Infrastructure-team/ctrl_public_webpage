@@ -1,6 +1,6 @@
 const { PastWork, PastWorkValidate } = require("../models/pastWork"),
   User = require("../models/user"),
-  openstack = require("../config/openstack");
+  { uploadFiles } = require("../config/openstack");
 require("dotenv").config();
 
 const convert = string => {
@@ -88,7 +88,7 @@ module.exports = {
         contributor: username,
         twitter_id: "@example"
       });
-      openstack(requestPath, receiveFiles);
+      uploadFiles(requestPath, receiveFiles);
 
       newWork.save(err => {
         console.log(err);
@@ -104,6 +104,7 @@ module.exports = {
     });
   },
   deleteWork(req, res) {
+
     res.send('send');
   },
   PastWorkValidate
