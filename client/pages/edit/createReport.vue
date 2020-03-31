@@ -55,12 +55,6 @@
           jpg/png files with a size less than 500kb
         </div>
       </el-upload>
-      <!-- <div class="form-button">
-          Twitter IDを掲載する
-        </div> -->
-      <el-checkbox v-model="checked" class="checkbox"
-        >Twitter IDを掲載する</el-checkbox
-      >
       <div class="form-button">
         <el-button @click="doSendForm">内容を確認する</el-button>
         <div class="alert">
@@ -80,7 +74,6 @@ export default {
       title: { value: "", alert: "" },
       content: { value: "", alert: "" },
       fileList: [],
-      checked: false,
       alert: ""
     };
   },
@@ -98,7 +91,7 @@ export default {
       console.log("file upload!");
     },
     doSendForm() {
-      if (!("raw" in this.fileList)) return (this.alert = "画像ないよ！");
+      if (!("raw" in this.fileList[0])) return (this.alert = "画像ないよ！");
       let formData = new FormData(),
         uploadImage = this.fileList[0].raw;
       formData.append("file", uploadImage);

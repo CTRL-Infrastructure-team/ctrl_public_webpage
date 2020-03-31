@@ -12,42 +12,66 @@ const openstack = pkgcloud.storage.createClient({
   region: process.env.CONOHA_REGION
 });
 
-module.exports = (requestPath, fileList) => {
-  let containerName = '';
+const requestJudge = (requestPath) => {
   if(requestPath === 'situation') {
-    containerName = 'ctrl-situations';
+    return 'ctrl-situations';
   } else {
-    containerName = 'ctrl-pastworks';
+    return 'ctrl-pastworks';
   }
-  openstack.createContainer({
-    name: containerName,
-    }, (err, container) => {
-      if(err) {
-        console.log(err);
+};
+
+const fileNameModify = (requestPath, filePath) => {
+  if(requestPath === 'situation') {
+    return filePath.substring(93);
+  } else {
+    return filePath.substring(92);
+  }
+};
+
+module.exports = {
+  uploadFiles(requestPath, fileList, workIdentification) {
+    let containerName = requestJudge(requestPath);
+
+    openstack.createContainer({
+      name: containerName,
+      }, (err, container) => {
+        if(err) {
+          console.log(err);
+        }
+        fileList.map((file) => {
+          let uploadFile = createReadStream(file.path),
+          writeStream = openstack.upload({
+            container: container.name,
+            remote: workIdentification + file.originalname
+          });
+          
+          writeStream.on('error', err => {
+            console.log(err.message);
+          });
+          
+          writeStream.on('success', result => {
+            console.log("upload success!");
+            unlink( file.path, err => {
+              if(err) {
+                console.log(err);
+              }
+              console.log('file removed!');
+            })
+          });
+          
+          uploadFile.pipe(writeStream);
+        })
       }
-      fileList.map((file) => {
-        let uploadFile = createReadStream(file.path),
-        writeStream = openstack.upload({
-          container: container.name,
-          remote: file.originalname
-        });
-        
-        writeStream.on('error', err => {
-          console.log(err.message);
-        });
-        
-        writeStream.on('success', result => {
-          console.log("upload success!");
-          unlink( file.path, err => {
-            if(err) {
-              console.log(err);
-            }
-            console.log('file removed!');
-          })
-        });
-        
-        uploadFile.pipe(writeStream);
-      })
-    }
-  )
+    )
+  },
+  deleteFiles(requestPath, filePath) {
+    let containerName = requestJudge(requestPath),
+        fileName = fileNameModify(requestPath, filePath);
+
+    console.log("fileName", fileName);
+    console.log("containerName", containerName);
+    openstack.removeFile(containerName, fileName, (err, result) => {
+      console.log("result", result);
+    });
+  }
 };

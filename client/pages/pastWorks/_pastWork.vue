@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <el-card class="content-wrapper">
-      <h2>{{ title }}</h2>
       <el-row>
         <el-col :span="topImage">
           <div class="flex_images_top">
@@ -22,15 +21,24 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="topImage">
-          {{ "投稿日 : " + createdAt }}
-          <br />
-          {{ "制作者 : " + contributor }}
-          <br />
-          {{ content }}
-          <br />
-          {{ "ダウンロードはこちら : " }} <a :href="download_url">download!</a>
-        </el-col>
+        <div class="text-wrapper">
+          <el-col :span="topImage">
+            <div class="content-title">{{ title }}</div>
+            <div class="content-text">{{ "投稿日 : " + createdAt }}</div>
+            <div class="content-text">{{ "制作者 : " + contributor }}</div>
+            <div v-if="twitterShow" class="content-text">
+              {{ 'Twitter ID : ' + twitter_id }}
+            </div>
+            <div class="content-text">{{ content }}</div>
+            <div class="content-download">
+              <div class="content-text">{{ "ダウンロードはこちら : " }}</div>
+              <div class="content-icon" :style="`background-image: url(${download_icon})`">
+                <a :href="download_url" class="content-link">
+                </a>
+              </div>
+            </div>
+          </el-col>
+        </div>
       </el-row>
     </el-card>
   </div>
@@ -38,11 +46,12 @@
 <script>
 import windowResize from "~/plugins/windowResizeMixins";
 import modify from "~/plugins/modifiedTime";
+import download_icon from "~/static/download.png";
 
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
-    data.createdAt = modify(data.createdAt);
+        data.createdAt = modify(data.createdAt)
     return { ...data };
   },
   mixins: [windowResize],
@@ -50,6 +59,8 @@ export default {
     return {
       images: [],
       modifiedTime: this.createdAt,
+      download_icon,
+      twitterShow: false
     };
   },
   created() {
@@ -58,11 +69,16 @@ export default {
         this.other_img_url[0],
         this.other_img_url[1]
     ]
+    if(this.twitter_id !== "") {
+      this.twitterShow = true
+    }
   },
   computed: {
     topImage() {
-      // return this.innerWidth < 768 ? 24 : 14;
       return 24;
+    },
+    showTwitter() {
+
     }
   }
 };
@@ -79,13 +95,55 @@ export default {
   max-width: 700px;
   background-color: #2c2c2c;
   color: $mainchar;
-  h2 {
-    margin-bottom: 20px;
+}
+
+.text-wrapper {
+  // width: 95%;
+  margin-left: 10px;
+  @include mq {
+    margin-left: 20px;
   }
 }
 
-.el-row {
-  margin: 0px auto;
+.content-title {
+  font-weight: bolder;
+  font-size: calc(15px + 1.0vw);
+  margin-bottom: 15px;
+}
+
+.content-text {
+  line-height: 30px;
+}
+
+.content-icon {
+  height: 27px;
+  width: 27px;
+  position: relative;
+  background-size: cover;
+  margin-left: 10px;
+}
+
+.content-link {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content-download {
+  display: flex;
+  flex-direction: row;
+}
+
+.el {
+  &-row {
+    margin: 0px auto;
+  }
+  &-image {
+    border-radius: 3px;
+  }
 }
 
 .flex_images_top {

@@ -48,7 +48,7 @@ export default {
         border-radius: 50%;
         position: fixed;
         z-index: 99;
-        background-color: #328d55;
+        background-color: #F4F4F5;
         bottom: 5%;
         right: 5%;
         cursor: pointer;
@@ -70,7 +70,7 @@ export default {
         position: absolute;
         width: 50%;
         height: 5px;
-        background-color: #c9c2c2;
+        background-color: #D4CDCF;
         transform: translateX(20%) translateY(400%) rotate(-45deg);
     }
 
@@ -78,7 +78,7 @@ export default {
         position: absolute;
         width: 50%;
         height: 5px;
-        background-color: #c9c2c2;
+        background-color: #D4CDCF;
         transform: translateX(80%) translateY(400%) rotate(45deg);
     }
 

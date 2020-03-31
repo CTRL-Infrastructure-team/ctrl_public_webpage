@@ -89,7 +89,8 @@ app.post(
   situationController.createSituation
 );
 app.get("/situations/:situationId", situationController.show);
-// app.get("/user/situations", situationController.userSituations);
+app.get("/user/situations", situationController.userSituations);
+app.delete("/situations/:situationId", situationController.deleteSituation);
 
 //pastworkMethods
 app.post("/pastworksearch", pastworkController.showSearch);

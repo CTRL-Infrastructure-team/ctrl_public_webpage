@@ -1,9 +1,25 @@
 <template>
   <div class="content">
     <div class="select-wrapper">
-      <div><el-button>活動報告管理</el-button></div>
-      <div><el-button>作品管理</el-button></div>
-      <div><el-button>ログアウト</el-button></div>
+      <div>
+        <nuxt-link :to="'/edit/reportList'">
+          <el-button>
+            活動報告管理
+          </el-button>
+        </nuxt-link>
+      </div>
+      <div>
+        <nuxt-link :to="'/edit/workList'">
+          <el-button>
+            作品管理
+          </el-button>
+        </nuxt-link>
+      </div>
+      <div>
+        <el-button>
+          ログアウト
+        </el-button>
+      </div>
     </div>
   </div>
 </template>

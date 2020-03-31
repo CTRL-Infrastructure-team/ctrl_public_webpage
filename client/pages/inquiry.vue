@@ -99,6 +99,7 @@ export default {
   margin: 10px 20px 0;
 }
 .form {
+  width: calc(100% - (30px - 1rem)*2);
   margin: 0 calc(30px - 1rem);
   font-family: "ヒラギノ角ゴシック";
   margin-top: 20px;
