@@ -85,6 +85,7 @@ export default {
 
 img{
   width: 100%;
+  border-radius: 3px;
   @include mq {
     width: 30vw;
   }

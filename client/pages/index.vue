@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <srideShow :srideData="mainGuideprops" class="smartPhone" @open="openModal($event)" />
     <div class="flex">
       <mainGuide
@@ -112,6 +112,10 @@ export default {
 
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
+
+.content {
+  width: 100%;
+}
 
  @media screen and (max-width: 767px) {
   .flex {

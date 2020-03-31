@@ -57,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 .flex {
   display: flex;
+  z-index: 10;
   // height: 60px;
   position: relative;
   background: #2c2c2c;
@@ -146,7 +147,7 @@ export default {
   overflow: hidden;
   opacity: 0;
   z-index: 10;
-  background-color: #6d7570;
+  background-color: #979797;
   width: 0;
   height: 100vh;
   top: 60px;
@@ -162,14 +163,14 @@ export default {
     & a {
       text-decoration: none;
       text-emphasis: none;
-      color: #c9c2c2;
+      color: #e9e8e8;
     }
     & li {
       list-style: none;
       font-size: 1.2em;
       padding: 10px;
       margin: 10px;
-      border: solid 2px #c9c2c2;
+      border: solid 2px #e9e8e8;
     }
   }
   @include mq {

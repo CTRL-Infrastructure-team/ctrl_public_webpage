@@ -54,6 +54,9 @@ export default {
   &-row{
     margin: 10px;
   }
+  &-image {
+    border-radius: 3px;
+  }
 }
 
 
@@ -99,7 +102,7 @@ export default {
     justify-content: flex-start;
     align-items: stretch;
     &-images{
-      width: 400px;
+      width: 40%;
       margin-right: 30px;
       margin-bottom: 20px;
     }
