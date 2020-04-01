@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
   { checkSchema } = require("express-validator"),
-  pastWorksSchama = new Schema(
+  pastWorksSchema = new Schema(
     {
       title: {
         type: String,
@@ -35,7 +35,14 @@ const mongoose = require("mongoose"),
     }
   });
 
+pastWorksSchema.pre("save", function(next) {
+  modifiedContent = this.content.replace(/\n/g,"<br>");
+  this.content = modifiedContent;
+
+  next();
+});
+  
 module.exports = {
-  PastWork: mongoose.model("PastWork", pastWorksSchama),
+  PastWork: mongoose.model("PastWork", pastWorksSchema),
   PastWorkValidate: validatePastWorkSchema
 };

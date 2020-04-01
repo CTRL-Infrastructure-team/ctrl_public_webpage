@@ -24,6 +24,14 @@ const validateSituationSchema = checkSchema({
     errorMessage: "content is wrong"
   }
 });
+
+SituationsSchema.pre("save", function(next) {
+  modifiedContent = this.content.replace(/\n/g,"<br>");
+  this.content = modifiedContent;
+
+  next();
+});
+
 module.exports = {
   Situation: mongoose.model("Situation", SituationsSchema),
   SituationValidate: validateSituationSchema

@@ -12,7 +12,8 @@
         <div class="text-wrapper">
           <div>{{ '日付 : ' + timestamp }}</div>
           <div>{{ '投稿者 : ' + situation.contributor }}</div>
-          <div>{{ '概要 : ' + situation.content }}</div>
+          <div class="sanitize-text" v-html="$sanitize(situation.content)">
+          </div>
         </div>
       </div>
     </el-card>
@@ -108,5 +109,9 @@ a {
       justify-content: flex-start;
     }
   }
+}
+
+.sanitize-text {
+  margin-top: 10px;
 }
 </style>
