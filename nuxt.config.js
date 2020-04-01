@@ -18,7 +18,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content: "コンピュータ技術研究会のホームページです。"
       }
     ],
     link: [
