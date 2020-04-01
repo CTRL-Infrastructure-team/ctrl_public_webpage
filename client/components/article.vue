@@ -6,7 +6,7 @@
       </nuxt-link>
       <div class="modal-flex-text--content">
         <div>{{ '日付 : ' + timestamp }}</div>
-        <div>{{ '内容 : ' + article.content }}</div>
+        <div class="sanitize-text" v-html="$sanitize(modifiedText)"></div>
       </div>
     </div>
   </div>
@@ -16,6 +16,17 @@ import modify from "~/plugins/modifiedTime";
 
 export default {
   props: ['article'],
+  data() {
+    let modifiedText = ""
+    if(this.article.content.length >= 100) {
+      modifiedText = this.article.content.substring(1, 80) + "  [...]"
+    } else {
+      modifiedText = this.article.content
+    }
+    return {
+      modifiedText
+    }
+  },
   computed: {
     timestamp() {
       return modify(this.article.createdAt)
@@ -55,6 +66,10 @@ $modalBorder: #8193a9;
       }
     }
   }
+}
+
+.sanitize-text {
+  margin-top: 10px;
 }
 
 a {

@@ -25,7 +25,7 @@
         </nuxt-link>
       </div>
       <div>
-        <el-button>
+        <el-button @click="logout()">
           ログアウト
         </el-button>
       </div>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
   async asyncData({ redirect, app }) {
     let res = await app.$axios.asyncGet('/api/loginCheck')
@@ -49,6 +51,15 @@ export default {
       this.auth = true
     }
   },
+  methods: {
+    logout() {
+      axios.post('/api/logout')
+        .then(result => {
+          console.log(result)
+          this.$router.push('/login')
+        })
+    }
+  }
 }
 </script>
 
@@ -73,8 +84,6 @@ export default {
 
 .page-title {
   height: 30px;
-  // margin-top: 30px;
-  // margin-bottom: 10px;
   margin: 30px 20px 10px 20px;
   span {
     &::before {

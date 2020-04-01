@@ -10,7 +10,7 @@
                 <div class="text-other">{{ '日付 : ' + modifiedTime }}</div>
                 <div class="text-other">{{ '  制作者 : ' + work.contributor }}</div>
                 <div v-if="twitterShow" class="text-other">{{ 'Twitter ID : ' + work.twitter_id }}</div>
-                <div class="text-other">{{ '概要 : ' + work.content }}</div>
+                <!-- <div class="text-other sanitize-text" v-html="$sanitize(work.content)"></div> -->
             </div>
         </el-card>
     </div>
@@ -54,7 +54,7 @@ export default {
     color: $mainchar;
     position: relative;
     @include mq {
-        height: 350px;
+        height: 300px;
     }
 }
 
@@ -77,6 +77,10 @@ export default {
 .text-title {
     font-weight: bolder;
     font-size: calc(15px + 0.6vw);
+}
+
+.sanitize-text {
+    margin-top: 10px;
 }
 
 a {

@@ -12,7 +12,8 @@
         <div class="text-wrapper">
           <div>{{ '日付 : ' + timestamp }}</div>
           <div>{{ '投稿者 : ' + situation.contributor }}</div>
-          <div>{{ '概要 : ' + situation.content }}</div>
+          <div class="sanitize-text" v-html="$sanitize(situation.content)">
+          </div>
         </div>
       </div>
     </el-card>
@@ -28,9 +29,6 @@ export default {
     timestamp() {
       return modify(this.situation.createdAt)
     }
-  },
-  mounted() {
-    console.log("situation.img_url", this.situation.img_url)
   }
 };
 </script>
@@ -108,5 +106,9 @@ a {
       justify-content: flex-start;
     }
   }
+}
+
+.sanitize-text {
+  margin-top: 10px;
 }
 </style>

@@ -49,8 +49,16 @@ module.exports = {
       Situation.find({ contributor: user.username })
         .sort({ createdAt: -1 })
         .then(data => {
-        res.send(data);
-      });
+          res.send(data);
+        })
+        .catch(err => {
+          console.log(err);
+          res.send();
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.send();
     });
   },
   deleteSituation(req, res) {

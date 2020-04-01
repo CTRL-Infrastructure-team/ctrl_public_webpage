@@ -29,7 +29,7 @@
             <div v-if="twitterShow" class="content-text">
               {{ 'Twitter ID : ' + twitter_id }}
             </div>
-            <div class="content-text">{{ content }}</div>
+            <div class="content-text sanitize-text" v-html="$sanitize(content)"></div>
             <div class="content-download">
               <div class="content-text">{{ "ダウンロードはこちら : " }}</div>
               <div class="content-icon" :style="`background-image: url(${download_icon})`">
@@ -155,5 +155,9 @@ export default {
   width: 90%;
   margin: 20px auto;
   vertical-align: bottom;
+}
+
+.sanitize-text {
+  margin: 10px 0px;
 }
 </style>

@@ -11,7 +11,7 @@
       </div>
       <div class="form-inquiry form-box">
         <p>
-          <label for="content">本文</label>
+          <label class="label-text" for="content">本文</label>
           <span>(必須)</span>
         </p>
         <p>成果物の内容を入力してください</p>
@@ -28,7 +28,7 @@
       </div>
       <div class="images">
         <div class="image1">
-          <div>画像1：</div>
+          <div class="label-text">トップ画像（1枚）：</div>
           <el-upload
             class="upload-demo"
             drag
@@ -47,7 +47,7 @@
           <p><img :src="data.image1"></p>
         </div>
         <div class="image2">
-          <div>画像2：</div>
+          <div>その他画像（2枚）：</div>
           <el-upload
             class="upload-demo2"
             drag
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div fileUpload>
-        ファイルをアップロード
+        ファイルをアップロード(zipファイル形式)
         <el-upload
           class="upload-demo"
           drag
@@ -85,7 +85,7 @@
       </div>
       <el-checkbox v-model="checked">Twitter IDを掲載する</el-checkbox>
       <div class="form-button">
-        <el-button @click="doSendForm">内容を確認する</el-button>
+        <el-button @click="doSendForm">投稿する</el-button>
       </div>
     </div>
   </div>
@@ -148,6 +148,7 @@ export default {
         formData,
         { header: { 'Content-Type': 'multipart/form-data' } }
       ).then(result => {
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
         console.log(result)
       })
     },
@@ -167,6 +168,10 @@ export default {
     margin: 20px;
 }
 
+.label-text {
+  margin-top: 20px;
+}
+
 span{
     color: red;
 
@@ -182,16 +187,12 @@ span{
 .image1{
     margin: 10px;
     display: flex;
-    flex-direction: row;
-    & p{
-      width: 100px;
-      height: 100px;
-    }
+    flex-direction: column;
 }
 .image2{
     margin: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 }
 </style>

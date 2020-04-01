@@ -16,7 +16,7 @@
         <el-col :span="topImage">
           <div>{{ '投稿日 : ' + createdAt }}</div>
           <div>{{ '投稿者 : ' + contributor }}</div>
-          <div>{{ content }}</div> 
+          <div class="sanitize-text" v-html="$sanitize(content)"></div> 
         </el-col>
       </el-row>
       </div>
@@ -113,5 +113,9 @@ export default {
   .row_image{
     padding-right: 30px;
   }
+}
+
+.sanitize-text {
+  margin-top: 10px;
 }
 </style>
