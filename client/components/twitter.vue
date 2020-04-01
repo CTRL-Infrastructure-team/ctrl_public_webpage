@@ -7,22 +7,15 @@
         data-theme="dark"
         href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"
       >Tweets by tcuctrl</a>
-      <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+      <no-ssr>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </no-ssr>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  head() {
-    return {
-      script: [
-        { src: "https://platform.twitter.com/widgets.js",
-          charset: "utf-8"
-        }
-      ]
-    }
-  }
 }
 </script>
 
