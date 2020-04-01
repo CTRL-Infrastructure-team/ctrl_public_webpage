@@ -53,7 +53,6 @@ export default {
   },
   async asyncData({ app }) {
     let articles = await app.$axios.asyncGet('/api/situations')
-    console.log(articles)
     return { articles }
   },
   data() {

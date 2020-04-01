@@ -3,13 +3,6 @@
     <h1>News</h1>
     <div class="scroll">
       <div class="back">
-        <!-- <div class="box4">
-          <h2>twitter boxと色を揃えてみた</h2>
-          <p>ページのソースから、カラーコードを探り出した</p>
-        </div> -->
-        <!-- <div v-for="sample_content in sample_contents" :key="sample_content.date">
-          <articleItem v-bind:post="sample_content" />
-        </div> -->
         <div v-for="article in articles" :key="article.id">
           <articleItem :article="article" />
         </div>
@@ -53,6 +46,7 @@ $modalBorder: #8193a9;
   padding-right: 10px;
   padding-left: 15px;
   background-color: #292F33;
+  min-height: 480px;
 }
 
 .scroll::-webkit-scrollbar {

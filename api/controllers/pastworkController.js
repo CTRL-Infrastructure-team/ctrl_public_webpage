@@ -49,6 +49,10 @@ module.exports = {
       .sort({ createdAt: -1 })
       .then(result => {
         res.send(result);
+      })
+      .catch(err => {
+        console.log();
+        res.send(err);
       });
   },
   createWork(req, res) {
@@ -116,7 +120,15 @@ module.exports = {
         .sort({ createdAt: -1 })
         .then(data => {
         res.send(data);
-      });
+        })
+        .catch(err => {
+          console.log(err);
+          res.send();
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.send();
     });
   },
   deleteWork(req, res) {

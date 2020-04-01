@@ -56,7 +56,7 @@
         </div>
       </el-upload>
       <div class="form-button">
-        <el-button @click="doSendForm">内容を確認する</el-button>
+        <el-button @click="doSendForm">投稿する</el-button>
         <div class="alert">
           {{ alert }}
         </div>
@@ -115,6 +115,7 @@ export default {
           header: { "Content-Type": "multipart/form-data" }
         })
         .then(result => {
+          this.$router.go({path: this.$router.currentRoute.path, force: true});
           console.log(result);
         })
         .catch(error => {

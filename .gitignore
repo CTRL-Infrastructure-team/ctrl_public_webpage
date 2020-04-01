@@ -94,3 +94,6 @@ key/
 
 # image data
 cache/
+
+#user data
+api/test/user_data.json
