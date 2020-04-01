@@ -37,7 +37,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap");
 html {
   font-family: "Noto Sans JP", sans-serif;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
