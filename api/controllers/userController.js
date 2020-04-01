@@ -39,5 +39,9 @@ module.exports = {
       console.log("no user!");
       res.send();
     }
+  },
+  check(req, res) {
+    console.log('req.user', req.user);
+    res.json({ user: req.user });
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" v-if="auth">
     <div class="card-wrapper" v-for="work in works" :key="work.id">
       <el-card>
         <div slot="header" class="card-title">
@@ -23,8 +23,19 @@ import axios from "axios";
 
 export default {
   async asyncData({ app }) {
-    let works = await app.$axios.asyncGet('/api/user/pastWorks')
-    return{ works }
+    let works = await app.$axios.asyncGet('/api/user/pastWorks'),
+        res = await app.$axios.asyncGet('/api/loginCheck')
+    return{ works, res }
+  },
+  data() {
+    return { auth: false }
+  },
+  created() {
+    if(!this.res.user) {
+      this.$router.push('/')
+    } else {
+      this.auth = true
+    }
   },
   methods: {
     deleteWork(id) {

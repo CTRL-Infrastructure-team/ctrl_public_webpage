@@ -4,17 +4,13 @@ const express = require("express"),
   session = require("express-session"),
   mongoose = require("mongoose"),
   passportLocal = require("./config/passport/local"),
+  // auth = require('connect-ensure-login').ensureLoggedIn('/login'),
   multer = require("multer"),
   { validationResult } = require("express-validator"),
   upload = multer({ dest: "./api/config/cache/" });
-// let storage = multer.diskStorage({
-//   destination: (req, file, cb) => { cb(null, '/api/config/cache/') },
-//   filename: (req, file, cb) => { cb(null, file.originalname) }
-// });
-// const upload = multer({ storage: storage });
 
-const mailController = require("./controllers/mailController");
-const pastworkController = require("./controllers/pastworkController"),
+const mailController = require("./controllers/mailController"),
+  pastworkController = require("./controllers/pastworkController"),
   situationController = require("./controllers/situationController"),
   userController = require("./controllers/userController");
 
@@ -78,6 +74,7 @@ app.post("/login", userController.login);
 app.post("/users/create", userController.create);
 app.post("/logout", userController.logout);
 app.get("/userTest", userController.common);
+app.get("/loginCheck", userController.check);
 
 //situationMethods
 app.get("/situations", situationController.situationsList);

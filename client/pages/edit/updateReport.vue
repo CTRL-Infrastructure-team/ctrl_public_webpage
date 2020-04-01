@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" v-if="auth">
     <div class="form">
     <div class="page-title">
       <span>活動報告編集ページ</span>
@@ -61,6 +61,10 @@ import { Input } from 'element-ui'
 import axios from 'axios'
 
 export default {
+  async asyncData({ app }) {
+    let res = await app.$axios.asyncGet('/api/loginCheck')
+    return { res }
+  },
   // async asyncData() {
   //   let data = await asyncGet('')
   //   return { ...data }
@@ -71,7 +75,15 @@ export default {
       content: { value:'', alert:'' },
       fileList: [],
       checked: false,
-      alert: ''
+      alert: '',
+      auth: false
+    }
+  },
+  created() {
+    if(!this.res.user) {
+      this.$router.push('/')
+    } else {
+      this.auth = true
     }
   },
   methods:{

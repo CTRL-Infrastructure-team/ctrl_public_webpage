@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div v-if="auth">
     <div class="page-title">
-      活動報告の編集ページ
+      活動報告投稿
     </div>
     <div class="form">
       <div class="form-content form-box">
@@ -69,13 +69,25 @@ import { Input } from "element-ui";
 import axios from "axios";
 
 export default {
+  async asyncData({ redirect, app }) {
+    let res = await app.$axios.asyncGet('/api/loginCheck')
+    return { res }
+  },
   data() {
     return {
       title: { value: "", alert: "" },
       content: { value: "", alert: "" },
       fileList: [],
-      alert: ""
+      alert: "",
+      auth: false
     };
+  },
+  created() {
+    if(!this.res.user) {
+      this.$router.push('/')
+    } else {
+      this.auth = true
+    }
   },
   methods: {
     handleRemove(file, fileList) {

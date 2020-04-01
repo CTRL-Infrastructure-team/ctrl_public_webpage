@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="auth">
     <h1>成果物投稿ページ</h1>
     <div class="form">
       <div class="form-inquiry form-box">
@@ -95,8 +95,12 @@ import { Input } from 'element-ui'
 import axios from 'axios'
 
 export default {
-     data() {
-       return{
+  async asyncData({ app }) {
+    let res = await app.$axios.asyncGet('/api/loginCheck')
+    return { res }
+  },
+  data() {
+    return{
       data: { image1:'', image2:'' },
       title: { value:'', alert:'' },
       content: { value:'', alert:'' },
@@ -104,7 +108,15 @@ export default {
       otherImage: [],
       gameFile: [],
       checked: false,
-      alert: ''
+      alert: '',
+      auth: false
+    }
+  },
+  created() {
+    if(!this.res.user) {
+      this.$router.push('/')
+    } else {
+      this.auth = true
     }
   },
   methods:{

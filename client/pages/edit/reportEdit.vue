@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="auth">
     <div class="page-title">
       活動報告投稿ページ
     </div>
@@ -9,7 +9,6 @@
           <label for="inquiry">タイトル</label>
           <span>(必須)</span>
         </p>
-        <!-- <p style="white-space: pre-line">{{message}}</p> -->
         <br>
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
@@ -65,13 +64,25 @@ import { Input } from 'element-ui'
 import axios from 'axios'
 
 export default {
+  async asyncData({ redirect, app }) {
+    let res = await app.$axios.asyncGet('/api/loginCheck')
+    return { res }
+  },
   data(){
     return{
       title: { value:'', alert:'' },
       inquiry: { value:'', alert:'' },
       fileList: [],
       checked: false,
-      alert: ''
+      alert: '',
+      auth: false
+    }
+  },
+  created() {
+    if(!this.res.user) {
+      this.$router.push('/')
+    } else {
+      this.auth = true
     }
   },
   methods:{
