@@ -20,6 +20,10 @@
         </div>
       </myModal>
     </div>
+    <div class="description-box">
+      <div><span>Welcome to CTRL website !</span></div>
+      <div><span>Try tapping the image above !</span></div>
+    </div>
     <div class="flex flex-around">
       <news class="news_box" :articles="articles"/>
       <twitterbox class="twitterBox"></twitterbox>
@@ -114,6 +118,18 @@ $modalBorder: #8193a9;
 
 .content {
   width: 100%;
+}
+
+.description-box {
+  // width: 90%;
+  line-height: calc(20px + 3vw);
+  font-size: calc(15px + 1vw);
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 35px;
+  @include mq {
+    display: none;
+  }
 }
 
  @media screen and (max-width: 767px) {
