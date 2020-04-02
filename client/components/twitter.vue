@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Tweets</h1>
+    <div class="tab-title">
+      <span>Tweets</span>
+    </div>
     <div class="TwitterBox">
       <a
         class="twitter-timeline"
@@ -30,6 +32,28 @@ export default {
 
 <style lang="scss" scoped>
 
+.tab-title {
+  height: 45px;
+  line-height: 45px;
+  margin-left: 1.5rem;
+  span {
+    position: relative;
+    font-size: calc(20px + 1vw);
+    font-weight: bolder;
+    &::before {
+      border-radius: 10%;
+      content: "";
+      position: absolute;
+      height: 0.9rem;
+      width: 0.9rem;
+      top: 55%;
+      left: -1.5rem;
+      background: #f0f0f0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
 .twitterBox {
   margin-top: 0px;
   overflow-y: hidden;
@@ -40,11 +64,10 @@ export default {
 }
 
 .TwitterBox::-webkit-scrollbar {
-  //background:#09C9D9;
   width: 4px;
 }
+
 .TwitterBox::-webkit-scrollbar-thumb {
-  //background: linear-gradient(0deg, #43e2c6, #3183d0);
   background: #888888;
   border-radius: 3px;
 }
