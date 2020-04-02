@@ -39,7 +39,7 @@ module.exports = {
   sendSlack(req, res) {
     axios
       .post(
-        "https://hooks.slack.com/services/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",
+        "https://hooks.slack.com/services/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",
         JSON.stringify(slackSendmessage(req.body.inquiry, req.body.email))
       )
       .then(() => console.log("send"))
