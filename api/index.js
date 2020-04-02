@@ -46,6 +46,7 @@ app.use(
 
 const commonValidateError = (req, res, next) => {
   const errors = validationResult(req);
+  console.log(errors.array());
   if (!errors.isEmpty()) {
     return res.json({
       status: "error",

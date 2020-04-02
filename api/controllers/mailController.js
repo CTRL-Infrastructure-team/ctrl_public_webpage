@@ -32,15 +32,15 @@ module.exports = {
       createMailmessage(req.body.text, req.body.email),
       function(error, info) {
         error ? console.log(error) : console.log(`Email send:${info.response}`);
-        next();
       }
     );
+    next();
   },
   sendSlack(req, res) {
     axios
       .post(
-        "https://hooks.slack.com/services/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",
-        JSON.stringify(slackSendmessage(req.body.text, req.body.email))
+        "https://hooks.slack.com/services/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",
+        JSON.stringify(slackSendmessage(req.body.inquiry, req.body.email))
       )
       .then(() => console.log("send"))
       .catch(err => console.log(err.message));

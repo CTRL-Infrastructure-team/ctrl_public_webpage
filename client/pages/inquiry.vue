@@ -19,7 +19,6 @@
             v-model="email.value"
             name="email"
             clearable
-            @change="doValidateEmail(email)"
           ></el-input>
           <span class="red">
             {{ email.alert }}
@@ -36,7 +35,6 @@
             v-model="inquiry.value"
             name="inquiry"
             type="textarea"
-            @change="doValidateInquiry(inquiry)"
           ></el-input>
           <span class="red">
             {{ inquiry.alert }}
@@ -72,7 +70,7 @@ export default {
       axios
         .post(
           "/api/mail",
-          { text: this.inquiry.value, email: this.email.value },
+          { inquiry: this.inquiry.value, email: this.email.value },
           {
             headers: { "Content-Type": "application/json" }
           }
@@ -99,7 +97,7 @@ export default {
   margin: 10px 20px 0;
 }
 .form {
-  width: calc(100% - (30px - 1rem)*2);
+  width: calc(100% - (30px - 1rem) * 2);
   margin: 0 calc(30px - 1rem);
   font-family: "ヒラギノ角ゴシック";
   margin-top: 20px;
