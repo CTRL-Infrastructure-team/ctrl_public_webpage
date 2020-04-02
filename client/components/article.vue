@@ -19,7 +19,7 @@ export default {
   data() {
     let modifiedText = ""
     if(this.article.content.length >= 100) {
-      modifiedText = this.article.content.substring(1, 80) + "  [...]"
+      modifiedText = this.article.content.substring(0, 80) + "  [...]"
     } else {
       modifiedText = this.article.content
     }
