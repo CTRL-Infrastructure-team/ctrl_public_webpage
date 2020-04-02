@@ -2,7 +2,7 @@
   <div>
     <div class="modal-flex-text">
       <nuxt-link :to="`/currentSituations/${article._id}`">
-        <h2 class="modal-flex-text--title">{{ article.title }}</h2>
+        <div class="modal-flex-text--title">{{ article.title }}</div>
       </nuxt-link>
       <div class="modal-flex-text--content">
         <div>{{ '日付 : ' + timestamp }}</div>
@@ -50,10 +50,11 @@ $modalBorder: #8193a9;
        padding-bottom: 10px;
       
       &--title {
-        font-family: monospace;
+        // font-family: monospace;
         width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
+        font-size: calc(15px + 0.8vw);
+        // overflow: hidden;
+        // white-space: nowrap;
         margin-bottom: 10px;
         margin-top: 10px;
         padding-left: 3px;
