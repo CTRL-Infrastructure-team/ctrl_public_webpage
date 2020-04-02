@@ -29,7 +29,7 @@ const slackSendmessage = (text, email) => {
 module.exports = {
   sendMail(req, res, next) {
     smtpConfig.sendMail(
-      createMailmessage(req.body.text, req.body.email),
+      createMailmessage(req.body.inquiry, req.body.email),
       function(error, info) {
         error ? console.log(error) : console.log(`Email send:${info.response}`);
       }
