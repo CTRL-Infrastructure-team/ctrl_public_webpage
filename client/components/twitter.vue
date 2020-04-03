@@ -46,7 +46,7 @@ export default {
       position: absolute;
       height: 0.9rem;
       width: 0.9rem;
-      top: 55%;
+      top: 50%;
       left: -1.5rem;
       background: #f0f0f0;
       transform: translateY(-50%);
