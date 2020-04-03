@@ -26,7 +26,7 @@ const mongoose = require("mongoose"),
       in: ["body"],
       exists: true,
       errorMessage: "title is wrong",
-      isLength: { options: { max: 15 }, errorMessage: "max 15words" }
+      isLength: { options: { max: 30 }, errorMessage: "max 15words" }
     },
     content: {
       in: ["body"],

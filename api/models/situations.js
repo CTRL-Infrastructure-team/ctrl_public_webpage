@@ -16,7 +16,7 @@ const validateSituationSchema = checkSchema({
     in: ["body"],
     exists: true,
     errorMessage: "title is wrong",
-    isLength: { options: { max: 15 } }
+    isLength: { options: { max: 30 } }
   },
   content: {
     in: ["body"],
