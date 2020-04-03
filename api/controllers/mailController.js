@@ -3,6 +3,9 @@ const mailData = require("../config/key/config.js");
 // gmailでの送信はよろしくないから別の方法を取るべき。
 const axios = require("axios");
 const { checkSchema } = require("express-validator");
+
+require('dotenv').config();
+
 const smtpConfig = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -39,7 +42,7 @@ module.exports = {
   sendSlack(req, res) {
     axios
       .post(
-        "https://hooks.slack.com/services/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",
+        process.env.SLACK_URL,
         JSON.stringify(slackSendmessage(req.body.inquiry, req.body.email))
       )
       .then(() => console.log("send"))

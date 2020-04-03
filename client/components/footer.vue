@@ -16,7 +16,7 @@
           <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"
             ><img class="icon_style" :src="twitter_img" alt="Twitter"
           /></a>
-          <a href="mailto:tcuctrl@gmail.com">
+          <a href="mailto:ctrl11data@gmail.com">
             <img class="icon_style" alt="email" :src="gmail_img" />
           </a>
         </div>
