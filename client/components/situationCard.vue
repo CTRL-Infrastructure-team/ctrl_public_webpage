@@ -73,20 +73,16 @@ export default {
 
 .img_holder {
   margin: 0px 0px;
-  // width: 100%;
   text-align: center;
   @include mq {
     margin: 0px 10px;
-    width: 30vw;
+    width: 30%;
   }
 }
 
 img{
   width: 100%;
   border-radius: 3px;
-  @include mq {
-    width: 30vw;
-  }
 }
 
 a {
@@ -95,7 +91,6 @@ a {
 }
 .flex{
   &-box {
-    // width: 100%;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
