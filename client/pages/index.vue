@@ -24,6 +24,7 @@
       <div><span>Welcome to CTRL website !</span></div>
       <div><span>Try tapping the image above !</span></div>
     </div>
+    <banner />
     <div class="flex flex-around">
       <news class="news_box" :articles="articles"/>
       <twitterbox class="twitterBox"></twitterbox>
@@ -40,6 +41,7 @@ import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
+import banner from "~/components/banner";
 import axios from "axios";
 
 //画像インポート
@@ -53,7 +55,8 @@ export default {
     news,
     twitterbox,
     myModal,
-    srideShow
+    srideShow,
+    banner
   },
   async asyncData({ app }) {
     let articles = await app.$axios.asyncGet('/api/situations')
