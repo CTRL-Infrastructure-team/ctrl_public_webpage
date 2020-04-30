@@ -36,6 +36,10 @@ export default {
 <style lang="scss" scoped>
 .content {
   width: 100%;
+  padding: 0px 5%;
+  @include mq {
+    padding: 0px 2%;
+  }
 }
 
 .el-card {

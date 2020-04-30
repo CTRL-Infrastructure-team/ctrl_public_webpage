@@ -1,9 +1,7 @@
 <template>
   <div class="content">
     <div class="card-wrapper">
-      <div class="page-title">
-        <span>作品</span>
-      </div>
+      <pageTitle :title="title"/>
       <el-row>
         <div v-for="(work, index) in works" :key="`${currentPage}${index}`">
           <el-col :span="cardWidth">
@@ -25,10 +23,12 @@
 import workCard from "~/components/workCard.vue";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
+import pageTitle from "~/components/ui/pageTitle.vue";
 
 export default {
   components: {
-    workCard
+    workCard,
+    pageTitle
   },
   mixins: [windowResize],
   async asyncData({ app }) {
@@ -40,7 +40,8 @@ export default {
       worksLength: [],
       countPages: 1,
       pageDatas: new Map(),
-      currentPage: 1
+      currentPage: 1,
+      title: "作品"
     };
   },
   created() {
@@ -86,33 +87,7 @@ export default {
 
 .card-wrapper {
   max-width: 1000px;
-  // width: 90%;
   margin: 0 auto;
-}
-
-.page-title {
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
-    }
-    position: relative;
-    margin-left: 50px;
-    font-family: "ヒラギノ角ゴシック";
-    text-align: left;
-    font-size: calc(17px + 0.625vw);
-    font-weight: 500;
-  }
 }
 
 .el-col {
