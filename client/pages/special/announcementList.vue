@@ -54,7 +54,7 @@ export default {
     width: 100%;
     font-size: calc(16px + 1vw);
     font-weight: bolder;
-    line-height: 100px;
+    line-height: 140px;
     color: #000000;
   }
 
@@ -63,7 +63,7 @@ export default {
     width: 100%;
     font-size: calc(15px + 0.7vw);
     font-weight: bolder;
-    line-height: 40px;
+    line-height: 60px;
     color: #000000;
   }
 
