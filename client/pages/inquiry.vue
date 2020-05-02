@@ -1,9 +1,6 @@
 <template>
   <div class="form">
-    <div class="page-title">
-      <span>問い合わせ</span>
-    </div>
-
+    <pageTitle :title="title" />
     <el-card class="card op03">
       <form action="post" class="form">
         <div class="form-email form-box">
@@ -49,7 +46,12 @@
 </template>
 <script>
 import axios from "axios";
+import pageTitle from "~/components/ui/pageTitle.vue"
+
 export default {
+  components: {
+    pageTitle
+  },
   data() {
     return {
       inquiry: {
@@ -60,8 +62,8 @@ export default {
         value: "",
         alert: ""
       },
-
-      alert: ""
+      alert: "",
+      title: "お問い合わせ"
     };
   },
   methods: {
@@ -126,29 +128,5 @@ export default {
 }
 .red {
   color: red;
-}
-.page-title {
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 55%;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
-    }
-    position: relative;
-    margin-left: 50px;
-    font-family: "ヒラギノ角ゴシック";
-    text-align: left;
-    font-size: calc(15px + 0.8vw);
-    font-weight: 500;
-  }
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <div class="reportContent">
     <div class="card-wrapper">
-      <div class="page-title">
-        <span>活動報告</span>
-      </div>
+      <pageTitle :title="title" />
       <el-row>
         <div v-for="work in works" :key="work.id">
           <el-col :span="24" class="single-panel">
@@ -27,10 +25,12 @@
 <script>
 import situationCard from "~/components/situationCard.vue";
 import windowResize from "~/plugins/windowResizeMixins";
+import pageTitle from "~/components/ui/pageTitle.vue";
 
 export default {
   components: {
-    situationCard
+    situationCard,
+    pageTitle
   },
   async asyncData({ params, app }) {
     let works = await app.$axios.asyncGet(`/api/situations`);
@@ -42,7 +42,8 @@ export default {
       worksLength: [],
       countPages: 1,
       currentPage: 1,
-      pageDatas: new Map()
+      pageDatas: new Map(),
+      title: "活動報告"
     };
   },
   created() {
@@ -95,33 +96,7 @@ export default {
 
 .card-wrapper {
   margin: 0 auto;
-  width: 90%;
   max-width: 800px;
-}
-
-.page-title {
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
-    }
-    position: relative;
-    margin-left: 30px;
-    font-family: "ヒラギノ角ゴシック";
-    text-align: left;
-    font-size: calc(17px + 0.625vw);
-    font-weight: 500;
-  }
 }
 
 .single-panel {
