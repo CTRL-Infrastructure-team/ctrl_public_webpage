@@ -41,7 +41,7 @@ import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
-import banner from "~/components/banner";
+import banner from "~/components/ui/banner";
 import axios from "axios";
 
 //画像インポート

@@ -1,5 +1,17 @@
 <template>
   <div class="container">
+    <div class="breadcrumb-wrapper">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-path" v-for="data in path_datas" :key="data.id">
+          <nuxt-link class="breadcrumb-link" :to="data.path">{{ data.name }}</nuxt-link>
+        </li>
+      </ul>
+      <div class="breadcrumb-text">
+        <p>※スライドの読み込みに時間がかかることがあります。</p>
+      </div>
+      <!-- /.breadcrumb-text -->
+    </div>
+    <!-- /.breadcrumb-wrapper -->
     <div
       class="wrapper"
       :class="{
@@ -9,7 +21,6 @@
       v-for="(data, index) in datas"
       :key="data.name"
     >
-    <!-- {{ datas }} -->
       <div class="presentation-title" @click="openTable(index)">
         <div class="presentation-title-item">
           {{ data.name }}
@@ -57,14 +68,24 @@ export default {
     })
     return {
       datas: default_data,
-      back_data: data
+      back_data: data,
+      path_datas: [
+        { name: "Top", path: "/" },
+        { name: "特設ページTop", path: "/special/announcementList" },
+        { name: "第1回", path: "/special/firstPresentations" }
+      ]
     }
   },
   methods: {
     openTable: function(index) {
       this.datas[index].isOpen = !this.datas[index].isOpen
-      this.datas[index].slide = this.back_data[index].slide
-      this.datas[index].slide_mq = this.back_data[index].slide_mq
+      if(this.datas[index].isOpen === false) {
+        this.datas[index].slide = ""
+        this.datas[index].slide_mq = ""
+      } else {
+        this.datas[index].slide = this.back_data[index].slide
+        this.datas[index].slide_mq = this.back_data[index].slide_mq
+      }
     }
   }
 }
@@ -75,11 +96,45 @@ export default {
 .container {
   width: 100%;
   min-height: calc(100vh - 60px);
-  margin: 50px auto;
+  margin: 30px auto;
+  @include mq {
+    margin: 50px auto;
+  }
 }
 .wrapper+ .wrapper {
   border-top: 0px;
   border-bottom: 2px solid $mainchar;
+}
+
+.breadcrumb {
+  &-wrapper {
+    width: 90%;
+    max-width: 800px;
+    margin: 0px auto 30px auto;
+  }
+  &-list {
+    padding-left: 0px;
+    text-align: left;
+  }
+  &-path {
+    display: inline-block;
+    list-style: none;
+  }
+  &-path::after {
+    display: inline-block;
+    margin: 0px 5px;
+    content: ">"
+  }
+  &-path:last-child::after {
+    content: none;
+  }
+  &-link {
+    text-decoration: none;
+    color: $mainchar;
+  }
+  &-text {
+    margin-top: 20px;
+  }
 }
 
 .presentation {
@@ -123,7 +178,6 @@ export default {
       &--open, &--close {
         width: 50px;
         span, span::before, span::after {
-          transition: all 0.3s;
           position: absolute;
           height: 3px;
           width: 10px;
@@ -196,6 +250,10 @@ export default {
       display: inline-block;
     }
   }
+}
+
+.el-breadcrumb__inner a, .is-link {
+  color: #FFFFFF !important;
 }
 
 </style>
