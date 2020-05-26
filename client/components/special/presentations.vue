@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="data in presentations" :key="data.name">
-      <thePresentation :name="data.name" :url="data.url" />
+    <div v-for="data in presentations" :key="data.name" class="wapper">
+      <thePresentation :name="data.name" :url="data.url" class="border" />
     </div>
   </div>
 </template>
@@ -27,5 +27,9 @@ export default {
   @include mq {
     margin: 50px auto;
   }
+}
+
+.border {
+  border-top: 2px solid $mainchar;
 }
 </style>

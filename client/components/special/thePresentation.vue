@@ -1,6 +1,6 @@
 <template>
   <div
-    class="wrapper"
+    class="pointer"
     :class="{
       'presentation-wrapper--open': isOpen,
       'presentation-wrapper--close': !isOpen
@@ -13,7 +13,7 @@
       <div
         :class="{
           'presentation-title-item--open': isOpen,
-          'presentation-title-item--close': isOpen
+          'presentation-title-item--close': !isOpen
         }"
       >
         <span></span>
@@ -80,8 +80,6 @@ export default {
       position: relative;
       width: 90%;
       margin: 0 auto;
-      border-top: 1.5px solid $mainchar;
-      border-bottom: 1.5px solid $mainchar;
       transition: 0.5s ease-in-out;
       overflow: hidden;
     }
@@ -145,10 +143,12 @@ export default {
         span::before {
           transform: rotate(45deg);
           bottom: -18px;
+          left: -3px;
         }
         span::after {
           transform: rotate(-45deg);
           bottom: -24px;
+          left: -3px;
         }
       }
     }
@@ -190,6 +190,9 @@ export default {
       display: inline-block;
     }
   }
+}
+.pointer {
+  cursor: pointer;
 }
 
 .el-breadcrumb__inner a,

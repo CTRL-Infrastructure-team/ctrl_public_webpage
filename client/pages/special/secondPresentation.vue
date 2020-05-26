@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <pageHeader :path_datas="path_datas" />
-    <presentation :presentations="presendata" />
+    <presentation :presentations="presendata" class="wrapper" />
   </div>
 </template>
 <script>
