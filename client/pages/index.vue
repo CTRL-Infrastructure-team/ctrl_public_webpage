@@ -1,21 +1,25 @@
 <template>
   <div class="content">
-    <srideShow :srideData="mainGuideprops" class="smartPhone" @open="openModal($event)" />
+    <srideShow
+      :srideData="mainGuideprops"
+      class="smartPhone"
+      @open="openModal($event)"
+    />
     <div class="flex">
       <mainGuide
         class="mp0 desktop"
         :img="item.img"
-        v-for="(item,index) in mainGuideprops"
+        v-for="(item, index) in mainGuideprops"
         :key="index"
         :name="item.title"
-        @open="openModal(index,$event)"
+        @open="openModal(index, $event)"
       />
       <myModal v-if="modal" @close="closeModal" class="black modal">
         <div class="modal-flex">
           <img :src="modalImg" class="img modal-flex_img" />
           <div class="modal-flex-text">
-            <h2 class="modal-flex-text_title">{{modalText.title}}</h2>
-            <p>{{modalText.body}}</p>
+            <h2 class="modal-flex-text_title">{{ modalText.title }}</h2>
+            <p>{{ modalText.body }}</p>
           </div>
         </div>
       </myModal>
@@ -26,7 +30,7 @@
     </div>
     <banner />
     <div class="flex flex-around">
-      <news class="news_box" :articles="articles"/>
+      <news class="news_box" :articles="articles" />
       <twitterbox class="twitterBox"></twitterbox>
     </div>
   </div>
@@ -59,13 +63,13 @@ export default {
     banner
   },
   async asyncData({ app }) {
-    let articles = await app.$axios.asyncGet('/api/situations')
-    return { articles }
+    let articles = await app.$axios.asyncGet("/api/situations");
+    return { articles };
   },
   data() {
     return {
       mainGuideprops: [
-        { img: whatIs, title: "ＣＴＲＬとは？"},
+        { img: whatIs, title: "ＣＴＲＬとは？" },
         { img: whoIs, title: "どんな人がいるの？" },
         { img: contentIs, title: "活動内容は？" },
         { img: img4, title: "活動場所は？" }
@@ -92,11 +96,11 @@ export default {
         },
         {
           title: "どこでいつ活動してるの？",
-          body: "世田谷キャンパス1号館2階　Ｆ教室(12F)で毎週水曜日13:00～18:00に活動しています。"
+          body:
+            "世田谷キャンパス1号館2階　Ｆ教室(12F)で毎週水曜日13:00～18:00に活動しています。"
         }
       ],
-      modalText: "",
-
+      modalText: ""
     };
   },
   methods: {
@@ -134,10 +138,10 @@ $modalBorder: #8193a9;
   }
 }
 
- @media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .flex {
     display: flex;
-  
+
     &_center {
       justify-content: center;
       align-items: center;
@@ -160,24 +164,23 @@ $modalBorder: #8193a9;
   }
 }
 
-
-@media screen and (min-width:768px){
+@media screen and (min-width: 768px) {
   .flex {
     display: flex;
-  flex-wrap: wrap;
-  // flex-direction: column;
-  &_center {
-    justify-content: center;
-    align-items: center;
-  }
-  &-around {
-    margin: 20px 0px;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    // flex-direction: column;
+    &_center {
+      justify-content: center;
+      align-items: center;
+    }
+    &-around {
+      margin: 20px 0px;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
-}
 
   .news_box {
     width: 50%;
@@ -227,8 +230,6 @@ $modalBorder: #8193a9;
     display: block;
   }
 }
-
-
 
 @keyframes typing {
   from {

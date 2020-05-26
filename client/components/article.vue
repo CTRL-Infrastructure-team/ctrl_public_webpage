@@ -5,7 +5,7 @@
         <div class="modal-flex-text--title">{{ article.title }}</div>
       </nuxt-link>
       <div class="modal-flex-text--content">
-        <div>{{ '日付 : ' + timestamp }}</div>
+        <div>{{ "日付 : " + timestamp }}</div>
         <div class="sanitize-text" v-html="$sanitize(modifiedText)"></div>
       </div>
     </div>
@@ -15,24 +15,20 @@
 import modify from "~/plugins/modifiedTime";
 
 export default {
-  props: ['article'],
-  data() {
-    let modifiedText = ""
-    if(this.article.content.length >= 100) {
-      modifiedText = this.article.content.substring(0, 80) + "  [...]"
-    } else {
-      modifiedText = this.article.content
-    }
-    return {
-      modifiedText
-    }
-  },
+  props: ["article"],
   computed: {
     timestamp() {
-      return modify(this.article.createdAt)
+      return modify(this.article.createdAt);
+    },
+    modifiedText() {
+      if (this.article?.content?.length >= 100) {
+        return this.article.content.substring(0, 80) + " [...]";
+      } else {
+        return this.article.content;
+      }
     }
-  },
-}
+  }
+};
 </script>
 <style lang="scss" scoped>
 $modalBorder: #8193a9;
@@ -47,8 +43,8 @@ $modalBorder: #8193a9;
     }
     &-text {
       width: 100%;
-       padding-bottom: 10px;
-      
+      padding-bottom: 10px;
+
       &--title {
         width: 100%;
         font-size: calc(15px + 0.8vw);
@@ -60,7 +56,7 @@ $modalBorder: #8193a9;
         border-left: 4px solid $modalBorder;
       }
 
-      &--content{
+      &--content {
         padding-left: 10px;
       }
     }

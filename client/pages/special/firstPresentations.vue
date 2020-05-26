@@ -3,7 +3,9 @@
     <div class="breadcrumb-wrapper">
       <ul class="breadcrumb-list">
         <li class="breadcrumb-path" v-for="data in path_datas" :key="data.id">
-          <nuxt-link class="breadcrumb-link" :to="data.path">{{ data.name }}</nuxt-link>
+          <nuxt-link class="breadcrumb-link" :to="data.path">{{
+            data.name
+          }}</nuxt-link>
         </li>
       </ul>
       <div class="breadcrumb-text">
@@ -38,12 +40,14 @@
         <!-- /.presentaiton-title-item--close -->
       </div>
       <!-- /.presentation-title -->
-      <div :class="{
-        'presentation-slide--open': data.isOpen,
-        'presentation-slide--close': !data.isOpen  
-      }">
-      <p class="slide-min" v-html="data.slide"></p>
-      <p class="slide-max" v-html="data.slide_mq"></p>
+      <div
+        :class="{
+          'presentation-slide--open': data.isOpen,
+          'presentation-slide--close': !data.isOpen
+        }"
+      >
+        <p class="slide-min" v-html="data.slide"></p>
+        <p class="slide-max" v-html="data.slide_mq"></p>
       </div>
       <!-- /.presentation-slide--open -->
       <!-- /.presentation-slide--close -->
@@ -56,16 +60,16 @@
 </template>
 
 <script>
-import data from "~/assets/data/firstPresentationsData.json"
+import data from "~/assets/data/firstPresentationsData.json";
 
 export default {
   data() {
     let obj = JSON.stringify(data),
-        default_data = JSON.parse(obj).map(item => {
-      item.slide = ""
-      item.slide_mq = ""
-      return item
-    })
+      default_data = JSON.parse(obj).map(item => {
+        item.slide = "";
+        item.slide_mq = "";
+        return item;
+      });
     return {
       datas: default_data,
       back_data: data,
@@ -74,25 +78,24 @@ export default {
         { name: "特設ページTop", path: "/special/announcementList" },
         { name: "第1回", path: "/special/firstPresentations" }
       ]
-    }
+    };
   },
   methods: {
     openTable: function(index) {
-      this.datas[index].isOpen = !this.datas[index].isOpen
-      if(this.datas[index].isOpen === false) {
-        this.datas[index].slide = ""
-        this.datas[index].slide_mq = ""
+      this.datas[index].isOpen = !this.datas[index].isOpen;
+      if (this.datas[index].isOpen === false) {
+        this.datas[index].slide = "";
+        this.datas[index].slide_mq = "";
       } else {
-        this.datas[index].slide = this.back_data[index].slide
-        this.datas[index].slide_mq = this.back_data[index].slide_mq
+        this.datas[index].slide = this.back_data[index].slide;
+        this.datas[index].slide_mq = this.back_data[index].slide_mq;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
 .container {
   width: 100%;
   min-height: calc(100vh - 60px);
@@ -101,7 +104,7 @@ export default {
     margin: 50px auto;
   }
 }
-.wrapper+ .wrapper {
+.wrapper + .wrapper {
   border-top: 0px;
   border-bottom: 2px solid $mainchar;
 }
@@ -120,14 +123,12 @@ export default {
     display: inline-block;
     list-style: none;
   }
-  &-path::after {
+  &-path:not(:last-child)::after {
     display: inline-block;
     margin: 0px 5px;
-    content: ">"
+    content: ">";
   }
-  &-path:last-child::after {
-    content: none;
-  }
+
   &-link {
     text-decoration: none;
     color: $mainchar;
@@ -139,7 +140,8 @@ export default {
 
 .presentation {
   &-wrapper {
-    &--open, &--close {
+    &--open,
+    &--close {
       max-width: 800px;
       display: block;
       position: relative;
@@ -147,7 +149,7 @@ export default {
       margin: 0 auto;
       border-top: 1.5px solid $mainchar;
       border-bottom: 2px solid $mainchar;
-      transition: .5s ease-in-out;
+      transition: 0.5s ease-in-out;
       overflow: hidden;
     }
     &--open {
@@ -175,13 +177,16 @@ export default {
       @include mq {
         width: 20%;
       }
-      &--open, &--close {
+      &--open,
+      &--close {
         width: 50px;
-        span, span::before, span::after {
+        span,
+        span::before,
+        span::after {
           position: absolute;
           height: 3px;
           width: 10px;
-          background: #FFFFFF;
+          background: #ffffff;
           display: block;
           border-radius: 2px;
           content: "";
@@ -216,10 +221,11 @@ export default {
   }
 
   &-slide {
-    &--open, &--close {
+    &--open,
+    &--close {
       width: 100%;
       position: relative;
-      transition: all .5s ease-in-out;
+      transition: all 0.5s ease-in-out;
       text-align: center;
       padding: 25px 0px;
     }
@@ -252,8 +258,8 @@ export default {
   }
 }
 
-.el-breadcrumb__inner a, .is-link {
-  color: #FFFFFF !important;
+.el-breadcrumb__inner a,
+.is-link {
+  color: #ffffff !important;
 }
-
 </style>

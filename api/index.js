@@ -27,7 +27,7 @@ if (tl) {
     useUnifiedTopology: false
   });
 } else {
-  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
+  mongoose.connect("mongodb://mongo:27017/ctrlPublicSite", {
     useNewUrlParser: true,
     useUnifiedTopology: false
   });
