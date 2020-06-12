@@ -3,19 +3,34 @@
     <div class="breadcrumb-wrapper">
       <ul class="breadcrumb-list">
         <li class="breadcrumb-path" v-for="data in path_datas" :key="data.id">
-          <nuxt-link class="breadcrumb-link" :to="data.path">{{ data.name }}</nuxt-link>
+          <nuxt-link class="breadcrumb-link" :to="data.path">{{
+            data.name
+          }}</nuxt-link>
         </li>
       </ul>
     </div>
     <!-- /.breadcrumb-wrapper -->
     <div class="list-wrapper">
       <div class="presentations-first">
-        <nuxt-link class="banner-link" to="/special/firstPresentations"></nuxt-link>
+        <nuxt-link
+          class="banner-link"
+          to="/special/firstPresentations"
+        ></nuxt-link>
         <span class="banner-top">第1回進捗発表資料</span>
         <span class="banner-description">詳しくはこちらをクリック！</span>
       </div>
       <!-- /.presentations-first -->
+      <div class="presentations-second">
+        <nuxt-link
+          class="banner-link"
+          to="/special/secondPresentations"
+        ></nuxt-link>
+        <span class="banner-top">第2回進捗発表資料</span>
+        <span class="banner-description">詳しくはこちらをクリック！</span>
+      </div>
     </div>
+
+    <!-- /.presentations-first -->
     <!-- /.list-wrapper -->
   </div>
   <!-- /.container -->
@@ -31,9 +46,9 @@ export default {
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +77,7 @@ export default {
   &-path::after {
     display: inline-block;
     margin: 0px 5px;
-    content: ">"
+    content: ">";
   }
   &-path:last-child::after {
     content: none;
@@ -87,7 +102,16 @@ export default {
   &-first {
     border-radius: 5px;
     height: 200px;
-    background: #FFFFFF;
+    background: #ffffff;
+    text-align: center;
+    position: relative;
+  }
+
+  &-second {
+    margin-top: 30px;
+    border-radius: 5px;
+    height: 200px;
+    background: #ffffff;
     text-align: center;
     position: relative;
   }
@@ -121,5 +145,4 @@ export default {
     height: 100%;
   }
 }
-
 </style>
