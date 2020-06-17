@@ -129,7 +129,7 @@ export default {
       this.auth = true;
     }
     this.title.value = this.befo.title;
-    this.content.value = this.befo.content;
+    this.content.value = this.befo.content.replace(/<br>/g,"\n");
     if(this.befo.twitter_id !== "") {
       this.checked = true;
     }
@@ -150,7 +150,8 @@ export default {
     doSendForm(){
       let formData = new FormData(),
           uploadFile = this.gameFile[0].raw,
-          uploadTopImage = this.topImage[0].raw;
+          uploadTopImage = this.topImage[0].raw,
+          uploadContent = this.content.value.replace(/\n/g,"<br>");
 
       this.otherImage.map(image => {
         formData.append('otherImage', image.raw);
@@ -159,7 +160,7 @@ export default {
       formData.append('gameFile', uploadFile);
       formData.append('topImage', uploadTopImage);
       formData.append('title', this.title.value);
-      formData.append('content', this.content.value);
+      formData.append('content', uploadContent);
       formData.append('twitter', this.checked);
 
       axios.put(`/api/pastWork/${this.$route.params.updateWork}`,
