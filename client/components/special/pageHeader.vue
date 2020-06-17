@@ -10,7 +10,9 @@
     <div class="breadcrumb-text">
       <p>※スライドの読み込みに時間がかかることがあります。</p>
     </div>
+    <!-- /.breakcrumb-text -->
   </div>
+  <!-- /.breakcrumb-wrapper -->
 </template>
 <script>
 export default {
