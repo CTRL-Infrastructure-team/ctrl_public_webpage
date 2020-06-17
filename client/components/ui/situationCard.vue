@@ -57,7 +57,9 @@ export default {
 
 .text-wrapper {
   margin: 10px;
-  width: 70%;
+  @include mq {
+    width: 70%;
+  }
 }
 
 .clearfix:before,
