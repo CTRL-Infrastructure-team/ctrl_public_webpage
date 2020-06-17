@@ -128,6 +128,8 @@ module.exports = {
         receiveTwitterId = user.twitter_id;
       }
       
+      console.log("req.files : ", req.files);
+
       PastWork.findById(id).then(work => {
         deleteFiles(requestPath, work.top_img_url);
         deleteFiles(requestPath, work.download_url);
