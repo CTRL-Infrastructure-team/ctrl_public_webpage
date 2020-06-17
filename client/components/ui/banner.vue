@@ -1,7 +1,7 @@
 <template>
   <div class="banner-wrapper">
     <nuxt-link class="banner-link" to="/special/announcementList"></nuxt-link>
-    <span class="banner-top">第1回進捗発表資料 公開中</span>
+    <span class="banner-top">進捗発表資料 公開中</span>
     <span class="banner-description">詳しくはこちらをクリック！</span>
   </div>
   <!-- /.banner-wrapper -->
