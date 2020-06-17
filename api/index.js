@@ -100,6 +100,7 @@ app.post(
   pastworkController.createWork
 );
 app.get("/pastWork/:pastWorkId", pastworkController.show);
+app.put("/pastWork/:pastWorkId", upload.any(), pastworkController.updateWork);
 app.delete("/pastWork/:pastWorkId", pastworkController.deleteWork);
 app.get("/pastWorks", pastworkController.worksList);
 app.get("/user/pastWorks", pastworkController.userPastWorks);

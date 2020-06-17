@@ -9,7 +9,11 @@
           <div>{{ work.createdAt }}</div>
           <div>{{ work.content }}</div>
           <div class="card-button">
-            <el-button>編集する</el-button>
+            <el-button>
+              <nuxt-link :to="`/edit/works/${work._id}`">
+                編集する
+              </nuxt-link>
+            </el-button>
             <el-button @click="deleteWork(work._id)">削除する</el-button>
           </div>
         </div>

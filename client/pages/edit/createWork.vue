@@ -42,7 +42,7 @@
             multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+            <div class="el-upload__tip" slot="tip">jpg files with a size less than 500kb</div>
           </el-upload>
           <p><img :src="data.image1"></p>
         </div>
@@ -60,7 +60,7 @@
             multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+            <div class="el-upload__tip" slot="tip">jpg files with a size less than 500kb</div>
           </el-upload>
           <p><img :src="data.image2"></p>
         </div>
@@ -154,11 +154,10 @@ export default {
     },
     doValidateTitle(data,index){
       this.title.value ? '': this.title.alert = '値を入力してください'
-   },
+    },
     doValidateInquiry(data,index){
       this.content.value ? '': this.content.alert = '値を入力してください'
-   },
-   
+    },
   }
 }
 </script>
