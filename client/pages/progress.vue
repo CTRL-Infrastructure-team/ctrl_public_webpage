@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import workCard from "~/components/workCard.vue";
+import workCard from "~/components/ui/workCard.vue";
 import pastWork from "~/pages/pastWorks/data.json";
 import windowResize from "~/plugins/windowResizeMixins";
 import pageTitle from "~/components/ui/pageTitle.vue";

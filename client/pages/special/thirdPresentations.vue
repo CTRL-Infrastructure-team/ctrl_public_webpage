@@ -3,6 +3,7 @@
     <pageHeader :path_datas="path_datas" />
     <presentation :presentations="presendata" class="wrapper" />
   </div>
+  <!-- /.container -->
 </template>
 <script>
 import presendata from "~/assets/data/firstPresentationsData.json";

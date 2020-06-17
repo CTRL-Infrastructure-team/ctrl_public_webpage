@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import situationCard from "~/components/situationCard.vue";
+import situationCard from "~/components/ui/situationCard.vue";
 import windowResize from "~/plugins/windowResizeMixins";
 import pageTitle from "~/components/ui/pageTitle.vue";
 

@@ -12,7 +12,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .title-wrapper {
   height: 30px;
   margin-top: 30px;

@@ -5,19 +5,28 @@
       <div slot="header" class="clearfix">
         <h3>{{ situation.title }}</h3>
       </div>
+      <!-- /.clearfix -->
       <div class="flex-box">
         <div class="img_holder">
           <img :src="situation.img_url" />
         </div>
+        <!-- /.img_holder -->
         <div class="text-wrapper">
           <div>{{ '日付 : ' + timestamp }}</div>
           <div>{{ '投稿者 : ' + situation.contributor }}</div>
-          <div class="sanitize-text" v-html="$sanitize(situation.content)">
+          <div
+            class="sanitize-text" 
+            v-html="$sanitize(situation.content)"
+          >
+          <!-- /.sanitize-text -->
           </div>
         </div>
+        <!-- text-wrapper -->
       </div>
+      <!-- /.flex-box -->
     </el-card>
   </div>
+  <!-- /.content -->
 </template>
 
 <script>
@@ -48,6 +57,7 @@ export default {
 
 .text-wrapper {
   margin: 10px;
+  width: 70%;
 }
 
 .clearfix:before,
