@@ -16,6 +16,7 @@ const fileNameModify = (requestPath, filePath) => {
 };
 
 module.exports = {
+  // ファイル書き込み処理
   uploadFiles(requestPath, fileList, workIdentification) {
     let containerName = requestJudge(requestPath);
     fileList.map((file) => {
@@ -26,6 +27,7 @@ module.exports = {
       });
     })
   },
+  // ファイル削除処理
   deleteFiles(requestPath, filePath) {
     let containerName = requestJudge(requestPath),
         fileName = fileNameModify(requestPath, filePath);
