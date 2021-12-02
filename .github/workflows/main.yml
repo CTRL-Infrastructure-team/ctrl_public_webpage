@@ -1,8 +1,8 @@
 name: CI
 on: 
-  [push, pull_request]:
+  push:
     branches:
-      - [master, develop]
+      - master
 jobs:
   build:
     name: Test
@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: '14.x'
       - run: yarn install
-      - run: yarn build
+      # - run: yarn build
