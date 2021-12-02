@@ -1,9 +1,7 @@
 <template>
-  <div class="content" v-if="auth">
+  <div v-if="auth">
+    <pageTitle title="活動報告編集" />
     <div class="form">
-    <div class="page-title">
-      <span>活動報告編集ページ</span>
-    </div>
       <div class="form-box">
         <div>
           <p>
@@ -57,18 +55,18 @@
   </div>
 </template>
 <script>
-import { Input } from 'element-ui'
-import axios from 'axios'
+import { Input } from 'element-ui';
+import axios from 'axios';
+import pageTitle from "~/components/ui/pageTitle";
 
 export default {
+  components: {
+    pageTitle
+  },
   async asyncData({ app }) {
     let res = await app.$axios.asyncGet('/api/loginCheck')
     return { res }
   },
-  // async asyncData() {
-  //   let data = await asyncGet('')
-  //   return { ...data }
-  // },
   data(){
     return{
       title: { value:'', alert:'' },
@@ -127,28 +125,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.content {
-  width: 100%;
-}
-
-.page-title {
-  height: 30px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  margin-right: 30px;
-  font-size: 20px;
-}
 .el-upload__tip{
   color: white;
 }
+
 .checkbox{
   margin-top: 1.5em;
   color: white;
 }
+
 .form {
-  height: 800px;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   &-box {
     margin-bottom: 1.8em;
@@ -178,32 +165,6 @@ export default {
       vertical-align: center;
     }
   }
-
-.page-title {
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
-    }
-    position: relative;
-    margin-left: 30px;
-    font-family: "ヒラギノ角ゴシック";
-    text-align: left;
-    font-size: calc(17px + 0.625vw);
-    font-weight: 500;
-  }
-}
-
 }
 
 </style>
