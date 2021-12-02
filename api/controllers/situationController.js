@@ -1,7 +1,6 @@
 const { Situation, SituationValidate } = require("../models/situations"),
   User = require("../models/user"),
-  { uploadFiles, deleteFiles } = require("../config/openstack"),
-  { validationResult } = require("express-validator");
+  { uploadFiles, deleteFiles } = require("../config/localfile");
 require("dotenv").config();
 
 module.exports = {
@@ -19,23 +18,30 @@ module.exports = {
     });
   },
   async createSituation(req, res) {
-    const receiveFiles = req.files,
-      requestPath = "situation";
+    const receiveFiles = req.files;
+
     User.findById(req.user).then(user => {
       let username = user.username,
-          situationIdentification = Math.random().toString(36).slice(-8),
           newSituation = new Situation({
             title: req.body.title,
             content: req.body.content,
             img_url:
-              process.env.CONOHA_STORAGE_URL +
-              "ctrl-situations/" +
-              situationIdentification +
-              receiveFiles[0].originalname,
+              "/api/images/" + username + "/" +
+              receiveFiles[0].filename + "." +
+              receiveFiles[0].originalname.split(".").slice(-1)[0],
             contributor: username,
             twitter_id: "@example"
           });
-      uploadFiles(requestPath, receiveFiles, situationIdentification);
+
+      uploadFiles(receiveFiles, username);
+
+      user.situations.push(newSituation);
+      user.save(err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+
       newSituation.save(err => {
         if (err) {
           console.log(err);
@@ -62,12 +68,12 @@ module.exports = {
     });
   },
   deleteSituation(req, res) {
-    let id = req.params.situationId,
-        requestPath = "situation";
+    const id = req.params.situationId;
+    
     Situation.findById(id).then(situation => {
-      deleteFiles(requestPath, situation.img_url);
+      deleteFiles("./api/config/data" + situation.img_url.replace("/api/images", ""));
+      
       Situation.findByIdAndDelete(id).then(result => {
-        console.log("result", result);
         res.send('delete');
       })
     });
