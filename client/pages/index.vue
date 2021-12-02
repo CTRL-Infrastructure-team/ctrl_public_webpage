@@ -45,7 +45,7 @@ import { mapGetters, mapMutations } from "vuex";
 import { TweenMax, Expo, Elasric } from "gsap";
 import myModal from "~/components/modal";
 import srideShow from "~/components/srideShow";
-import banner from "~/components/ui/banner";
+// import banner from "~/components/ui/banner";
 import axios from "axios";
 
 //画像インポート
@@ -60,7 +60,7 @@ export default {
     twitterbox,
     myModal,
     srideShow,
-    banner
+    // banner
   },
   async asyncData({ app }) {
     let articles = await app.$axios.asyncGet("/api/situations");
