@@ -1,16 +1,15 @@
 <template>
   <div v-if="auth">
-    <div class="page-title">
-      活動報告投稿
-    </div>
+    <pageTitle title="活動報告投稿" />
     <div class="form">
       <div class="form-content form-box">
         <p>
           <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
-        <!-- <p style="white-space: pre-line">{{message}}</p> -->
-        <br />
+        <div class="alert">
+          {{ title.alert }}
+        </div>
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
 
@@ -19,7 +18,9 @@
           <label for="content">本文</label>
           <span>(必須)</span>
         </p>
-        <p>内容を入力してください</p>
+        <div class="alert">
+          {{ content.alert }}
+        </div>
         <el-input
           placeholder="内容を入力"
           v-model="content.value"
@@ -27,12 +28,13 @@
           type="textarea"
           rows="7"
           cols="100"
-          @change="doValidateInquiry(content)"
         ></el-input>
-        {{ content.alert }}
       </div>
       <div class="form-button-file">
         画像:
+      </div>
+      <div class="alert">
+        {{ alert }}
       </div>
       <el-upload
         class="upload-demo"
@@ -57,9 +59,6 @@
       </el-upload>
       <div class="form-button">
         <el-button @click="doSendForm">投稿する</el-button>
-        <div class="alert">
-          {{ alert }}
-        </div>
       </div>
     </div>
   </div>
@@ -67,8 +66,12 @@
 <script>
 import { Input } from "element-ui";
 import axios from "axios";
+import pageTitle from "~/components/ui/pageTitle";
 
 export default {
+  components: {
+    pageTitle
+  },
   async asyncData({ redirect, app }) {
     let res = await app.$axios.asyncGet('/api/loginCheck')
     return { res }
@@ -99,16 +102,35 @@ export default {
     doSendFile() {},
     dropImage(file, fileList) {
       this.fileList = fileList;
-      console.log(this.fileList[0].raw);
-      console.log("file upload!");
     },
     doSendForm() {
-      if (!("raw" in this.fileList[0])) return (this.alert = "画像ないよ！");
-      let formData = new FormData(),
-        uploadImage = this.fileList[0].raw;
-      formData.append("file", uploadImage);
-      formData.append("title", this.title.value);
-      formData.append("content", this.content.value);
+      let formData = new FormData();
+
+      if (this.title.value === "") {
+        this.title.alert = "値を入力してください";
+      } else {
+        this.title.alert = "";
+        formData.append("title", this.title.value);
+      }
+      
+      if (this.content.value === "") {
+        this.content.alert = "値を入力してください";
+      } else {
+        this.content.alert = "";
+        formData.append("content", this.content.value);
+      }
+
+      if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
+        this.alert = "画像ないよ！";
+      } else {
+        this.alert = "";
+        const uploadImage = this.fileList[0].raw;
+        formData.append("file", uploadImage);
+      }
+
+      if (this.title.alert != "" || this.content.alert != "" || this.alert != "") {
+        return;
+      }
 
       axios
         .post("/api/situation", formData, {
@@ -116,47 +138,30 @@ export default {
         })
         .then(result => {
           this.$router.go({path: this.$router.currentRoute.path, force: true});
-          console.log(result);
         })
         .catch(error => {
           console.log(error);
         });
     },
-    doValidateTitle(data, index) {
-      this.title.value ? "" : (this.title.alert = "値を入力してください");
-    },
-    doValidateInquiry(data, index) {
-      this.content.value ? "" : (this.content.alert = "値を入力してください");
-    }
   }
 };
 </script>
 <style lang="scss" scoped>
-.page-title {
-  height: 30px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  margin-right: 30px;
-  font-size: 20px;
-}
 .el-upload__tip {
   color: white;
 }
+
 .checkbox {
   margin-top: 1.5em;
   color: white;
 }
+
 .form {
-  height: 800px;
+  width: 90%;
+  margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 50px;
-  margin-left: 60px;
-  margin-right: 10px;
   &-box {
-    //width: 90%;
-    //margin-left: 10px;
-    margin-right: 50px;
     margin-bottom: 1.8em;
     p:nth-child(1) {
       margin-bottom: 0.5rem;
@@ -166,7 +171,7 @@ export default {
     }
   }
   &-button {
-    margin-top: 2.5em;
+    margin-top: 1em;
     &-file {
       width: 10em;
       margin-bottom: 1em;
@@ -186,6 +191,8 @@ export default {
   }
 }
 .alert {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
   color: rgb(230, 30, 30);
 }
 </style>

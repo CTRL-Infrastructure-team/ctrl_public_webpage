@@ -1,8 +1,6 @@
 <template>
-  <div class="content" v-if="auth">
-    <div class="page-title">
-      <span>管理画面</span>
-    </div>
+  <div v-if="auth">
+    <pageTitle title="管理画面" />
     <div class="select-wrapper">
       <div>
         <nuxt-link :to="'/edit/createReport'">
@@ -34,9 +32,13 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
+import pageTitle from "~/components/ui/pageTitle";
 
 export default {
+  components: {
+    pageTitle
+  },
   async asyncData({ redirect, app }) {
     let res = await app.$axios.asyncGet('/api/loginCheck')
     return { res }
@@ -64,10 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  width: 100%;
-}
-
 .select-wrapper {
   width: 90%;
   max-width: 500px;
@@ -79,29 +77,6 @@ export default {
     width: 200px;
     height: 70px;
     margin: 20px 0px;
-  }
-}
-
-.page-title {
-  height: 30px;
-  margin: 30px 20px 10px 20px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 55%;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
-    }
-    position: relative;
-    margin-left: 50px;
-    text-align: left;
-    font-size: calc(15px + 0.8vw);
-    font-weight: 500;
   }
 }
 </style>

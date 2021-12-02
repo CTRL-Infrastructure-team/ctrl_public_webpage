@@ -4,18 +4,18 @@ const express = require("express"),
   session = require("express-session"),
   mongoose = require("mongoose"),
   passportLocal = require("./config/passport/local"),
-  // auth = require('connect-ensure-login').ensureLoggedIn('/login'),
   multer = require("multer"),
   { validationResult } = require("express-validator"),
-  upload = multer({ dest: "./api/config/cache/" });
+  upload = multer({ dest: "./api/config/data/" });
 
 const mailController = require("./controllers/mailController"),
   pastworkController = require("./controllers/pastworkController"),
   situationController = require("./controllers/situationController"),
-  userController = require("./controllers/userController");
+  userController = require("./controllers/userController"),
+  assetController = require("./controllers/assetController");
 
-var os = require("os");
-var hostname = os.hostname();
+const os = require("os");
+const hostname = os.hostname();
 const tl =
   hostname.includes("DESKTOP") ||
   hostname.includes("localhost") ||
@@ -76,6 +76,9 @@ app.post("/users/create", userController.create);
 app.post("/logout", userController.logout);
 app.get("/userTest", userController.common);
 app.get("/loginCheck", userController.check);
+
+app.get("/images/:user/:imagePath", assetController.getImg);
+app.get("/games/:user/:gamePath", assetController.getFile);
 
 //situationMethods
 app.get("/situations", situationController.situationsList);

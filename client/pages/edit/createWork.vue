@@ -1,6 +1,6 @@
 <template>
   <div v-if="auth">
-    <h1>成果物投稿ページ</h1>
+    <pageTitle title="成果物投稿" />
     <div class="form">
       <div class="form-inquiry form-box">
         <div>
@@ -9,12 +9,15 @@
         </div>
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
+
       <div class="form-inquiry form-box">
         <p>
-          <label class="label-text" for="content">本文</label>
+          <label for="content">本文</label>
           <span>(必須)</span>
         </p>
-        <p>成果物の内容を入力してください</p>
+        <div class="alert">
+          {{ content.alert }}
+        </div>
         <el-input
           placeholder="内容を入力"
           v-model="content.value"
@@ -24,7 +27,6 @@
           cols="100"
           @change="doValidateInquiry(content)"
         ></el-input>
-        {{content.alert}}
       </div>
       <div class="images">
         <div class="image1">
@@ -91,10 +93,14 @@
   </div>
 </template>
 <script>
-import { Input } from 'element-ui'
-import axios from 'axios'
+import { Input } from 'element-ui';
+import axios from 'axios';
+import pageTitle from "~/components/ui/pageTitle";
 
 export default {
+  components: {
+    pageTitle
+  },
   async asyncData({ app }) {
     let res = await app.$axios.asyncGet('/api/loginCheck')
     return { res }
@@ -162,36 +168,43 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-.form{
-    margin: 20px;
+.form {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  &-box {
+    margin-bottom: 1.8em;
+    p:nth-child(1) {
+      margin-bottom: 0.5rem;
+    }
+    p:nth-child(2) {
+      margin-bottom: 0.4rem;
+    }
+  }
+  &-button {
+    margin-top: 1em;
+    &-file {
+      width: 10em;
+      margin-bottom: 1em;
+    }
+  }
+  p {
+    label {
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+    span {
+      font-size: 0.75em;
+      font-weight: 300;
+      color: red;
+      vertical-align: center;
+    }
+  }
 }
-
-.label-text {
-  margin-top: 20px;
-}
-
-span{
-    color: red;
-
-}
-//画像アップロード
-@include mq{
-.images{
-    
-    display:flex;
-    flex-direction: column;
-    padding: 20px;
-}
-.image1{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-}
-.image2{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-}
+.alert {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  color: rgb(230, 30, 30);
 }
 </style>
