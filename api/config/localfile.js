@@ -1,35 +1,24 @@
-var fs = require('fs');
-const requestJudge = (requestPath) => {
-  if(requestPath === 'situation') {
-    return 'ctrl-situations';
-  } else {
-    return 'ctrl-pastworks';
-  }
-};
-
-const fileNameModify = (requestPath, filePath) => {
-  if(requestPath === 'situation') {
-    return filePath.substring(93);
-  } else {
-    return filePath.substring(92);
-  }
-};
+const fs = require('fs');
 
 module.exports = {
   // ファイル書き込み処理
-  uploadFiles(requestPath, fileList, workIdentification) {
-    let containerName = requestJudge(requestPath);
-    fileList.map((file) => {
-      fs.writeFile('./data/' + containerName + '/' + workIdentification + file.originalname, file, function (err) {
-        if (err) {
-          throw err;
-        }
-      });
-    })
+  uploadFiles(fileList, username) {
+    fileList.map(file => {
+      const path = file.destination + username + "/";
+
+      if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+      }
+    
+      fs.renameSync(
+        file.path,
+        path + file.filename + "." +
+        file.originalname.split(".").slice(-1)[0]
+      );
+    });
   },
   // ファイル削除処理
-  deleteFiles(requestPath, filePath) {
-    let containerName = requestJudge(requestPath),
-        fileName = fileNameModify(requestPath, filePath);
+  deleteFiles(filePath) {
+    fs.unlinkSync(filePath);
   }
 }
