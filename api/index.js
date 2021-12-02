@@ -78,6 +78,7 @@ app.get("/userTest", userController.common);
 app.get("/loginCheck", userController.check);
 
 app.get("/images/:user/:imagePath", assetController.getImg);
+app.get("/games/:user/:gamePath", assetController.getFile);
 
 //situationMethods
 app.get("/situations", situationController.situationsList);

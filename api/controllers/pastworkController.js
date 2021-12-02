@@ -1,6 +1,6 @@
 const { PastWork, PastWorkValidate } = require("../models/pastWork"),
   User = require("../models/user"),
-  { uploadFiles, deleteFiles } = require("../config/openstack");
+  { uploadFiles, deleteFiles } = require("../config/localfile");
 require("dotenv").config();
 
 const convert = string => {
@@ -29,7 +29,6 @@ module.exports = {
     let serch = convert(req.body.serch);
 
     PastWork.find({ title: serch.katakana().partMatch() })
-      // .find({ content: serch })
       .limit(10)
       .exec((err, data) => {
         err ? console.log(err.message) : console.log(data[0]);
@@ -56,8 +55,7 @@ module.exports = {
       });
   },
   createWork(req, res) {
-    const receiveFiles = req.files,
-          requestPath = "pastwork";
+    const receiveFiles = req.files;
 
     let topImage = receiveFiles.filter(file => {
         return file.fieldname === "topImage";
@@ -71,8 +69,7 @@ module.exports = {
 
     User.findById(req.user).then(user => {
       let username = user.username,
-          receiveTwitterId = '',
-          workIdentification = Math.random().toString(36).slice(-8);
+          receiveTwitterId = '';
 
       if(req.body.twitter === "true") {
         receiveTwitterId = user.twitter_id
@@ -82,29 +79,25 @@ module.exports = {
         title: req.body.title,
         content: req.body.content,
         download_url:
-          process.env.CONOHA_STORAGE_URL +
-          "ctrl-pastworks/" +
-          workIdentification +
-          gameFile[0].originalname,
+          "/api/games/" + username + "/" +
+          gameFile[0].filename + "." + 
+          gameFile[0].originalname.split(".").slice(-1)[0],
         top_img_url:
-          process.env.CONOHA_STORAGE_URL +
-          "ctrl-pastworks/" +
-          workIdentification +
-          topImage[0].originalname,
+          "/api/images/" + username + "/" +
+          topImage[0].filename + "." + 
+          topImage[0].originalname.split(".").slice(-1)[0],
         other_img_url: [
-          process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            workIdentification +
-            otherImage[0].originalname,
-          process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            workIdentification +
-            otherImage[1].originalname
+          "/api/images/" + username + "/" +
+          otherImage[0].filename + "." + 
+          otherImage[0].originalname.split(".").slice(-1)[0],
+          "/api/images/" + username + "/" +
+          otherImage[1].filename + "." + 
+          otherImage[1].originalname.split(".").slice(-1)[0]
         ],
         contributor: username,
         twitter_id: receiveTwitterId
       });
-      uploadFiles(requestPath, receiveFiles, workIdentification);
+      uploadFiles(receiveFiles, username);
 
       newWork.save(err => {
         if(err) {
@@ -118,23 +111,19 @@ module.exports = {
     User.findById(req.user).then(user => {
       const id = req.params.pastWorkId,
             username = user.username,
-            receiveFiles = req.files,
-            requestPath = "pastworks",
-            workIdentification = Math.random().toString(36).slice(-8);
+            receiveFiles = req.files;
 
       let receiveTwitterId = '';
       
       if(req.body.twitter === "true") {
         receiveTwitterId = user.twitter_id;
       }
-      
-      console.log("req.files : ", req.files);
 
       PastWork.findById(id).then(work => {
-        deleteFiles(requestPath, work.top_img_url);
-        deleteFiles(requestPath, work.download_url);
-        work.other_img_url.map((url) => {
-          deleteFiles(requestPath, url);
+        deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
+        deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
+        work.other_img_url.map(url => {
+          deleteFiles("./api/config/data" + url.replace("/api/images", ""));
         });
         
         let topImage = receiveFiles.filter(file => {
@@ -151,30 +140,26 @@ module.exports = {
           title: req.body.title,
           content: req.body.content,
           download_url:
-            process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            workIdentification +
-            gameFile[0].originalname,
+            "/api/games/" + username + "/" +
+            gameFile[0].filename + "." + 
+            gameFile[0].originalname.split(".").slice(-1)[0],
           top_img_url:
-            process.env.CONOHA_STORAGE_URL +
-            "ctrl-pastworks/" +
-            workIdentification +
-            topImage[0].originalname,
+            "/api/images/" + username + "/" +
+            topImage[0].filename + "." + 
+            topImage[0].originalname.split(".").slice(-1)[0],
           other_img_url: [
-            process.env.CONOHA_STORAGE_URL +
-              "ctrl-pastworks/" +
-              workIdentification +
-              otherImage[0].originalname,
-            process.env.CONOHA_STORAGE_URL +
-              "ctrl-pastworks/" +
-              workIdentification +
-              otherImage[1].originalname
+            "/api/images/" + username + "/" +
+            otherImage[0].filename + "." + 
+            otherImage[0].originalname.split(".").slice(-1)[0],
+            "/api/images/" + username + "/" +
+            otherImage[1].filename + "." + 
+            otherImage[1].originalname.split(".").slice(-1)[0]
           ],
           contributor: username,
           twitter_id: receiveTwitterId
         };
 
-        uploadFiles(requestPath, receiveFiles, workIdentification);
+        uploadFiles(receiveFiles, username);
 
         PastWork.findByIdAndUpdate(id, data, err => {
           if(err) {
@@ -203,16 +188,16 @@ module.exports = {
     });
   },
   deleteWork(req, res) {
-    let id = req.params.pastWorkId,
-        requestPath = "pastwork";
+    let id = req.params.pastWorkId;
+
     PastWork.findById(id).then(work => {
-      deleteFiles(requestPath, work.top_img_url);
-      deleteFiles(requestPath, work.download_url);
-      work.other_img_url.map((url) => {
-        deleteFiles(requestPath, url);
-      })
+      deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
+      work.other_img_url.map(url => {
+        deleteFiles("./api/config/data" + url.replace("/api/images", ""));
+      });
+
       PastWork.findByIdAndDelete(id).then(result => {
-        console.log("result", result);
         res.send('delete');
       })
     });
