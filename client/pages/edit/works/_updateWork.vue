@@ -149,13 +149,22 @@ export default {
     },
     doSendForm(){
       let formData = new FormData(),
-          uploadFile = this.gameFile[0].raw,
-          uploadTopImage = this.topImage[0].raw,
+          uploadFile = '',
+          uploadTopImage = '',
           uploadContent = this.content.value.replace(/\n/g,"<br>");
 
-      this.otherImage.map(image => {
-        formData.append('otherImage', image.raw);
-      });
+      if(this.gameFile[0] !== 'undefined') {
+        uploadFile = this.gameFile[0].raw;
+      }
+      if(this.topImage[0] !== 'undefined') {
+        uploadTopImage = this.topImage[0].raw;
+      }
+
+      if(this.otherImage !== 'undefined') {
+        this.otherImage.map(image => {
+          formData.append('otherImage', image.raw);
+        });
+      }
 
       formData.append('gameFile', uploadFile);
       formData.append('topImage', uploadTopImage);
