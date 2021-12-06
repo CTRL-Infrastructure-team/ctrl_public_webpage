@@ -98,7 +98,6 @@ module.exports = {
         twitter_id: receiveTwitterId
       });
       uploadFiles(receiveFiles, username);
-
       newWork.save(err => {
         if(err) {
           console.log(err);
@@ -120,13 +119,8 @@ module.exports = {
       }
 
       PastWork.findById(id).then(work => {
-        deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
-        deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
-        work.other_img_url.map(url => {
-          deleteFiles("./api/config/data" + url.replace("/api/images", ""));
-        });
-        
-        let topImage = receiveFiles.filter(file => {
+        // receiveFilesからファイルを取り出して分類する
+        const topImage = receiveFiles.filter(file => {
           return file.fieldname === "topImage";
         }),
         otherImage = receiveFiles.filter(file => {
@@ -136,31 +130,47 @@ module.exports = {
           return file.fieldname === "gameFile";
         });
         
-        const data = {
+        let data = {
           title: req.body.title,
           content: req.body.content,
-          download_url:
-            "/api/games/" + username + "/" +
-            gameFile[0].filename + "." + 
-            gameFile[0].originalname.split(".").slice(-1)[0],
-          top_img_url:
-            "/api/images/" + username + "/" +
-            topImage[0].filename + "." + 
-            topImage[0].originalname.split(".").slice(-1)[0],
-          other_img_url: [
-            "/api/images/" + username + "/" +
-            otherImage[0].filename + "." + 
-            otherImage[0].originalname.split(".").slice(-1)[0],
-            "/api/images/" + username + "/" +
-            otherImage[1].filename + "." + 
-            otherImage[1].originalname.split(".").slice(-1)[0]
-          ],
+          download_url: work.download_url,
+          top_img_url: work.top_img_url,
+          other_img_url: work.other_img_url,
           contributor: username,
           twitter_id: receiveTwitterId
         };
-
+        // 新しいファイルがあったら更新する
+        if (gameFile.length > 0) {
+          deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
+          data.download_url = "/api/games/" + username + "/" +
+            gameFile[0].filename + "." +
+            gameFile[0].originalname.split(".").slice(-1)[0];
+        }
+        if (topImage.length > 0) {
+          deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
+          data.top_img_url = "/api/images/" + username + "/" +
+            topImage[0].filename + "." +
+            topImage[0].originalname.split(".").slice(-1)[0];
+        }
+        if (otherImage.length > 0) {
+          work.other_img_url.map(url => {
+            deleteFiles("./api/config/data" + url.replace("/api/images", ""));
+          });
+          data.other_img_url = [
+            "/api/images/" + username + "/" +
+            otherImage[0].filename + "." +
+            otherImage[0].originalname.split(".").slice(-1)[0]
+          ];
+          if (otherImage.length > 1) {
+            data.other_img_url.push(
+              "/api/images/" + username + "/" +
+              otherImage[1].filename + "." +
+              otherImage[1].originalname.split(".").slice(-1)[0]);
+          }
+        }
         uploadFiles(receiveFiles, username);
 
+        // データベースの内容をアップデート
         PastWork.findByIdAndUpdate(id, data, err => {
           if(err) {
             console.log(err);
