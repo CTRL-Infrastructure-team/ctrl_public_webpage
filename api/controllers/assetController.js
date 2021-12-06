@@ -9,7 +9,7 @@ module.exports = {
         console.log(err);
 
         res.writeHead(200, { 'Content-Type': 'image/png' });
-        res.end(file);
+        res.send(file);
       }
     );
   },
