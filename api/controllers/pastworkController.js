@@ -185,7 +185,7 @@ module.exports = {
       PastWork.find({ contributor: user.username })
         .sort({ createdAt: -1 })
         .then(data => {
-          res.send(data);
+        res.send(data);
         })
         .catch(err => {
           console.log(err);
