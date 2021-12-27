@@ -7,9 +7,11 @@ module.exports = {
       `./api/config/data/${req.params.user}/${req.params.imagePath}`,
       (err, file) => {
         console.log(err);
-
-        res.writeHead(200, { 'Content-Type': 'image/png' });
-        res.send(file);
+        
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'image/png');
+        res.write(file);
+        res.end();
       }
     );
   },

@@ -26,7 +26,7 @@ module.exports = {
   },
   // ファイル削除処理
   deleteFiles(filePath) {
-    if (ts.existsSync(filePath)) {
+    if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
   }
