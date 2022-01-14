@@ -3,9 +3,12 @@
     <pageTitle title="成果物投稿" />
     <div class="form">
       <div class="form-inquiry form-box">
-        <div>
+        <p>
           <label for="content">タイトル</label>
           <span>(必須)</span>
+        </p>
+        <div class="alert">
+          {{ title.alert }}
         </div>
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
@@ -31,6 +34,9 @@
       <div class="images">
         <div class="image1">
           <div class="label-text">トップ画像（1枚）：</div>
+          <div class="alert">
+            {{ alert }}
+          </div>
           <el-upload
             class="upload-demo"
             drag
@@ -136,8 +142,22 @@ export default {
       this.gameFile = gameFile
     },
     doSendForm(){
-      let formData = new FormData(),
-          uploadFile = this.gameFile[0].raw,
+      let formData = new FormData();
+
+      if(this.gameFile.length == 0 || !("raw" in this.gameFile[0])) {
+        this.alert = 'アップロードするファイルがありません';
+        return;
+      } else if(this.topImage.length == 0 || !("raw" in this.topImage[0])) {
+        this.alert = 'トップ画像がありません';
+        return;
+      } else if(this.otherImage.length < 2 || !("raw" in this.otherImage[0]) || !("raw" in this.otherImage[1])) {
+        this.alert = 'その他画像が不足しています';
+        return;
+      } else {
+        this.alert = '';
+      }
+
+      let uploadFile = this.gameFile[0].raw,
           uploadTopImage = this.topImage[0].raw
 
       this.otherImage.map(image => {
