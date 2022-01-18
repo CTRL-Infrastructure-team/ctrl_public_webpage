@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const mailData = require("../config/key/config.js");
+// const mailData = require("../config/key/config.js");
 // gmailでの送信はよろしくないから別の方法を取るべき。
 const axios = require("axios");
 const { checkSchema } = require("express-validator");
@@ -11,8 +11,8 @@ const smtpConfig = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: mailData.senderEmailAddress,
-    pass: mailData.senderEmailPassword
+    user: process.env.SENDER_EMAIL_ADDRESS,
+    pass: process.env.SENDER_EMAIL_PASSWORD
   }
 });
 const createMailmessage = (text, email) => {
