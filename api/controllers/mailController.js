@@ -17,7 +17,7 @@ const smtpConfig = nodemailer.createTransport({
 });
 const createMailmessage = (text, email) => {
   return {
-    from: mailData.senderEmailAddress,
+    from: process.env.SENDER_EMAIL_ADDRESS,
     to: email,
     subject: "問い合わせを受け付けました。",
     text: `このメールアドレスは送信専用です。返信しても反応はできません。\n返信には時間がかかる場合がございます。\n 以下の内容で問い合わせを受けつけました。\n${text}`
