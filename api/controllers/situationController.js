@@ -35,7 +35,9 @@ module.exports = {
 
       uploadFiles(receiveFiles, username);
 
+      // これが本当に必要か確認
       user.situations.push(newSituation);
+      // saveによってハッシュが再生成される
       user.save(err => {
         if (err) {
           console.log(err);
