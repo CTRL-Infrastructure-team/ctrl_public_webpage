@@ -2,6 +2,12 @@
   <div v-if="auth">
     <pageTitle title="活動報告編集" />
     <div class="form">
+      <div class="attention">
+        こちらは仮の編集ページとなっております。タイトル、本文、TwitterIDの有無は引き継がれますが、画像とファイルは引き継がれません。
+      </div>
+      <div class="attention">
+        そのため、更新する際は必ず画像及びゲームファイルを入力し直してください。
+      </div>
       <div class="form-box">
         <div>
           <p>
@@ -64,8 +70,9 @@ export default {
     pageTitle
   },
   async asyncData({ app }) {
-    let res = await app.$axios.asyncGet('/api/loginCheck')
-    return { res }
+    let res = await app.$axios.asyncGet('/api/loginCheck');
+    let before = await app.$axios.asyncGet(`/api/situations/${params.updateSituations}`)
+    return { res, before }
   },
   data(){
     return{
@@ -83,6 +90,8 @@ export default {
     } else {
       this.auth = true
     }
+    this.title.value = this.before.title;
+    this.content.value = this.before.content.replace(/<br>/g,"\n");
   },
   methods:{
     handleRemove(file,fileList){
@@ -107,7 +116,7 @@ export default {
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
 
-      axios.post('/api/situation',
+      axios.put(`/api/situations/${this.$route.params.updateSituations}`,
         formData,
         { header: { 'Content-Type': 'multipart/form-data' } }
       ).then(result => {
@@ -132,6 +141,11 @@ export default {
 .checkbox{
   margin-top: 1.5em;
   color: white;
+}
+
+.attention {
+  margin: 10px 0px;
+  font-size: calc(15px + 0.2vw);
 }
 
 .form {
