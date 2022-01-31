@@ -12,7 +12,8 @@ module.exports = {
       });
   },
   show(req, res) {
-    let situationId = req.situationId;
+    let situationId = req.params.situationId;
+    console.log(situationId);
     Situation.findById(situationId).then(situation => {
       res.send(situation);
     });
