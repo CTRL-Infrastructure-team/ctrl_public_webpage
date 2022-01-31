@@ -69,7 +69,7 @@ export default {
   components: {
     pageTitle
   },
-  async asyncData({ app }) {
+  async asyncData({ app, params }) {
     let res = await app.$axios.asyncGet('/api/loginCheck');
     let before = await app.$axios.asyncGet(`/api/situations/${params.updateSituations}`)
     return { res, before }
