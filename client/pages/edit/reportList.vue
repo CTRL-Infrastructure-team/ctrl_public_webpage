@@ -14,7 +14,9 @@
             <div>{{ situation.createdAt }}</div>
             <div>{{ situation.content }}</div>
             <div class="card-button">
-              <el-button>編集する</el-button>
+              <nuxt-link :to="`/edit/situations/${situation._id}`">
+                編集する
+              </nuxt-link>
               <el-button @click="deleteWork(situation._id)">削除する</el-button>
             </div>
           </div>
