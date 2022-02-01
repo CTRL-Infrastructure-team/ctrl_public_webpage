@@ -91,7 +91,7 @@ app.post(
 );
 app.get("/situations/:situationId", situationController.show);
 app.get("/user/situations", situationController.userSituations);
-app.put("/situations/:situationId", situationController.updateSituations);
+app.put("/situations/:situationId", upload.any(), situationController.updateSituations);
 app.delete("/situations/:situationId", situationController.deleteSituation);
 
 //pastworkMethods

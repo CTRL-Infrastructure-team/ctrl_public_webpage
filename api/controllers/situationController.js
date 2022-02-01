@@ -48,7 +48,7 @@ module.exports = {
     User.findById(req.user).then(user => {
       const id = req.params.situationId,
         username = user.username,
-        receiveFiles = req.file;
+        receiveFiles = req.files;
       
       Situation.findById(id).then(situation => {
         deleteFiles("./api/config/data" + situation.img_url.replace("/api/images", ""));
