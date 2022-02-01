@@ -42,8 +42,6 @@
           drag
           action=""
           :on-change="dropImage"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
           :file-list="fileList"
           list-type="picture"
           :auto-upload="false"
@@ -112,7 +110,7 @@ export default {
       let formData = new FormData(),
           uploadImage = this.fileList[0].raw
 
-      formData.append('file', uploadImage)
+      formData.append('files', uploadImage)
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
 
