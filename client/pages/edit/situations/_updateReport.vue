@@ -15,7 +15,11 @@
             <span>(必須)</span>
           </p>
         </div>
-        <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
+        <el-input 
+          v-model="title.value" 
+          placeholder="タイトルを入力"
+          @change="doValidateTitle(title)"></el-input>
+        {{ title.alert }}
       </div>
       <div class="form-box">
           <p>
@@ -30,7 +34,7 @@
             type="textarea"
             rows="7"
             cols="100"
-            @change="doValidateInquiry(content)"
+            @change="doValidateContent(content)"
           ></el-input>
           {{content.alert}}
         </div>
@@ -51,9 +55,9 @@
           <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
           <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
         </el-upload>
-        <el-checkbox v-model="checked" class="checkbox">Twitter IDを掲載する</el-checkbox>
+        {{ alert }}
         <div class="form-button">
-          <el-button @click="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">投稿する</el-button>
         </div>
     </div>
   </div>
@@ -107,10 +111,20 @@ export default {
       console.log("file upload!")
     },
     doSendForm(){
+      if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
+        this.alert = "画像ないよ！";
+      } else {
+        this.alert = "";
+        const uploadImage = this.fileList[0].raw;
+        formData.append("file", uploadImage);
+      }
+
+      if (this.title.alert != "" || this.content.alert != "" || this.alert != "") {
+        return;
+      }
       let formData = new FormData(),
           uploadImage = this.fileList[0].raw
 
-      formData.append('files', uploadImage)
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
 
@@ -122,10 +136,10 @@ export default {
       })
     },
     doValidateTitle(data,index){
-      this.title.value ? '': this.title.alert = '値を入力してください'
+      this.title.value ? '': this.title.alert = 'タイトルを入力してください'
    },
-    doValidateInquiry(data,index){
-      this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
+    doValidateContent(data,index){
+      this.content.value ? '': this.content.alert = '本文を入力してください'
 
    },
   },
