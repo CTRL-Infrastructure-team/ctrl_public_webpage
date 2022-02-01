@@ -71,7 +71,7 @@ export default {
   },
   async asyncData({ app, params }) {
     let res = await app.$axios.asyncGet('/api/loginCheck');
-    let before = await app.$axios.asyncGet(`/api/situations/${params.updateSituations}`)
+    let before = await app.$axios.asyncGet(`/api/situations/${params.updateReport}`)
     return { res, before }
   },
   data(){
@@ -116,7 +116,7 @@ export default {
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
 
-      axios.put(`/api/situations/${this.$route.params.updateSituations}`,
+      axios.put(`/api/situations/${this.$route.params.updateReport}`,
         formData,
         { header: { 'Content-Type': 'multipart/form-data' } }
       ).then(result => {
