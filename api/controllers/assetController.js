@@ -6,7 +6,11 @@ module.exports = {
     fs.readFile(
       `./api/config/data/${req.params.user}/${req.params.imagePath}`,
       (err, file) => {
-        console.log(err);
+        if (err) {
+          console.log(err);
+          res.end();
+          return;
+        }
         
         res.statusCode = 200;
         res.setHeader('Content-Type', 'image/png');
@@ -21,8 +25,11 @@ module.exports = {
     fs.readFile(
         `./api/config/data/${req.params.user}/${req.params.gamePath}`,
         (err, file) => {
-          console.log(err);
-  
+          if (err) {
+            console.log(err);
+            res.end();
+            return;
+          }
         //   res.writeHead(200, { 'Content-Type': 'image/png' });
           res.send(file);
         }
