@@ -13,6 +13,7 @@ module.exports = {
   },
   show(req, res) {
     let situationId = req.params.situationId;
+    console.log(situationId);
     Situation.findById(situationId).then(situation => {
       res.send(situation);
     });
@@ -35,18 +36,40 @@ module.exports = {
 
       uploadFiles(receiveFiles, username);
 
-      user.situations.push(newSituation);
-      user.save(err => {
-        if (err) {
-          console.log(err);
-        }
-      });
-
       newSituation.save(err => {
         if (err) {
           console.log(err);
         }
         res.send("response catch!");
+      });
+    });
+  },
+  updateSituations(req, res) {
+    User.findById(req.user).then(user => {
+      const id = req.params.situationId,
+        username = user.username,
+        receiveFiles = req.files;
+      
+      Situation.findById(id).then(situation => {
+        deleteFiles("./api/config/data" + situation.img_url.replace("/api/images", ""));
+
+        const data = {
+          title: req.body.title,
+          content: req.body.content,
+          img_url:
+            "/api/images/" + username + "/" +
+            receiveFiles[0].filename + "." +
+            receiveFiles[0].originalname.split(".").slice(-1)[0],
+          contributor: username
+        };
+
+        uploadFiles(receiveFiles, username);
+        Situation.findByIdAndUpdate(id, data, err => {
+          if (err) {
+            console.log(err);
+          }
+          res.send("update Situation!");
+        });
       });
     });
   },

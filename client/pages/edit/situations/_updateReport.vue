@@ -2,6 +2,12 @@
   <div v-if="auth">
     <pageTitle title="活動報告編集" />
     <div class="form">
+      <div class="attention">
+        こちらは仮の編集ページとなっております。タイトル、本文、TwitterIDの有無は引き継がれますが、画像とファイルは引き継がれません。
+      </div>
+      <div class="attention">
+        そのため、更新する際は必ず画像及びゲームファイルを入力し直してください。
+      </div>
       <div class="form-box">
         <div>
           <p>
@@ -9,7 +15,11 @@
             <span>(必須)</span>
           </p>
         </div>
-        <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
+        <el-input 
+          v-model="title.value" 
+          placeholder="タイトルを入力"
+          @change="doValidateTitle(title)"></el-input>
+        {{ title.alert }}
       </div>
       <div class="form-box">
           <p>
@@ -24,7 +34,7 @@
             type="textarea"
             rows="7"
             cols="100"
-            @change="doValidateInquiry(content)"
+            @change="doValidateContent(content)"
           ></el-input>
           {{content.alert}}
         </div>
@@ -36,8 +46,6 @@
           drag
           action=""
           :on-change="dropImage"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
           :file-list="fileList"
           list-type="picture"
           :auto-upload="false"
@@ -47,9 +55,9 @@
           <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
           <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
         </el-upload>
-        <el-checkbox v-model="checked" class="checkbox">Twitter IDを掲載する</el-checkbox>
+        {{ alert }}
         <div class="form-button">
-          <el-button @click="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">投稿する</el-button>
         </div>
     </div>
   </div>
@@ -63,9 +71,10 @@ export default {
   components: {
     pageTitle
   },
-  async asyncData({ app }) {
-    let res = await app.$axios.asyncGet('/api/loginCheck')
-    return { res }
+  async asyncData({ app, params }) {
+    let res = await app.$axios.asyncGet('/api/loginCheck');
+    let before = await app.$axios.asyncGet(`/api/situations/${params.updateReport}`)
+    return { res, before }
   },
   data(){
     return{
@@ -83,6 +92,8 @@ export default {
     } else {
       this.auth = true
     }
+    this.title.value = this.before.title;
+    this.content.value = this.before.content.replace(/<br>/g,"\n");
   },
   methods:{
     handleRemove(file,fileList){
@@ -100,14 +111,25 @@ export default {
       console.log("file upload!")
     },
     doSendForm(){
-      let formData = new FormData(),
-          uploadImage = this.fileList[0].raw
+      let formData = new FormData();
+      
+      if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
+        this.alert = "画像ないよ！";
+      } else {
+        this.alert = "";
+        const uploadImage = this.fileList[0].raw;
+        formData.append("file", uploadImage);
+      }
 
-      formData.append('file', uploadImage)
+      if (this.title.alert != "" || this.content.alert != "" || this.alert != "") {
+        return;
+      }
+      let uploadImage = this.fileList[0].raw
+
       formData.append('title', this.title.value)
       formData.append('content', this.content.value)
 
-      axios.post('/api/situation',
+      axios.put(`/api/situations/${this.$route.params.updateReport}`,
         formData,
         { header: { 'Content-Type': 'multipart/form-data' } }
       ).then(result => {
@@ -115,10 +137,10 @@ export default {
       })
     },
     doValidateTitle(data,index){
-      this.title.value ? '': this.title.alert = '値を入力してください'
+      this.title.value ? '': this.title.alert = 'タイトルを入力してください'
    },
-    doValidateInquiry(data,index){
-      this.inquiry.value ? '': this.inquiry.alert = '値を入力してください'
+    doValidateContent(data,index){
+      this.content.value ? '': this.content.alert = '本文を入力してください'
 
    },
   },
@@ -132,6 +154,11 @@ export default {
 .checkbox{
   margin-top: 1.5em;
   color: white;
+}
+
+.attention {
+  margin: 10px 0px;
+  font-size: calc(15px + 0.2vw);
 }
 
 .form {
