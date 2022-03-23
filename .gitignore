@@ -98,7 +98,8 @@ cache/
 #user data
 api/test/user_data.json
 
-#first presentations data
+#presentations data
 client/assets/data/firstPresentationsData.json
+client/assets/data/2022sPresentationsData.json
 
 api/config/data/

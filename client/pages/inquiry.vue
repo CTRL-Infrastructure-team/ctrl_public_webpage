@@ -52,6 +52,17 @@ export default {
   components: {
     pageTitle
   },
+  head() {
+    return {
+      title: "お問い合わせ | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "お問い合わせ"
+        }
+      ]
+    }
+  },
   data() {
     return {
       inquiry: {

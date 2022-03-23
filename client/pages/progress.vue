@@ -35,6 +35,17 @@ export default {
     let works = await app.$axios.asyncGet(`/api/pastWorks`)
     return { works }
   },
+  head() {
+    return {
+      title: "作品 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "作品"
+        }
+      ]
+    }
+  },
   data() {
     return {
       worksLength: [],
