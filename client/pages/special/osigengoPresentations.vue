@@ -17,11 +17,11 @@ export default {
   },
   head() {
     return {
-      title: "第3回進捗発表 | ",
+      title: "推し言語・ツール好き勝手喋り会 | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: "第3回進捗発表"
+          content: "推し言語・ツール好き勝手喋り会"
         }
       ]
     }
@@ -31,14 +31,14 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "第3回", path: "/special/thirdPresentations" }
+        { name: "推し言語・ツール好き勝手喋り会", path: "/special/osigengoPresentations" }
       ]
     };
   },
   computed: {
     presendata() {
       return presendata.map(v => {
-        v.url = v.slide3;
+        v.url = v.osigengo;
         return v;
       });
     }

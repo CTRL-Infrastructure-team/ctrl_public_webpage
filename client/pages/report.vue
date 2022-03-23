@@ -32,6 +32,17 @@ export default {
     situationCard,
     pageTitle
   },
+  head() {
+    return {
+      title: "活動報告 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "活動報告"
+        }
+      ]
+    }
+  },
   async asyncData({ params, app }) {
     let works = await app.$axios.asyncGet(`/api/situations`);
     return { works }

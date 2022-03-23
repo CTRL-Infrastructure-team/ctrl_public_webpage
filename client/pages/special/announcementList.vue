@@ -14,6 +14,7 @@
       <!-- <bannerTimes :times="times.first" /> --> <!--非公開のためコメント化-->
       <!-- <bannerTimes :times="times.second" /> --> <!--非公開のためコメント化-->
       <bannerTimes :times="times.third" />
+      <bannerTimes :times="times.osigengo" />
     </div>
     <!-- /.list-wrapper -->
   </div>
@@ -25,6 +26,17 @@ import bannerTimes from "../../components/special/bannerTimes";
 
 export default {
   components: { bannerTimes },
+  head() {
+    return {
+      title: "特設ページ | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "特設ページ"
+        }
+      ]
+    }
+  },
   data() {
     return {
       path_datas: [
@@ -32,9 +44,10 @@ export default {
         { name: "特設ページTop", path: "/special/announcementList" }
       ],
       times: {
-        first: { top: "第1回進捗発表資料", link: "/special/firstPresentations" },
-        second: { top: "第2回進捗発表資料", link: "/special/secondPresentations" },
-        third: { top: "第3回進捗発表資料", link: "/special/thirdPresentations" },
+        first: { top: "第1回進捗発表", link: "/special/firstPresentations" },
+        second: { top: "第2回進捗発表", link: "/special/secondPresentations" },
+        third: { top: "第3回進捗発表", link: "/special/thirdPresentations" },
+        osigengo: { top: "推し言語・ツール好き勝手喋り会", link: "/special/osigengoPresentations" },
       }
     };
   }
