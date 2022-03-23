@@ -17,7 +17,13 @@ export default {
   },
   head() {
     return {
-      title: "推し言語・ツール好き勝手喋り会 | "
+      title: "推し言語・ツール好き勝手喋り会 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "推し言語・ツール好き勝手喋り会"
+        }
+      ]
     }
   },
   data() {

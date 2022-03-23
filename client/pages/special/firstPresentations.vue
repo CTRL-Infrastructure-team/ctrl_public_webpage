@@ -65,7 +65,13 @@ import data from "~/assets/data/2022sPresentationsData.json";
 export default {
   head() {
     return {
-      title: "第1回進捗発表 | "
+      title: "第1回進捗発表 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "第1回進捗発表"
+        }
+      ]
     }
   },
   data() {

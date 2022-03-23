@@ -28,7 +28,13 @@ export default {
   components: { bannerTimes },
   head() {
     return {
-      title: "特設ページTop | "
+      title: "特設ページ | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "特設ページ"
+        }
+      ]
     }
   },
   data() {

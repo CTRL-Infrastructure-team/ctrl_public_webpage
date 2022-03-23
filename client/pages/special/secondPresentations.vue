@@ -17,7 +17,13 @@ export default {
   },
   head() {
     return {
-      title: "第2回進捗発表 | "
+      title: "第2回進捗発表 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "第2回進捗発表"
+        }
+      ]
     }
   },
   data() {

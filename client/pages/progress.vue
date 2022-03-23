@@ -37,7 +37,13 @@ export default {
   },
   head() {
     return {
-      title: "作品 | "
+      title: "作品 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "作品"
+        }
+      ]
     }
   },
   data() {

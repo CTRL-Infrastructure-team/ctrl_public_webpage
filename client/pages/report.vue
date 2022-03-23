@@ -34,7 +34,13 @@ export default {
   },
   head() {
     return {
-      title: "活動報告 | "
+      title: "活動報告 | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "活動報告"
+        }
+      ]
     }
   },
   async asyncData({ params, app }) {

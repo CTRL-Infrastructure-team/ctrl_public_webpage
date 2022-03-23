@@ -1,3 +1,4 @@
+require('dotenv').config();
 module.exports = {
   mode: "universal",
   srcDir: "./client/",
@@ -19,6 +20,22 @@ module.exports = {
         hid: "description",
         name: "description",
         content: "コンピュータ技術研究会のホームページです。"
+      },
+      { hid: "twitter:card",
+        name: "twitter:card",
+        content: "summary"
+      },
+      { hid: "twitter:site",
+        name: "twitter:site",
+        content: "@tcuctrl"
+      },
+      { hid: "twitter:title",
+        name: "twitter:title",
+        content: "東京都市大学 コンピュータ技術研究会"
+      },
+      { hid: "twitter:image",
+        name: "twitter:image",
+        content: process.env.WHOIS_IMG
       }
     ],
     link: [

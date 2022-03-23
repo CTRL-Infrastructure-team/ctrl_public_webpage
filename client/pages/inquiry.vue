@@ -54,7 +54,13 @@ export default {
   },
   head() {
     return {
-      title: "問い合わせ | "
+      title: "お問い合わせ | ",
+      meta:[
+        { hid: 'twitter:description',
+          name: 'twitter:description',
+          content: "お問い合わせ"
+        }
+      ]
     }
   },
   data() {
