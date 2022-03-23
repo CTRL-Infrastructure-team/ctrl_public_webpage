@@ -15,6 +15,11 @@ export default {
     pageHeader,
     presentation
   },
+  head() {
+    return {
+      title: "第3回進捗発表 | "
+    }
+  },
   data() {
     return {
       path_datas: [

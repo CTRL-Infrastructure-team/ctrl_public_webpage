@@ -62,6 +62,11 @@ export default {
     srideShow,
     banner //バナー非表示の場合はコメント化
   },
+  head() {
+    return {
+      title: ""
+    }
+  },
   async asyncData({ app }) {
     let articles = await app.$axios.asyncGet("/api/situations");
     return { articles };

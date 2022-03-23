@@ -6,7 +6,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    titleTemplate: "%sコンピュータ技術研究会 CTRL",
     meta: [
       {
         charset: "utf-8"

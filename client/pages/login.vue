@@ -45,6 +45,11 @@
 import axios from "axios";
 
 export default {
+  head() {
+    return {
+      title: "ログイン | "
+    }
+  },
   data() {
     return {
       username: { value: "", alert: "" },

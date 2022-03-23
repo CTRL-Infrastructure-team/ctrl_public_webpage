@@ -52,6 +52,11 @@ export default {
   components: {
     pageTitle
   },
+  head() {
+    return {
+      title: "問い合わせ | "
+    }
+  },
   data() {
     return {
       inquiry: {

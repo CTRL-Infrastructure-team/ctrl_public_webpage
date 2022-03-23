@@ -26,6 +26,11 @@ import bannerTimes from "../../components/special/bannerTimes";
 
 export default {
   components: { bannerTimes },
+  head() {
+    return {
+      title: "特設ページTop | "
+    }
+  },
   data() {
     return {
       path_datas: [

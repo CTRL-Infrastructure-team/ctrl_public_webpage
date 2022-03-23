@@ -15,6 +15,11 @@ export default {
     pageHeader,
     presentation
   },
+  head() {
+    return {
+      title: "推し言語・ツール好き勝手喋り会 | "
+    }
+  },
   data() {
     return {
       path_datas: [
