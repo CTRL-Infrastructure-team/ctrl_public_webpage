@@ -37,10 +37,14 @@ export default {
   },
   computed: {
     presendata() {
-      return presendata.map(v => {
-        v.url = v.osigengo;
-        return v;
-      });
+      return presendata
+        .filter(v => v.osigengo !== "")
+        .map(v => {
+          v.url = v.osigengo;
+          return v;
+          }
+        )
+      ;
     }
   }
 };

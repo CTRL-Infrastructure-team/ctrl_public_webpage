@@ -37,10 +37,14 @@ export default {
   },
   computed: {
     presendata() {
-      return presendata.map(v => {
-        v.url = v.slidef;
-        return v;
-      });
+      return presendata
+        .filter(v => v.slidef !== "")
+        .map(v => {
+          v.url = v.slidef;
+          return v;
+          }
+        )
+      ;
     }
   }
 };
