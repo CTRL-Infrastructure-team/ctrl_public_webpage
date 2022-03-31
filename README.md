@@ -101,7 +101,14 @@ node create.js
 変更内容に不安がある場合は`develop`ブランチに向けてPRを作成してください。（レビュワーには`polyester-CTRL`か`rin-ctrl`を指定してください。）
 
 ## ディレクトリ構成
+ディレクトリは大まかにapiとclientに分かれています。apiがバックエンド、clientがフロントエンドのコードです。
+### api
+coming soon...
 
+### client
+coming soon...
+
+### その他
 coming soon...
 
 ## DB設計
