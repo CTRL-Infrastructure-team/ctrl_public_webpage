@@ -17,11 +17,11 @@ export default {
   },
   head() {
     return {
-      title: "第2回進捗発表 | ",
+      title: "最終進捗発表 | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: "第2回進捗発表"
+          content: "最終進捗発表"
         }
       ]
     }
@@ -31,16 +31,20 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "第2回", path: "/special/secondPresentations" }
+        { name: "最終", path: "/special/finalPresentations" }
       ]
     };
   },
   computed: {
     presendata() {
-      return presendata.map(v => {
-        v.url = v.slide2;
-        return v;
-      });
+      return presendata
+        .filter(v => v.slidef !== "")
+        .map(v => {
+          v.url = v.slidef;
+          return v;
+          }
+        )
+      ;
     }
   }
 };
