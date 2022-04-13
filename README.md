@@ -109,7 +109,7 @@ node create.js
   - key : 外部サービスのapiキーなど
   - passport : ユーザ認証のためのコード
 - controllers : リクエストに応じた処理を実装する
-- models : DBに保存するデータの設計を書く、データの変換機能を実装する
+- models : DBスキーマを書く、データの変換機能を実装する
 - test : その他のファイル
 
 
@@ -121,7 +121,7 @@ node create.js
   - text : テキストデータ
 - components : コンポーネントファイルを入れる
   - special : 進捗スライド用
-  - ui : 進捗スライド用
+  - ui : cardやheadlineなどの汎用的なUIのコンポーネント
 - layouts : 全体のレイアウトをまとめるVueファイルがある
 - middleware : ミドルウェアを入れる
 - pages : Viewファイル、ルーティングファイルを入れる
@@ -142,6 +142,7 @@ node create.js
 - yarn.lock : yarnの設定が保存されたファイル。
 - .gitignore : gitで管理したくないファイルの名前を記述
 - docker-compose.yml : dockerの設定を記述
+- .nmvrc : NVMでNode.jsのバージョン管理を行うためのファイル
 
 ## DB設計
 
