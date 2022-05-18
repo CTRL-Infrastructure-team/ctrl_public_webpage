@@ -30,7 +30,7 @@
       </div>
       <div class="images">
         <div class="image1">
-          <div class="label-text">トップ画像（1枚）：</div>
+          <div class="label-text">トップ画像（1枚必須）：</div>
           <el-upload
             class="upload-demo"
             drag
@@ -49,7 +49,7 @@
           <p><img :src="data.image1"></p>
         </div>
         <div class="image2">
-          <div>その他画像（2枚）：</div>
+          <div>その他画像（2枚必須）：</div>
           <el-upload
             class="upload-demo2"
             drag
@@ -69,6 +69,8 @@
       </div>
       <div fileUpload>
         ファイルをアップロード(zipファイル形式)
+        <br>  100MB程度を推奨します。
+        <br>  サイズが大きすぎるとダウンロード時にメモリが不足してサーバが落ちます。
         <el-upload
           class="upload-demo"
           drag

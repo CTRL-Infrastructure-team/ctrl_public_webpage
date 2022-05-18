@@ -93,7 +93,7 @@
           </el-checkbox>
         </div>
         <div class="form-button">
-          <el-button @click="doSendForm">内容を確認する</el-button>
+          <el-button @click="doSendForm">編集を確定する</el-button>
         </div>
     </div>
   </div>
