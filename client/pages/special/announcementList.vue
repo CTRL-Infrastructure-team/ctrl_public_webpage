@@ -11,11 +11,13 @@
     </div>
     <!-- /.breadcrumb-wrapper -->
     <div class="list-wrapper">
+      <bannerTimes :times="times.zeroth" />
       <!-- <bannerTimes :times="times.first" /> --> <!--非公開のためコメント化-->
       <!-- <bannerTimes :times="times.second" /> --> <!--非公開のためコメント化-->
-      <bannerTimes :times="times.third" />
+      <!--<bannerTimes :times="times.third" />--> <!--非公開のためコメント化-->
+      <!--<bannerTimes :times="times.final" />--> <!--非公開のためコメント化-->
       <bannerTimes :times="times.osigengo" />
-      <bannerTimes :times="times.final" />
+      
     </div>
     <!-- /.list-wrapper -->
   </div>
@@ -45,11 +47,12 @@ export default {
         { name: "特設ページTop", path: "/special/announcementList" }
       ],
       times: {
+        zeroth: { top: "第0回進捗発表", link: "/special/zerothPresentations" },
         //first: { top: "第1回進捗発表", link: "/special/firstPresentations" },
         //second: { top: "第2回進捗発表", link: "/special/secondPresentations" },
-        third: { top: "第3回進捗発表", link: "/special/thirdPresentations" },
+        //third: { top: "第3回進捗発表", link: "/special/thirdPresentations" },
+        //final: { top: "最終進捗発表会", link: "/special/finalPresentations" },
         osigengo: { top: "推し言語・ツール好き勝手喋り会", link: "/special/osigengoPresentations" },
-        final: { top: "最終進捗発表会", link: "/special/finalPresentations" },
       }
     };
   }
