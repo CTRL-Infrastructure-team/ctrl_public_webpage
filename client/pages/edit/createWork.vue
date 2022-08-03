@@ -1,12 +1,12 @@
 <template>
   <div v-if="auth">
-    <pageTitle title="成果物投稿" />
+    <pageTitle title="作品投稿" />
     <div class="form">
       <div class="form-inquiry form-box">
-        <div>
+        <p>
           <label for="content">タイトル</label>
           <span>(必須)</span>
-        </div>
+        </p>
         <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
       </div>
 
@@ -30,7 +30,10 @@
       </div>
       <div class="images">
         <div class="image1">
-          <div class="label-text">トップ画像（1枚必須）：</div>
+          <p>
+            <label for="content">トップ画像</label>
+            <span>(1枚必須)</span>
+          </p>
           <el-upload
             class="upload-demo"
             drag
@@ -44,12 +47,15 @@
             multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg files with a size less than 500kb</div>
+            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
           </el-upload>
           <p><img :src="data.image1"></p>
         </div>
         <div class="image2">
-          <div>その他画像（2枚必須）：</div>
+          <p>
+            <label for="content">その他の画像</label>
+            <span>(2枚必須)</span>
+          </p>
           <el-upload
             class="upload-demo2"
             drag
@@ -62,15 +68,16 @@
             multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg files with a size less than 500kb</div>
+            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
           </el-upload>
           <p><img :src="data.image2"></p>
         </div>
       </div>
       <div fileUpload>
-        ファイルをアップロード(zipファイル形式)
-        <br>  100MB程度を推奨します。
-        <br>  サイズが大きすぎるとダウンロード時にメモリが不足してサーバが落ちます。
+        <p>
+          <label for="content">ファイルをアップロード</label>
+          <span>(必須, zipファイル形式)</span>
+        </p>
         <el-upload
           class="upload-demo"
           drag
@@ -78,11 +85,14 @@
           :on-change="changeGameFile"
           :file-list="gameFile"
           :auto-upload="false"
+          list-type="text"
           :limit="1"
           multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+          <div class="el-upload__tip" slot="tip">zip files with a size less than 100Mb</div>
         </el-upload>
+
       </div>
       <div class="form-button">
         Twitter IDを掲載する
@@ -138,8 +148,10 @@ export default {
       this.gameFile = gameFile
     },
     doSendForm(){
-      let formData = new FormData(),
-          uploadFile = this.gameFile[0].raw,
+      let formData = new FormData();
+
+
+      let uploadFile = this.gameFile[0].raw,
           uploadTopImage = this.topImage[0].raw
 
       this.otherImage.map(image => {
@@ -161,15 +173,20 @@ export default {
       })
     },
     doValidateTitle(data,index){
-      this.title.value ? '': this.title.alert = '値を入力してください'
+      this.title.value ? '': this.title.alert = 'タイトルをを入力してください'
     },
     doValidateInquiry(data,index){
-      this.content.value ? '': this.content.alert = '値を入力してください'
+      this.content.value ? '': this.content.alert = '本文を入力してください'
     },
   }
 }
 </script>
 <style lang="scss" scoped>
+
+.el-upload__tip {
+  color: white;
+}
+
 .form {
   width: 90%;
   margin: 0 auto;
@@ -197,9 +214,8 @@ export default {
       font-weight: 500;
     }
     span {
-      font-size: 0.75em;
+      font-size: 0.9em;
       font-weight: 300;
-      color: red;
       vertical-align: center;
     }
   }
