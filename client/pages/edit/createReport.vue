@@ -30,9 +30,10 @@
           cols="100"
         ></el-input>
       </div>
-      <div class="form-button-file">
-        画像:
-      </div>
+      <p>
+          <label for="content">画像</label>
+          <span>(必須)</span>
+      </p>
       <div class="alert">
         {{ alert }}
       </div>
@@ -107,14 +108,14 @@ export default {
       let formData = new FormData();
 
       if (this.title.value === "") {
-        this.title.alert = "値を入力してください";
+        this.title.alert = "タイトルを入力してください";
       } else {
         this.title.alert = "";
         formData.append("title", this.title.value);
       }
       
       if (this.content.value === "") {
-        this.content.alert = "値を入力してください";
+        this.content.alert = "本文を入力してください";
       } else {
         this.content.alert = "";
         formData.append("content", this.content.value);
@@ -183,9 +184,8 @@ export default {
       font-weight: 500;
     }
     span {
-      font-size: 0.75em;
+      font-size: 0.9em;
       font-weight: 300;
-      color: red;
       vertical-align: center;
     }
   }

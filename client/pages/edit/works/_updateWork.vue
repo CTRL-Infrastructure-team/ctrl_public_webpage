@@ -1,9 +1,7 @@
 <template>
-    <div v-if="auth">
+  <div v-if="auth">
+    <pageTitle title="作品編集" />
     <div class="form">
-      <div class="page-title">
-        <span>作品編集ページ</span>
-      </div>
       <div class="attention">
         こちらは仮の編集ページとなっております。タイトル、本文、TwitterIDの有無は引き継がれますが、画像とファイルは引き継がれません。
       </div>
@@ -15,95 +13,114 @@
           <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
-        <br>
-        <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
+        <el-input 
+          v-model="title.value"
+          placeholder="タイトルを入力"></el-input>
       </div>
+
       <div class="form-inquiry form-box">
+        <p>
+          <label for="content">本文</label>
+          <span>(必須)</span>
+        </p>
+
+
+
+        <el-input
+          placeholder="内容を入力"
+          v-model="content.value"
+          name="content"
+          type="textarea"
+          rows="7"
+          cols="100"
+          @change="doValidateInquiry(content)"
+        ></el-input>
+      </div>
+      <div class="images">
+        <div class="image1">
           <p>
-            <label for="content">本文</label>
-            <span>(必須)</span>
+            <label for="content">トップ画像</label>
+            <span>(1枚必須)</span>
           </p>
-          <p>成果物の内容を入力してください</p>
-          <el-input
-            placeholder="内容を入力"
-            v-model="content.value"
-            name="content"
-            type="textarea"
-            rows="7"
-            cols="100"
-            @change="doValidateInquiry(content)"
-          ></el-input>
-          {{content.alert}}
+          <el-upload
+            class="upload-demo"
+            drag
+            action=""
+            list-type="picture"
+            :on-change="changeTopImage"
+            :file-list="topImage"
+            :auto-upload="false"
+            :limit="1"
+            @change="setImage1($event)"
+            multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+          </el-upload>
+
         </div>
-        <div class="images">
-          <div class="image1">
-            <div>画像1：</div>
-            <div>
-            <el-upload
-              class="upload-demo" drag
-              action="" list-type="picture"
-              :on-change="changeTopImage"
-              :file-list="topImage"
-              :auto-upload="false"
-              :limit="1"
-              @change="setImage1($event)"
-              multiple>
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-              <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-            </el-upload>
-            </div>
-          </div>
-          <div class="image2">
-            <div>その他画像（2枚）：</div>
-            <el-upload
-              class="upload-demo2"
-              drag
-              action=""
-              :on-change="changeOtherImage"
-              :file-list="otherImage"
-              :auto-upload="false"
-              list-type="picture"
-              :limit="2"
-              multiple>
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-              <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-            </el-upload>
-            <p><img :src="data.image2"></p>
-          </div>
+        <div class="image2">
+          <p>
+            <label for="content">その他の画像</label>
+            <span>(2枚必須)</span>
+          </p>
+          <el-upload
+            class="upload-demo2"
+            drag
+            action=""
+            :on-change="changeOtherImage"
+            :file-list="otherImage"
+            :auto-upload="false"
+            list-type="picture"
+            :limit="2"
+            multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+          </el-upload>
+          <p><img :src="data.image2"></p>
         </div>
-        <div class="file-input">
-        ファイルをアップロード(zipファイル形式)
-            <el-upload
-              class="upload-demo" drag
-              action="" :limit="1"
-              :on-change="changeGameFile"
-              :file-list="gameFile"
-              :auto-upload="false"
-              multiple>
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            </el-upload>
-        </div>
-        <div class="form-button">
-          <div>Twitter IDを掲載する</div>
-          <el-checkbox v-model="checked">
-            Twitter IDを掲載する
-          </el-checkbox>
-        </div>
-        <div class="form-button">
-          <el-button @click="doSendForm">内容を確認する</el-button>
-        </div>
+      </div>
+      <div class="file-input">
+        <p>
+          <label for="content">ファイルをアップロード</label>
+          <span>(必須, zipファイル形式)</span>
+        </p>
+        <el-upload
+          class="upload-demo"
+          drag
+          action=""
+          list-type="text"
+          :on-change="changeGameFile"
+          :file-list="gameFile"
+          :auto-upload="false"
+          :limit="1"
+          multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+          <div class="el-upload__tip" slot="tip">zip files with a size less than 100Mb</div>
+        </el-upload>
+        
+      </div>
+      <div class="form-button">
+        Twitter IDを掲載する
+      </div>
+      <el-checkbox v-model="checked">Twitter IDを掲載する</el-checkbox>
+      <div class="form-button">
+        <el-button @click="doSendForm">編集を確定する</el-button>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { Input } from 'element-ui';
 import axios from 'axios';
-import img from "~/assets/img/img1.jpg";
+import pageTitle from "~/components/ui/pageTitle";
 
 export default {
+  components: {
+    pageTitle
+  },
   async asyncData({ app, params }) {
     let res = await app.$axios.asyncGet('/api/loginCheck'),
         befo = await app.$axios.asyncGet(`/api/pastWork/${params.updateWork}`);
@@ -190,83 +207,49 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.el-upload__tip{
+  color: white;
+}
+
+.checkbox{
+  margin-top: 1.5em;
+  color: white;
+}
 
 .attention {
   margin: 10px 0px;
   font-size: calc(15px + 0.2vw);
 }
 
-.form{
-  margin: 20px;
-  &-button {
-    margin: 15px 0px 15px 30px;
-  }
-}
-
-.form-box {
-  span{
-      color: red;
-  }
-}
-
-//画像アップロード
-@include mq{
-  .images{
-    display:flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-  .image1{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    & p{
-      width: 100px;
-      height: 100px;
+.form {
+  width: 90%;
+  margin: 0 auto;
+  &-box {
+    margin-bottom: 1.8em;
+    p:nth-child(1) {
+      margin-bottom: 0.5rem;
+    }
+    p:nth-child(2) {
+      margin-bottom: 0.4rem;
     }
   }
-  .image2{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  .file-input {
-    padding: 20px;
-    margin: 10px;
-  }
-
-  .upload-demo {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .upload-demo2 {
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-
-.page-title {
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  span {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: -20px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #f0f0f0;
+  &-button{
+    margin-top: 2.5em;
+    &-file{
+      width: 10em;
+      margin-bottom: 1em;
     }
-    position: relative;
-    margin-left: 30px;
-    font-family: "ヒラギノ角ゴシック";
-    text-align: left;
-    font-size: calc(17px + 0.625vw);
-    font-weight: 500;
+  }
+  p {
+    label {
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+    span {
+      font-size: 0.9em;
+      font-weight: 300;
+      vertical-align: center;
+    }
   }
 }
 
