@@ -9,12 +9,10 @@
         そのため、更新する際は必ず画像及びゲームファイルを入力し直してください。
       </div>
       <div class="form-box">
-        <div>
-          <p>
-            <label for="content">タイトル</label>
-            <span>(必須)</span>
-          </p>
-        </div>
+        <p>
+          <label for="content">タイトル</label>
+          <span>(必須)</span>
+        </p>
         <el-input 
           v-model="title.value" 
           placeholder="タイトルを入力"
@@ -38,10 +36,10 @@
           ></el-input>
           {{content.alert}}
         </div>
-          <p>
-            <label for="content">画像</label>
-            <span>(1枚必須)</span>
-          </p>
+        <p>
+          <label for="content">画像</label>
+          <span>(1枚必須)</span>
+        </p>
         <el-upload
           class="upload-demo"
           drag
