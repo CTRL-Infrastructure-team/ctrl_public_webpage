@@ -38,9 +38,10 @@
           ></el-input>
           {{content.alert}}
         </div>
-        <div class="form-button-file">
-          画像:
-        </div>
+        <p>
+            <label for="content">画像</label>
+            <span>(必須)</span>
+        </p>
         <el-upload
           class="upload-demo"
           drag
@@ -57,7 +58,7 @@
         </el-upload>
         {{ alert }}
         <div class="form-button">
-          <el-button @click="doSendForm">投稿する</el-button>
+          <el-button @click="doSendForm">編集を確定する</el-button>
         </div>
     </div>
   </div>
@@ -186,9 +187,8 @@ export default {
       font-weight: 500;
     }
     span {
-      font-size: 0.75em;
+      font-size: 0.9em;
       font-weight: 300;
-      color: red;
       vertical-align: center;
     }
   }
