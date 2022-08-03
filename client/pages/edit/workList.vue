@@ -15,7 +15,7 @@
             <div>{{ work.content }}</div>
             <div class="card-button">
               <el-button>
-                <nuxt-link :to="`/edit/works/${work._id}`">
+                <nuxt-link :to="`/edit/works/${work._id}`" style="text-decoration: none;color:inherit;">
                   編集する
                 </nuxt-link>
               </el-button>
