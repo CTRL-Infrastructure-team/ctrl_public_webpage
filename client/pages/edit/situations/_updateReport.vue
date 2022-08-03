@@ -38,10 +38,10 @@
           ></el-input>
           {{content.alert}}
         </div>
-        <p>
+          <p>
             <label for="content">画像</label>
-            <span>(必須)</span>
-        </p>
+            <span>(1枚必須)</span>
+          </p>
         <el-upload
           class="upload-demo"
           drag
