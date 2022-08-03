@@ -7,7 +7,9 @@
           <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
-        <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
+        <el-input
+          v-model="title.value"
+          placeholder="タイトルを入力"></el-input>
       </div>
 
       <div class="form-inquiry form-box">
@@ -38,10 +40,10 @@
             class="upload-demo"
             drag
             action=""
+            list-type="picture"
             :on-change="changeTopImage"
             :file-list="topImage"
             :auto-upload="false"
-            list-type="picture"
             :limit="1"
             @change="setImage1($event)"
             multiple>
@@ -82,10 +84,10 @@
           class="upload-demo"
           drag
           action=""
+          list-type="text"
           :on-change="changeGameFile"
           :file-list="gameFile"
           :auto-upload="false"
-          list-type="text"
           :limit="1"
           multiple>
           <i class="el-icon-upload"></i>
