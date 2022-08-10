@@ -6,7 +6,7 @@
   <!-- /.container -->
 </template>
 <script>
-import presendata from "~/assets/data/2022sPresentationsData.json";
+import presendata from "~/assets/data/2022sPresentationsData_2.json";
 import pageHeader from "~/components/special/pageHeader";
 import presentation from "~/components/special/presentations";
 
@@ -31,16 +31,16 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "最終", path: "/special/finalPresentations" }
+        { name: "最終", path: "/special/09_finalPresentations" }
       ]
     };
   },
   computed: {
     presendata() {
       return presendata
-        .filter(v => v.slidef !== "")
+        .filter(v => v.final !== "")
         .map(v => {
-          v.url = v.slidef;
+          v.url = v.final;
           return v;
           }
         )
