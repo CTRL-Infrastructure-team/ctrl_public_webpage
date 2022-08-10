@@ -12,7 +12,7 @@
     <!-- /.breadcrumb-wrapper -->
     <div class="list-wrapper">
       <bannerTimes :times="times.zeroth" />
-      <!-- <bannerTimes :times="times.first" /> --> <!--非公開のためコメント化-->
+      <bannerTimes :times="times.first" />
       <!-- <bannerTimes :times="times.second" /> --> <!--非公開のためコメント化-->
       <!--<bannerTimes :times="times.third" />--> <!--非公開のためコメント化-->
       <!--<bannerTimes :times="times.final" />--> <!--非公開のためコメント化-->
@@ -49,10 +49,10 @@ export default {
       ],
       times: {
         zeroth: { top: "第0回進捗発表", link: "/special/00_zerothPresentations" },
-        //first: { top: "第1回進捗発表", link: "/special/01_firstPresentations" },
-        //second: { top: "第2回進捗発表", link: "/special/02_secondPresentations" },
-        //third: { top: "第3回進捗発表", link: "/special/03_thirdPresentations" },
-        //final: { top: "最終進捗発表会", link: "/special/09_finalPresentations" },
+        first: { top: "第1回進捗発表", link: "/special/01_firstPresentations" },
+        second: { top: "第2回進捗発表", link: "/special/02_secondPresentations" },
+        third: { top: "第3回進捗発表", link: "/special/03_thirdPresentations" },
+        final: { top: "最終進捗発表会", link: "/special/09_finalPresentations" },
         osigengo: { top: "推し言語・ツール好き勝手喋り会", link: "/special/90_osigengoPresentations" },
         artpg: { top: "芸術プログラミングコンテスト", link: "/special/91_artpgPresentations" },
       }
