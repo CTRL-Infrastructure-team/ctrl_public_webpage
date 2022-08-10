@@ -31,7 +31,7 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "第0回", path: "/special/zerothPresentations" }
+        { name: "第0回", path: "/special/00_zerothPresentations" }
       ]
     };
   },

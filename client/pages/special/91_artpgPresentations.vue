@@ -6,7 +6,7 @@
   <!-- /.container -->
 </template>
 <script>
-import presendata from "~/assets/data/2022sPresentationsData.json";
+import presendata from "~/assets/data/2022sPresentationsData_2.json";
 import pageHeader from "~/components/special/pageHeader";
 import presentation from "~/components/special/presentations";
 
@@ -17,11 +17,11 @@ export default {
   },
   head() {
     return {
-      title: "第3回進捗発表 | ",
+      title: "芸術プログラミングコンテスト | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: "第3回進捗発表"
+          content: "芸術プログラミングコンテスト"
         }
       ]
     }
@@ -31,16 +31,16 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "第3回", path: "/special/thirdPresentations" }
+        { name: "芸術プログラミングコンテスト", path: "/special/91_artpgPresentations" }
       ]
     };
   },
   computed: {
     presendata() {
       return presendata
-        .filter(v => v.slide3 !== "")
+        .filter(v => v.artpg !== "")
         .map(v => {
-          v.url = v.slide3;
+          v.url = v.artpg;
           return v;
           }
         )

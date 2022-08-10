@@ -6,7 +6,7 @@
   <!-- /.container -->
 </template>
 <script>
-import presendata from "~/assets/data/2022sPresentationsData.json";
+import presendata from "~/assets/data/2022sPresentationsData_2.json";
 import pageHeader from "~/components/special/pageHeader";
 import presentation from "~/components/special/presentations";
 
@@ -17,11 +17,11 @@ export default {
   },
   head() {
     return {
-      title: "推し言語・ツール好き勝手喋り会 | ",
+      title: "第2回進捗発表 | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: "推し言語・ツール好き勝手喋り会"
+          content: "第2回進捗発表"
         }
       ]
     }
@@ -31,16 +31,16 @@ export default {
       path_datas: [
         { name: "Top", path: "/" },
         { name: "特設ページTop", path: "/special/announcementList" },
-        { name: "推し言語・ツール好き勝手喋り会", path: "/special/osigengoPresentations" }
+        { name: "第2回", path: "/special/02_secondPresentations" }
       ]
     };
   },
   computed: {
     presendata() {
       return presendata
-        .filter(v => v.osigengo !== "")
+        .filter(v => v.slide2 !== "")
         .map(v => {
-          v.url = v.osigengo;
+          v.url = v.slide2;
           return v;
           }
         )
