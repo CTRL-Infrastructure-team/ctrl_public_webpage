@@ -17,7 +17,7 @@
       <!--<bannerTimes :times="times.third" />--> <!--非公開のためコメント化-->
       <!--<bannerTimes :times="times.final" />--> <!--非公開のためコメント化-->
       <bannerTimes :times="times.osigengo" />
-      <!--<bannerTimes :times="times.artpg" />--> <!--非公開のためコメント化-->
+      <bannerTimes :times="times.artpg" />
 
     </div>
     <!-- /.list-wrapper -->
