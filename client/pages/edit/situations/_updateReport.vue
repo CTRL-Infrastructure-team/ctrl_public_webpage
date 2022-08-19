@@ -126,7 +126,7 @@ export default {
       let uploadImage = this.fileList[0].raw
 
       formData.append('title', this.title.value)
-      formData.append('content', this.content.value)
+      formData.append('content', this.content.value.replace(/\n/g,"<br>"))
 
       axios.put(`/api/situations/${this.$route.params.updateReport}`,
         formData,
