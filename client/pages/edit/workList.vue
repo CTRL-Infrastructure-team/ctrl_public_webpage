@@ -12,7 +12,7 @@
           </div>
           <div class="card-content">
             <div>{{ work.createdAt }}</div>
-            <div>{{ work.content }}</div>
+            <div v-html="$sanitize(work.content)"></div>
             <div class="card-button">
               <el-button>
                 <nuxt-link :to="`/edit/works/${work._id}`" style="text-decoration: none;color:inherit;">
