@@ -35,12 +35,18 @@
 
 <script>
 import axios from "axios";
+import modify from "~/plugins/modifiedTime";
 
 export default {
   async asyncData({ app }) {
     let works = await app.$axios.asyncGet('/api/user/pastWorks'),
         res = await app.$axios.asyncGet('/api/loginCheck'),
         zeroCheck = works.length !== 0 ? true : false;
+    works.map(v =>{
+      v.createdAt = modify(v.createdAt);
+      return v;
+      }
+    )
     return { works, res, zeroCheck };
   },
   data() {
