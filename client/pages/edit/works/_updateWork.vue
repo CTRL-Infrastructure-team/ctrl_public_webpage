@@ -123,8 +123,8 @@ export default {
   },
   async asyncData({ app, params }) {
     let res = await app.$axios.asyncGet('/api/loginCheck'),
-        befo = await app.$axios.asyncGet(`/api/pastWork/${params.updateWork}`);
-    return { res, befo };
+        before = await app.$axios.asyncGet(`/api/pastWork/${params.updateWork}`);
+    return { res, before };
   },
   data() {
     return{
@@ -145,9 +145,9 @@ export default {
     } else {
       this.auth = true;
     }
-    this.title.value = this.befo.title;
-    this.content.value = this.befo.content.replace(/<br>/g,"\n");
-    if(this.befo.twitter_id !== "") {
+    this.title.value = this.before.title;
+    this.content.value = this.before.content.replace(/<br>/g,"\n");
+    if(this.before.twitter_id !== "") {
       this.checked = true;
     }
   },
