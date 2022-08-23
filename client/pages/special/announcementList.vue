@@ -13,7 +13,7 @@
     <div class="list-wrapper">
       <bannerTimes :times="times.zeroth" />
       <bannerTimes :times="times.first" />
-      <!-- <bannerTimes :times="times.second" /> --> <!--非公開のためコメント化-->
+      <bannerTimes :times="times.second" />
       <!--<bannerTimes :times="times.third" />--> <!--非公開のためコメント化-->
       <!--<bannerTimes :times="times.final" />--> <!--非公開のためコメント化-->
       <bannerTimes :times="times.osigengo" />
