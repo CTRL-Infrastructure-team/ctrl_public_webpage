@@ -13,51 +13,64 @@
           <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
-        <el-input 
-          v-model="title.value" 
-          placeholder="タイトルを入力"
-          @change="doValidateTitle(title)"></el-input>
-        {{ title.alert }}
+        <div class="alert">
+          {{ title.alert }}
+        </div>
+        <el-input
+          v-model="title.value"
+          placeholder="タイトルを入力"></el-input>
+      </div>
+
+      <div class="form-box">
+        <p>
+          <label for="content">本文</label>
+          <span>(必須)</span>
+        </p>
+        <div class="alert">
+          {{ content.alert }}
+        </div>
+        <el-input
+          placeholder="内容を入力"
+          v-model="content.value"
+          name="content"
+          type="textarea"
+          rows="7"
+          cols="100"
+        ></el-input>
       </div>
       <div class="form-box">
-          <p>
-            <label for="content">本文</label>
-            <span>(必須)</span>
-          </p>
-          <p>内容を入力してください</p>
-          <el-input
-            placeholder="内容を入力"
-            v-model="content.value"
-            name="content"
-            type="textarea"
-            rows="7"
-            cols="100"
-            @change="doValidateContent(content)"
-          ></el-input>
-          {{content.alert}}
-        </div>
         <p>
-          <label for="content">画像</label>
-          <span>(1枚必須)</span>
+            <label for="content">画像</label>
+            <span>(1枚必須)</span>
         </p>
+        <div class="alert">
+          {{ imageAlert }}
+        </div>
         <el-upload
           class="upload-demo"
           drag
           action=""
           :on-change="dropImage"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
           :file-list="fileList"
           list-type="picture"
           :auto-upload="false"
           :limit="1"
-          multiple>
+          multiple
+        >
           <i class="el-icon-upload"></i>
-          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+          <div class="el-upload__text">
+            ここにファイルをドロップ <br /><em>またはクリックしてアップロード</em>
+          </div>
+          <div class="el-upload__tip" slot="tip">
+            jpg/png files with a size less than 500kb
+          </div>
         </el-upload>
-        {{ alert }}
-        <div class="form-button">
-          <el-button @click="doSendForm">編集を確定する</el-button>
-        </div>
+      </div>
+      <div class="form-button">
+        <el-button @click="doSendForm">編集を確定する</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -80,8 +93,7 @@ export default {
       title: { value:'', alert:'' },
       content: { value:'', alert:'' },
       fileList: [],
-      checked: false,
-      alert: '',
+      imageAlert: "",
       auth: false
     }
   },
@@ -95,38 +107,46 @@ export default {
     this.content.value = this.before.content.replace(/<br>/g,"\n");
   },
   methods:{
-    handleRemove(file,fileList){
+    handleRemove(file, fileList) {
       console.log(file, fileList);
     },
-    handlePreview(file){
+    handlePreview(file) {
       console.log(file);
     },
-    doSendFile(){
-      
-    },
+    doSendFile() {},
     dropImage(file, fileList) {
-      this.fileList = fileList
-      console.log(this.fileList[0].raw)
-      console.log("file upload!")
+      this.fileList = fileList;
     },
-    doSendForm(){
+    doSendForm() {
       let formData = new FormData();
       
-      if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
-        this.alert = "画像ないよ！";
+      if (this.title.value === "") {
+        this.title.alert = "タイトルを入力してください";
       } else {
-        this.alert = "";
-        const uploadImage = this.fileList[0].raw;
+        this.title.alert = "";
+        formData.append("title", this.title.value);
+      }
+      
+      if (this.content.value === "") {
+        this.content.alert = "本文を入力してください";
+      } else {
+        this.content.alert = "";
+        formData.append("content", this.content.value.replace(/\n/g,"<br>"));
+      }
+
+      if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
+        this.imageAlert = "画像を1枚指定してください";
+      } else {
+        this.imageAlert = "";
+        let uploadImage = this.fileList[0].raw;
         formData.append("file", uploadImage);
       }
 
-      if (this.title.alert != "" || this.content.alert != "" || this.alert != "") {
+      if (this.title.alert != "" ||
+          this.content.alert != "" ||
+          this.imageAlert != "") {
         return;
       }
-      let uploadImage = this.fileList[0].raw
-
-      formData.append('title', this.title.value)
-      formData.append('content', this.content.value.replace(/\n/g,"<br>"))
 
       axios.put(`/api/situations/${this.$route.params.updateReport}`,
         formData,
@@ -135,34 +155,24 @@ export default {
         console.log(result)
       })
     },
-    doValidateTitle(data,index){
-      this.title.value ? '': this.title.alert = 'タイトルを入力してください'
-   },
-    doValidateContent(data,index){
-      this.content.value ? '': this.content.alert = '本文を入力してください'
-
-   },
   },
 }
 </script>
 <style lang="scss" scoped>
-.el-upload__tip{
+.el-upload__tip {
   color: white;
 }
 
-.checkbox{
+.checkbox {
   margin-top: 1.5em;
   color: white;
-}
-
-.attention {
-  margin: 10px 0px;
-  font-size: calc(15px + 0.2vw);
 }
 
 .form {
   width: 90%;
   margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 50px;
   &-box {
     margin-bottom: 1.8em;
     p:nth-child(1) {
@@ -172,9 +182,9 @@ export default {
       margin-bottom: 0.4rem;
     }
   }
-  &-button{
-    margin-top: 2.5em;
-    &-file{
+  &-button {
+    margin-top: 1em;
+    &-file {
       width: 10em;
       margin-bottom: 1em;
     }
@@ -191,5 +201,12 @@ export default {
     }
   }
 }
-
+.alert {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  color: rgb(230, 30, 30);
+}
+.attention {
+  padding: 10px;
+}
 </style>
