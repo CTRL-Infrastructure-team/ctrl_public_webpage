@@ -7,6 +7,9 @@
           <label for="content">タイトル</label>
           <span>(必須)</span>
         </p>
+        <div class="alert">
+          {{ title.alert }}
+        </div>
         <el-input
           v-model="title.value"
           placeholder="タイトルを入力"></el-input>
@@ -27,7 +30,6 @@
           type="textarea"
           rows="7"
           cols="100"
-          @change="doValidateInquiry(content)"
         ></el-input>
       </div>
       <div class="images">
@@ -36,6 +38,9 @@
             <label for="content">トップ画像</label>
             <span>(1枚必須)</span>
           </p>
+          <div class="alert">
+            {{ topImageAlert }}
+          </div>
           <el-upload
             class="upload-demo"
             drag
@@ -58,6 +63,9 @@
             <label for="content">その他の画像</label>
             <span>(2枚必須)</span>
           </p>
+          <div class="alert">
+            {{ otherImageAlert }}
+          </div>
           <el-upload
             class="upload-demo2"
             drag
@@ -80,6 +88,9 @@
           <label for="content">ファイルをアップロード</label>
           <span>(必須, zipファイル形式)</span>
         </p>
+        <div class="alert">
+          {{ gameFileAlert }}
+        </div>
         <el-upload
           class="upload-demo"
           drag
@@ -127,6 +138,9 @@ export default {
       topImage: [],
       otherImage: [],
       gameFile: [],
+      topImageAlert: '',
+      otherImageAlert: '',
+      gameFileAlert: '',
       checked: false,
       alert: '',
       auth: false
@@ -152,19 +166,54 @@ export default {
     doSendForm(){
       let formData = new FormData();
 
+      if (this.title.value === "") {
+        this.title.alert = "タイトルを入力してください";
+      } else {
+        this.title.alert = "";
+        formData.append("title", this.title.value);
+      }
+      
+      if (this.content.value === "") {
+        this.content.alert = "本文を入力してください";
+      } else {
+        this.content.alert = "";
+        formData.append("content", this.content.value);
+      }
 
-      let uploadFile = this.gameFile[0].raw,
-          uploadTopImage = this.topImage[0].raw
+      if (this.topImage.length == 0) {
+        this.topImageAlert = "画像を1枚指定してください";
+      } else {
+        this.topImageAlert = "";
+        let uploadTopImage = this.topImage[0].raw;
+        formData.append('topImage', uploadTopImage);
+      }
 
-      this.otherImage.map(image => {
-        formData.append('otherImage', image.raw)
+      if (this.otherImage.length < 2) {
+        this.otherImageAlert = "画像を2枚指定してください";
+      } else {
+        this.otherImageAlert = "";
+        this.otherImage.map(image => {
+        formData.append('otherImage', image.raw);
       })
+      }
 
-      formData.append('gameFile', uploadFile)
-      formData.append('topImage', uploadTopImage)
-      formData.append('title', this.title.value)
-      formData.append('content', this.content.value)
-      formData.append('twitter', this.checked)
+      if (this.gameFile.length == 0) {
+        this.gameFileAlert = "zipファイルを1つ指定してください";
+      } else {
+        this.gameFileAlert = "";
+        let uploadFile = this.gameFile[0].raw;
+        formData.append('gameFile', uploadFile);
+      }
+
+      formData.append('twitter', this.checked);
+
+      if (this.title.alert != "" ||
+          this.content.alert != "" ||
+          this.topImageAlert != "" ||
+          this.otherImageAlert != "" ||
+          this.gameFileAlert != "") {
+        return;
+      }
 
       axios.post('/api/pastWork',
         formData,
@@ -173,12 +222,6 @@ export default {
         this.$router.go({path: this.$router.currentRoute.path, force: true})
         console.log(result)
       })
-    },
-    doValidateTitle(data,index){
-      this.title.value ? '': this.title.alert = 'タイトルをを入力してください'
-    },
-    doValidateInquiry(data,index){
-      this.content.value ? '': this.content.alert = '本文を入力してください'
     },
   }
 }
