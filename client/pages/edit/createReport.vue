@@ -10,7 +10,9 @@
         <div class="alert">
           {{ title.alert }}
         </div>
-        <el-input v-model="title.value" placeholder="タイトルを入力"></el-input>
+        <el-input
+          v-model="title.value"
+          placeholder="タイトルを入力"></el-input>
       </div>
 
       <div class="form-content form-box">
@@ -32,10 +34,10 @@
       </div>
       <p>
           <label for="content">画像</label>
-          <span>(必須)</span>
+          <span>(1枚必須)</span>
       </p>
       <div class="alert">
-        {{ alert }}
+        {{ imageAlert }}
       </div>
       <el-upload
         class="upload-demo"
@@ -82,7 +84,7 @@ export default {
       title: { value: "", alert: "" },
       content: { value: "", alert: "" },
       fileList: [],
-      alert: "",
+      imageAlert: "",
       auth: false
     };
   },
@@ -106,7 +108,7 @@ export default {
     },
     doSendForm() {
       let formData = new FormData();
-
+      
       if (this.title.value === "") {
         this.title.alert = "タイトルを入力してください";
       } else {
@@ -122,14 +124,16 @@ export default {
       }
 
       if (this.fileList.length == 0 || !("raw" in this.fileList[0])) {
-        this.alert = "画像ないよ！";
+        this.imageAlert = "画像を1枚指定してください";
       } else {
-        this.alert = "";
-        const uploadImage = this.fileList[0].raw;
+        this.imageAlert = "";
+        let uploadImage = this.fileList[0].raw;
         formData.append("file", uploadImage);
       }
 
-      if (this.title.alert != "" || this.content.alert != "" || this.alert != "") {
+      if (this.title.alert != "" ||
+          this.content.alert != "" ||
+          this.imageAlert != "") {
         return;
       }
 
