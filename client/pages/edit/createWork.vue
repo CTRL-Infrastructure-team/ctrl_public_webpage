@@ -2,7 +2,7 @@
   <div v-if="auth">
     <pageTitle title="作品投稿" />
     <div class="form">
-      <div class="form-inquiry form-box">
+      <div class="form-box">
         <p>
           <label for="content">タイトル</label>
           <span>(必須)</span>
@@ -15,7 +15,7 @@
           placeholder="タイトルを入力"></el-input>
       </div>
 
-      <div class="form-inquiry form-box">
+      <div class="form-box">
         <p>
           <label for="content">本文</label>
           <span>(必須)</span>
@@ -24,64 +24,62 @@
           {{ content.alert }}
         </div>
         <el-input
-          placeholder="内容を入力"
           v-model="content.value"
+          placeholder="内容を入力"
           name="content"
           type="textarea"
           rows="7"
           cols="100"
         ></el-input>
       </div>
-      <div class="images">
-        <div class="image1">
-          <p>
-            <label for="content">トップ画像</label>
-            <span>(1枚必須)</span>
-          </p>
-          <div class="alert">
-            {{ topImageAlert }}
-          </div>
-          <el-upload
-            class="upload-demo"
-            drag
-            action=""
-            list-type="picture"
-            :on-change="changeTopImage"
-            :file-list="topImage"
-            :auto-upload="false"
-            :limit="1"
-            @change="setImage1($event)"
-            multiple>
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-          </el-upload>
+      <div class="form-box">
+        <p>
+          <label for="content">トップ画像</label>
+          <span>(1枚必須)</span>
+        </p>
+        <div class="alert">
+          {{ topImageAlert }}
         </div>
-        <div class="image2">
-          <p>
-            <label for="content">その他の画像</label>
-            <span>(2枚必須)</span>
-          </p>
-          <div class="alert">
-            {{ otherImageAlert }}
-          </div>
-          <el-upload
-            class="upload-demo2"
-            drag
-            action=""
-            :on-change="changeOtherImage"
-            :file-list="otherImage"
-            :auto-upload="false"
-            list-type="picture"
-            :limit="2"
-            multiple>
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-          </el-upload>
-        </div>
+        <el-upload
+          class="upload-demo"
+          drag
+          action=""
+          list-type="picture"
+          :on-change="changeTopImage"
+          :file-list="topImage"
+          :auto-upload="false"
+          :limit="1"
+          @change="setImage1($event)"
+          multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+        </el-upload>
       </div>
-      <div fileUpload>
+      <div class="form-box">
+        <p>
+          <label for="content">その他の画像</label>
+          <span>(2枚必須)</span>
+        </p>
+        <div class="alert">
+          {{ otherImageAlert }}
+        </div>
+        <el-upload
+          class="upload-demo2"
+          drag
+          action=""
+          :on-change="changeOtherImage"
+          :file-list="otherImage"
+          :auto-upload="false"
+          list-type="picture"
+          :limit="2"
+          multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
+          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+        </el-upload>
+      </div>
+      <div class="form-box">
         <p>
           <label for="content">ファイルをアップロード</label>
           <span>(必須, zipファイル形式)</span>
