@@ -56,7 +56,6 @@
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
             <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
           </el-upload>
-          <p><img :src="data.image1"></p>
         </div>
         <div class="image2">
           <p>
@@ -80,7 +79,6 @@
             <div class="el-upload__text">ここにファイルをドロップ <br><em>またはクリックしてアップロード</em></div>
             <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
           </el-upload>
-          <p><img :src="data.image2"></p>
         </div>
       </div>
       <div fileUpload>
@@ -132,7 +130,6 @@ export default {
   },
   data() {
     return{
-      data: { image1:'', image2:'' },
       title: { value:'', alert:'' },
       content: { value:'', alert:'' },
       topImage: [],
