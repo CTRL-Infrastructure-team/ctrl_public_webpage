@@ -2,7 +2,7 @@
   <div v-if="auth">
     <pageTitle title="活動報告投稿" />
     <div class="form">
-      <div class="form-content form-box">
+      <div class="form-box">
         <p>
           <label for="content">タイトル</label>
           <span>(必須)</span>
@@ -15,7 +15,7 @@
           placeholder="タイトルを入力"></el-input>
       </div>
 
-      <div class="form-content form-box">
+      <div class="form-box">
         <p>
           <label for="content">本文</label>
           <span>(必須)</span>
@@ -32,34 +32,36 @@
           cols="100"
         ></el-input>
       </div>
-      <p>
-          <label for="content">画像</label>
-          <span>(1枚必須)</span>
-      </p>
-      <div class="alert">
-        {{ imageAlert }}
+      <div class="form-box">
+        <p>
+            <label for="content">画像</label>
+            <span>(1枚必須)</span>
+        </p>
+        <div class="alert">
+          {{ imageAlert }}
+        </div>
+        <el-upload
+          class="upload-demo"
+          drag
+          action=""
+          :on-change="dropImage"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          list-type="picture"
+          :auto-upload="false"
+          :limit="1"
+          multiple
+        >
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">
+            ここにファイルをドロップ <br /><em>またはクリックしてアップロード</em>
+          </div>
+          <div class="el-upload__tip" slot="tip">
+            jpg/png files with a size less than 500kb
+          </div>
+        </el-upload>
       </div>
-      <el-upload
-        class="upload-demo"
-        drag
-        action=""
-        :on-change="dropImage"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :file-list="fileList"
-        list-type="picture"
-        :auto-upload="false"
-        :limit="1"
-        multiple
-      >
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">
-          ここにファイルをドロップ <br /><em>またはクリックしてアップロード</em>
-        </div>
-        <div class="el-upload__tip" slot="tip">
-          jpg/png files with a size less than 500kb
-        </div>
-      </el-upload>
       <div class="form-button">
         <el-button @click="doSendForm">投稿する</el-button>
       </div>
