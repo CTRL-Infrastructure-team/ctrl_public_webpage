@@ -72,9 +72,7 @@ passport.deserializeUser((user, done) => {
 
 //userMethods
 app.post("/login", userController.login);
-app.post("/users/create", userController.create);
 app.post("/logout", userController.logout);
-app.get("/userTest", userController.common);
 app.get("/loginCheck", userController.check);
 
 app.get("/images/:user/:imagePath", assetController.getImg);
