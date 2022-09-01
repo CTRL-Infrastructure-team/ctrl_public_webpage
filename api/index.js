@@ -96,7 +96,6 @@ app.post("/pastworksearch", pastworkController.showSearch);
 app.post(
   "/pastWork",
   upload.any(),
-  pastworkController.PastWorkValidate,
   commonValidateError,
   pastworkController.createWork
 );

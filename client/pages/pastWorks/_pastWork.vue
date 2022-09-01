@@ -11,12 +11,12 @@
       <el-row>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image style="width: 100%;" :src="other_img_url[0]" :preview-src-list="images"> </el-image>
+            <el-image style="width: 100%;" :src="other_img_url_0" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
         <el-col :span="topImage / 2">
           <div class="flex_images">
-            <el-image style="width: 100%;" :src="other_img_url[1]" :preview-src-list="images"> </el-image>
+            <el-image style="width: 100%;" :src="other_img_url_1" :preview-src-list="images"> </el-image>
           </div>
         </el-col>
       </el-row>
@@ -24,7 +24,7 @@
         <div class="text-wrapper">
           <el-col :span="topImage">
             <div class="content-title">{{ title }}</div>
-            <div class="content-text">{{ "投稿日 : " + createdAt }}</div>
+            <div class="content-text">{{ "投稿日 : " + created_at }}</div>
             <div class="content-text">{{ "制作者 : " + contributor }}</div>
             <div v-if="twitterShow" class="content-text">
               {{ 'Twitter ID : ' + twitter_id }}
@@ -51,14 +51,14 @@ import download_icon from "~/static/download.png";
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
-        data.createdAt = modify(data.createdAt)
+        data.created_at = modify(data.created_at)
     return { ...data };
   },
   mixins: [windowResize],
   data() {
     return {
       images: [],
-      modifiedTime: this.createdAt,
+      modifiedTime: this.created_at,
       download_icon,
       twitterShow: false
     };
@@ -66,8 +66,8 @@ export default {
   created() {
     this.images = [
         this.top_img_url,
-        this.other_img_url[0],
-        this.other_img_url[1]
+        this.other_img_url_0,
+        this.other_img_url_1
     ]
     if(this.twitter_id !== "") {
       this.twitterShow = true
