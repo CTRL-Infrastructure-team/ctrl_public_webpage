@@ -83,7 +83,6 @@ app.get("/situations", situationController.situationsList);
 app.post(
   "/situation",
   upload.any(),
-  situationController.SituationValidate,
   commonValidateError,
   situationController.createSituation
 );
