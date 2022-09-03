@@ -104,3 +104,6 @@ client/assets/data/2022sPresentationsData.json
 client/assets/data/2022sPresentationsData_2.json
 
 api/config/data/
+
+#prisma migrations
+prisma/migrations
