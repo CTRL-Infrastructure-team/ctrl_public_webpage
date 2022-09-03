@@ -1,9 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-showUser();
+showSituations();
 
-async function showUser(){
+async function showSituations(){
   
   //実行結果
   const result = await prisma.situations.findMany({
