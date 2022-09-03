@@ -11,15 +11,15 @@
             {{ situation.title }}
           </div>
           <div class="card-content">
-            <div>{{ situation.createdAt }}</div>
+            <div>{{ situation.created_at }}</div>
             <div v-html="$sanitize(situation.content)"></div>
             <div class="card-button">
               <el-button>
-                <nuxt-link :to="`/edit/situations/${situation._id}`" style="text-decoration: none;color:inherit;">
+                <nuxt-link :to="`/edit/situations/${situation.id}`" style="text-decoration: none;color:inherit;">
                   編集する
                 </nuxt-link>
               </el-button>
-              <el-button @click="deleteWork(situation._id)">削除する</el-button>
+              <el-button @click="deleteWork(situation.id)">削除する</el-button>
             </div>
           </div>
         </el-card>
@@ -43,7 +43,7 @@ export default {
         res = await app.$axios.asyncGet('/api/loginCheck'),
         zeroCheck = situations.length !== 0 ? true : false;
     situations.map(v =>{
-      v.createdAt = modify(v.createdAt);
+      v.created_at = modify(v.created_at);
       return v;
       }
     )

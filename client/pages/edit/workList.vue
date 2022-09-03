@@ -11,15 +11,15 @@
             {{ work.title }}
           </div>
           <div class="card-content">
-            <div>{{ work.createdAt }}</div>
+            <div>{{ work.created_at }}</div>
             <div v-html="$sanitize(work.content)"></div>
             <div class="card-button">
               <el-button>
-                <nuxt-link :to="`/edit/works/${work._id}`" style="text-decoration: none;color:inherit;">
+                <nuxt-link :to="`/edit/works/${work.id}`" style="text-decoration: none;color:inherit;">
                   編集する
                 </nuxt-link>
               </el-button>
-              <el-button @click="deleteWork(work._id)">削除する</el-button>
+              <el-button @click="deleteWork(work.id)">削除する</el-button>
             </div>
           </div>
         </el-card>
@@ -43,7 +43,7 @@ export default {
         res = await app.$axios.asyncGet('/api/loginCheck'),
         zeroCheck = works.length !== 0 ? true : false;
     works.map(v =>{
-      v.createdAt = modify(v.createdAt);
+      v.created_at = modify(v.created_at);
       return v;
       }
     )

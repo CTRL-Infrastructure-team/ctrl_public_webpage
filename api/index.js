@@ -72,9 +72,7 @@ passport.deserializeUser((user, done) => {
 
 //userMethods
 app.post("/login", userController.login);
-app.post("/users/create", userController.create);
 app.post("/logout", userController.logout);
-app.get("/userTest", userController.common);
 app.get("/loginCheck", userController.check);
 
 app.get("/images/:user/:imagePath", assetController.getImg);
@@ -85,7 +83,6 @@ app.get("/situations", situationController.situationsList);
 app.post(
   "/situation",
   upload.any(),
-  situationController.SituationValidate,
   commonValidateError,
   situationController.createSituation
 );
@@ -99,7 +96,6 @@ app.post("/pastworksearch", pastworkController.showSearch);
 app.post(
   "/pastWork",
   upload.any(),
-  pastworkController.PastWorkValidate,
   commonValidateError,
   pastworkController.createWork
 );

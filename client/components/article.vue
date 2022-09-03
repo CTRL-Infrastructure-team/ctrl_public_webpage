@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="modal-flex-text">
-      <nuxt-link :to="`/currentSituations/${article._id}`">
+      <nuxt-link :to="`/currentSituations/${article.id}`">
         <div class="modal-flex-text--title">{{ article.title }}</div>
       </nuxt-link>
       <div class="modal-flex-text--content">
@@ -18,7 +18,7 @@ export default {
   props: ["article"],
   computed: {
     timestamp() {
-      return modify(this.article.createdAt);
+      return modify(this.article.created_at);
     },
     modifiedText() {
       if (this.article?.content?.length >= 100) {

@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id              String   @id @default(cuid())
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  username        String   @db.Text
+  password        String   @db.Text
+  grade           Int      @default(1)
+  twitter_id      String   @db.Text
+}
+
+model situations {
+  id              String   @id @default(cuid())
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  updated_at      DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  contributor     String   @db.Text
+  title           String   @db.Text
+  content         String   @db.Text
+  img_url         String   @db.Text
+}
+
+model pastworks {
+  id              String   @id @default(cuid())
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  updated_at      DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  contributor     String   @db.Text
+  twitter_id      String   @db.Text
+  title           String   @db.Text
+  content         String   @db.Text
+  top_img_url     String   @db.Text
+  other_img_url_0 String   @db.Text
+  other_img_url_1 String   @db.Text
+  download_url    String   @db.Text
+}
+
+model pubtopics {
+  id              String   @id @default(cuid())
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  updated_at      DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  topic_date      DateTime @db.DateTime
+  is_new          Boolean  @db.TinyInt()
+  topic           String   @db.Text
+  explanation     String   @db.Text
+  slides          pubslides[]
+}
+
+model pubslides {
+  id              String    @id @default(cuid())
+  pubttopic       pubtopics @relation(fields: [pubtopics_id], references: [id])
+  pubtopics_id    String    @db.VarChar(255)
+  created_at      DateTime  @default(now()) @db.Timestamp(0)
+  updated_at      DateTime  @default(now()) @updatedAt @db.Timestamp(0)
+  contributor     String    @db.Text
+  grade           Int      
+  slide_url       String    @db.Text
+  title           String    @db.Text
+  explanation     String    @db.Text
+}

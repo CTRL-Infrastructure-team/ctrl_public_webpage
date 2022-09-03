@@ -152,6 +152,7 @@ export default {
         formData,
         { header: { 'Content-Type': 'multipart/form-data' } }
       ).then(result => {
+          this.$router.go({path: this.$router.currentRoute.path, force: true});
         console.log(result)
       })
     },

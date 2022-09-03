@@ -1,7 +1,7 @@
-const { PastWork, PastWorkValidate } = require("../models/pastWork"),
-  User = require("../models/user"),
-  { uploadFiles, deleteFiles } = require("../config/localfile");
 require("dotenv").config();
+const { uploadFiles, deleteFiles } = require("../config/localfile"),
+      { PrismaClient } = require("@prisma/client"),
+      prisma = new PrismaClient();
 
 const convert = string => {
   return {
@@ -25,118 +25,74 @@ String.prototype.partMatch = function() {
 };
 
 module.exports = {
-  showSearch(req, res) {
-    let serch = convert(req.body.serch);
-
-    PastWork.find({ title: serch.katakana().partMatch() })
-      .limit(10)
-      .exec((err, data) => {
-        err ? console.log(err.message) : console.log(data[0]);
-        res.send(err || data);
+  async showSearch(req, res) {
+    try{
+      let search = convert(req.body.search);
+      let suggestion = await prisma.pastworks.findMany({
+        take: 10,
+        where: { title: search.katakana().partMatch()}
       });
+      await prisma.$disconnect;
+      res.send(suggestion);
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
   },
-  show(req, res) {
-    let id = req.params.pastWorkId;
-    console.log(id, req.params);
-    PastWork.findById(id).then(value => {
-      console.log(value);
-      res.send(value);
-    });
-  },
-  worksList(req, res) {
-    PastWork.find({})
-      .sort({ createdAt: -1 })
-      .then(result => {
-        res.send(result);
-      })
-      .catch(err => {
-        console.log();
-        res.send(err);
+  async show(req, res) {
+    try{
+      const work = await prisma.pastworks.findUnique({
+        where: { id: req.params.pastWorkId }
       });
+      await prisma.$disconnect;
+      console.log(work);
+      res.send(work);
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
   },
-  createWork(req, res) {
-    const receiveFiles = req.files;
-
-    let topImage = receiveFiles.filter(file => {
+  async worksList(req, res) {
+    try{
+      const works = await prisma.pastworks.findMany({
+        orderBy: { created_at: 'desc'}
+      });
+      await prisma.$disconnect;
+      res.send(works);
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
+  },
+  async createWork(req, res) {
+    try{
+      const user = await prisma.users.findUnique({
+        where: {id: req.user}
+      });
+      const receiveFiles = req.files,
+            username = user.username,
+            receiveTwitterId = req.body.twitter === "true" ? user.twitter_id : "";
+      
+      let topImage = receiveFiles.filter(file => {
         return file.fieldname === "topImage";
       }),
-      otherImage = receiveFiles.filter(file => {
+          otherImage = receiveFiles.filter(file => {
         return file.fieldname === "otherImage";
       }),
-      gameFile = receiveFiles.filter(file => {
+          gameFile = receiveFiles.filter(file => {
         return file.fieldname === "gameFile";
       });
 
-    User.findById(req.user).then(user => {
-      let username = user.username,
-          receiveTwitterId = '';
-
-      if(req.body.twitter === "true") {
-        receiveTwitterId = user.twitter_id
-      }
-
-      let newWork = new PastWork({
-        title: req.body.title,
-        content: req.body.content,
-        download_url:
-          "/api/games/" + username + "/" +
-          gameFile[0].filename + "." + 
-          gameFile[0].originalname.split(".").slice(-1)[0],
-        top_img_url:
-          "/api/images/" + username + "/" +
-          topImage[0].filename + "." + 
-          topImage[0].originalname.split(".").slice(-1)[0],
-        other_img_url: [
-          "/api/images/" + username + "/" +
-          otherImage[0].filename + "." + 
-          otherImage[0].originalname.split(".").slice(-1)[0],
-          "/api/images/" + username + "/" +
-          otherImage[1].filename + "." + 
-          otherImage[1].originalname.split(".").slice(-1)[0]
-        ],
-        contributor: username,
-        twitter_id: receiveTwitterId
-      });
       uploadFiles(receiveFiles, username);
 
-      newWork.save(err => {
-        if(err) {
-          console.log(err);
-        }
-        res.send("push work!");
-      });
-    });
-  },
-  updateWork(req, res) {
-    User.findById(req.user).then(user => {
-      const id = req.params.pastWorkId,
-            username = user.username,
-            receiveFiles = req.files;
-
-      let receiveTwitterId = '';
-      
-      if(req.body.twitter === "true") {
-        receiveTwitterId = user.twitter_id;
-      }
-
-      PastWork.findById(id).then(work => {
-        deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
-        deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
-        work.other_img_url.map(url => {
-          deleteFiles("./api/config/data" + url.replace("/api/images", ""));
-        });
-        
-        let topImage = receiveFiles.filter(file => {
-          return file.fieldname === "topImage";
-        }),
-        otherImage = receiveFiles.filter(file => {
-          return file.fieldname === "otherImage";
-        }),
-        gameFile = receiveFiles.filter(file => {
-          return file.fieldname === "gameFile";
-        });
-        
-        const data = {
+      await prisma.pastworks.create({
+        data:{
           title: req.body.title,
           content: req.body.content,
           download_url:
@@ -147,60 +103,129 @@ module.exports = {
             "/api/images/" + username + "/" +
             topImage[0].filename + "." + 
             topImage[0].originalname.split(".").slice(-1)[0],
-          other_img_url: [
+          other_img_url_0:
             "/api/images/" + username + "/" +
             otherImage[0].filename + "." + 
             otherImage[0].originalname.split(".").slice(-1)[0],
+          other_img_url_1:
             "/api/images/" + username + "/" +
             otherImage[1].filename + "." + 
-            otherImage[1].originalname.split(".").slice(-1)[0]
-          ],
+            otherImage[1].originalname.split(".").slice(-1)[0],
           contributor: username,
           twitter_id: receiveTwitterId
-        };
-
-        uploadFiles(receiveFiles, username);
-
-        PastWork.findByIdAndUpdate(id, data, err => {
-          if(err) {
-            console.log(err);
-          }
-          res.send("update pastwork!");
-        });
+        }
       });
-    });
+      await prisma.$disconnect;
+      res.send("push work!");
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
   },
-  userPastWorks(req, res) {
-    User.findById(req.user).then(user => {
-      PastWork.find({ contributor: user.username })
-        .sort({ createdAt: -1 })
-        .then(data => {
-        res.send(data);
-        })
-        .catch(err => {
-          console.log(err);
-          res.send();
-        });
-    })
-    .catch(err => {
-      console.log(err);
-      res.send();
-    });
-  },
-  deleteWork(req, res) {
-    let id = req.params.pastWorkId;
-
-    PastWork.findById(id).then(work => {
+  async updateWork(req, res) {
+    try{
+      const user = await prisma.users.findUnique({
+        where: {id: req.user}
+      });
+      const work = await prisma.pastworks.findUnique({
+        where: { id: req.params.pastWorkId }
+      });
+      
       deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.other_img_url_0.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.other_img_url_1.replace("/api/images", ""));
       deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
-      work.other_img_url.map(url => {
-        deleteFiles("./api/config/data" + url.replace("/api/images", ""));
+      
+      const receiveFiles = req.files,
+            username = user.username,
+            receiveTwitterId = req.body.twitter === "true" ? user.twitter_id : "";
+      
+      let topImage = receiveFiles.filter(file => {
+        return file.fieldname === "topImage";
+      }),
+          otherImage = receiveFiles.filter(file => {
+        return file.fieldname === "otherImage";
+      }),
+          gameFile = receiveFiles.filter(file => {
+        return file.fieldname === "gameFile";
       });
+      
+      uploadFiles(receiveFiles, username);
 
-      PastWork.findByIdAndDelete(id).then(result => {
-        res.send('delete');
-      })
-    });
+      await prisma.pastworks.update({
+        where:{ id: req.params.pastWorkId },
+        data:{
+          title: req.body.title,
+          content: req.body.content,
+          download_url:
+            "/api/games/" + username + "/" +
+            gameFile[0].filename + "." + 
+            gameFile[0].originalname.split(".").slice(-1)[0],
+          top_img_url:
+            "/api/images/" + username + "/" +
+            topImage[0].filename + "." + 
+            topImage[0].originalname.split(".").slice(-1)[0],
+          other_img_url_0:
+            "/api/images/" + username + "/" +
+            otherImage[0].filename + "." + 
+            otherImage[0].originalname.split(".").slice(-1)[0],
+          other_img_url_1:
+            "/api/images/" + username + "/" +
+            otherImage[1].filename + "." + 
+            otherImage[1].originalname.split(".").slice(-1)[0],
+          contributor: username,
+          twitter_id: receiveTwitterId
+        }
+      });
+      await prisma.$disconnect;
+      res.send("update pastwork!");
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
   },
-  PastWorkValidate
+  async userPastWorks(req, res) {
+    try{
+      const user = await prisma.users.findUnique({
+        where: {id: req.user}
+      });
+      const works = await prisma.pastworks.findMany({
+        orderBy: { created_at: 'desc'},
+        where: { contributor: user.username }
+      });
+      await prisma.$disconnect;
+      await res.send(works);
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
+  },
+  async deleteWork(req, res) {
+    try{
+      const work = await prisma.pastworks.findUnique({
+        where: { id: req.params.pastWorkId }
+      });
+      deleteFiles("./api/config/data" + work.top_img_url.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.other_img_url_0.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.other_img_url_1.replace("/api/images", ""));
+      deleteFiles("./api/config/data" + work.download_url.replace("/api/games", ""));
+      
+      await prisma.pastworks.delete({
+        where: { id: req.params.pastWorkId }
+      });
+      await prisma.$disconnect;
+      res.send('delete');
+    }
+    catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
+  },
 };

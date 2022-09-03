@@ -1,0 +1,22 @@
+[
+  {
+    "username": "Takeshi",
+    "password": "hoge",
+    "twitter_id": "@hogehoge"
+  },
+  {
+    "username": "Akiyama",
+    "password": "Akiyama",
+    "twitter_id": "@fuga"
+  },
+  {
+    "username": "Yamamoto",
+    "password": "Yamamoto",
+    "twitter_id": "@fugafuga"
+  },
+  {
+    "username": "Baba",
+    "password": "Baba",
+    "twitter_id": "@fugafugafuga"
+  }
+]

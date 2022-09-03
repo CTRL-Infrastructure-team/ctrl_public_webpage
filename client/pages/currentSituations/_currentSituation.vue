@@ -14,7 +14,7 @@
       </div>
       <el-row>
         <el-col :span="topImage">
-          <div>{{ '投稿日 : ' + createdAt }}</div>
+          <div>{{ '投稿日 : ' + created_at }}</div>
           <div>{{ '投稿者 : ' + contributor }}</div>
           <div class="sanitize-text" v-html="$sanitize(content)"></div> 
         </el-col>
@@ -33,7 +33,7 @@ import windowResize from "~/plugins/windowResizeMixins"
 export default {
   async asyncData({ params, app }) {
     let data = await app.$axios.asyncGet(`/api/situations/${params.currentSituation}`);
-    data.createdAt = modify(data.createdAt);
+    data.created_at = modify(data.created_at);
     return { ...data };
   },
   mixins: [windowResize],

@@ -5,7 +5,7 @@
       :body-style="{ padding: '0px' }"
     >
       <nuxt-link 
-        :to="`/pastWorks/${work._id}`"
+        :to="`/pastWorks/${work.id}`"
         :work="work" 
         class="detail-link"
       >
@@ -49,7 +49,7 @@ export default {
     }
     return {
       img: this.work.top_img_url, 
-      modifiedTime: modify(this.work.createdAt),
+      modifiedTime: modify(this.work.created_at),
       twitterShow
     };
   }

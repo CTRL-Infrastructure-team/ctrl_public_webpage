@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <el-card class="box-card">
-      <nuxt-link :to="`/currentSituations/${situation._id}`" class="detail-link"></nuxt-link>
+      <nuxt-link :to="`/currentSituations/${situation.id}`" class="detail-link"></nuxt-link>
       <div slot="header" class="clearfix">
         <h3>{{ situation.title }}</h3>
       </div>
