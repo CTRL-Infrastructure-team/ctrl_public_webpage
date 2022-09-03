@@ -36,7 +36,7 @@ export default {
   props: ['situation'],
   computed: {
     timestamp() {
-      return modify(this.situation.createdAt)
+      return modify(this.situation.created_at)
     }
   }
 };
