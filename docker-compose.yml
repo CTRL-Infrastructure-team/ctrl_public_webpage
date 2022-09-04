@@ -9,7 +9,7 @@ services:
       - 27017:27017
       
   db:
-    image: mariadb
+    image: mariadb:10.9
     restart: always
     ports:
       - 3306:3306
