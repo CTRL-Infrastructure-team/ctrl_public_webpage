@@ -32,7 +32,7 @@ module.exports = {
         take: 10,
         where: { title: search.katakana().partMatch()}
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send(suggestion);
     }
     catch (err){
@@ -46,7 +46,7 @@ module.exports = {
       const work = await prisma.pastworks.findUnique({
         where: { id: req.params.pastWorkId }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       console.log(work);
       res.send(work);
     }
@@ -61,7 +61,7 @@ module.exports = {
       const works = await prisma.pastworks.findMany({
         orderBy: { created_at: 'desc'}
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send(works);
     }
     catch (err){
@@ -115,7 +115,7 @@ module.exports = {
           twitter_id: receiveTwitterId
         }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send("push work!");
     }
     catch (err){
@@ -179,7 +179,7 @@ module.exports = {
           twitter_id: receiveTwitterId
         }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send("update pastwork!");
     }
     catch (err){
@@ -197,7 +197,7 @@ module.exports = {
         orderBy: { created_at: 'desc'},
         where: { contributor: user.username }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       await res.send(works);
     }
     catch (err){
@@ -219,7 +219,7 @@ module.exports = {
       await prisma.pastworks.delete({
         where: { id: req.params.pastWorkId }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send('delete');
     }
     catch (err){

@@ -9,7 +9,7 @@ module.exports = {
       const situations = await prisma.situations.findMany({
         orderBy: { created_at: 'desc'}
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send(situations);
     }
     catch (err){
@@ -23,7 +23,7 @@ module.exports = {
       const situation = await prisma.situations.findUnique({
         where: { id: req.params.situationId }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send(situation);
     }
     catch (err){
@@ -51,7 +51,7 @@ module.exports = {
           contributor: username,
         }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       console.log("finished!");
       res.send("create Situation!");
     }
@@ -88,7 +88,7 @@ module.exports = {
           contributor: username
         }
       })
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       console.log("finished!");
       res.send("update Situation!");
     }
@@ -107,7 +107,7 @@ module.exports = {
         orderBy: { created_at: 'desc'},
         where: { contributor: user.username }
       })
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send(situations);
     }
     catch (err){
@@ -128,7 +128,7 @@ module.exports = {
       await prisma.situations.delete({
         where: { id: req.params.situationId }
       });
-      await prisma.$disconnect;
+      //await prisma.$disconnect;
       res.send('delete');
     }
     catch (err){
