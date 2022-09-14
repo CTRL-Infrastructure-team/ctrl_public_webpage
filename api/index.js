@@ -11,6 +11,7 @@ const express = require("express"),
 const mailController = require("./controllers/mailController"),
   pastworkController = require("./controllers/pastworkController"),
   situationController = require("./controllers/situationController"),
+  publishController = require("./controllers/publishController"),
   userController = require("./controllers/userController"),
   assetController = require("./controllers/assetController");
 
@@ -104,6 +105,12 @@ app.put("/pastWork/:pastWorkId", upload.any(), pastworkController.updateWork);
 app.delete("/pastWork/:pastWorkId", pastworkController.deleteWork);
 app.get("/pastWorks", pastworkController.worksList);
 app.get("/user/pastWorks", pastworkController.userPastWorks);
+
+//publishMethods
+app.get("/publication/recentTopics", publishController.recentTopics);
+app.get("/publication/pastTopics", publishController.pastTopics);
+app.get("/publication/topic/:topicId", publishController.oneTopic);
+app.get("/publication/slide/:topicId", publishController.slideList);
 
 //mailMethods
 app.post(
