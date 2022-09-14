@@ -1,18 +1,25 @@
 <template>
   <div class="presentations-wrapper">
+    
     <nuxt-link
       class="banner-link"
-      :to="times.link"
+      :to= urls
     ></nuxt-link>
-    <span class="banner-top">{{ times.top }}</span>
-    <span class="banner-description">詳しくはこちらをクリック！</span>
+    <span class="banner-top">{{msg}}</span>
   </div>
   <!-- /.presentations-wrapper -->
 </template>
 
 <script>
 export default {
-  props: ["times"]
+  data(){
+    const page = this.$route.path.split("/").slice(-1)[0];
+    if(page === "recentTopics"){
+      return {msg:"過去の進捗発表はこちら！", urls:"/publication/pastTopics"}
+    }else{
+      return {msg:"最近の進捗発表はこちら！", urls:"/publication/recentTopics"}
+    }
+  }
 }
 </script>
 
@@ -21,8 +28,8 @@ export default {
   &-wrapper {
     margin-bottom: 30px;
     border-radius: 5px;
-    height: 200px;
-    background: #ffffff;
+    height: 110px;
+    background: #ABABAB;
     text-align: center;
     position: relative;
   }
@@ -34,8 +41,8 @@ export default {
     width: 100%;
     font-size: calc(16px + 1vw);
     font-weight: bolder;
-    line-height: 140px;
-    color: #000000;
+    line-height: 70px;
+    color: #ffffff;
   }
 
   &-description {
@@ -43,8 +50,8 @@ export default {
     width: 100%;
     font-size: calc(15px + 0.7vw);
     font-weight: bolder;
-    line-height: 60px;
-    color: #000000;
+    line-height: 30px;
+    color: #ffffff;
   }
 
   &-link {

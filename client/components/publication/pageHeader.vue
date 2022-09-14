@@ -7,9 +7,6 @@
         }}</nuxt-link>
       </li>
     </ul>
-    <div class="breadcrumb-text">
-      <p>※スライドの読み込みに時間がかかることがあります。</p>
-    </div>
     <!-- /.breakcrumb-text -->
   </div>
   <!-- /.breakcrumb-wrapper -->
@@ -29,7 +26,7 @@ export default {
   &-wrapper {
     width: 90%;
     max-width: 800px;
-    margin: 0px auto 30px auto;
+    margin: 0px auto 0px auto;
   }
   &-list {
     padding-left: 0px;
@@ -48,9 +45,6 @@ export default {
   &-link {
     text-decoration: none;
     color: $mainchar;
-  }
-  &-text {
-    margin-top: 20px;
   }
 }
 </style>

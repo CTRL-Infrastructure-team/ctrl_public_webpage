@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div v-for="data in presentations" :key="data.name" class="wapper">
-      <thePresentation :name="data.name" :url="data.url" class="border" />
+    <div v-for="data in presentations" :key="data.id3" class="wapper">
+      <thePresentation :name="data.contributor" :url="data.slide_url" class="border" />
     </div>
   </div>
 </template>
 
 <script>
-import thePresentation from "~/components/special/thePresentation";
+import thePresentation from "~/components/publication/thePresentation";
 
 export default {
   components: {
