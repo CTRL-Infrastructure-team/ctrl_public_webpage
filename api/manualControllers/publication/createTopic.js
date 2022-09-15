@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const topic = require('./topic_data_example.json');
+const topic = require('./topic_data.json');
 
 //日付の記述について
 //https://tc39.es/ecma262/#sec-date-time-string-format

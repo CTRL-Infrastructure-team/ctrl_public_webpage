@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const newSlides = require('./slide_data_example.json');
+const newSlides = require('./slide_data.json');
 const setting = require('./setting.json');
 
 
