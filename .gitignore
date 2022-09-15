@@ -96,13 +96,6 @@ key/
 cache/
 
 #user data
-api/test/user_data.json
-
-#presentations data
-client/assets/data/firstPresentationsData.json
-client/assets/data/2022sPresentationsData.json
-client/assets/data/2022sPresentationsData_2.json
-
 api/config/data/
 
 #prisma migrations
