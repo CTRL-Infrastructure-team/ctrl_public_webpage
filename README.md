@@ -39,9 +39,9 @@ nvm use
 npm install -g yarn
 ```
 
-### MongoDB導入
+### MariaDB導入
 
-本サイトはデータベースにMongoDBを使用しています。
+本サイトはデータベースにMariaDBを使用しています。
 
 `docker-compose.yml`を用意してあるので、これを使ってもらえれば大丈夫です。
 
@@ -69,7 +69,7 @@ yarn dev
 
 ## ユーザの作成方法
 
-`api/test`配下に`user_data.json`を作成してください。
+`api/manualControllers/users`配下に`user_data.json`を作成してください。
 
 ファイルを開いて以下の通り記載します。
 
@@ -78,18 +78,15 @@ yarn dev
     {
       "username": "hoge",
       "password": "hoge",
-      "twitter_id": "@hoge",
-      "works": [],
-      "situations": [],
-      "rentingBooks": []
+      "twitter_id": "@hoge"
     }
 ]
 ```
 
-保存後、`api/test`にて以下のコマンドを実行します。
+保存後、`api/manualControllers/users`にて以下のコマンドを実行します。
 
 ```bash
-node create.js
+node createUser.js
 ```
 
 ## dev flow
@@ -109,8 +106,10 @@ node create.js
   - key : 外部サービスのapiキーなど
   - passport : ユーザ認証のためのコード
 - controllers : リクエストに応じた処理を実装する
-- models : DBスキーマを書く、データの変換機能を実装する
-- test : その他のファイル
+- manualControllers
+  - publication : 進捗スライドの公開ツール
+  - show : データベースの閲覧ツール
+  - users : 新規ユーザの作成ツール
 
 
 ### client
@@ -120,7 +119,7 @@ node create.js
   - scss : グローバルCSSのファイル
   - text : テキストデータ
 - components : コンポーネントファイルを入れる
-  - special : 進捗スライド用
+  - publication : 進捗スライド用
   - ui : cardやheadlineなどの汎用的なUIのコンポーネント
 - layouts : 全体のレイアウトをまとめるVueファイルがある
 - middleware : ミドルウェアを入れる
@@ -146,7 +145,7 @@ node create.js
 
 ## DB設計
 
-coming soon...
+`prisma/schema.prisma`を確認してください。
 
 ## Slackとの連携
 
