@@ -48,7 +48,7 @@ npm install -g yarn
 以下コマンドを実行してください。実行させるだけで、DBの中での作業は必要ありません。
 
 ```bash
-docker-compose up -d # MongoDBを起動
+docker-compose up -d # MariaDBを起動
 ```
 
 ### アプリケーション起動
