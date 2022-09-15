@@ -8,9 +8,9 @@
       </div>
       <mainmenu :menu="menu" class="flex_menu" />
       <div class="flex_cell">
-        <form class="search_form">
-          <serchinput />
-        </form>
+        <!--<form class="search_form">
+          <searchinput />
+        </form>--><!--不具合が修正できず封鎖中-->
       </div>
       <div class="flex_cell">
         <div class="humburger" v-on:click="isOpen = !isOpen">
@@ -32,13 +32,13 @@
   </div>
 </template>
 <script>
-import serchinput from "@/components/serchinput";
+import searchinput from "@/components/searchinput";
 import mainmenu from "@/components/mainmenu.vue";
 
 export default {
   name: "theHeader",
   components: {
-    serchinput,
+    searchinput,
     mainmenu
   },
   data() {

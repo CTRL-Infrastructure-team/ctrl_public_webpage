@@ -23,7 +23,7 @@ export default {
         axios
           .post(
             "/api/pastworksearch",
-            { serch: query },
+            { search: query },
             {
               headers: { "Content-Type": "application/json" }
             }
@@ -33,7 +33,7 @@ export default {
             let data = res.data.map(item => {
               return {
                 value: item.title,
-                link: `/pastWorks/${item._id}`
+                link: `/pastWorks/${item.id}`
               };
             });
             cb(data);
