@@ -1,13 +1,6 @@
 version: '3'
 
 services:
-
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-      
   db:
     image: mariadb:10.9
     restart: always
