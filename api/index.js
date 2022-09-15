@@ -2,7 +2,6 @@ const express = require("express"),
   app = express(),
   passport = require("passport"),
   session = require("express-session"),
-  mongoose = require("mongoose"),
   passportLocal = require("./config/passport/local"),
   multer = require("multer"),
   { validationResult } = require("express-validator"),
@@ -21,19 +20,6 @@ const tl =
   hostname.includes("DESKTOP") ||
   hostname.includes("localhost") ||
   hostname.includes("MAC");
-
-if (tl) {
-  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
-    useNewUrlParser: true,
-    useUnifiedTopology: false
-  });
-} else {
-  mongoose.connect("mongodb://localhost:27017/ctrlPublicSite", {
-    useNewUrlParser: true,
-    useUnifiedTopology: false
-  });
-}
-mongoose.Promise = global.Promise;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
