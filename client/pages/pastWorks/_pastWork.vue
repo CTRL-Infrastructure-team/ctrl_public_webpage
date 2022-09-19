@@ -46,13 +46,18 @@
 <script>
 import windowResize from "~/plugins/windowResizeMixins";
 import modify from "~/plugins/modifiedTime";
+import redirect from "~/plugins/redirectList";
 import download_icon from "~/static/download.png";
 
 export default {
   async asyncData({ params, app }) {
-    let data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
-        data.created_at = modify(data.created_at)
-    return { ...data };
+    const oldRedirect = redirect(`${params.pastWork}`);
+    let data;
+    if(oldRedirect === ""){
+      data = await app.$axios.asyncGet(`/api/pastWork/${params.pastWork}`);
+      data.created_at = modify(data.created_at)
+    }
+    return { ...data ,oldRedirect};
   },
   mixins: [windowResize],
   data() {
@@ -71,6 +76,9 @@ export default {
     ]
     if(this.twitter_id !== "") {
       this.twitterShow = true
+    }
+    if(this.oldRedirect !== ""){
+      this.$router.replace(`/pastWorks/${this.oldRedirect}`);
     }
   },
   computed: {
