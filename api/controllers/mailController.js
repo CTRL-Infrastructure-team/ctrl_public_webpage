@@ -23,9 +23,10 @@ const createMailmessage = (text, email) => {
     text: `このメールアドレスは送信専用です。返信しても反応はできません。\n返信には時間がかかる場合がございます。\n 以下の内容で問い合わせを受けつけました。\n${text}`
   };
 };
-const slackSendmessage = (text, email) => {
+const discordSendmessage = (text, email) => {
   return {
-    text: `CTRLホームページから問い合わせです。\n 内容：${text} \n email: ${email}`
+    username: 'CTRL_HP',
+    content: `CTRLホームページから問い合わせです。\n 内容：${text} \n email: ${email}`
   };
 };
 
@@ -39,15 +40,21 @@ module.exports = {
     );
     next();
   },
-  sendSlack(req, res) {
+  sendDiscord(req, res) {
     axios
       .post(
-        process.env.SLACK_URL,
-        JSON.stringify(slackSendmessage(req.body.inquiry, req.body.email))
+        process.env.DISCORD_URL,
+        discordSendmessage(req.body.inquiry, req.body.email),
+        //postData,
+        {
+          headers: {
+              'Accept': 'application/json',
+              'Content-type': 'application/json',
+          }
+        }
       )
       .then(() => console.log("send"))
       .catch(err => console.log(err.message));
-
     res.send({
       val: "testOK"
     });

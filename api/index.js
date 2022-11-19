@@ -104,7 +104,7 @@ app.post(
   mailController.validateMail,
   commonValidateError,
   mailController.sendMail,
-  mailController.sendSlack
+  mailController.sendDiscord
 );
 
 module.exports = {
