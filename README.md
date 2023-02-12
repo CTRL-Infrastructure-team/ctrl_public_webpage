@@ -1,152 +1,45 @@
 # ctrl_public_webpage
+
 東京都市大学コンピュータ技術研究会の公式ホームページです。
 投稿された作品や活動報告を見たり、フォームから問い合わせを行ったりすることができます。
 
 URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
-## 使用するツール
+## はじめに
 
-- docker
-- node.js
+このホームページを運用する人は、サイト全体の変更権限を持つ**管理人**、変更権限を持たずにこのリポジトリをクローンして開発を行う**開発者**、作品投稿と活動報告の機能を利用する**部内ユーザ**のどれかになります。現役の部員の中で1人は管理人をしていただけるとありがたいです。
 
-## setup
+## 管理人の方へ
 
-### Node.js導入
+このホームページの管理人になった方は, 部内で引き継がれる「部のサーバへのssh新規接続方法（Windows）」を参考に, サーバへアクセスできるようにしてください。
 
-Node.jsを直接インストールしても大丈夫ですが、nvm（Node.jsのバージョン管理ツール）を通してもらった方が後々楽かもしれないです。
+管理者の方は以下の内容も参考にしてください。
 
-本サイトで使用するNode.jsのバージョンは`.nvmrc`に記載されています。以下nvmでの導入手順です。
+- [進捗スライドの公開](docs/pubSlide.md)
+- [問い合わせ機能をDiscordサーバと連携](docs/setInquily.md)
+- [データベースの操作(サーバ)](docs/serverDB.md)
+- [部内ユーザの新規作成](docs/createUser.md)
+- [サーバの起動・再起動](docs/reboot.md)
 
-windows版
+## 開発者の方へ
 
-[https://github.com/coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
+こちらのリポジトリ開発者の方のPCにクローンすることで、
+サイトに機能を追加・修正するための開発が行えます。
+開発環境構築については[こちら](docs/localDev.md)をご覧ください。
 
-mac版
+開発者の方は以下の内容も参考にしてください。
 
-```bash
-brew install nvm
-```
+- [データベースの操作(ローカル)](docs/localDB.md)
+- [リポジトリのディレクトリ構成](docs/dirStructure.md)
+- [開発の流れ](docs/devFlow.md)
 
-各環境でnvmの導入が完了したら以下コマンドをプロジェクトのルートディレクトリで実行することで指定されたバージョンのnode.jsに環境が切り替わります。
+## 部内ユーザの方へ
 
-```bash
-nvm use
-```
+管理人から割り当てられたIDとパスワードを使って[https://home.tcu-ctrl.jp/login](https://home.tcu-ctrl.jp/login)からログインすることで、部の活動報告やゲームの投稿が行えます。具体的な利用方法は以下の内容を参考にしてください。
 
-アプリケーションの起動に`yarn`が必要となるため、インストールします。
+- [活動報告](docs/report.md)
+- [作品投稿](docs/work.md)
 
-```bash
-npm install -g yarn
-```
+## その他
 
-### MariaDB導入
-
-本サイトはデータベースにMariaDBを使用しています。
-
-`docker-compose.yml`を用意してあるので、これを使ってもらえれば大丈夫です。
-
-以下コマンドを実行してください。実行させるだけで、DBの中での作業は必要ありません。
-
-```bash
-docker-compose up -d # MariaDBを起動
-```
-
-### アプリケーション起動
-
-```bash
-yarn install # 初回のみ
-yarn build
-yarn start
-```
-
-開発時は以下コマンドで起動するとホットリロードされるので楽です。
-
-```bash
-yarn dev
-```
-
-起動後、各ブラウザにて`localhost:3000`を開いてサイトのトップ画面が正常に表示されるか確認してください。
-
-## ユーザの作成方法
-
-`api/manualControllers/users`配下に`user_data.json`を作成してください。
-
-ファイルを開いて以下の通り記載します。
-
-```bash
-[
-    {
-      "username": "hoge",
-      "password": "hoge",
-      "twitter_id": "@hoge"
-    }
-]
-```
-
-保存後、`api/manualControllers/users`にて以下のコマンドを実行します。
-
-```bash
-node createUser.js
-```
-
-## dev flow
-
-`develop`ブランチより`feature`ブランチを切ってから作業をしてください。（今のところブランチ名に決まりはありませんが、`feature/<作業内容>`という形式にしてもらえると後から見ても分かりやすいと思います。）
-
-作業が完了したら`develop`、`master`ブランチへマージしてください。
-
-変更内容に不安がある場合は`develop`ブランチに向けてPRを作成してください。（レビュワーには`polyester-CTRL`か`rin-ctrl`を指定してください。）
-
-## ディレクトリ構成
-ディレクトリは大まかにapiとclientに分かれています。apiがバックエンド、clientがフロントエンドのコードです。
-### api
-- config
-  - cache : キャッシュ
-  - data : 作品、活動報告のファイルを保存
-  - key : 外部サービスのapiキーなど
-  - passport : ユーザ認証のためのコード
-- controllers : リクエストに応じた処理を実装する
-- manualControllers
-  - publication : 進捗スライドの公開ツール
-  - show : データベースの閲覧ツール
-  - users : 新規ユーザの作成ツール
-
-
-### client
-- assets
-  - data : 作品、活動報告のデータ
-  - img : 画像データ
-  - scss : グローバルCSSのファイル
-  - text : テキストデータ
-- components : コンポーネントファイルを入れる
-  - publication : 進捗スライド用
-  - ui : cardやheadlineなどの汎用的なUIのコンポーネント
-- layouts : 全体のレイアウトをまとめるVueファイルがある
-- middleware : ミドルウェアを入れる
-- pages : Viewファイル、ルーティングファイルを入れる
-- plugins : axiosやelement-uiなどのプラグインを入れる
-- static : faviconなど変更頻度の低いファイルを入れる
-- store : Vuexストアのファイル
-- test : テスト用コード
-
-
-
-### その他
-- node_modules 
-- server : サーバを起動する時はまずこの中のファイルを起動する
-
-### 重要なファイル
-- nuxt.config.js : Nuxt.jsの設定を記述
-- package.json : 依存するパッケージやスクリプトを記述
-- yarn.lock : yarnの設定が保存されたファイル。
-- .gitignore : gitで管理したくないファイルの名前を記述
-- docker-compose.yml : dockerの設定を記述
-- .nmvrc : NVMでNode.jsのバージョン管理を行うためのファイル
-
-## DB設計
-
-`prisma/schema.prisma`を確認してください。
-
-## Slackとの連携
-
-coming soon...
+旧バージョンのREADME.mdは[こちら](docs/README_old.md)をご覧ください。
