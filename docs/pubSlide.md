@@ -33,3 +33,7 @@ createTopic.jsとcreateSlide.jsを順に実行する
 ## トピックのアーカイブ化
 
 coming soon...
+
+## setting.jsonの仕組み
+
+coming soon...
