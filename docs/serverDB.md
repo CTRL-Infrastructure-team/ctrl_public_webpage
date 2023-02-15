@@ -2,13 +2,13 @@
 
 ## 起動方法
 
-1. サーバにアクセスする
+1. コマンドプロンプトからサーバにアクセスする
 
 ```
 //【部外秘】[1]を参照
 ```
 
-2. 以下を実行する
+2. サーバで以下を実行する
 
 ```
 mysql -u root -p
@@ -24,4 +24,4 @@ USE ctrlPublicSite;
 ## その他
 
 - SELECT * FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT * FROMを実行すると解消されるかもしれません。https://ameblo.jp/takaemon626/entry-11089864364.html
-- データベースの設計は、[prisma/schema.prisma](prisma/schema.prisma)を確認してください。
+- データベースの設計は、prisma/schema.prismaを確認してください。

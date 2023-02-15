@@ -26,7 +26,7 @@ copy slide_data_example.json slide_data.json
 10. `slide_data.json`を保存する。
 11. scpコマンドで`topic_data.json`と`slide_data.json`をサーバに転送する。
 (この作業は後でbatファイルを作ると便利)
-12. サーバにアクセスし、`/home/webadmin/html/home.tcu-ctrl.jp/ctrl_public_webpage/api/manualControllers/publication`に移動し、
+12. サーバにアクセスし、`/home/.../ctrl_public_webpage/api/manualControllers/publication`に移動し、
 createTopic.jsとcreateSlide.jsを順に実行する
 13. サーバの接続を切って[https://home.tcu-ctrl.jp/publication/recentTopics](https://home.tcu-ctrl.jp/publication/recentTopics)にアクセスし、進捗スライドが公開されているか確認する。
 
