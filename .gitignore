@@ -98,6 +98,9 @@ cache/
 #user data
 api/config/data/
 
+#browser game data
+static/games/
+
 #manualController
 api/manualControllers/publication/setting.json
 api/manualControllers/publication/slide_data.json
