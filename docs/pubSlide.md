@@ -7,10 +7,10 @@
 3. ローカルプロジェクトの`/api/manualControllers/publication`に移動する
 4. `topic_data_example.json`と`slide_data_example.json`をコピーして、それぞれファイル名を`topic_data.json`と`slide_data.json`に変更する。
 
-```
-copy topic_data_example.json topic_data.json
-copy slide_data_example.json slide_data.json
-```
+    ```bash
+    copy topic_data_example.json topic_data.json
+    copy slide_data_example.json slide_data.json
+    ```
 
 5. `topic_data.json`の内容を以下のように書き換える。
     - date : 部会を行った日時に書き換える。（月や日が1桁の場合は数字の頭に0を付ける）
@@ -26,10 +26,14 @@ copy slide_data_example.json slide_data.json
 10. `slide_data.json`を保存する。
 11. scpコマンドで`topic_data.json`と`slide_data.json`をサーバに転送する。
 (この作業は後でbatファイルを作ると便利)
-12. サーバにアクセスし、`/home/webadmin/html/home.tcu-ctrl.jp/ctrl_public_webpage/api/manualControllers/publication`に移動し、
+12. サーバにアクセスし、`/home/.../ctrl_public_webpage/api/manualControllers/publication`に移動し、
 createTopic.jsとcreateSlide.jsを順に実行する
 13. サーバの接続を切って[https://home.tcu-ctrl.jp/publication/recentTopics](https://home.tcu-ctrl.jp/publication/recentTopics)にアクセスし、進捗スライドが公開されているか確認する。
 
 ## トピックのアーカイブ化
+
+coming soon...
+
+## setting.jsonの仕組み
 
 coming soon...

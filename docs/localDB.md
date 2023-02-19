@@ -1,17 +1,17 @@
-# データベースの起動方法
+# データベースの起動方法 (ローカル)
 
 ## 起動方法
 
 1. docker desktopを起動する
 2. コマンドプロンプトでプロジェクトディレクトリに移動し、以下を実行する
 
-```
-docker-compose up -d
-docker-compose exec db bash
-mysql -u root -p
-pwd
-USE ctrlPublicSite;
-```
+    ```bash
+    docker-compose up -d
+    docker-compose exec db bash
+    mysql -u root -p
+    pwd
+    USE ctrlPublicSite;
+    ```
 
 ## MySQLの操作方法
 
@@ -20,5 +20,5 @@ USE ctrlPublicSite;
 
 ## その他
 
-- SELECT * FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT * FROMを実行すると解消されるかもしれません。https://ameblo.jp/takaemon626/entry-11089864364.html
+- SELECT \* FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT \* FROMを実行すると解消されるかもしれません。[(参考元)](https://ameblo.jp/takaemon626/entry-11089864364.html)
 - データベースの設計は、[prisma/schema.prisma](prisma/schema.prisma)を確認してください。

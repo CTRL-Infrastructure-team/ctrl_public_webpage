@@ -7,18 +7,18 @@
 5. 「ウェブフックURLをコピー」をクリックして、メモ帳などにURLを貼り付けて保存しておきます。
 6. サーバにアクセスし、ctrl_public_webpageディレクトリにある.envファイルをエディタで開きます。
 
-```
-cd /home/.../ctrl_public_webpage
-nano .env
-```
+    ```bash
+    cd /home/.../ctrl_public_webpage
+    nano .env
+    ```
 
 7. DISCORD_URL=""のダブルクオーテーションの中身を5でコピーしたURLに書き換え、変更を保存します。
 8. サーバの停止 → yarn build → サーバを再起動 を行います。
 
-```
-sudo forever stop 0
-yarn build
-sudo forever start server/index.js
-```
+    ```bash
+    sudo forever stop 0
+    yarn build
+    sudo forever start server/index.js
+    ```
 
 9. 公式HPの問い合わせページに移動して、テスト送信に成功したら移行完了です。

@@ -1,4 +1,5 @@
 # ctrl_public_webpage
+
 東京都市大学コンピュータ技術研究会の公式ホームページです。
 投稿された作品や活動報告を見たり、フォームから問い合わせを行ったりすることができます。
 
@@ -98,8 +99,11 @@ node createUser.js
 変更内容に不安がある場合は`develop`ブランチに向けてPRを作成してください。（レビュワーには`polyester-CTRL`か`rin-ctrl`を指定してください。）
 
 ## ディレクトリ構成
+
 ディレクトリは大まかにapiとclientに分かれています。apiがバックエンド、clientがフロントエンドのコードです。
+
 ### api
+
 - config
   - cache : キャッシュ
   - data : 作品、活動報告のファイルを保存
@@ -111,8 +115,8 @@ node createUser.js
   - show : データベースの閲覧ツール
   - users : 新規ユーザの作成ツール
 
-
 ### client
+
 - assets
   - data : 作品、活動報告のデータ
   - img : 画像データ
@@ -129,13 +133,13 @@ node createUser.js
 - store : Vuexストアのファイル
 - test : テスト用コード
 
-
-
 ### その他
-- node_modules 
+
+- node_modules
 - server : サーバを起動する時はまずこの中のファイルを起動する
 
 ### 重要なファイル
+
 - nuxt.config.js : Nuxt.jsの設定を記述
 - package.json : 依存するパッケージやスクリプトを記述
 - yarn.lock : yarnの設定が保存されたファイル。
