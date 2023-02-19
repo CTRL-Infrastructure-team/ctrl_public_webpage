@@ -11,7 +11,7 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 ## 管理人の方へ
 
-このホームページの管理人になった方は, 部内で引き継がれる「部のサーバへのssh新規接続方法（Windows）」を参考に, サーバへアクセスできるようにしてください。
+このホームページの管理人になった方は, 部内で引き継がれる「部のサーバへのssh新規接続方法（Windows）」を参考に, サーバへアクセスできるようにしてください。また、歴代の管理人が入っているDiscordサーバがあるので、そちらに入っていただけるとサポートができます。
 
 管理者の方は以下の内容も参考にしてください。
 
@@ -19,7 +19,8 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 - [問い合わせ機能をDiscordサーバと連携](docs/setInquily.md)
 - [データベースの操作(サーバ)](docs/serverDB.md)
 - [部内ユーザの新規作成](docs/createUser.md)
-- [サーバの起動・再起動](docs/reboot.md)
+- [サーバの再起動](docs/reboot.md)
+- [webGLアプリの公開](docs/webGL.md)
 
 ## 開発者の方へ
 
