@@ -30,61 +30,62 @@
 1. 自分のPCでコマンドプロンプトを開く
 2. デスクトップなど好きなフォルダにwebサイトのリポジトリをクローンする
 
-```
-cd C:/Users/hoge/Desktop
-git clone https://github.com/CTRL-Infrastructure-team/ctrl_public_webpage.git
-```
+    ```bash
+    cd C:/Users/hoge/Desktop
+    git clone https://github.com/CTRL-Infrastructure-team/ctrl_public_webpage.git
+    ```
 
 3. クローンしたフォルダのルートディレクトリに移動する  
 ※ 以降、C:/Users/hoge/Desktop/ctrl_public_webpage をプロジェクトのルートディレクトリとする
 
-```
-cd C:/Users/hoge/Desktop/ctrl_public_webpage
-```
+    ```bash
+    cd C:/Users/hoge/Desktop/ctrl_public_webpage
+    ```
 
 4. nvmでNode.jsをインストール&有効化
 
-```
-//うまくいかなければコマンドプロンプトを管理者権限で開きなおす
-nvm install
-nvm use
-```
+    ```bash
+    //うまくいかなければコマンドプロンプトを管理者権限で開きなおす
+    nvm install
+    nvm use
+    ```
 
 5. yarn (JavaScriptパッケージマネージャ) をインストール
 
-```
-npm install -g yarn
-yarn install
-```
+    ```bash
+    npm install -g yarn
+    yarn install
+    ```
 
-6. scpコマンドで環境変数が記載された.envファイルをルートディレクトリにダウンロードし、ファイル内容を変更する
+6. .envという名前のファイルを次の内容で作成し、`ctrl_public_webpage/`の直下に保存する
 
-```
-//【部外秘】[2]を参照
-```
+    ```bash
+    DATABASE_URL="mysql://root:pwd@localhost:3306/ctrlPublicSite"
+    DISCORD_URL=""
+    ```
 
 7. dockerによるデータベースの起動
 
-```
-//あらかじめDocker desktopを起動しておく
-docker-compose up -d
-prisma inin -name
-```
+    ```bash
+    //あらかじめDocker desktopを起動しておく
+    docker-compose up -d
+    prisma inin -name
+    ```
 
-12. ローカル用ユーザの作成
+8. ローカル用ユーザの作成
 
-```
-cd api\manualControllers\users
-copy user_data_example.json user_data.json
-node createUser.js
-```
+    ```bash
+    cd api\manualControllers\users
+    copy user_data_example.json user_data.json
+    node createUser.js
+    ```
 
-13. yarn dev で ローカル開発
+9. yarn dev で ローカル開発
 
-```
-yarn dev
-```
+    ```bash
+    yarn dev
+    ```
 
-14. ChromeなどのブラウザのURLから、`localhost:3000`を開いてサイトのトップ画面が正常に表示されるかを確認
+10. ChromeなどのブラウザのURLから、`localhost:3000`を開いてサイトのトップ画面が正常に表示されるかを確認
 
-15. ctrl-cで終了
+11. ctrl-cで終了

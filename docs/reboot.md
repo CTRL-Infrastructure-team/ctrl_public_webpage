@@ -9,36 +9,36 @@
 
 1. サーバに接続する
 
-```
-//【部外秘】[1]を参照
-```
+    ```bash
+    //【部外秘】[1]を参照
+    ```
 
-2. 再起動する
+2. サーバを再起動する
 
-```
-sudo reboot
-```
+    ```bash
+    sudo reboot
+    ```
 
 3. 接続が切れるのでもう一度サーバに接続
 
-```
-//【部外秘】[1]を参照
-```
+    ```bash
+    //【部外秘】[1]を参照
+    ```
 
 4. カレントディレクトリを変更
 
-```
-cd /home/.../ctrl_public_webpage
-```
+    ```bash
+    cd /home/.../ctrl_public_webpage
+    ```
 
 5. データベースを起動
 
-```
-service mysqld start
-```
+    ```bash
+    service mysqld start
+    ```
 
 6. サイトを動かす
 
-```
-sudo forever start server/index.js
-```
+    ```bash
+    sudo forever start server/index.js
+    ```

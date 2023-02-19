@@ -20,6 +20,7 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 - [データベースの操作(サーバ)](docs/serverDB.md)
 - [部内ユーザの新規作成](docs/createUser.md)
 - [サーバの再起動](docs/reboot.md)
+- [webGLアプリの公開](docs/webGL.md)
 
 ## 開発者の方へ
 

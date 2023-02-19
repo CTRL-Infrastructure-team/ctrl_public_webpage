@@ -30,6 +30,7 @@
 - pages : Viewファイル、ルーティングファイルを入れる
 - plugins : axiosやelement-uiなどのプラグインを入れる
 - static : faviconなど変更頻度の低いファイルを入れる
+  - games : WebGLアプリのファイルをまとめたフォルダを入れる
 - store : Vuexストアのファイル
 - test : テスト用コード
 

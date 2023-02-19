@@ -4,17 +4,17 @@
 
 1. コマンドプロンプトからサーバにアクセスする
 
-```
-//【部外秘】[1]を参照
-```
+    ```bash
+    //【部外秘】[1]を参照
+    ```
 
 2. サーバで以下を実行する
 
-```
-mysql -u root -p
-//【部外秘】[3]を参照
-USE ctrlPublicSite;
-```
+    ```bash
+    mysql -u root -p
+    //【部外秘】[3]を参照
+    USE ctrlPublicSite;
+    ```
 
 ## MySQLの操作方法
 
@@ -23,5 +23,5 @@ USE ctrlPublicSite;
 
 ## その他
 
-- SELECT * FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT * FROMを実行すると解消されるかもしれません。https://ameblo.jp/takaemon626/entry-11089864364.html
+- SELECT \* FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT \* FROMを実行すると解消されるかもしれません。[(参考元)](https://ameblo.jp/takaemon626/entry-11089864364.html)
 - データベースの設計は、prisma/schema.prismaを確認してください。

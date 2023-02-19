@@ -7,10 +7,10 @@
 3. ローカルプロジェクトの`/api/manualControllers/publication`に移動する
 4. `topic_data_example.json`と`slide_data_example.json`をコピーして、それぞれファイル名を`topic_data.json`と`slide_data.json`に変更する。
 
-```
-copy topic_data_example.json topic_data.json
-copy slide_data_example.json slide_data.json
-```
+    ```bash
+    copy topic_data_example.json topic_data.json
+    copy slide_data_example.json slide_data.json
+    ```
 
 5. `topic_data.json`の内容を以下のように書き換える。
     - date : 部会を行った日時に書き換える。（月や日が1桁の場合は数字の頭に0を付ける）
