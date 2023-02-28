@@ -38,6 +38,6 @@ UnityやSiv3Dで制作したゲームは、WebGLという形式で出力する�
 
 5. ブラウザからゲームページへアクセスする
 
-    ```http
+    ```bash
     https://home.tcu-ctrl.jp/games/[フォルダ名]/[ファイル名].html
     ```
