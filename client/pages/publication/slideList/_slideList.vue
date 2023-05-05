@@ -2,7 +2,7 @@
   <div class="container">
     <pageHeader :path_datas="path_datas" />
     <div class="topic-wrapper">
-      <p class="topic-title">{{topic.topic}}</p>
+      <p class="topic-title">{{topic.name}}</p>
       <p class="topic-explanation">{{topic.explanation}}</p>
       <p class="topic-attention">※スライドの読み込みに時間がかかることがあります。</p>
     </div>
@@ -23,12 +23,15 @@ export default {
     let path_datas = [
         { name: "Top", path: "/" },
         { name: "進捗発表", path: "/publication/recentTopics"},
-        { name: "過去の進捗発表", path: "/publication/pastTopics"},
-        { name: topic.topic, path: "/slideList/" + topic.id }
+        { name: topic.name, path: "/publication/slideList/" + topic.id }
       ];
     
-    if(topic.is_new){
-      path_datas = path_datas.filter(p=> p.name !== "過去の進捗発表");
+    if(topic.pubterms_id !== null){
+      let term = await app.$axios.asyncGet(`/api/publication/term/${topic.pubterms_id}`);
+      path_datas.splice(2, 0, 
+        { name: "過去の進捗発表", path: "/publication/pastTerms"},
+        { name: term.name, path: "/publication/pastTopicList/" + term.id}
+      );
     }
 
     return { topic, slides, path_datas};
@@ -39,11 +42,11 @@ export default {
   },
   head() {
     return {
-      title: this.topic.topic + " | ",
+      title: this.topic.name + " | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: this.topic.topic
+          content: this.topic.name
         }
       ]
     }
