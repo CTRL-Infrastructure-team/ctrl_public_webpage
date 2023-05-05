@@ -105,6 +105,7 @@ static/games/
 api/manualControllers/publication/setting.json
 api/manualControllers/publication/slide_data.json
 api/manualControllers/publication/topic_data.json
+api/manualControllers/publication/term_data.json
 api/manualControllers/users/user_data.json
 
 #prisma migrations

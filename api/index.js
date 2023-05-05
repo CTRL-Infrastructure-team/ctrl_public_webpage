@@ -94,7 +94,9 @@ app.get("/user/pastWorks", pastworkController.userPastWorks);
 
 //publishMethods
 app.get("/publication/recentTopics", publishController.recentTopics);
-app.get("/publication/pastTopics", publishController.pastTopics);
+app.get("/publication/pastTerms", publishController.pastTerms);
+app.get("/publication/term/:termId", publishController.oneTerm);
+app.get("/publication/termTopics/:termId", publishController.pastTermTopics);
 app.get("/publication/topic/:topicId", publishController.oneTopic);
 app.get("/publication/slide/:topicId", publishController.slideList);
 

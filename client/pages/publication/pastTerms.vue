@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <pageHeader :path_datas="path_datas" />
-    <div class="list-wrapper" v-for="topic in topics" :key="topic.id2">
-      <banner :data="topic" />
+    <div class="list-wrapper" v-for="term in terms" :key="term.id2">
+      <termBanner :data="term" />
     </div>
     <div class="list-wrapper">
       <bannerToRP />
@@ -13,28 +13,24 @@
 </template>
 
 <script>
-import pageHeader from "../../components/publication/pageHeader";
-import banner from "../../components/publication/banner";
+import pageHeader from "~/components/publication/pageHeader";
+import termBanner from "../../components/publication/termBanner";
 import bannerToRP from "../../components/publication/bannerToRP";
-import modify from "~/plugins/modifiedTime";
+//import modify from "~/plugins/modifiedTime";
 
 export default {
-  components: { pageHeader, banner, bannerToRP },
+  components: {pageHeader, termBanner, bannerToRP },
   async asyncData({ app }) {
-    let topics = await app.$axios.asyncGet(`/api/publication/recentTopics`)
-    topics = topics.map(t=>{
-      t.date = modify(t.date);
-      return t
-    });
-    return { topics }
+    let terms = await app.$axios.asyncGet(`/api/publication/pastTerms`)
+    return { terms }
   },
   head() {
     return {
-      title: "進捗発表 | ",
+      title: "過去の活動期間 | ",
       meta:[
         { hid: 'twitter:description',
           name: 'twitter:description',
-          content: "進捗発表"
+          content: "過去の活動期間"
         }
       ]
     }
@@ -43,7 +39,8 @@ export default {
     return {
       path_datas: [
         { name: "Top", path: "/" },
-        { name: "最近の進捗発表", path: "/publication/recentTopics" }
+        { name: "最近の進捗発表", path: "/publication/recentTopics" },
+        { name: "過去の活動期間", path: "/publication/pastTerms" }
       ]
     };
   }
