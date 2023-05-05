@@ -3,10 +3,10 @@
     
     <nuxt-link
       class="banner-link"
-      :to="`/publication/slideList/${data.id}`"
+      :to="`/publication/pastTopicList/${data.id}`"
     ></nuxt-link>
     <span class="banner-top">{{ data.name }}</span>
-    <span class="banner-description">{{ data.date }}</span>
+    <span class="banner-description">{{ data.explanation }}</span>
   </div>
   <!-- /.presentations-wrapper -->
 </template>
