@@ -23,7 +23,7 @@ export default {
     let path_datas = [
         { name: "Top", path: "/" },
         { name: "進捗発表", path: "/publication/recentTopics"},
-        { name: topic.name, path: "/slideList/" + topic.id }
+        { name: topic.name, path: "/publication/slideList/" + topic.id }
       ];
     
     if(topic.pubterms_id !== null){
