@@ -3,10 +3,11 @@ const { PrismaClient } = require("@prisma/client"),
       prisma = new PrismaClient();
 
 module.exports = {
+  //最近の進捗トピック一覧を取得
   async recentTopics(req, res){
     try{
       const list = await prisma.pubtopics.findMany({
-        where: {is_new: true},
+        where: {pubterms_id: null},
         orderBy:{topic_date:'desc'}
       });
       await prisma.$disconnect
@@ -17,14 +18,42 @@ module.exports = {
       res.send("response catch!");
     };
   },
-  async pastTopics(req, res){
+  async pastTerms(req, res){
     try{
-      const list = await prisma.pubtopics.findMany({
-        where: {is_new: false},
-        orderBy:{topic_date:'desc'}
+      const list = await prisma.pubterms.findMany({
+        orderBy:{term:'desc'}
       });
       await prisma.$disconnect
       res.send(list)
+    }catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
+  },
+  async oneTerm(req, res){
+    try{
+      const list = await prisma.pubterms.findUnique({
+        where: {id: req.params.termId}
+      });
+      await prisma.$disconnect;
+      console.log(list);
+      res.send(list)
+    }catch (err){
+      await prisma.$disconnect;
+      console.log(err.message);
+      res.send("response catch!");
+    };
+  },
+  async pastTermTopics(req, res){
+    try{
+      const list = await prisma.pubtopics.findMany({
+        where: {pubterms_id: req.params.termId},
+        orderBy:{topic_date:'desc'}
+      });
+      await prisma.$disconnect;
+      console.log(list);
+      res.send(list);
     }catch (err){
       await prisma.$disconnect;
       console.log(err.message);
