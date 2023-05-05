@@ -8,7 +8,7 @@ module.exports = {
     try{
       const list = await prisma.pubtopics.findMany({
         where: {pubterms_id: null},
-        orderBy:{topic_date:'desc'}
+        orderBy:{date:'desc'}
       });
       await prisma.$disconnect
       res.send(list)
@@ -49,7 +49,7 @@ module.exports = {
     try{
       const list = await prisma.pubtopics.findMany({
         where: {pubterms_id: req.params.termId},
-        orderBy:{topic_date:'desc'}
+        orderBy:{date:'desc'}
       });
       await prisma.$disconnect;
       console.log(list);
