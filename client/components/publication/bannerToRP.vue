@@ -15,7 +15,7 @@ export default {
   data(){
     const page = this.$route.path.split("/").slice(-1)[0];
     if(page === "recentTopics"){
-      return {msg:"過去の進捗発表はこちら！", urls:"/publication/pastTopics"}
+      return {msg:"過去の進捗発表はこちら！", urls:"/publication/pastTerms"}
     }else{
       return {msg:"最近の進捗発表はこちら！", urls:"/publication/recentTopics"}
     }
