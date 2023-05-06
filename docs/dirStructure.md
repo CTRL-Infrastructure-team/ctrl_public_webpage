@@ -27,7 +27,8 @@
   - ui : cardやheadlineなどの汎用的なUIのコンポーネント
 - layouts : 全体のレイアウトをまとめるVueファイルがある
 - middleware : ミドルウェアを入れる
-- pages : Viewファイル、ルーティングファイルを入れる
+- pages : vueファイル、ルーティングファイルを入れる
+  - publication : 進捗スライドの公開ページに関するファイル
 - plugins : axiosやelement-uiなどのプラグインを入れる
 - static : faviconなど変更頻度の低いファイルを入れる
   - games : WebGLアプリのファイルをまとめたフォルダを入れる
@@ -38,6 +39,7 @@
 
 - node_modules
 - server : サーバを起動する時はまずこの中のファイルを起動する
+- prisma : データベースの設計に関するファイル
 
 ## 重要なファイル
 
