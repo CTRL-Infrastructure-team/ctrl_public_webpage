@@ -13,8 +13,8 @@ async function createNewPub(){
   //登録
   await prisma.pubtopics.create({
     data:{
-      topic_date: topic.date,
-      topic: topic.title,
+      date: topic.date,
+      name: topic.title,
       explanation: topic.explanation
     }
   });

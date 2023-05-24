@@ -18,12 +18,9 @@ async function createNewPub(){
       data: {
         slides: {
           create: {
-            contributor_id: "",
             contributor: s.name,
             grade: s.grade,
             slide_url: s.slide,
-            title: "",
-            explanation: ""
           },
         }
       }
