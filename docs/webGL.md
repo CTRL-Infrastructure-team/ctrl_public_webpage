@@ -2,7 +2,7 @@
 
 UnityやSiv3Dで制作したゲームは、WebGLという形式で出力することで、ブラウザ上で遊べるゲームとして公開することができます。WebGLファイル群の出力方法は次の記事を参照してください。
 
-- [OpenSiv3D for Web](https://siv3d.kamenokosoft.com/ja/index)
+- [OpenSiv3D for Web](https://siv3d.kamenokosoft.com)
 - [WebGL - Unity マニュアル](https://docs.unity3d.com/ja/2021.2/Manual/webgl.html)
 
 出力したファイル群をサーバに置いてゲームを公開しましょう。手順は以下の通りです。
