@@ -16,9 +16,10 @@
           <a href="https://twitter.com/tcuctrl?ref_src=twsrc%5Etfw"
             ><img class="icon_style" :src="twitter_img" alt="Twitter"
           /></a>
-          <a href="mailto:tcu.ctrl@gmail.com">
+          <!-- メールアドレスのアイコンを表示 -->
+          <!-- <a href="mailto:[メールアドレス]">
             <img class="icon_style" alt="email" :src="gmail_img" />
-          </a>
+          </a> -->
         </div>
         <span class="copyright">&copy; 2019 CTRL web creater</span>
       </footer>
