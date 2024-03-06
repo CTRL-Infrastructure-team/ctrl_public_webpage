@@ -15,12 +15,13 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 管理者の方は以下の内容も参考にしてください。
 
-- [進捗スライドの公開](docs/pubSlide.md)
-- [問い合わせ機能をDiscordサーバと連携](docs/setInquily.md)
-- [データベースの操作(サーバ)](docs/serverDB.md)
-- [部内ユーザの新規作成](docs/createUser.md)
-- [サーバの再起動](docs/reboot.md)
-- [webGLアプリの公開](docs/webGL.md)
+- [進捗スライドの公開](/docs/pubSlide.md)
+- [誤って投稿した進捗スライドの削除](/docs/deleteSlide.md)
+- [問い合わせ機能をDiscordサーバと連携](/docs/setInquily.md)
+- [データベースの操作(サーバ)](/docs/serverDB.md)
+- [部内ユーザの新規作成](/docs/createUser.md)
+- [サーバの再起動](/docs/reboot.md)
+- [webGLアプリの公開](/docs/webGL.md)
 
 ## 開発者の方へ
 
@@ -28,19 +29,19 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 開発者の方は以下の内容を参考にしてください。
 
-- [必要な基礎知識](docs/tutorial.md)
-- [開発環境構築](docs/localDev.md)
-- [データベースの操作(ローカル)](docs/localDB.md)
-- [リポジトリのディレクトリ構成](docs/dirStructure.md)
-- [開発の流れ](docs/devFlow.md)
+- [必要な基礎知識](/docs/tutorial.md)
+- [開発環境構築](/docs/localDev.md)
+- [データベースの操作(ローカル)](/docs/localDB.md)
+- [リポジトリのディレクトリ構成](/docs/dirStructure.md)
+- [開発の流れ](/docs/devFlow.md)
 
 ## 部内ユーザの方へ
 
 管理人から割り当てられたIDとパスワードを使って[https://home.tcu-ctrl.jp/login](https://home.tcu-ctrl.jp/login)からログインすることで、部の活動報告やゲームの投稿が行えます。具体的な利用方法は以下の内容を参考にしてください。
 
-- [活動報告](docs/report.md)
-- [作品投稿](docs/work.md)
+- [活動報告](/docs/report.md)
+- [作品投稿](/ocs/work.md)
 
 ## その他
 
-旧バージョンのREADME.mdは[こちら](docs/README_old.md)をご覧ください。
+旧バージョンのREADME.mdは[こちら](/docs/README_old.md)をご覧ください。
