@@ -21,4 +21,4 @@
 ## その他
 
 - SELECT \* FROM でテーブルの中身を見るとき、内容が???で表示されることがあります。その場合はmysqlのコマンドラインで`set names utf8;`を実行してからSELECT \* FROMを実行すると解消されるかもしれません。[(参考元)](https://ameblo.jp/takaemon626/entry-11089864364.html)
-- データベースの設計は、[prisma/schema.prisma](prisma/schema.prisma)を確認してください。
+- データベースの設計は、[/prisma/schema.prisma](/prisma/schema.prisma)を確認してください。

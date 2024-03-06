@@ -109,4 +109,4 @@ api/manualControllers/publication/term_data.json
 api/manualControllers/users/user_data.json
 
 #prisma migrations
-prisma/migrations
+prisma/migrations/

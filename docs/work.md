@@ -4,7 +4,7 @@
 
 exe化したゲームをzipファイルにまとめたものを、サイトの[作品投稿ページ](https://home.tcu-ctrl.jp/progress)に載せることができます。
 
-1. 部内ユーザ用のログインページにアクセス [https://home.tcu-ctrl.jp/login](https://home.tcu-ctrl.jp/login)
+1. 部内ユーザ用の[ログインページ](https://home.tcu-ctrl.jp/login)にアクセス
 2. サイトの管理人から教えてもらったユーザ名とパスワードを入力してログイン
 3. 「作品投稿」ボタンをクリック
 4. 各項目を記入して「投稿する」ボタンをクリック

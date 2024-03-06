@@ -69,7 +69,7 @@
     ```bash
     //あらかじめDocker desktopを起動しておく
     docker-compose up -d
-    prisma inin -name
+    yarn prisma migrate dev --name init
     ```
 
 8. ローカル用ユーザの作成
