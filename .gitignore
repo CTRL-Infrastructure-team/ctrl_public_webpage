@@ -99,7 +99,7 @@ cache/
 api/config/data/
 
 #browser game data
-static/games/
+client/static/games/
 
 #manualController
 api/manualControllers/publication/setting.json
