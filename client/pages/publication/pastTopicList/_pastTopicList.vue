@@ -4,10 +4,6 @@
     <div class="list-wrapper" v-for="topic in topics" :key="topic.id2">
       <banner :data="topic" />
     </div>
-    <div class="list-wrapper">
-      <bannerToRP />
-    </div>
-    <!-- /.list-wrapper -->
   </div>
   <!-- /.container -->
 </template>
