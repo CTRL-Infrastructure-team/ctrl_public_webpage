@@ -40,7 +40,7 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 管理人から割り当てられたIDとパスワードを使って[https://home.tcu-ctrl.jp/login](https://home.tcu-ctrl.jp/login)からログインすることで、部の活動報告やゲームの投稿が行えます。具体的な利用方法は以下の内容を参考にしてください。
 
 - [活動報告](/docs/report.md)
-- [作品投稿](/ocs/work.md)
+- [作品投稿](/docs/work.md)
 
 ## その他
 
