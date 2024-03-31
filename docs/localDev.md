@@ -5,24 +5,31 @@
 ### VSCode
 
 以下のリンクからインストール
+
 [https://azure.microsoft.com/ja-jp/products/visual-studio-code/](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)
 
 ### Source Tree
 
 以下のリンクからインストール
+
 [https://www.sourcetreeapp.com/](https://www.sourcetreeapp.com/)
+
 ※ 途中でGitをダウンロードするかどうかチェックボックスで確認されるので、インストールする（既に入っいれば必要なし）
 
 ### Docker Desktop (windows)
 
 以下のリンクからwindows版をインストール
+
 [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+
 ※ install required windows components for WSL2 には必ずチェック入れる（既にWSL2が使えれば必要なし）
 
 ### nvm (Node.jsのバージョン管理ツール)
 
 - 以下のリンク先のREADME.mdに書かれている[download now!] という青いボタンをクリックする
+
 [https://github.com/coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
+
 - nvm-setup.exe というファイルをダウンロードしてインストールを行う。
 
 ## 2. コマンドプロンプトによる操作
@@ -68,7 +75,7 @@
 
     ```bash
     //あらかじめDocker desktopを起動しておく
-    docker-compose up -d
+    docker compose up -d
     yarn prisma migrate dev --name init
     ```
 
