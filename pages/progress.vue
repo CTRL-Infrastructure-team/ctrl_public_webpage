@@ -2,7 +2,7 @@
   <div class="content">
     <div class="card-wrapper">
       <UiPageTitle title="作品" />
-      <el-row>
+      <el-row :gutter="rowGutter">
         <el-col
           v-for="work in pageItems"
           :key="work.id"
@@ -37,6 +37,9 @@ const pageItems = computed(() => {
   const start = (page.value - 1) * 9
   return allItems.value.slice(start, start + 9)
 })
+
+/** カード間の横余白（旧サイトの見た目に合わせる） */
+const rowGutter = 24
 </script>
 
 <style lang="scss" scoped>
@@ -48,6 +51,7 @@ const pageItems = computed(() => {
 .card-wrapper {
   max-width: 1000px;
   margin: 0 auto;
+  overflow-x: clip;
 }
 
 .el-col {
@@ -55,6 +59,12 @@ const pageItems = computed(() => {
   @include mq {
     margin-bottom: 30px;
   }
+}
+
+/* gutter の negative margin が .content の padding と重なって横スクロールしないよう */
+.card-wrapper :deep(.el-row) {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .el-pagination {
