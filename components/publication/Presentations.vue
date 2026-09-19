@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ThePresentation
+    <PublicationThePresentation
       v-for="data in presentations"
       :key="data.id"
       :name="data.contributor"
