@@ -46,8 +46,10 @@ const modifiedTime = computed(() => formatDate(props.work.created_at))
   background-color: #2c2c2c;
   color: $mainchar;
   position: relative;
-  @include mq {
-    height: 300px;
+  overflow: hidden;
+
+  :deep(.el-card__body) {
+    overflow: hidden;
   }
 }
 
