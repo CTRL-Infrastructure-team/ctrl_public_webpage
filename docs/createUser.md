@@ -1,21 +1,19 @@
 # ユーザの作成方法
 
-`api/manualControllers/users`配下に`user_data.json`を作成してください。
+`scripts/user_data.example.json` をコピーして `scripts/user_data.json` を作成します。
 
-ファイルを開いて以下の通り記載します。
-
-```bash
+```json
 [
-    {
-      "username": "hoge",
-      "password": "hoge",
-      "twitter_id": "@hoge"
-    }
+  {
+    "username": "hoge",
+    "password": "hoge",
+    "twitter_id": "@hoge"
+  }
 ]
 ```
 
-保存後、`api/manualControllers/users`にて以下のコマンドを実行します。
+保存後、プロジェクトルートで実行します。
 
 ```bash
-node createUser.js
+node --env-file=.env scripts/create-user.mjs
 ```

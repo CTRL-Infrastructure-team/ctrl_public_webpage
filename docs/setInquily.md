@@ -12,13 +12,13 @@
     nano .env
     ```
 
-7. DISCORD_URL=""のダブルクオーテーションの中身を5でコピーしたURLに書き換え、変更を保存します。
+7. `NUXT_DISCORD_URL=""` のダブルクオーテーションの中身を5でコピーしたURLに書き換え、変更を保存します。
 8. サーバの停止 → yarn build → サーバを再起動 を行います。
 
     ```bash
     sudo forever stop 0
     yarn build
-    sudo forever start server/index.js
+    sudo forever start -c "node --env-file=.env" .output/server/index.mjs
     ```
 
 9. 公式HPの問い合わせページに移動して、テスト送信に成功したら移行完了です。

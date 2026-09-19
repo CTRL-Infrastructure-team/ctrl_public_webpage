@@ -15,7 +15,7 @@ UnityやSiv3Dで制作したゲームは、WebGLという形式で出力する�
     sudo forever stop 0
     ```
 
-2. サーバを抜け、WebGLファイル群をまとめたフォルダをscpコマンドで転送する。転送先は`/client/static/games`
+2. サーバを抜け、WebGLファイル群をまとめたフォルダをscpコマンドで転送する。転送先は `public/games`
 
     ```bash
     //自分のPCで実行
@@ -32,7 +32,7 @@ UnityやSiv3Dで制作したゲームは、WebGLという形式で出力する�
 4. サイトを公開し、サーバから抜ける。
 
     ```bash
-    sudo forever start server/index.js
+    sudo forever start -c "node --env-file=.env" .output/server/index.mjs
     exit
     ```
 

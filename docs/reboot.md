@@ -1,44 +1,50 @@
-# サーバの再起動
+# サーバの再起動と本番更新
 
-次のケースでは、サーバの再起動を推奨します。
+対象は ConoHa 上の `home.tcu-ctrl.jp`（ディレクトリ `/var/www/home.tcu-ctrl.jp`）です。
 
-- サイトの応答が遅い
-- サイトが開けず502 Bad Gatewayと表示される
+## 応答がない・502 のとき
 
-以下の手順でサーバを再起動し、サイトを動かしてください。
-
-1. サーバに接続する
+1. `ssh ctrl` で接続する
+2. 状態を見る
 
     ```bash
-    //【部外秘】[1]を参照
+    sudo systemctl status home-tcu-ctrl nginx mariadb
+    sudo journalctl -u home-tcu-ctrl -n 80 --no-pager
     ```
 
-2. サーバを再起動する
+3. 必要ならサービスだけ再起動する（OS 全体の reboot は最後の手段）
+
+    ```bash
+    sudo systemctl restart home-tcu-ctrl
+    ```
+
+4. OS 再起動が必要なとき
 
     ```bash
     sudo reboot
     ```
 
-3. 接続が切れるのでもう一度サーバに接続
+    接続し直し、`mariadb` / `nginx` / `home-tcu-ctrl` が active か確認する。systemd で入れてあれば自動起動する。
 
-    ```bash
-    //【部外秘】[1]を参照
-    ```
+## コードを本番に載せる
 
-4. カレントディレクトリを変更
+GitHub の `master` が正です。サーバ上では編集しません。
 
-    ```bash
-    cd /home/.../ctrl_public_webpage
-    ```
+```bash
+cd /var/www/home.tcu-ctrl.jp
+git pull --ff-only
+yarn install --frozen-lockfile
+yarn prisma deploy
+yarn build
+sudo systemctl restart home-tcu-ctrl
+```
 
-5. データベースを起動
+アップロードファイルは `server/data/` です。git には入りません。旧サーバから移すときは `api/config/data` をこのディレクトリへコピーします。
 
-    ```bash
-    service mysqld start
-    ```
+## 初回構築（sudo が必要な部分）
 
-6. サイトを動かす
+リポジトリの `deploy/` を使います。詳細は会話で渡した手順を参照してください。
 
-    ```bash
-    sudo forever start server/index.js
-    ```
+- `sudo bash deploy/sudo-bootstrap.sh` … Node 22 / nginx / MariaDB / ディレクトリ
+- clone のあと `sudo bash deploy/sudo-install-site.sh` … nginx と systemd
+- DNS 切替後: UFW と ConoHa で 80/443、`sudo certbot --nginx -d home.tcu-ctrl.jp`
