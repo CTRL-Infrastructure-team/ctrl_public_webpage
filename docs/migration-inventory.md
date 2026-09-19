@@ -65,12 +65,23 @@
 - `publication/export-json.mjs` / `import-json.mjs`
 - `show-users.mjs` / `show-situations.mjs` / `show-pastworks.mjs`
 
-## カットオーバー前バックアップ
+## カットオーバー
 
-本番サーバで実施する。
+新 VPS（`/var/www/home.tcu-ctrl.jp`）へ DB と `server/data/` は移済み。残作業:
 
-1. DB: `mysqldump -u ... ctrlPublicSite > backup-$(date +%F).sql`
-2. アップロード: `cp -a api/config/data server/data`（新パスへコピー）
-3. リポジトリ: 現行 `master` が残っていることを確認してから `feature/nuxt3-migration` をマージ
-4. 環境変数: `NUXT_SESSION_SECRET`（32文字以上）、`DATABASE_URL`、`DISCORD_URL`、メール設定
-5. 切り戻し: 旧 `master` の `forever start server/index.js` に戻せるよう、切り替え直前のコミットハッシュを控える
+1. `feature/nuxt3-migration` を staging（IP）で確認し、問題なければ `master` へマージする
+2. **`home.tcu-ctrl.jp` の A レコードだけ** 新 VPS へ向ける。ネームサーバは動かさない
+3. `sudo certbot --nginx -d home.tcu-ctrl.jp`
+4. サーバの追従ブランチを `master` にする
+5. 旧サーバではホームページを止め、Gitea / フォーラム / DNS はそのまま
+
+環境変数（`.env`、git に入れない）:
+
+- `NUXT_SESSION_SECRET`（32文字以上）
+- `DATABASE_URL`
+- `NUXT_DISCORD_URL`
+- `NUXT_SENDER_EMAIL_ADDRESS` / `NUXT_SENDER_EMAIL_PASSWORD`
+- `WHOIS_IMG`（任意）
+- `NUXT_DATA_DIR`（空なら `server/data`）
+
+切り戻し: DNS の A レコードを旧サーバへ戻す。旧サーバは Nuxt 2 の `master` と `forever` のまま残しておく。新 VPS のコードは GitHub が正なので、サーバ独自のソース修正は残さない。

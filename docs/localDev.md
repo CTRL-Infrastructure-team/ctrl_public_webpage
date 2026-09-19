@@ -19,7 +19,7 @@ nvm use
 cp .env.example .env
 ```
 
-`.env` の `NUXT_SESSION_SECRET` は32文字以上のランダム文字列に変更してください。
+`.env` の `NUXT_SESSION_SECRET` は32文字以上のランダム文字列に変更してください。`DATABASE_URL` の初期値はローカル Docker（DB 名 `ctrlPublicSite`）向けです。
 
 ```bash
 docker compose up -d

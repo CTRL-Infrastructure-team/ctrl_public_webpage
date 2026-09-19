@@ -1,6 +1,20 @@
 import { describe, expect, it } from 'vitest'
 import { isSafeFileSegment } from '../utils/pathSafety'
 import { formatDate } from '../utils/formatDate'
+import { isHttpsRequest } from '../utils/https'
+
+describe('isHttpsRequest', () => {
+  it('trusts X-Forwarded-Proto over the socket flag', () => {
+    expect(isHttpsRequest('https', false)).toBe(true)
+    expect(isHttpsRequest('http', true)).toBe(false)
+    expect(isHttpsRequest('https,http', false)).toBe(true)
+  })
+
+  it('falls back to the TLS socket when no forwarded proto is set', () => {
+    expect(isHttpsRequest(undefined, true)).toBe(true)
+    expect(isHttpsRequest(undefined, false)).toBe(false)
+  })
+})
 
 describe('isSafeFileSegment', () => {
   it('allows normal filenames', () => {

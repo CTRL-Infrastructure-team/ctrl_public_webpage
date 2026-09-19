@@ -1,3 +1,9 @@
+# ctrl_public_webpage（旧 README）
+
+このファイルは Nuxt 2 時代の README の控えです。現行の手順はリポジトリ直下の [README.md](/README.md) と `docs/` を見てください。
+
+---
+
 # ctrl_public_webpage
 
 東京都市大学コンピュータ技術研究会の公式ホームページです。

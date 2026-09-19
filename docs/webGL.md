@@ -7,37 +7,27 @@ UnityやSiv3Dで制作したゲームは、WebGLという形式で出力する�
 
 出力したファイル群をサーバに置いてゲームを公開しましょう。手順は以下の通りです。
 
-1. サーバへ入り、サイトの公開を停止する。
+1. 自分の PC から、WebGL ファイル群をまとめたフォルダを `public/games/` へ転送する。サイトを止める必要はありません。
 
     ```bash
-    //サーバで実行
-    cd /home/...(中略).../ctrl_public_webpage
-    sudo forever stop 0
+    scp -r [自分のPC上のフォルダパス] ctrl:/var/www/home.tcu-ctrl.jp/public/games/
     ```
 
-2. サーバを抜け、WebGLファイル群をまとめたフォルダをscpコマンドで転送する。転送先は `public/games`
+    `public/games/` は gitignore です。SSH ホスト名 `ctrl` は部内の ssh 設定に合わせてください。
+
+2. サーバでビルドして反映する。Nuxt は `public/` を `.output/public/` へコピーするため、置きっぱなしでは公開されません。
 
     ```bash
-    //自分のPCで実行
-    scp -r [自分のPC上のフォルダパス] [転送先のパス]
+    ssh ctrl
+    cd /var/www/home.tcu-ctrl.jp
+    yarn build
+    sudo systemctl restart home-tcu-ctrl
     ```
 
-3. 再びサーバに入り、サイトのビルドを行う。
+3. ブラウザからゲームページへアクセスする。
 
-    ```bash
-    cd /home/.../ctrl_public_webpage
-    sudo yarn build
-    ```
-
-4. サイトを公開し、サーバから抜ける。
-
-    ```bash
-    sudo forever start -c "node --env-file=.env" .output/server/index.mjs
-    exit
-    ```
-
-5. ブラウザからゲームページへアクセスする
-
-    ```bash
+    ```text
     https://home.tcu-ctrl.jp/games/[フォルダ名]/[ファイル名].html
     ```
+
+    DNS 切替前の確認は `http://160.251.137.35/games/...` です。

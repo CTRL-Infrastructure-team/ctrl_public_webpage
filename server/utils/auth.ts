@@ -1,4 +1,5 @@
 import type { H3Event } from 'h3'
+import { isHttpsRequest } from '../../utils/https'
 import { prisma } from './prisma'
 
 function sessionPassword() {
@@ -13,12 +14,14 @@ function sessionPassword() {
 }
 
 export function getAppSession(event: H3Event) {
+  const forwarded = getRequestHeader(event, 'x-forwarded-proto')
+  const encrypted = Boolean((event.node?.req?.socket as { encrypted?: boolean } | undefined)?.encrypted)
   return useSession(event, {
     name: 'ctrl.sid',
     password: sessionPassword(),
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: isHttpsRequest(forwarded, encrypted),
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7
     }

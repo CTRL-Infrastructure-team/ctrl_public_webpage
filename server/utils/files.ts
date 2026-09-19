@@ -11,12 +11,13 @@ export type UploadedPart = {
   type?: string
 }
 
-const IMAGE_EXT = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp'])
+const IMAGE_EXT = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'jfif'])
 const ZIP_EXT = new Set(['zip'])
 const IMAGE_MIME: Record<string, string> = {
   png: 'image/png',
   jpg: 'image/jpeg',
   jpeg: 'image/jpeg',
+  jfif: 'image/jpeg',
   gif: 'image/gif',
   webp: 'image/webp'
 }

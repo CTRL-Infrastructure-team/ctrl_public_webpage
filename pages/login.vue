@@ -44,11 +44,12 @@ async function login() {
   try {
     await $fetch('/api/login', {
       method: 'POST',
+      credentials: 'include',
       body: { username: username.value, password: password.value }
     })
     await navigateTo('/edit/management')
   } catch (err: any) {
-    alert.value = err?.statusMessage || 'ログインに失敗しました'
+    alert.value = err?.data?.statusMessage || err?.statusMessage || 'ログインに失敗しました'
   } finally {
     pending.value = false
   }
