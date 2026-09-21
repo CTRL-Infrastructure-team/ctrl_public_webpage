@@ -2,7 +2,7 @@
 
 ## こちらの作業を初めて行う方へ
 
-まずはこのリポジトリの内容をご自身のPC（ローカル環境）にダウンロードしてください。トップページから Code > Download ZIP を押していただくと、zip形式でダウンロードできますので、こちらを解凍してください。そして展開したフォルダの中に `scripts/publication` というフォルダがあることを確認してください。
+まずはこのリポジトリの内容をご自身のPC（ローカル環境）にダウンロードしてください。[トップページ](https://github.com/CTRL-Infrastructure-team/ctrl_public_webpage)から Code > Download ZIP を押していただくと、zip形式でダウンロードできます。こちらを解凍したフォルダの中に `scripts/publication` というフォルダがあることを確認してください。
 
 ## 公開手順
 
