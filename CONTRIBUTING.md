@@ -1,9 +1,19 @@
 # 開発の流れ
+
 1. 最新のコードを取り入れるためにプルしてください。
-1. `develop`ブランチより`feature`ブランチを切ってから作業をしてください。（今のところブランチ名に決まりはありませんが、`feature/<作業内容>`という形式にしてもらえると後から見ても分かりやすいと思います。）
-1. 作業が完了したら`develop`、`master`ブランチへマージしてください。
-    1. 変更内容に不安がある場合は`develop`ブランチに向けてPRを作成してください。（レビュワーには`polyester-CTRL`か`rin-ctrl`を指定してください。）
-1. 変更した内容を`master`ブランチにマージし、サーバ上でプルして再起動すると、実際のWebページに反映されます。
+1. `master`（または運用中なら `develop`）から `feature/<作業内容>` ブランチを切って作業してください。
+1. 作業が完了したら GitHub へ push し、必要なら PR を作成してください。レビュワーには `polyester-CTRL` か `rin-ctrl` を指定してください。
+1. `master` にマージされたら、本番サーバ `/var/www/home.tcu-ctrl.jp` で次を実行すると反映されます。
+
+    ```bash
+    git pull --ff-only
+    yarn install --frozen-lockfile
+    yarn prisma:deploy
+    yarn build
+    sudo systemctl restart home-tcu-ctrl
+    ```
+
+    詳細は [サーバの再起動と本番更新](/docs/reboot.md) を見てください。サーバ上でソースを直接直さないでください。`.env` と `server/data/` だけがサーバ固有です。
 
 # 作業時のお願い
 

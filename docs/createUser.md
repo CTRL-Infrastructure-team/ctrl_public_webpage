@@ -1,21 +1,30 @@
 # ユーザの作成方法
 
-`api/manualControllers/users`配下に`user_data.json`を作成してください。
+`scripts/user_data.example.json` をコピーして `scripts/user_data.json` を作成します。この JSON は gitignore です。パスワードをコミットしないでください。
 
-ファイルを開いて以下の通り記載します。
-
-```bash
+```json
 [
-    {
-      "username": "hoge",
-      "password": "hoge",
-      "twitter_id": "@hoge"
-    }
+  {
+    "username": "hoge",
+    "password": "hoge",
+    "twitter_id": "@hoge"
+  }
 ]
 ```
 
-保存後、`api/manualControllers/users`にて以下のコマンドを実行します。
+保存後、プロジェクトルートで実行します。`.env` の `DATABASE_URL` が必要です。
 
 ```bash
-node createUser.js
+node --env-file=.env scripts/create-user.mjs
 ```
+
+本番サーバで作る場合も同じです。
+
+```bash
+ssh ctrl
+cd /var/www/home.tcu-ctrl.jp
+# scripts/user_data.json を置いてから
+node --env-file=.env scripts/create-user.mjs
+```
+
+DB に行が増えるだけなので、`yarn build` は不要です。同じ `username` を何度も実行するとユーザが重複します。

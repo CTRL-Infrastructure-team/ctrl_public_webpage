@@ -20,7 +20,8 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 - [問い合わせ機能をDiscordサーバと連携](/docs/setInquily.md)
 - [データベースの操作(サーバ)](/docs/serverDB.md)
 - [部内ユーザの新規作成](/docs/createUser.md)
-- [サーバの再起動](/docs/reboot.md)
+- [サーバの再起動と本番更新](/docs/reboot.md)
+- [本番切替（DNS・HTTPS）](/docs/cutover.md)
 - [webGLアプリの公開](/docs/webGL.md)
 
 ## 開発者の方へ

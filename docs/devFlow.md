@@ -1,7 +1,7 @@
 # 開発フロー
 
-`develop`ブランチより`feature`ブランチを切ってから作業をしてください。（今のところブランチ名に決まりはありませんが、`feature/<作業内容>`という形式にしてもらえると後から見ても分かりやすいと思います。）
+`master`（または運用中なら `develop`）から `feature/<作業内容>` ブランチを切って作業してください。ブランチ名に厳密な規則はありませんが、この形式だと後から追いやすいです。
 
-作業が完了したら`develop`、`master`ブランチへマージしてください。
+作業が完了したら GitHub へ push し、`master` へマージします。変更に不安がある場合は PR を作成してください。レビュワーには `polyester-CTRL` か `rin-ctrl` を指定してください。
 
-変更内容に不安がある場合は`develop`ブランチに向けてPRを作成してください。（レビュワーには`polyester-CTRL`か`rin-ctrl`を指定してください。）
+本番反映は GitHub が正です。サーバ `/var/www/home.tcu-ctrl.jp` で `git pull --ff-only` → `yarn install --frozen-lockfile` → `yarn prisma:deploy` → `yarn build` → `sudo systemctl restart home-tcu-ctrl` します。手順の詳細は [reboot.md](/docs/reboot.md) です。

@@ -1,7 +1,8 @@
 name: CI
-on: 
+on:
   push:
     branches:
+      - master
       - develop
   pull_request:
     branches:
@@ -12,9 +13,14 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
-      - run: yarn install
+          node-version: '22'
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
       - run: yarn build
+        env:
+          NUXT_SESSION_SECRET: ci-session-secret-must-be-32-chars-min
+          DATABASE_URL: mysql://root:pwd@localhost:3306/ctrlPublicSite

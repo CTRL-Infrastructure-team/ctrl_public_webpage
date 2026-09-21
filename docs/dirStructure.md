@@ -1,51 +1,30 @@
 # ディレクトリ構成
 
-ディレクトリは大まかにapiとclientに分かれています。apiがバックエンド、clientがフロントエンドのコードです。
+Nuxt 3 標準のディレクトリです。ページは `pages/`、API は `server/api/` にあります。
 
-## api
+## フロント
 
-- config
-  - cache : キャッシュ
-  - data : 作品、活動報告のファイルを保存
-  - key : 外部サービスのapiキーなど
-  - passport : ユーザ認証のためのコード
-- controllers : リクエストに応じた処理を実装する
-- manualControllers
-  - publication : 進捗スライドの公開ツール
-  - show : データベースの閲覧ツール
-  - users : 新規ユーザの作成ツール
+- `pages/` … ファイルベースルーティング
+- `components/` … UI・フォーム・進捗発表コンポーネント。`components/publication/ThePresentation.vue` のタグ名は Nuxt 3 では `PublicationThePresentation` です
+- `layouts/` … 共通ヘッダ/フッタ
+- `assets/` … 画像、SCSS、FAQ テキスト
+- `public/` … favicon、SNS アイコン、WebGL（`public/games/`、gitignore）
+- `middleware/auth.ts` … 管理画面のログイン必須
 
-## client
+## サーバ
 
-- assets
-  - data : 作品、活動報告のデータ
-  - img : 画像データ
-  - scss : グローバルCSSのファイル
-  - text : テキストデータ
-- components : コンポーネントファイルを入れる
-  - publication : 進捗スライド用
-  - ui : cardやheadlineなどの汎用的なUIのコンポーネント
-- layouts : 全体のレイアウトをまとめるVueファイルがある
-- middleware : ミドルウェアを入れる
-- pages : vueファイル、ルーティングファイルを入れる
-  - publication : 進捗スライドの公開ページに関するファイル
-- plugins : axiosやelement-uiなどのプラグインを入れる
-- static : faviconなど変更頻度の低いファイルを入れる
-  - games : WebGLアプリのファイルをまとめたフォルダを入れる
-- store : Vuexストアのファイル
-- test : テスト用コード
+- `server/api/` … Nitro API
+- `server/utils/` … Prisma、認証、ファイル保存
+- `server/data/` … アップロードファイル（gitignore）。旧パスは `api/config/data/`
 
 ## その他
 
-- node_modules
-- server : サーバを起動する時はまずこの中のファイルを起動する
-- prisma : データベースの設計に関するファイル
-
-## 重要なファイル
-
-- nuxt.config.js : Nuxt.jsの設定を記述
-- package.json : 依存するパッケージやスクリプトを記述
-- yarn.lock : yarnの設定が保存されたファイル。
-- .gitignore : gitで管理したくないファイルの名前を記述
-- docker-compose.yml : dockerの設定を記述
-- .nmvrc : NVMでNode.jsのバージョン管理を行うためのファイル
+- `prisma/` … データベース定義とマイグレーション
+- `scripts/` … ユーザ作成、進捗スライド投入、DB閲覧
+- `deploy/` … systemd・nginx・初回構築スクリプト
+- `docs/` … 運用・開発ドキュメント
+- `nuxt.config.ts` … Nuxt 設定
+- `package.json` / `yarn.lock` … 依存関係
+- `docker-compose.yml` … ローカル MariaDB
+- `.nvmrc` … Node 22
+- `.env.example` … 環境変数の雛形（本番の `.env` は git に入れない）

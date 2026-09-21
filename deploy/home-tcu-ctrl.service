@@ -1,0 +1,19 @@
+[Unit]
+Description=CTRL homepage (Nuxt 3)
+After=network.target mariadb.service
+Wants=mariadb.service
+
+[Service]
+Type=simple
+User=anna
+Group=anna
+WorkingDirectory=/var/www/home.tcu-ctrl.jp
+Environment=NODE_ENV=production
+Environment=NITRO_HOST=127.0.0.1
+Environment=NITRO_PORT=3000
+ExecStart=/usr/bin/node --env-file=.env .output/server/index.mjs
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
