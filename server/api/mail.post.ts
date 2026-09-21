@@ -36,9 +36,18 @@ export default defineEventHandler(async (event) => {
   checkRateLimit(ip)
 
   const config = useRuntimeConfig()
+  const hasMail = Boolean(config.senderEmailAddress && config.senderEmailPassword)
+  const hasDiscord = Boolean(config.discordUrl)
+  if (!hasMail && !hasDiscord) {
+    throw createError({
+      statusCode: 503,
+      statusMessage: '問い合わせ機能が設定されていません（Discord またはメールの .env を確認してください）'
+    })
+  }
+
   const text = `このメールアドレスは送信専用です。返信しても反応はできません。\n返信には時間がかかる場合がございます。\n 以下の内容で問い合わせを受けつけました。\n${inquiry}`
 
-  if (config.senderEmailAddress && config.senderEmailPassword) {
+  if (hasMail) {
     const smtp = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -48,12 +57,21 @@ export default defineEventHandler(async (event) => {
         pass: String(config.senderEmailPassword)
       }
     })
-    await smtp.sendMail({
-      from: String(config.senderEmailAddress),
-      to: email,
-      subject: '問い合わせを受け付けました。',
-      text
-    })
+    try {
+      await smtp.sendMail({
+        from: String(config.senderEmailAddress),
+        to: email,
+        subject: '問い合わせを受け付けました。',
+        text
+      })
+    } catch {
+      if (!hasDiscord) {
+        throw createError({
+          statusCode: 502,
+          statusMessage: '確認メールの送信に失敗しました。Gmail の設定を確認してください'
+        })
+      }
+    }
   }
 
   if (config.discordUrl) {

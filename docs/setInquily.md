@@ -15,8 +15,10 @@
 
 7. 次を設定して保存します。
 
-    - `NUXT_DISCORD_URL` … 5 でコピーしたウェブフック URL
-    - `NUXT_SENDER_EMAIL_ADDRESS` / `NUXT_SENDER_EMAIL_PASSWORD` … 問い合わせメールを送るアカウント（使う場合）
+    - `NUXT_DISCORD_URL` … 5 でコピーしたウェブフック URL（**必須に近い**。これだけでも問い合わせは Discord に届く）
+    - `NUXT_SENDER_EMAIL_ADDRESS` / `NUXT_SENDER_EMAIL_PASSWORD` … **使わない場合は空のまま**。Gmail 自動返信を使うときだけ、Gmail アプリパスワード（16 文字）を設定する
+
+    メール用の変数だけ誤った値が入っていると、Discord より先に SMTP が失敗して **500 エラー** になるので注意してください。
 
 8. 環境変数はプロセス起動時に読まれるので、再ビルドは不要です。サービスを再起動します。
 
@@ -24,7 +26,9 @@
     sudo systemctl restart home-tcu-ctrl
     ```
 
-9. 公式 HP の問い合わせページからテスト送信し、Discord（とメール）に届けば完了です。
+9. 公式 HP の問い合わせページからテスト送信し、Discord に届けば完了です（メール設定をしている場合は受信も確認）。
+
+本番切替の全体手順は [cutover.md](/docs/cutover.md) を参照してください。
 
 # ノブチ備忘録
 

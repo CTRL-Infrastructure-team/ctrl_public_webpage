@@ -67,21 +67,21 @@
 
 ## カットオーバー
 
-新 VPS（`/var/www/home.tcu-ctrl.jp`）へ DB と `server/data/` は移済み。残作業:
+staging で主要機能の確認が終わったら [cutover.md](/docs/cutover.md) に従って進めます。概要:
 
-1. `feature/nuxt3-migration` を staging（IP）で確認し、問題なければ `master` へマージする
-2. **`home.tcu-ctrl.jp` の A レコードだけ** 新 VPS へ向ける。ネームサーバは動かさない
-3. `sudo certbot --nginx -d home.tcu-ctrl.jp`
-4. サーバの追従ブランチを `master` にする
-5. 旧サーバではホームページを止め、Gitea / フォーラム / DNS はそのまま
+1. `feature/nuxt3-migration` を **`master` へマージ**（PR）
+2. **`home.tcu-ctrl.jp` の A レコードだけ** 新 VPS へ（ネームサーバは変更しない）
+3. 新 VPS で **`master`** を pull → build → **certbot**
+4. **`WHOIS_IMG`** は DNS + HTTPS 後（`public/og-twitter.jpg` 推奨）
+5. 旧 foruthia で **ホームページのみ停止**
 
 環境変数（`.env`、git に入れない）:
 
 - `NUXT_SESSION_SECRET`（32文字以上）
 - `DATABASE_URL`
-- `NUXT_DISCORD_URL`
-- `NUXT_SENDER_EMAIL_ADDRESS` / `NUXT_SENDER_EMAIL_PASSWORD`
-- `WHOIS_IMG`（任意）
+- `NUXT_DISCORD_URL`（問い合わせ。staging で確認済み想定）
+- `NUXT_SENDER_EMAIL_ADDRESS` / `NUXT_SENDER_EMAIL_PASSWORD` … **未使用なら空**
+- `WHOIS_IMG` … **切替後**。空でもサイトは動作する
 - `NUXT_DATA_DIR`（空なら `server/data`）
 
 切り戻し: DNS の A レコードを旧サーバへ戻す。旧サーバは Nuxt 2 の `master` と `forever` のまま残しておく。新 VPS のコードは GitHub が正なので、サーバ独自のソース修正は残さない。
