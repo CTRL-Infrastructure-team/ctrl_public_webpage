@@ -24,7 +24,7 @@
 10. scpコマンドで `topic_data.json` と `slide_data.json` をサーバに転送
 
 ```bash
-scp \[ ローカル環境のファイルパス \] ctrlhp:/var/www/home.tcu-ctrl.jp/scripts/publication
+scp [ローカル環境のファイルパス] ctrlhp:/var/www/home.tcu-ctrl.jp/scripts/publication
 ```
 
 11. SSHでサーバにアクセスして以下のコマンドを順に実行する
