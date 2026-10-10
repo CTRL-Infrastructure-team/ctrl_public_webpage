@@ -11,10 +11,11 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 ## 管理人の方へ
 
-このホームページの管理人になった方は, 部内で引き継がれる「部のサーバへのssh新規接続方法（Windows）」を参考に, サーバへアクセスできるようにしてください。また、歴代の管理人・開発者が入っているDiscordサーバがあるので、そちらに入っていただけるとサポートができます。分からないことがあれば、OBのノブチまでお気軽にご連絡ください。
+このホームページの管理人になった方は、部内で引き継がれる **Windows 運用ツール（`ctrl_web_manager`）** または従来の SSH 手順でサーバへアクセスできるようにしてください。ツールの引き継ぎと bat の使い方は [Windows 運用ツール（ctrl_web_manager）](/docs/ctrl-web-manager.md) を参照してください。歴代の管理人・開発者が入っている Discord サーバがあるので、そちらに入っていただけるとサポートができます。分からないことがあれば、OB のノブチまでお気軽にご連絡ください。
 
 管理者の方は以下の内容も参考にしてください。
 
+- [Windows 運用ツール（ctrl_web_manager）](/docs/ctrl-web-manager.md)（DB 更新を bat で行う場合）
 - [進捗スライドの公開](/docs/pubSlide.md)
 - [誤って投稿した進捗スライドの削除](/docs/deleteSlide.md)
 - [問い合わせ機能をDiscordサーバと連携](/docs/setInquily.md)
