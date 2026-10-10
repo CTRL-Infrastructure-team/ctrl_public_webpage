@@ -4,7 +4,7 @@
 
 ## 起動方法
 
-1. `ssh ctrl` でサーバへ入る
+1. `ssh ctrl_hp` でサーバへ入る
 
 2. `.env` の `DATABASE_URL` を確認する（形式は `mysql://ユーザ:パスワード@127.0.0.1:3306/DB名`）
 
@@ -13,11 +13,11 @@
     grep '^DATABASE_URL=' .env
     ```
 
-3. そのユーザと DB 名で入る。本番はユーザ・DB 名とも `ctrlhp` です。root では入りません。
+3. そのユーザと DB 名で入る。本番のユーザは `ctrlhp`、データベース名は `ctrlPublicSite` です。root では入りません。
 
     ```bash
     mysql -u ctrlhp -p
-    USE ctrlhp;
+    USE ctrlPublicSite;
     ```
 
     パスワードを聞かれたら `DATABASE_URL` のパスワードを入力します。

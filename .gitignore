@@ -58,6 +58,9 @@ public/games/**
 # local investigation notes
 tcu-ctrl_server_investigation.md
 
+# Windows 運用ツール（部内 USB / プライベート repo で配布）
+ctrl_web_manager/
+
 # CLI working files
 scripts/publication/setting.json
 scripts/publication/slide_data.json

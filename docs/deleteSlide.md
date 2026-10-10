@@ -1,14 +1,14 @@
 # 誤って投稿した進捗発表資料の削除
 
 進捗資料を公開する操作を誤った場合は、データベースを操作して修正してください。
-接続方法は [データベースの操作方法（サーバ）](/docs/serverDB.md) を参照してください。本番の DB 名は `ctrlhp` です。
+接続方法は [データベースの操作方法（サーバ）](/docs/serverDB.md) を参照してください。本番の DB 名は `ctrlPublicSite` です。
 
 ## スライドを公開する Topic を間違えた場合
 
 1. トピック一覧から、間違ってスライドを載せた行の `id` と `created_at` を確認する。
 
     ```sql
-    USE ctrlhp;
+    USE ctrlPublicSite;
     SET NAMES utf8mb4;
     SELECT id, name, created_at FROM pubtopics ORDER BY created_at DESC;
     ```
@@ -36,7 +36,7 @@
 トピックを消す前に、紐づくスライドを先に消してください（外部キー）。
 
 ```sql
-USE ctrlhp;
+USE ctrlPublicSite;
 SELECT id, name, created_at FROM pubtopics;
 DELETE FROM pubslides WHERE pubtopics_id = '削除したいトピックのID';
 DELETE FROM pubtopics WHERE id = '削除したいトピックのID';
