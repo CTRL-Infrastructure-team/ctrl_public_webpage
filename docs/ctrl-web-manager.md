@@ -12,7 +12,7 @@
 | 活動期（term）の更新 | nginx / systemd / DNS の変更 |
 | 進捗スライドの DB 登録 | 問い合わせ Discord 設定など `.env` の編集 |
 
-**サイト自体の改修**は [開発の流れ](/docs/devFlow.md) を参照し、管理人（ターミナル操作ができる人）が行います。
+**サイト自体の改修**は [開発の流れ](/docs/devFlow.md) を参照して行い、その反映は管理人（ターミナル操作ができる人）が行います。
 
 ## ディレクトリ構成（引き継ぎパッケージ）
 
@@ -20,12 +20,12 @@
 ctrl_web_manager/
 ├── set_ssh/
 │   ├── config              # ctrl_hp 用（リポジトリ外で配布）
-│   ├── set_my_ssh.bat      # 後任 PC：鍵生成・config 配置
-│   └── set_junior_ssh.bat  # 後任 PC：前任の .pub をサーバ登録
+│   ├── set_my_ssh.bat      # 後任 PC にて実行：鍵生成・config 配置
+│   └── set_junior_ssh.bat  # 前任 PC にて実行：後任の .pub をサーバ登録
 ├── user_registration/
 │   ├── transfer.bat
 │   ├── example/
-│   └── user_data.json      # 作業用（git に入れない）
+│   └── user_data.json      # 外部に漏洩しないように注意
 ├── update_term/
 │   ├── transfer.bat
 │   ├── example/
