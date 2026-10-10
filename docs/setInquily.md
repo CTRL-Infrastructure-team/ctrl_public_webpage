@@ -8,7 +8,7 @@
 6. サーバへ入り、サイトディレクトリの `.env` を編集します。
 
     ```bash
-    ssh ctrl
+    ssh ctrl_hp
     cd /var/www/home.tcu-ctrl.jp
     nano .env
     ```
@@ -27,8 +27,6 @@
     ```
 
 9. 公式 HP の問い合わせページからテスト送信し、Discord に届けば完了です（メール設定をしている場合は受信も確認）。
-
-本番切替の全体手順は [cutover.md](/docs/cutover.md) を参照してください。
 
 # ノブチ備忘録
 

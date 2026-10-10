@@ -11,7 +11,7 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 ## 管理人の方へ
 
-このホームページの管理人になった方は、部内で引き継がれる **Windows 運用ツール（`ctrl_web_manager`）** または従来の SSH 手順でサーバへアクセスできるようにしてください。ツールの引き継ぎと bat の使い方は [Windows 運用ツール（ctrl_web_manager）](/docs/ctrl-web-manager.md) を参照してください。歴代の管理人・開発者が入っている Discord サーバがあるので、そちらに入っていただけるとサポートができます。分からないことがあれば、OB のノブチまでお気軽にご連絡ください。
+このホームページの管理人になった方は、部内で引き継がれる **Windows 運用ツール（`ctrl_web_manager`）** でサーバへアクセスできるようにしてください。ツールの引き継ぎと bat の使い方は [Windows 運用ツール（ctrl_web_manager）](/docs/ctrl-web-manager.md) を参照してください。歴代の管理人・開発者が入っている Discord サーバがあるので、そちらに入っていただけるとサポートができます。分からないことがあれば、OB のノブチまでお気軽にご連絡ください。
 
 管理者の方は以下の内容も参考にしてください。
 
@@ -21,8 +21,6 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 - [問い合わせ機能をDiscordサーバと連携](/docs/setInquily.md)
 - [データベースの操作(サーバ)](/docs/serverDB.md)
 - [部内ユーザの新規作成](/docs/createUser.md)
-- [サーバの再起動と本番更新](/docs/reboot.md)
-- [本番切替（DNS・HTTPS）](/docs/cutover.md)
 - [webGLアプリの公開](/docs/webGL.md)
 
 ## 開発者の方へ
@@ -43,7 +41,3 @@ URLは[https://home.tcu-ctrl.jp](https://home.tcu-ctrl.jp)です。
 
 - [活動報告](/docs/report.md)
 - [作品投稿](/docs/work.md)
-
-## その他
-
-旧バージョンのREADME.mdは[こちら](/docs/README_old.md)をご覧ください。
