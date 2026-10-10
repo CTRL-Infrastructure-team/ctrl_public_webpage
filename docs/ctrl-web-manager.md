@@ -49,13 +49,13 @@ ctrl_web_manager/
 ### 手順
 
 1. 前任が、持っている `ctrl_web_manager/set_ssh/` の内に保存されている公開鍵 `*.rsa` をすべて削除する。
-1. **前任**が持っている `ctrl_web_manager` をzipファイルに圧縮し、後任へ渡す。discordのDMやUSBなど、両者以外が触れられないよう渡し方に注意する。
+1. 前任が、持っている `ctrl_web_manager` をzipファイルに圧縮し、後任へ渡す。discordのDMやUSBなど、両者以外が触れられないよう渡し方に注意する。
 1. 後任が、前任から渡されたzipを展開する。
-1. **後任**が `set_ssh/set_my_ssh.bat` を実行する。
+1. 後任が `set_ssh/set_my_ssh.bat` を実行する。
    - 黒い画面に、英数字8文字の**パスフレーズ** が表示されるので、ここで入力した内容を忘れないように記録しておく。このパスフレーズは今後進捗スライドの公開などでも使用する。
    - （`%USERPROFILE%\.ssh\ctrl_hp\` に秘密鍵、`set_ssh/` に `%USERNAME%_rsa.pub` ができる。）
 1. 後任が、`%USERNAME%_rsa.pub` を前任へ渡す。
-1.  **前任**が、後任から渡された `%USERNAME%_rsa.pub` を `set_ssh/` に配置する。
+1. 前任が、後任から渡された `%USERNAME%_rsa.pub` を `set_ssh/` に配置する。
 1. 前任が、 `set_ssh/set_junior_ssh.bat` を実行する。  
    - 前任者のパスフレーズの入力が複数回要求されるため、必要に応じて入力する。
    - （後任の `.pub` が、サーバの `~/.ssh/authorized_keys.d/` にコピーされる。）
