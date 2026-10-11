@@ -48,7 +48,7 @@ ctrl_web_manager/
 
 ### 手順
 
-1. 前任が、持っている `ctrl_web_manager/set_ssh/` の内に保存されている公開鍵 `*.rsa` をすべて削除する。
+1. 前任が、持っている `ctrl_web_manager/set_ssh/` の内に保存されている公開鍵 `*rsa.pub` をすべて削除する。
 1. 前任が、持っている `ctrl_web_manager` をzipファイルに圧縮し、後任へ渡す。discordのDMやUSBなど、両者以外が触れられないよう渡し方に注意する。
 1. 後任が、前任から渡されたzipを展開する。
 1. 後任が `set_ssh/set_my_ssh.bat` を実行する。
